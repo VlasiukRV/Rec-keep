@@ -1,0 +1,13 @@
+
+.jumbotron {
+    background-image: url('../img/To-do_list.jpg');
+}
+
+.usedSkills img {
+    width: 33%;
+}
+
+.skill {
+    height: 180px;
+    text-align: left;
+}

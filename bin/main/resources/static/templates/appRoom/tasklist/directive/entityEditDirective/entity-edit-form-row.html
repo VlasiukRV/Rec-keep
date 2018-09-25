@@ -1,0 +1,11 @@
+<div class="row">
+    <div ng-repeat="fieldplacing in entityfieldsrow">
+        <div class="col-sm-{{fieldplacing.fieldLength}}">
+            <entity-edit-form-col
+                    fieldplacing="fieldplacing"
+                    entityeditform="entityeditform">
+            </entity-edit-form-col>
+        </div>
+    </div>
+</div>
+

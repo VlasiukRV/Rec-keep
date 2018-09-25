@@ -1,0 +1,15 @@
+<div ng-controller="cashFlowItemController">
+
+    <div ng-controller= "editCashFlowItemController" ng-show="showEditForm">
+        <entity-edit-form
+                entity-edit-form="entityEditForm">
+        </entity-edit-form>
+    </div>
+
+    <div ng-controller="cashFlowItemListController" ng-show="showListForm">
+        <entity-list-form
+                entity-list-form="entityListForm">
+        </entity-list-form>
+    </div>
+
+</div>
