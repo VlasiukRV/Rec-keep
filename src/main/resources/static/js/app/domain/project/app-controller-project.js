@@ -1,10 +1,11 @@
+;
 (function (exp) {
     if (!exp.appController) {
         exp.appController = new Object(null);
     }
     var appController = exp.appController;
 
-    appController.farmController = function ($scope) {
+    appController.projectController = function ($scope) {
         $scope.showEditForm = false;
         $scope.showListForm = true;
 
@@ -19,15 +20,15 @@
         };
     };
 
-    appController.editFarmController = function ($scope, dataStorage) {
-        appService.formsService.EditEntityController.apply(this, arguments);
-        this.metadataName = "farm";
+    appController.editProjectController = function ($scope, dataStorage) {
+        appService.forms.EditEntityController.apply(this, arguments);
+        this.metadataName = "project";
         this.initController();
     };
 
-    appController.farmListController = function ($scope, dataStorage) {
-        appService.formsService.ListEntityController.apply(this, arguments);
-        this.metadataName = "farm";
+    appController. projectListController = function ($scope, dataStorage) {
+        appService.forms.ListEntityController.apply(this, arguments);
+        this.metadataName = "project";
         this.initController();
     };
 

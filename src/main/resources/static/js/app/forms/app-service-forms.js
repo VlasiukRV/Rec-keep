@@ -3,10 +3,10 @@
     if (!exp.appService) {
         exp.appService = new Object(null);
     }
-    var formsService = new Object(null);
-    exp.appService.formsService = formsService;
+    var forms = new Object(null);
+    exp.appService.forms = forms;
 
-    formsService.ListEntityController = function ($scope, dataStorage) {
+    forms.ListEntityController = function ($scope, dataStorage) {
         this.appMetadataSet = dataStorage.getAppMetadaSet();
         this.numPerpage = 10;
 
@@ -113,7 +113,7 @@
 
     };
 
-    formsService.EditEntityController = function ($scope, dataStorage) {
+    forms.EditEntityController = function ($scope, dataStorage) {
         this.appMetadataSet = dataStorage.getAppMetadaSet();
         this.currentEntity = dataStorage.getCurrentEntityByName(this.metadataName);
 
