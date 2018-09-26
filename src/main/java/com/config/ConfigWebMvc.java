@@ -29,12 +29,12 @@ public class ConfigWebMvc extends WebMvcConfigurerAdapter {
         String appTaskListUrl = "/appTaskList";
         registry.addViewController("/taskList").setViewName("/templates/taskList.html");
         registry.addViewController(appTaskListUrl)                                 .setViewName("/templates/appRoom/taskList/app-template.html");
-        registry.addViewController(appTaskListUrl+"/security/usersList")           .setViewName("/templates/appRoom/taskList/app-template-form-list-edit-user.html");
-        registry.addViewController(appTaskListUrl+"/security/roleList")            .setViewName("/templates/appRoom/taskList/app-template-form-list-edit-role.html");
+        registry.addViewController(appTaskListUrl+"/security/usersList")           .setViewName("/templates/appRoom/taskList/app-template-form-user.html");
+        registry.addViewController(appTaskListUrl+"/security/roleList")            .setViewName("/templates/appRoom/taskList/app-template-form-role.html");
         registry.addViewController(appTaskListUrl+"/currentPrincipalInformation")  .setViewName("/templates/appRoom/taskList/app-template-current-principal-information.html");
-        registry.addViewController(appTaskListUrl+"/projectsList")                 .setViewName("/templates/appRoom/taskList/app-template-form-list-edit-project.html");
-        registry.addViewController(appTaskListUrl+"/tasksList")                    .setViewName("/templates/appRoom/taskList/app-template-form-list-edit-task.html");
-        registry.addViewController(appTaskListUrl+"/farmsList")                    .setViewName("/templates/appRoom/taskList/app-template-form-list-edit-farm.html");
+        registry.addViewController(appTaskListUrl+"/projectsList")                 .setViewName("/templates/appRoom/taskList/app-template-form-project.html");
+        registry.addViewController(appTaskListUrl+"/tasksList")                    .setViewName("/templates/appRoom/taskList/app-template-form-task.html");
+        registry.addViewController(appTaskListUrl+"/farmsList")                    .setViewName("/templates/appRoom/taskList/app-template-form-farm.html");
 
     }
 
