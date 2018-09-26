@@ -11,7 +11,7 @@
             restrict: 'E',
             require: '',
             replace: true,
-            templateUrl: '/templates/appRoom/tasklist/directive/login-page.html',
+            templateUrl: '/templates/appRoom/tasklist/directive/app-template-page-login.html',
             scope: {
                 eventAfterLogin: "&"
             },
@@ -38,7 +38,7 @@
         return {
             restrict: 'E',
             require: '',
-            templateUrl: '/templates/appRoom/tasklist/directive/message-line.html',
+            templateUrl: '/templates/appRoom/tasklist/directive/app-template-message-line.html',
             scope: {
                 errorDescriptions: "="
             },
@@ -64,7 +64,7 @@
             restrict: 'E',
             require: '',
             replace: true,
-            templateUrl: '/templates/appRoom/tasklist/directive/menu-bar.html',
+            templateUrl: '/templates/appRoom/tasklist/directive/app-template-menu-bar.html',
             scope: {
                 menuBar: "="
             }
@@ -76,7 +76,7 @@
             restrict: 'E',
             require: '',
             replace: true,
-            templateUrl: '/templates/appRoom/tasklist/directive/menu-collection.html',
+            templateUrl: '/templates/appRoom/tasklist/directive/app-template-menu-collection.html',
             scope: {
                 menuCollection: "=",
                 command: "="
@@ -89,7 +89,7 @@
             restrict: 'E',
             require: '',
             replace: true,
-            templateUrl: '/templates/appRoom/tasklist/directive/menu-item.html',
+            templateUrl: '/templates/appRoom/tasklist/directive/app-template-menu-item.html',
             scope: {
                 command: "="
             },

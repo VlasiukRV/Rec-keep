@@ -68,7 +68,7 @@
         return {
             restrict: 'E',
             require: '',
-            templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/entity-property.html ',
+            templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/app-template-entity-property.html ',
             scope: {
                 entity: '=',
                 property: '='
@@ -88,7 +88,7 @@
         return {
             restrict: 'E',
             require: '',
-            templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/entity-edit-form.html ',
+            templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/app-template-entity-edit-form.html ',
             scope: {
                 entityEditForm: "="
             },
@@ -113,7 +113,7 @@
         return {
             restrict: 'E',
             require: '',
-            templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/entity-edit-form-row.html ',
+            templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/app-template-entity-edit-form-row.html ',
             scope: {
                 entityfieldsrow: "=",
                 entityeditform: "="
@@ -127,7 +127,7 @@
         return {
             restrict: 'E',
             require: '',
-            templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/entity-edit-form-col.html ',
+            templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/app-template-entity-edit-form-col.html ',
             scope: {
                 fieldplacing: "=",
                 entityeditform: "="
@@ -150,7 +150,7 @@
         return {
             restrict: 'E',
             require: '',
-            templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/entity-list-form.html ',
+            templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/app-template-entity-list-form.html ',
             scope: {
                 entityListForm: "="
             },
