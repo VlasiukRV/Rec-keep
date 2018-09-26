@@ -1,5 +1,5 @@
-
-;(function (exp) {
+;
+(function (exp) {
     if (!exp.appUtils) {
         exp.appUtils = new Object(null);
     }

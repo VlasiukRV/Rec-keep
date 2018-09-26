@@ -28,18 +28,14 @@ public class ConfigWebMvc extends WebMvcConfigurerAdapter {
 
         String appTaskListUrl = "/appTaskList";
         registry.addViewController("/taskList").setViewName("/templates/taskList.html");
-        registry.addViewController(appTaskListUrl)                                 .setViewName("/templates/appRoom/taskList/taskListApp.html");
-        registry.addViewController(appTaskListUrl+"/security/usersList")           .setViewName("/templates/appRoom/taskList/usersListEdit.html");
-        registry.addViewController(appTaskListUrl+"/security/roleList")            .setViewName("/templates/appRoom/taskList/rolesListEdit.html");
-        registry.addViewController(appTaskListUrl+"/currentPrincipalInformation")  .setViewName("/templates/appRoom/taskList/viewCurrentPrincipalInformation.html");
-        registry.addViewController(appTaskListUrl+"/projectsList")                 .setViewName("/templates/appRoom/taskList/projectsListEdit.html");
-        registry.addViewController(appTaskListUrl+"/tasksList")                    .setViewName("/templates/appRoom/taskList/tasksListEdit.html");
-        registry.addViewController(appTaskListUrl+"/farmsList")                    .setViewName("/templates/appRoom/taskList/farmsListEdit.html");
+        registry.addViewController(appTaskListUrl)                                 .setViewName("/templates/appRoom/taskList/app-template.html");
+        registry.addViewController(appTaskListUrl+"/security/usersList")           .setViewName("/templates/appRoom/taskList/app-template-form-list-edit-user.html");
+        registry.addViewController(appTaskListUrl+"/security/roleList")            .setViewName("/templates/appRoom/taskList/app-template-form-list-edit-role.html");
+        registry.addViewController(appTaskListUrl+"/currentPrincipalInformation")  .setViewName("/templates/appRoom/taskList/app-template-current-principal-information.html");
+        registry.addViewController(appTaskListUrl+"/projectsList")                 .setViewName("/templates/appRoom/taskList/app-template-form-list-edit-project.html");
+        registry.addViewController(appTaskListUrl+"/tasksList")                    .setViewName("/templates/appRoom/taskList/app-template-form-list-edit-task.html");
+        registry.addViewController(appTaskListUrl+"/farmsList")                    .setViewName("/templates/appRoom/taskList/app-template-form-list-edit-farm.html");
 
-        String appCashAccounting = "/appCashAccounting";
-        registry.addViewController(appCashAccounting)                              .setViewName("/templates/appRoom/appCashAccounting/cashFlowApp.html");
-        registry.addViewController(appCashAccounting+"/cashFlowList")              .setViewName("/templates/appRoom/appCashAccounting/cashFlowEdit.html");
-        registry.addViewController(appCashAccounting+"/cashFlowItemList")          .setViewName("/templates/appRoom/appCashAccounting/cashFlowItemEdit.html");
     }
 
     @Override
