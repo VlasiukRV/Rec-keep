@@ -6,8 +6,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * Configure web MVC component of application
- * extends {@link org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter}.
+ * Configure web MVC component of application extends
+ * {@link org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter}.
  *
  * @author Roman Vlasiuk
  */
@@ -15,36 +15,38 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class ConfigWebMvc extends WebMvcConfigurerAdapter {
 
     public ConfigWebMvc() {
-        super();
+	super();
     }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
 
-        registry.addViewController("/").setViewName("/templates/index.html");
-        registry.addViewController("/appRoom").setViewName("/templates/index.html");
-        registry.addViewController("/service/team").setViewName("/templates/team.html");
-        registry.addViewController("/login").setViewName("/templates/login.html");
+	registry.addViewController("/").setViewName("/templates/index.html");
+	registry.addViewController("/appRoom").setViewName("/templates/index.html");
+	registry.addViewController("/service/team").setViewName("/templates/team.html");
+	registry.addViewController("/login").setViewName("/templates/login.html");
 
-        String appTaskListUrl = "/appTaskList";
-        registry.addViewController("/taskList").setViewName("/templates/taskList.html");
-        registry.addViewController(appTaskListUrl)                                 .setViewName("/templates/appRoom/taskList/app-template.html");
-        registry.addViewController(appTaskListUrl+"/security/usersList")           .setViewName("/templates/appRoom/taskList/app-template-form-user.html");
-        registry.addViewController(appTaskListUrl+"/security/roleList")            .setViewName("/templates/appRoom/taskList/app-template-form-role.html");
-        registry.addViewController(appTaskListUrl+"/currentPrincipalInformation")  .setViewName("/templates/appRoom/taskList/app-template-current-principal-information.html");
-        registry.addViewController(appTaskListUrl+"/projectsList")                 .setViewName("/templates/appRoom/taskList/app-template-form-project.html");
-        registry.addViewController(appTaskListUrl+"/tasksList")                    .setViewName("/templates/appRoom/taskList/app-template-form-task.html");
-        registry.addViewController(appTaskListUrl+"/farmsList")                    .setViewName("/templates/appRoom/taskList/app-template-form-farm.html");
+	String appTaskListUrl = "/appTaskList";
+	registry.addViewController("/taskList").setViewName("/templates/taskList.html");
+	registry.addViewController(appTaskListUrl).setViewName("/templates/appRoom/taskList/app-template.html");
+	registry.addViewController(appTaskListUrl + "/security/usersList")
+		.setViewName("/templates/appRoom/taskList/app-template-model-user.html");
+	registry.addViewController(appTaskListUrl + "/security/roleList")
+		.setViewName("/templates/appRoom/taskList/app-template-model-role.html");
+	registry.addViewController(appTaskListUrl + "/currentPrincipalInformation")
+		.setViewName("/templates/appRoom/taskList/app-template-current-principal-information.html");
+	registry.addViewController(appTaskListUrl + "/projectsList")
+		.setViewName("/templates/appRoom/taskList/app-template-model-project.html");
+	registry.addViewController(appTaskListUrl + "/tasksList")
+		.setViewName("/templates/appRoom/taskList/app-template-model-task.html");
+	registry.addViewController(appTaskListUrl + "/farmsList")
+		.setViewName("/templates/appRoom/taskList/app-template-model-farm.html");
 
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-                .addResourceHandler("")
-                .addResourceLocations("/resources/")
-                .setCachePeriod(3600)
-                .resourceChain(true);
+	registry.addResourceHandler("").addResourceLocations("/resources/").setCachePeriod(3600).resourceChain(true);
     }
 
 }

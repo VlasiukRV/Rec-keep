@@ -1273,16 +1273,10 @@
             .setMetadataSet()
 
             .initEnumsModel()
-
             .initProjectModel()
             .initUserModel()
             .initTaskModel()
             .initFarmModel()
-
-            /*
-             .initCashFlowItem()
-             .initCashFlow()
-             */
 
             .initMetadataSet();
 

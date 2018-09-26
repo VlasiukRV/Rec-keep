@@ -11,7 +11,7 @@
             restrict: 'E',
             require: '',
             replace: true,
-            templateUrl: '/templates/appRoom/tasklist/directive/app-template-page-login.html',
+            templateUrl: '/templates/appRoom/tasklist/directive/app-template-form-login.html',
             scope: {
                 eventAfterLogin: "&"
             },
