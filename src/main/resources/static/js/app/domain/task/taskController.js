@@ -1,22 +1,34 @@
-taskController = function($scope) {
-    $scope.showEditForm = false;
-    $scope.showListForm = true;
+(function (exp) {
+    if (!exp.appController) {
+        exp.appController = new Object(null);
+    }
+    var appController = exp.appController;
 
-    $scope.openEditForm = function(){};
-    $scope.closeEditForm = function(){};
+    appController.taskController = function ($scope) {
+        $scope.showEditForm = false;
+        $scope.showListForm = true;
 
-    $scope.openListForm = function(){};
-    $scope.closeListForm = function(){};
-};
+        $scope.openEditForm = function () {
+        };
+        $scope.closeEditForm = function () {
+        };
 
-editTaskController = function($scope, dataStorage) {
-    appService.formsService.EditEntityController.apply(this, arguments);
-    this.metadataName = "task";
-    this.initController();
-};
+        $scope.openListForm = function () {
+        };
+        $scope.closeListForm = function () {
+        };
+    };
 
-taskListController = function($scope, dataStorage) {
-    appService.formsService.ListEntityController.apply(this, arguments);
-    this.metadataName = "task";
-    this.initController();
-};
+    appController.editTaskController = function ($scope, dataStorage) {
+        appService.formsService.EditEntityController.apply(this, arguments);
+        this.metadataName = "task";
+        this.initController();
+    };
+
+    appController.taskListController = function ($scope, dataStorage) {
+        appService.formsService.ListEntityController.apply(this, arguments);
+        this.metadataName = "task";
+        this.initController();
+    };
+
+})(window);

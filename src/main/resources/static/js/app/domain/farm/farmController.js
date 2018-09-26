@@ -1,22 +1,34 @@
-farmController = function($scope) {
-    $scope.showEditForm = false;
-    $scope.showListForm = true;
+(function (exp) {
+    if (!exp.appController) {
+        exp.appController = new Object(null);
+    }
+    var appController = exp.appController;
 
-    $scope.openEditForm = function(){};
-    $scope.closeEditForm = function(){};
+    appController.farmController = function ($scope) {
+        $scope.showEditForm = false;
+        $scope.showListForm = true;
 
-    $scope.openListForm = function(){};
-    $scope.closeListForm = function(){};
-};
+        $scope.openEditForm = function () {
+        };
+        $scope.closeEditForm = function () {
+        };
 
-editFarmController = function($scope, dataStorage) {
-    appService.formsService.EditEntityController.apply(this, arguments);
-    this.metadataName = "farm";
-    this.initController();
-};
+        $scope.openListForm = function () {
+        };
+        $scope.closeListForm = function () {
+        };
+    };
 
-farmListController = function($scope, dataStorage) {
-    appService.formsService.ListEntityController.apply(this, arguments);
-    this.metadataName = "farm";
-    this.initController();
-};
+    appController.editFarmController = function ($scope, dataStorage) {
+        appService.formsService.EditEntityController.apply(this, arguments);
+        this.metadataName = "farm";
+        this.initController();
+    };
+
+    appController.farmListController = function ($scope, dataStorage) {
+        appService.formsService.ListEntityController.apply(this, arguments);
+        this.metadataName = "farm";
+        this.initController();
+    };
+
+})(window);

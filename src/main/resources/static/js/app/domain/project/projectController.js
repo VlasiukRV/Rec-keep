@@ -1,22 +1,34 @@
-projectController = function($scope) {
-    $scope.showEditForm = false;
-    $scope.showListForm = true;
+(function (exp) {
+    if (!exp.appController) {
+        exp.appController = new Object(null);
+    }
+    var appController = exp.appController;
 
-    $scope.openEditForm = function(){};
-    $scope.closeEditForm = function(){};
+    appController.projectController = function ($scope) {
+        $scope.showEditForm = false;
+        $scope.showListForm = true;
 
-    $scope.openListForm = function(){};
-    $scope.closeListForm = function(){};
-};
+        $scope.openEditForm = function () {
+        };
+        $scope.closeEditForm = function () {
+        };
 
-editProjectController = function($scope, dataStorage) {
-    appService.formsService.EditEntityController.apply(this, arguments);
-    this.metadataName = "project";
-    this.initController();
-};
+        $scope.openListForm = function () {
+        };
+        $scope.closeListForm = function () {
+        };
+    };
 
-projectListController = function($scope, dataStorage) {
-    appService.formsService.ListEntityController.apply(this, arguments);
-    this.metadataName = "project";
-    this.initController();
-};
+    appController.editProjectController = function ($scope, dataStorage) {
+        appService.formsService.EditEntityController.apply(this, arguments);
+        this.metadataName = "project";
+        this.initController();
+    };
+
+    appController. projectListController = function ($scope, dataStorage) {
+        appService.formsService.ListEntityController.apply(this, arguments);
+        this.metadataName = "project";
+        this.initController();
+    };
+
+})(window);
