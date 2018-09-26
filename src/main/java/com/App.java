@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @SpringBootApplication
 @EnableTransactionManagement
-@ComponentScan({"com.config", "com.controller", "com.dao", "com.entity", "com.service", "com.approom.tasklist", "com.approom.cashaccounting"})
+@ComponentScan({"com.config", "com.controller", "com.dao", "com.entity", "com.service", "com.approom.tasklist"})
 @PropertySource("classpath:/config.properties")
 public class App extends SpringBootServletInitializer {
 
