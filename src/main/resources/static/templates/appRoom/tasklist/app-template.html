@@ -1,20 +1,30 @@
 <!doctype html>
-<html ng-app="app">
+<html lang="en" ng-app="app">
 
 <head>
 
-    <title>Task list (app)</title>
-    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Record keeper</title>
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/bootstrap-theme.min.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="//rawgit.com/tamtakoe/oi.select/master/dist/select.css"/>
-<!--    <link rel="stylesheet" href="https://raw.githubusercontent.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-2.5.0-csp.css"/>-->
     <link href="../../../css/hotkeys.min.css" type="text/css" rel="stylesheet"/>
 
     <link href="../../../css/main.css" type="text/css" rel="stylesheet"/>
     <link href="../../../css/taskListApp.css" type="text/css" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link href="../../../css/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../../../css/custom.css" type="text/css" rel="stylesheet"/>
 
     <!--javascript-->
     <script src="../../../js/lib/jquery.min.js"></script>
@@ -34,112 +44,324 @@
 
 </head>
 
-<body>
+<body class="nav-md">
 
-<div id="p_prldr">
-    <div class="contpre">
-        Please wait<br><small> while downloading</small>
-        <div class="spinner"></div><br>
+    <div id="p_prldr">
+        <div class="contpre">
+            Please wait<br><small> while downloading</small>
+            <div class="spinner"></div><br>
+        </div>
     </div>
-</div>
 
-<span ng-controller="workPlaceController">
+    <div class="container body">
+        <div ng-controller="workPlaceController" class="main_container">
 
-    <header class="container">
-        <div class="row">
+            <!-- left navigation -->
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title"><i class="fa fa-database"></i> <span>Record keeper</span></a>
+                    </div>
 
-            <div class="col-sm-2">
-                <h1>Task list</h1>
-                <updatable-text f-call-back="getCurrentTime"></updatable-text>
-            </div>
-            <!-- Menu -->
-            <div class="col-sm-3">
-                <p>
-                    <menu-bar class="commandBar" menu-bar="commandBar"></menu-bar>
-                </p>
-            </div>
+                    <div class="clearfix"></div>
 
-            <nav class="col-sm-7 text-right">
-                <p><a href="/">App room</a></p>
-
-                <p><a href="/taskList">Description</a></p>
-
-                <p><a href="/service/team">Team</a></p>
-
-                <p><a href="#/currentPrincipalInformation">{{principal.name}}</a> </p>
-
-                <p>
-                    <button ng-show="!principal.authenticated" ng-click="login()" type="button" size="sm"
-                            title="log-in">
-                        <span class="glyphicon glyphicon-log-in"></span>
-                    </button>
-                    <button ng-show="principal.authenticated" ng-click="logout()" type="button" size="sm"
-                            title="log-out">
-                        <span class="glyphicon glyphicon-log-out"></span>
-                    </button>
-                </p>
-
-            </nav>
-
-        </div>
-    </header>
-
-    <section class="container">
-        <div class="row">
-        </div>
-
-        <div class="row">
-            <!-- App -->
-            <div class="col-sm-12">
-                <uib-tabset active="active">
-                    <uib-tab index="0" heading="Work place">
-                        <div class="row">
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="../img/img.jpg" alt="..." class="img-circle profile_img">
                         </div>
-                        <div class="row">
-                            <div ng-view class="appWorkPlace alert alert-success" role="alert">
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2>John Doe</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="index.html">Dashboard</a></li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-table"></i> Models <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="tables.html">Tables</a></li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
+                                        <li><a href="fixed_footer.html">Fixed Footer</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="menu_section">
+                            <h3>Live On</h3>
+                            <ul class="nav side-menu">
+                                <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="contacts.html">Contacts</a></li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="#level1_1">Level One</a>
+                                        <li><a>Level One<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu"><a href="level2.html">Level Two</a>
+                                                </li>
+                                                <li><a href="#level2_1">Level Two</a>
+                                                </li>
+                                                <li><a href="#level2_2">Level Two</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#level1_2">Level One</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="http://www.poultryrecords.ca/"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+            <!-- /left navigation -->
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="../img/img.jpg" alt="">John Doe
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="javascript:;"> Profile</a></li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="badge bg-red pull-right">50%</span>
+                                            <span>Settings</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="javascript:;">Help</a></li>
+                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                </ul>
+                            </li>
+
+                            <li role="presentation" class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge bg-green">6</span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                    <li>
+                                        <a>
+                                            <span class="image"><img src="../img/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image"><img src="../img/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image"><img src="../img/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="text-center">
+                                            <a>
+                                                <strong>See All Alerts</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <span ng-controller="workPlaceController">
+
+                        <header class="container">
+                            <div class="row">
+
+                                <div class="col-sm-2">
+                                    <h1>Record keeper</h1>
+                                    <updatable-text f-call-back="getCurrentTime"></updatable-text>
+                                </div>
+                                <!-- Menu -->
+                                <div class="col-sm-3">
+                                    <p>
+                                        <menu-bar class="commandBar" menu-bar="commandBar"></menu-bar>
+                                    </p>
+                                </div>
+
+                                <nav class="col-sm-7 text-right">
+                                    <p><a href="/">App room</a></p>
+
+                                    <p><a href="/taskList">Description</a></p>
+
+                                    <p><a href="/service/team">Team</a></p>
+
+                                    <p><a href="#/currentPrincipalInformation">{{principal.name}}</a> </p>
+
+                                    <p>
+                                        <button ng-show="!principal.authenticated" ng-click="login()" type="button" size="sm"
+                                                title="log-in">
+                                            <span class="glyphicon glyphicon-log-in"></span>
+                                        </button>
+                                        <button ng-show="principal.authenticated" ng-click="logout()" type="button" size="sm"
+                                                title="log-out">
+                                            <span class="glyphicon glyphicon-log-out"></span>
+                                        </button>
+                                    </p>
+
+                                </nav>
 
                             </div>
-                        </div>
-                    </uib-tab>
-                    <uib-tab index="1">
-                        <uib-tab-heading>
-                            <i class="glyphicon glyphicon-bell"></i> Message ({{errorDescriptions.length}})
-                        </uib-tab-heading>
-                        <div class="appWorkPlace alert alert-danger" role="alert">
-                            <message-line error-descriptions="errorDescriptions"></message-line>
-                        </div>
-                    </uib-tab>
-                </uib-tabset>
+                        </header>
+
+                        <section class="container">
+                            <div class="row">
+                            </div>
+
+                            <div class="row">
+                                <!-- App -->
+                                <div class="col-sm-12">
+                                    <uib-tabset active="active">
+                                        <uib-tab index="0" heading="Work place">
+                                            <div class="row">
+                                            </div>
+                                            <div class="row">
+                                                <div ng-view class="appWorkPlace alert alert-success" role="alert">
+
+                                                </div>
+                                            </div>
+                                        </uib-tab>
+                                        <uib-tab index="1">
+                                            <uib-tab-heading>
+                                                <i class="glyphicon glyphicon-bell"></i> Message ({{errorDescriptions.length}})
+                                            </uib-tab-heading>
+                                            <div class="appWorkPlace alert alert-danger" role="alert">
+                                                <message-line error-descriptions="errorDescriptions"></message-line>
+                                            </div>
+                                        </uib-tab>
+                                    </uib-tabset>
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </span>
+                </div>
             </div>
 
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    <p class="col-sm-4">&copy; 2017 vRoma</p>
+                    <ul class="col-sm-8">
+                        <li class="col-sm-1">...</li>
+                        <li class="col-sm-1">...</li>
+                        <li class="col-sm-1">...</li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+
         </div>
-
-    </section>
-
-</span>
-
-<footer class="container">
-    <div class="row">
-        <p class="col-sm-4">&copy; 2017 vRoma</p>
-        <ul class="col-sm-8">
-            <li class="col-sm-1">...</li>
-            <li class="col-sm-1">...</li>
-            <li class="col-sm-1">...</li>
-        </ul>
     </div>
-</footer>
 
-<!-- Vendor libraries -->
-<script src="../../../js/lib/bootstrap.min.js"></script>
+    <!-- Vendor libraries -->
+    <script src="../../../js/lib/bootstrap.min.js"></script>
 
-<script src="../../../js/lib/ui-bootstrap.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="../../../js/lib/ui-bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
 
-<script src="//rawgit.com/tamtakoe/oi.select/master/dist/select-tpls.js"></script>
-<script src="../../../js/lib/hotkeys.min.js"></script>
+    <script src="//rawgit.com/tamtakoe/oi.select/master/dist/select-tpls.js"></script>
+    <script src="../../../js/lib/hotkeys.min.js"></script>
 
-<!-- Application Files -->
-<script src="../../../js/build.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="../../../js/custom.js"></script>
+
+    <!-- Application Files -->
+    <script src="../../../js/build.js"></script>
 
 </body>
 
