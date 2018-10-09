@@ -1,16 +1,8 @@
-<li class = "dropdown">
-
-    <a data-target = "#" class = "dropdown-toggle" data-toggle = "dropdown">
-        {{command.text}}
-        <b class = "caret"></b>
+<li>
+    <a>{{command.text}}
+        <span class="fa fa-chevron-down"></span>
     </a>
-
-    <ul class = "dropdown-menu">
-
-        <!--<li class = "divider"></li>-->
-
-        <menu-item command="childCommand" ng-repeat="childCommand in menuCollection track by $index"></menu-item>
-
+    <ul class="nav child_menu">
+            <menu-item command="childCommand" ng-repeat="childCommand in menuCollection track by $index"></menu-item>
     </ul>
-
 </li>
