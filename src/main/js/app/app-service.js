@@ -82,12 +82,6 @@
             .when("/currentPrincipalInformation", {
                 templateUrl: "/appTaskList/currentPrincipalInformation"
             })
-            .when("/cashFlow", {
-                templateUrl: "/appCashAccounting/cashFlowList"
-            })
-            .when("/cashFlowItem", {
-                templateUrl: "/appCashAccounting/cashFlowItemList"
-            })
 
         ;
         return routeProvider;
