@@ -27,7 +27,16 @@ module.exports = function (grunt) {
             }
         },
 
+        clean: {
+            js: ['src/main/resources/static/js/build.min.js', 'src/main/resources/static/js/build.js']
+        },
+
         concat: {  //описываем работу плагина конкатенации
+            options: {
+                stripBanners: true,
+                banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+                '<%= grunt.template.today("yyyy-mm-dd hh mm ss") %> */',
+            },
             dist: {
                 src: 
                 [
@@ -88,14 +97,14 @@ module.exports = function (grunt) {
     });
 
     //подгружаем необходимые плагины
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-remove-logging');
 
-
     //регистрируем задачу
-    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'removelogging', 'watch']); //задача по умолчанию, просто grunt
+    grunt.registerTask('default', ['jshint', 'clean', 'concat', 'uglify', 'removelogging', 'watch']); //задача по умолчанию, просто grunt
     grunt.registerTask('test', ['']); //пока пусто, но кто знает, возможно в следующих уроках мы этим воспользуемся :)
 };

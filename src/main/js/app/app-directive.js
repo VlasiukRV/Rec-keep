@@ -5,6 +5,16 @@
     }
     var appDirective = exp.appDirective;
 
+    appDirective.directiveElementReady = function() {
+        return {
+            priority: -1000, // a low number so this directive loads after all other directives have loaded.
+            restrict: "A", // attribute only
+            link: function($scope, $element, $attributes) {
+                $scope.$eval($attributes.ngElementReady);
+            }
+        };
+    };
+
     appDirective.directiveLoginPage = function () {
 
         return {

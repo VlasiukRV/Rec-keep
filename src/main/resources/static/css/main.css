@@ -84,17 +84,26 @@ footer li img {
     height: 32px;
 }
 
-#p_prldr {
+.app-popup {
     position: fixed;
     left: 0;
     top: 0;
     right:0;
     bottom:0;
     z-index: 130;
-    background: #00c6ff; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #00c6ff , #0072ff); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #00c6ff , #0072ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    font-family: arial;
+    background: #2A3F54;
+    background: -webkit-linear-gradient(to left, #003F9A, #2A3F54);
+    background: linear-gradient(to left, #003F9A, #2A3F54);
+}
+
+.app-popup .app-popup-content {
+    margin:20%;
+    width: auto;
+    height: auto;
+    padding:10px;
+    background-color: #c5c5c5;
+    border-radius:5px;
+    box-shadow: 0 0 10px #000;
 }
 
 .contpre small {

@@ -56,12 +56,30 @@ app
         return appService.systemService($resource, appEnvironment);
     }])
     .factory('resourceService', function (entityEditService, systemService, securityService, operationService) {
-        return appService.resourceService(entityEditService, systemService, securityService, operationService)
+        return appService.resourceService(entityEditService, systemService, securityService, operationService);
     })
 ;
 
 // Directives
 app
+    .directive('ngElementReady', function () {
+        return appDirective.directiveElementReady();
+    })
+    .directive('messageLine', [function () {
+        return appDirective.directiveMessageLine();
+    }])
+    .directive('menuBar', [function () {
+        return appDirective.directiveMenuBar();
+    }])
+    .directive('menuCollection', [function () {
+        return appDirective.directiveMenuCollection();
+    }])
+    .directive('menuItem', ['$compile', function ($compile) {
+        return appDirective.directiveMenuItem($compile);
+    }])
+    .directive('loginPage', [function () {
+        return appDirective.directiveLoginPage();
+    }])
     .directive('smDatepicker', function () {
         return appDirective.formsDirective.directiveDatePicker();
     })
@@ -85,21 +103,6 @@ app
     })
     .directive('updatableText', ['$interval', function ($interval) {
         return appDirective.directiveUpdatableText($interval);
-    }])
-    .directive('messageLine', [function () {
-        return appDirective.directiveMessageLine();
-    }])
-    .directive('menuBar', [function () {
-        return appDirective.directiveMenuBar();
-    }])
-    .directive('menuCollection', [function () {
-        return appDirective.directiveMenuCollection();
-    }])
-    .directive('menuItem', ['$compile', function ($compile) {
-        return appDirective.directiveMenuItem($compile);
-    }])
-    .directive('loginPage', [function () {
-        return appDirective.directiveLoginPage();
     }])
 ;
 

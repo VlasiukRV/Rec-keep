@@ -46,7 +46,7 @@
 
 <body class="nav-md">
 
-<div id="p_prldr">
+<div id="p_prldr" class="app-popup">
     <div class="contpre">
         Please wait<br>
         <small> while downloading</small>
@@ -116,65 +116,10 @@
                                 </ul>
                             </li>
 
-                            <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span
-                                    class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <menu-item
-                                               command="command"
-                                               ng-repeat="command in commandBar.commandBar.commandList track by $index">
-                                    </menu-item>
-                                </ul>
-                            </li>
+                            <menu-bar
+                                    menu-bar="commandBar" ng-element-ready="init_sidebar()">
+                            </menu-bar>
 
-
-                            <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span
-                                    class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a>Level One<span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-
-                                    <li command="command" menu-collection="command.commandList" class="ng-isolate-scope"><a class="ng-binding">Model<span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="">
-                                            <!-- ngRepeat: childCommand in menuCollection track by $index --><li >
-                                            <a href="" ng-click="commandHandler()" class="ng-binding">
-                                                Project
-                                            </a>
-                                        </li><!-- end ngRepeat: childCommand in menuCollection track by $index --><li >
-                                            <a href="" ng-click="commandHandler()" class="ng-binding">
-                                                Role
-                                            </a>
-                                        </li><!-- end ngRepeat: childCommand in menuCollection track by $index --><li >
-                                            <a href="" ng-click="commandHandler()" class="ng-binding">
-                                                User
-                                            </a>
-                                        </li><!-- end ngRepeat: childCommand in menuCollection track by $index --><li >
-                                            <a href="" ng-click="commandHandler()" class="ng-binding">
-                                                Task
-                                            </a>
-                                        </li><!-- end ngRepeat: childCommand in menuCollection track by $index --><li >
-                                            <a href="" ng-click="commandHandler()" class="ng-binding">
-                                                farm
-                                            </a>
-                                        </li><!-- end ngRepeat: childCommand in menuCollection track by $index -->
-                                        </ul>
-                                    </li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a>Level One<span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li class=""><a href="level2.html">Level Two</a>
-                                            </li>
-                                            <li><a href="#level2_1">Level Two</a>
-                                            </li>
-                                            <li><a href="#level2_2">Level Two</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#level1_2">Level One</a>
-                                    </li>
-                                </ul>
-                            </li>
                             <li><a href="http://www.poultryrecords.ca/"><i class="fa fa-laptop"></i> Landing Page <span
                                     class="label label-success pull-right">Coming Soon</span></a></li>
                         </ul>
@@ -215,11 +160,11 @@
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
-                                <img src="../img/img.jpg" alt="">John Doe
+                                <img src="../img/img.jpg" alt="">{{principal.name}}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="javascript:;"> Profile</a></li>
+                                <li><a  href="#/currentPrincipalInformation"> Profile</a></li>
                                 <li>
                                     <a href="javascript:;">
                                         <span class="badge bg-red pull-right">50%</span>
@@ -235,17 +180,47 @@
                             <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
                                aria-expanded="false">
                                 <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green">({{errorDescriptions.length}})</span>
+                            </a>
+                            <ul id="top-navigation-message" class="dropdown-menu list-unstyled msg_list" role="menu" ng-show="errorDescriptions.show">
+
+                                <message-line error-descriptions="errorDescriptions"></message-line>
+
+                                <li>
+                                    <div class="text-center">
+                                        <a ng-click="errorDescriptions.show=false;">
+                                            <span class="glyphicon glyphicon-remove-circle"></span>
+                                        </a>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
                                 <span class="badge bg-green">6</span>
                             </a>
                             <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                 <li>
                                     <a>
                                         <span class="image"><img src="../img/img.jpg" alt="Profile Image"/></span>
-                        <span>
+                                        <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
                         </span>
-                        <span class="message">
+                                        <span class="message">
                           Film festivals used to be do-or-die moments for movie makers. They were where...
                         </span>
                                     </a>
@@ -253,11 +228,11 @@
                                 <li>
                                     <a>
                                         <span class="image"><img src="../img/img.jpg" alt="Profile Image"/></span>
-                        <span>
+                                        <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
                         </span>
-                        <span class="message">
+                                        <span class="message">
                           Film festivals used to be do-or-die moments for movie makers. They were where...
                         </span>
                                     </a>
@@ -265,11 +240,11 @@
                                 <li>
                                     <a>
                                         <span class="image"><img src="../img/img.jpg" alt="Profile Image"/></span>
-                        <span>
+                                        <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
                         </span>
-                        <span class="message">
+                                        <span class="message">
                           Film festivals used to be do-or-die moments for movie makers. They were where...
                         </span>
                                     </a>
@@ -277,11 +252,11 @@
                                 <li>
                                     <a>
                                         <span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
-                        <span>
+                                        <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
                         </span>
-                        <span class="message">
+                                        <span class="message">
                           Film festivals used to be do-or-die moments for movie makers. They were where...
                         </span>
                                     </a>
@@ -303,6 +278,26 @@
                             </a>
                         </li>
 
+                        <li class="presentation">
+                            <a aria-expanded="false">
+                                <button ng-show="!principal.authenticated" ng-click="login()" type="button"
+                                        size="sm"
+                                        title="log-in">
+                                    <span class="glyphicon glyphicon-log-in"></span>
+                                </button>
+                            </a>
+                        </li>
+
+                        <li class="presentation">
+                            <a aria-expanded="false">
+                                <button ng-show="principal.authenticated" ng-click="logout()" type="button"
+                                        size="sm"
+                                        title="log-out">
+                                    <span class="glyphicon glyphicon-log-out"></span>
+                                </button>
+                            </a>
+                        </li>
+
                     </ul>
                 </nav>
             </div>
@@ -312,83 +307,23 @@
         <!-- page content -->
         <div class="right_col" role="main">
             <div class="">
-                    <span>
 
-                        <header class="container">
-                            <div class="row">
-
-                                <div class="col-sm-2">
-                                    <h1>Record keeper</h1>
-                                    <updatable-text f-call-back="getCurrentTime"></updatable-text>
-                                </div>
-                                <!-- Menu -->
-                                <div class="col-sm-3">
-                                    <p>
-                                        <menu-bar class="commandBar" menu-bar="commandBar"></menu-bar>
-                                    </p>
-                                </div>
-
-                                <nav class="col-sm-7 text-right">
-                                    <p><a href="/">App room</a></p>
-
-                                    <p><a href="/taskList">Description</a></p>
-
-                                    <p><a href="/service/team">Team</a></p>
-
-                                    <p><a href="#/currentPrincipalInformation">{{principal.name}}</a></p>
-
-                                    <p>
-                                        <button ng-show="!principal.authenticated" ng-click="login()" type="button"
-                                                size="sm"
-                                                title="log-in">
-                                            <span class="glyphicon glyphicon-log-in"></span>
-                                        </button>
-                                        <button ng-show="principal.authenticated" ng-click="logout()" type="button"
-                                                size="sm"
-                                                title="log-out">
-                                            <span class="glyphicon glyphicon-log-out"></span>
-                                        </button>
-                                    </p>
-
-                                </nav>
-
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Work place<small>Lorem ipsum psdea itgum rixt.</small></h2>
+                                <div class="clearfix"></div>
                             </div>
-                        </header>
+                            <div class="x_content">
+                                <div ng-view>
 
-                        <section class="container">
-                            <div class="row">
-                            </div>
-
-                            <div class="row">
-                                <!-- App -->
-                                <div class="col-sm-12">
-                                    <uib-tabset active="active">
-                                        <uib-tab index="0" heading="Work place">
-                                            <div class="row">
-                                            </div>
-                                            <div class="row">
-                                                <div ng-view class="appWorkPlace alert alert-success" role="alert">
-
-                                                </div>
-                                            </div>
-                                        </uib-tab>
-                                        <uib-tab index="1">
-                                            <uib-tab-heading>
-                                                <i class="glyphicon glyphicon-bell"></i> Message
-                                                ({{errorDescriptions.length}})
-                                            </uib-tab-heading>
-                                            <div class="appWorkPlace alert alert-danger" role="alert">
-                                                <message-line error-descriptions="errorDescriptions"></message-line>
-                                            </div>
-                                        </uib-tab>
-                                    </uib-tabset>
                                 </div>
-
                             </div>
+                        </div>
+                    </div>
+                </div>
 
-                        </section>
-
-                    </span>
             </div>
         </div>
 
