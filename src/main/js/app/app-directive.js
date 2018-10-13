@@ -53,7 +53,6 @@
                 errorDescriptions: "="
             },
             link: function (scope, element, attrs) {
-
             },
             controller: ['$scope', 'dataStorage', function ($scope, dataStorage) {
                 $scope.updateErrorDescription = function () {
@@ -77,6 +76,9 @@
             templateUrl: '/templates/appRoom/tasklist/directive/app-template-menu-bar.html',
             scope: {
                 menuBar: "="
+            },
+            link: function (scope, element, attrs) {
+                init_sidebar_addEvent(element);
             }
         }
     };
@@ -90,6 +92,9 @@
             scope: {
                 menuCollection: "=",
                 command: "="
+            },
+            link: function (scope, element, attrs) {
+                init_sidebar_addEvent(element);
             }
         }
     };
