@@ -1,10 +1,4 @@
 
-/*
-* {
-    outline: 1px dotted #000;
-}
-*/
-
 header {
     position: inherit;
 }
@@ -61,8 +55,3 @@ tr:hover ~ button {
     -webkit-transition: opacity 1s linear;
 }
 
-/*
-#navEntityBar{
-    display:none;
-    z-index: 1000;
-}*/
