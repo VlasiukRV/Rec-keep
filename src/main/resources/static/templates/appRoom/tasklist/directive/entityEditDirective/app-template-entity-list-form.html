@@ -1,30 +1,30 @@
-
-    <div class="row">
-        <div class="col-sm-12">
+<div class="row">
+    <div class="col-sm-12">
         <table>
             <tr ng-repeat="filter_element in entityListForm.filter_listProperties">
                 <td>
                     <entity-property
-                            entity = "filter_list[filter_element.name]"
+                            entity="filter_list[filter_element.name]"
                             property="filter_element">
                     </entity-property>
                 </td>
                 <td>
-                    <button ng-click="probafilter(filter_list[filter_element.name], filter_element)" type="button" size="sm" title="close form">
+                    <button ng-click="probafilter(filter_list[filter_element.name], filter_element)" type="button"
+                            size="sm" title="close form">
 
                     </button>
                 </td>
             </tr>
         </table>
-        </div>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-sm-12" hotkey="{
+<div class="row">
+    <div class="col-sm-12" hotkey="{
                                         'alt+ins': addNewEntity,
                                         'alt+x': closeForm
                                         }">
-            <b> {{entityListForm.editFormName}} </b>
+        <b> {{entityListForm.editFormName}} </b>
         <p>
             <button ng-click="closeForm()" type="button" size="sm" title="close form">
                 <span class="glyphicon glyphicon-remove"></span>
@@ -39,106 +39,204 @@
                 <span class="glyphicon glyphicon-filter"></span>
             </button>
         </p>
+    </div>
+</div>
+
+<div class="row" ng-show="flagShowSearch">
+    <div class="col-sm-12">
+        <div class="row">
+            <label>Search expression:</label>
+            <input
+                    type="text"
+                    ng-model="searchEx"
+                    class="form-control"
+                    ng-change="findEntity(searchEx)"
+            />
         </div>
     </div>
+</div>
 
-    <div class="row" ng-show="flagShowSearch">
-        <div class="col-sm-12">
-            <div class="row">
-                <label>Search expression:</label>
-                <input
-                        type="text"
-                        ng-model="searchEx"
-                        class="form-control"
-                        ng-change="findEntity(searchEx)"
-                        />
+<div class="row">
+    <div class="col-sm-12">
+
+        <div ng-switch on="entityListForm.metadataSpecification.metadataObject.fmListForm.type.name">
+
+            <div ng-switch-when="tile">
+
+                <div class="row top_tiles">
+                    <div ng-repeat="entity in entityListForm.entitiesFiltered"
+                         class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="tile-stats">
+                            <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
+                            <div class="count">{{entity.id}}</div>
+                            <!--<h3>{{entityEditForm.editFormName}}</h3>-->
+                            <p>{{entity.representation}}</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-sm-12">
+            <div ng-switch-when="panel">
 
-            <div ng-switch on="entityListForm.metadataSpecification.metadataObject.fmListForm.type.name">
+                <div class="row top_tiles">
+                    <div ng-repeat="entity in entityListForm.entitiesFiltered"
+                         class="col-lg-3 col-md-3 col-sm-6 col-xs-12 widget widget_tally_box">
+                        <div class="x_panel fixed_height_390">
+                            <div class="x_title">
+                                <h2>{{entity.representation}}</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                           aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li ng-click="editEntity(entity.id)"><a href="#">Edit</a>
+                                            </li>
+                                            <li ng-click="deleteEntity(entity.id)"><a href="#">Delete</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
 
-                <div ng-switch-when="tile">
+                            <div class="x_content" style="display: block;">
+                                <div>
+                                    <ul class="list-inline widget_tally">
+                                        <li ng-repeat="entityProperty in entityListForm.formProperties track by $index">
+                                            <p>
+                                                <span class="month">{{entityProperty.label}}</span>
+                                                <span class="count">
+                                                        <div ng-switch on="entityProperty.inputType">
+                                                            <span ng-switch-when="select">
+                                                                {{entity[entityProperty.name].representation}}
+                                                            </span>
+                                                                                <span ng-switch-when="multiselect">
+                                                                {{entity[entityProperty.name].representationList()}}
+                                                            </span>
+                                                                                <span ng-switch-when="date">
+                                                                {{entity[entityProperty.name] | date:'yyyy-MM-dd'}}
+                                                            </span>
+                                                                                <span ng-switch-default>
+                                                                {{entity[entityProperty.name]}}
+                                                            </span>
+                                                        </div>
+                                                    </span>
 
-                    <div class="row top_tiles">
-                        <div ng-repeat="entity in entityListForm.entitiesFiltered" class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="tile-stats">
-                                <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
-                                <div class="count">{{entity.id}}</div>
-                                <!--<h3>{{entityEditForm.editFormName}}</h3>-->
-                                <p>{{entity.representation}}</p>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
-
-                <div ng-switch-default>
-
-                    <table class="col-sm-12 table">
-                        <tr class="text-center">
-                            <td align="center" ng-repeat="entityProperty in entityListForm.formProperties track by $index">
-                                <h5 class="">{{entityProperty.label}}: </h5>
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr ng-repeat="entity in entityListForm.entitiesFiltered" class="hvr-curl-top-left">
-                            <td ng-repeat="entityProperty in entityListForm.formProperties track by $index">
-                                <div ng-switch on="entityProperty.inputType">
-                                <span ng-switch-when="select">
-                                    {{entity[entityProperty.name].representation}}
-                                </span>
-                                    <span ng-switch-when="multiselect">
-                                    {{entity[entityProperty.name].representationList()}}
-                                </span>
-                                    <span ng-switch-when="date">
-                                    {{entity[entityProperty.name] | date:'yyyy-MM-dd'}}
-                                </span>
-                                    <span ng-switch-default>
-                                    {{entity[entityProperty.name]}}
-                                </span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="buttons fade">
-                                    <button ng-click="deleteEntity(entity.id)" type="button" size="sm" title="remove task">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="buttons fade">
-                                    <button ng-click="editEntity(entity.id)" type="button" size="sm" title="edit task">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr ng-repeat="entityEmpty in entityListForm.entitiesEmpty track by $index">
-                            <td align="center" ng-repeat="entityPropertyEmpty in entityListForm.formProperties track by $index">
-                                <!--<img src="/img/FFFFFF-0.8.png">-->
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                    </table>
-
                 </div>
 
             </div>
 
-            <ul
-                    uib-pagination total-items="entityListForm.totalItems"
-                    ng-model="entityListForm.currentPage"
-                    ng-change="entityListForm.eventPageChanged()"
-                    class="pagination-sm">
-            </ul>
+            <div ng-switch-default>
+
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Basic Tables
+                            <small>basic table subtitle</small>
+                        </h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Settings 1</a>
+                                    </li>
+                                    <li><a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th
+                                        ng-repeat="entityProperty in entityListForm.formProperties track by $index">
+                                        {{entityProperty.label}}
+                                    </th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr ng-repeat="entity in entityListForm.entitiesFiltered" class="hvr-curl-top-left">
+                                    <td ng-repeat="entityProperty in entityListForm.formProperties track by $index">
+                                        <div ng-switch on="entityProperty.inputType">
+                                    <span ng-switch-when="select">
+                                        {{entity[entityProperty.name].representation}}
+                                    </span>
+                                            <span ng-switch-when="multiselect">
+                                        {{entity[entityProperty.name].representationList()}}
+                                    </span>
+                                            <span ng-switch-when="date">
+                                        {{entity[entityProperty.name] | date:'yyyy-MM-dd'}}
+                                    </span>
+                                            <span ng-switch-default>
+                                        {{entity[entityProperty.name]}}
+                                    </span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="buttons fade">
+                                            <button ng-click="deleteEntity(entity.id)" type="button" size="sm"
+                                                    title="remove task">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="buttons fade">
+                                            <button ng-click="editEntity(entity.id)" type="button" size="sm"
+                                                    title="edit task">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr ng-repeat="entityEmpty in entityListForm.entitiesEmpty track by $index">
+                                    <td align="center"
+                                        ng-repeat="entityPropertyEmpty in entityListForm.formProperties track by $index">
+                                        <!--<img src="/img/FFFFFF-0.8.png">-->
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
 
         </div>
+
+        <ul
+                uib-pagination total-items="entityListForm.totalItems"
+                ng-model="entityListForm.currentPage"
+                ng-change="entityListForm.eventPageChanged()"
+                class="pagination-sm">
+        </ul>
+
     </div>
+</div>

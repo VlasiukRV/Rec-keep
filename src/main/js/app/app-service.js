@@ -1044,6 +1044,9 @@
                 },
                 tile: {
                     name: 'tile'
+                },
+                panel: {
+                    name: 'panel'
                 }
             }
         };
