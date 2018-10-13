@@ -211,7 +211,7 @@
                 return operationService;
             }
         };
-    }
+    };
 
 ////////////////////////////////////
 // UTILS
@@ -886,12 +886,13 @@
 
                     metadataEditFieldsSet: [],
                     fmEditForm: {
-                        metadataEditFieldsSet: {},
+                        metadataEditFieldsSet: [],
                         metadataEditFieldsPlacing: []
                     },
                     fmListForm: {
                         metadataEditFieldsSet: [],
-                        metadataFilterFieldsSet: []
+                        metadataFilterFieldsSet: [],
+                        type: systemEnums.fmListForm_TYPES.table,
                     }
                 })
             };
@@ -914,8 +915,20 @@
                     }
 
                 },
-                bookEntityForms: function (_metadataEditFieldsSet, _metadataFilterFieldsSet, _editFieldsPlacing) {
+                bookEntityForms: function (metadataEntitySpecification) {
+                    var _metadataEditFieldsSet = metadataEntitySpecification.getEntityFieldsDescription();
+                    var _metadataFilterFieldsSet = undefined;
+                    var _editFieldsPlacing = metadataEntitySpecification.getEntityFieldsPlacing();
+                    var _fmListForm = metadataEntitySpecification.getFmListForm();
+
                     var i;
+
+                    if(_fmListForm) {
+                        if(_fmListForm.type) {
+                            this.fmListForm.type = _fmListForm.type;
+                        }
+                    }
+
                     if (_editFieldsPlacing) {
                         this.fmEditForm.metadataEditFieldsPlacing = _editFieldsPlacing;
                     }
@@ -965,6 +978,10 @@
                         entityField: {},
                         defineField: {}
                     },
+
+                    fmListForm: {
+                        type: systemEnums.fmListForm_TYPES.table
+                    },
                     entityFieldsPlacing: []
                 })
             };
@@ -1011,11 +1028,25 @@
                     }
                     return entityFieldsDescription;
                 },
+                getFmListForm: function () {
+                    return this.fmListForm;
+                },
                 getEntityFieldsPlacing: function () {
                     return this.entityFieldsPlacing;
                 }
             });
         })();
+
+        var systemEnums = {
+            fmListForm_TYPES: {
+                table: {
+                    name: 'table'
+                },
+                tile: {
+                    name: 'tile'
+                }
+            }
+        };
 
         var MetadataSet = appUtils.Class();
         (function () {
@@ -1026,7 +1057,11 @@
                     metadataEvents: metadataEventsImpl,
 
                     // user interface
-                    userInterface: new appInterface.UserInterface()
+                    userInterface: new appInterface.UserInterface(),
+
+                    system: {
+                        enums: systemEnums
+                    }
                 });
             };
             MetadataSet.includeMthd({
@@ -1077,6 +1112,11 @@
                         }
                     };
                     metadataEntitySpecification.entityFieldsPlacing = entitySpecification.entityFieldsPlacing;
+                    if(entitySpecification.fmListForm) {
+                        if(entitySpecification.fmListForm.type) {
+                            metadataEntitySpecification.fmListForm.type = entitySpecification.fmListForm.type;
+                        }
+                    }
 
                     (function () {
                         // field
@@ -1100,9 +1140,7 @@
                         metadataEntitySpecification.metadataDescription
                     );
 
-                    var metadataEditFieldsSet = metadataEntitySpecification.getEntityFieldsDescription();
-                    var editFieldsPlacing = metadataEntitySpecification.getEntityFieldsPlacing();
-                    metadataObject.bookEntityForms(metadataEditFieldsSet, undefined, editFieldsPlacing);
+                    metadataObject.bookEntityForms(metadataEntitySpecification);
 
                     metadataSet.bookMetadataObject(metadataObject);
                     metadataSet.bookEntityList(entityList);
@@ -1121,7 +1159,7 @@
 
                     // EditMenu
                     var entitySubMenu = metadataSet.userInterface.commandBar.commandBar.getSubMenu('modelDD');
-                    if (entitySubMenu != undefined) {
+                    if (entitySubMenu !== undefined) {
                         entitySubMenu.addCommand(appInterface.getNewEntityCommand(entitySpecification.metadataName, entitySpecification.metadataRepresentation))
                     }
 

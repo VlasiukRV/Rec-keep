@@ -42,6 +42,9 @@
                 }
             },
 
+            fmListForm: {
+                type: appMetadataSet.system.enums.fmListForm_TYPES.tile
+            },
             entityFieldsPlacing: [
                 [
                     {editFieldId: "id", fieldLength: 3},
