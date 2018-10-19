@@ -44,16 +44,18 @@ public class SecurityService implements HttpSessionListener {
     }
 
     public Map<String, Object> getSessionInformation(HttpServletRequest request) {
-        SessionInformation sessionInformation = sessionRegistry.getSessionInformation(request.getSession().getId());
-        User user = (User) sessionInformation.getPrincipal();
-        com.entity.User currentUser = userService.getUserByName(user.getUsername());
+        return getPrincipalInformation(sessionRegistry.getSessionInformation(request.getSession().getId()));
+    }
 
-        Map<String, Object> currentPrincipal = new HashMap<>();
-        currentPrincipal.put("sessionId", sessionInformation.getSessionId());
-        currentPrincipal.put("userName", user.getUsername());
-        currentPrincipal.put("authorities", user.getAuthorities());
-        currentPrincipal.put("currentUserId", currentUser.getId());
-        return currentPrincipal;
+    public Map<String, Object> getAllSessionsInformation(HttpServletRequest request) {
+        Map<String, Object> allSessionsInformation = new HashMap<>();
+
+        List<SessionInformation>sessions = sessionRegistry.getAllSessions(request.getSession().getId(), false);
+        for (SessionInformation session : sessions) {
+            allSessionsInformation.put(session.getSessionId(), getPrincipalInformation(session));
+        }
+
+        return allSessionsInformation;
     }
 
     public Map<String, Object> getAllPrincipals() {
@@ -66,5 +68,21 @@ public class SecurityService implements HttpSessionListener {
         return SecurityContextHolder.getContext().getAuthentication();
     }
 
+    public User getPrincipal(SessionInformation sessionInformation) {
+        User principal = (User) sessionInformation.getPrincipal();
+        return principal;
+    }
 
+    private Map<String, Object> getPrincipalInformation(SessionInformation sessionInformation) {
+        User principal = getPrincipal(sessionInformation);
+        com.entity.User currentUser = userService.getUserByName(principal.getUsername());
+
+        Map<String, Object> principalInformation = new HashMap<>();
+        principalInformation.put("sessionId", sessionInformation.getSessionId());
+        principalInformation.put("userName", principal.getUsername());
+        principalInformation.put("authorities", principal.getAuthorities());
+        principalInformation.put("currentUserId", currentUser.getId());
+
+        return principalInformation;
+    }
 }

@@ -160,7 +160,14 @@
                     params: {
                         command: "getSessionInformation"
                     }
-                }
+                },
+                getAllSessionsInformation: {
+                    method: "GET",
+                    params: {
+                        command: "getAllSessionsInformation"
+                    }
+                },
+
             }
         );
     };

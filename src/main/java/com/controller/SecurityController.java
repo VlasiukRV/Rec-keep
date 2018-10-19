@@ -24,6 +24,12 @@ public class SecurityController {
         return AjaxResponse.successResponse(securityService.getSessionInformation(request));
     }
 
+    @RequestMapping("/getAllSessionsInformation")
+    @ResponseBody
+    public Map<String, Object> getAllSessionsInformation(HttpServletRequest request) {
+        return AjaxResponse.successResponse(securityService.getAllSessionsInformation(request));
+    }
+
     @RequestMapping("/getAllPrincipals")
     @ResponseBody
     public Map<String, Object> getAllPrincipals(HttpServletRequest request, Principal user) {

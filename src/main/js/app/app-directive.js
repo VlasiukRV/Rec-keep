@@ -28,17 +28,22 @@
             controller: ['$http', '$rootScope', '$scope', 'dataStorage', function ($http, $rootScope, $scope, dataStorage) {
                 $scope.credentials = {};
                 $scope.login = function () {
-                    var appMetadataSet = dataStorage.getAppMetadaSet();
-                    if (appMetadataSet) {
-                        var principal = appMetadataSet.userInterface.security.principal;
-                        if (principal) {
-                            principal.login($http, $scope.credentials, function (data) {
-                                if (data.authenticated) {
-                                    $scope.eventAfterLogin();
-                                }
-                            });
-                        }
+                    let appMetadataSet = dataStorage.getAppMetadaSet();
+                    if (!appMetadataSet) {
+                        return;
                     }
+                    let principal = appMetadataSet.userInterface.security.principal;
+                    if (!principal) {
+                        return;
+                    }
+
+                    principal.login($http, $scope.credentials, function (data) {
+                        if (!data.authenticated) {
+                            return;
+                        }
+
+                        $scope.eventAfterLogin();
+                    });
                 };
             }]
         }
@@ -60,9 +65,11 @@
                 };
                 $scope.deleteErrorDescription = function (index) {
                     $scope.errorDescriptions.delErrorDescription(index);
-                    if ($scope.errorDescriptions.errorsCount() == 0) {
-                        $scope.errorDescriptions.show = false;
+                    if ($scope.errorDescriptions.errorsCount() != 0) {
+                        return;
                     }
+
+                    $scope.errorDescriptions.show = false;
                 };
             }]
         }
