@@ -53,7 +53,7 @@
             var begin = ((this.currentPage - 1) * this.numPerPage)
                 , end = begin + this.numPerPage;
             this.entitiesFiltered = this.entities.slice(begin, end);
-            this.entitiesEmpty = new Array(this.numPerPage - this.entitiesFiltered.length);
+            this.entitiesEmpty = new Array(0);
         };
 
         this.addNewEntity = function () {

@@ -8,7 +8,6 @@
     appUtils.Class = function (Parent) {
 
         // prototype есть только в функции
-        // При создании объекта через new, в его прототип __proto__ записывается ссылка из prototype
         var klass = function () {
             if (Parent) {
                 // call object builder of parent

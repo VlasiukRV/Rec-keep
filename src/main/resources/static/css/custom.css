@@ -2782,7 +2782,8 @@ ul.widget_tally .month {
 ul.widget_tally .count {
     width: 30%;
     float: left;
-    text-align: right
+    text-align: right;
+    word-wrap: break-word;
 }
 .pie_bg {
     border-bottom: 1px solid rgba(101, 204, 182, 0.16);

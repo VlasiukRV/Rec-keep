@@ -1,6 +1,7 @@
 module.exports = function (grunt) {
 
     var build_Tasks = [
+        'clean',
         'concat',
         'uglify',
         'removelogging'
@@ -34,8 +35,12 @@ module.exports = function (grunt) {
         },
 
         clean: {
+            options: {
+                force: true
+            },
             build: [
-                'src/main/resources/static/js/*.js'
+                'src/main/resources/static/js/build.js',
+                'src/main/resources/static/js/custom.js'
             ]
         },
 
@@ -43,7 +48,7 @@ module.exports = function (grunt) {
             options: {
                 stripBanners: true,
                 banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-                '<%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %> */'
+                '<%= grunt.template.today("dddd, mmmm dS, yyyy, h:MM:ss TT") %> */'
             },
             build: {
                 files: {
@@ -80,7 +85,7 @@ module.exports = function (grunt) {
         uglify: {
             options: {
                 stripBanners: true,
-                banner: '/* <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %> */'
+                banner: '/* <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("dddd, mmmm dS, yyyy, h:MM:ss TT") %> */'
             },
 
             build: {

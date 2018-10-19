@@ -80,7 +80,10 @@
                 templateUrl: "/appTaskList/tasksList"
             })
             .when("/currentPrincipalInformation", {
-                templateUrl: "/appTaskList/currentPrincipalInformation"
+                templateUrl: "/appTaskList/currentPrincipalInformation",
+                controller: function () {
+                    init_panel_toolbox();
+                }
             })
 
         ;
