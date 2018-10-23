@@ -309,7 +309,7 @@
                         callback && callback(self);
                     })
                 },
-                getSessionInformation: function (resourceService, $cookies) {
+                getSessionInformation: function (resourceService) {
                     var securityService = resourceService.getSecurityService();
 
                     var currentPrincipal = this;

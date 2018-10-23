@@ -27,25 +27,34 @@
             var appMetadataSet = dataStorage.getAppMetadaSet();
             appMetadataSet.loadAllEntities();
 
-            var currentPrincipal = appMetadataSet.userInterface.security.principal;
-            if (currentPrincipal.authenticated) {
-                currentPrincipal.getSessionInformation(resourceService, cookies);
-                currentPrincipal.updatePrincipalUser(appMetadataSet);
-                selfScope.principal = currentPrincipal;
+            refreshSessionInformation();
+        };
+        $scope.logout = function () {
+            var appMetadataSet = dataStorage.getAppMetadaSet();
+            var principal = appMetadataSet.userInterface.security.principal;
+
+            if (principal.authenticated) {
+                principal.logout($http);
+                $location.url(dataStorage.getAppConfig().appUrl);
+            }
+        };
+
+        function refreshSessionInformation() {
+            var appMetadataSet = dataStorage.getAppMetadaSet();
+
+            var principal = appMetadataSet.userInterface.security.principal;
+            if (principal.authenticated) {
+                principal.getSessionInformation(resourceService);
+                principal.updatePrincipalUser(appMetadataSet);
+                selfScope.principal = principal;
                 selfScope.showLogin = false;
             } else {
                 $location.url(dataStorage.getAppConfig().appUrl);
             }
-        };
-        $scope.logout = function () {
-            var appMetadataSet = dataStorage.getAppMetadaSet();
-            var currentPrincipal = appMetadataSet.userInterface.security.principal;
 
-            if (currentPrincipal.authenticated) {
-                currentPrincipal.logout($http);
-                $location.url(dataStorage.getAppConfig().appUrl);
-            }
         };
+
+        refreshSessionInformation();
     };
 
 })(window);
