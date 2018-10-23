@@ -863,9 +863,9 @@
                         this.inputType = fieldDescription.inputType;
                     }
                     if (fieldDescription.label) {
-                        this.label = fieldDescription.label;
+                        this.label = appUtils.string.toTitleCase(fieldDescription.label);
                     } else {
-                        this.label = this.name;
+                        this.label = appUtils.string.toTitleCase(this.name);
                     }
                     if (fieldDescription.availability) {
                         this.availability = fieldDescription.availability;

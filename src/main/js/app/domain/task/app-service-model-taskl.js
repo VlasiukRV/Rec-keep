@@ -116,8 +116,8 @@
                     {
                         editFieldId: [
                             [
-                                {editFieldId: "date", fieldLength: 4},
-                                {editFieldId: "state", fieldLength: 4}
+                                {editFieldId: "date", fieldLength: 6},
+                                {editFieldId: "state", fieldLength: 6}
                             ],
                             [{editFieldId: "title", fieldLength: 12}],
                             [

@@ -7,29 +7,33 @@
 
             <div class="form-group">
 
-                <label class="label label-success">{{property.label}}:</label>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{property.label}}:</label>
 
-                <select class="form-control"
-                        ng-model="entity[property.name]"
-                        ng-disabled="{{!property.availability}}"
-                        ng-options="el for el in selectList"
-                        ng-change="propertyChanged()"
-                        title="{{property.label}}">
+                <div class="input-group">
 
-                    <option value="" selected="">--Chose {{property.label}}--</option>
+                    <select class="form-control"
+                            ng-change="propertyChanged()"
+                            ng-disabled="{{!property.availability}}"
+                            ng-model="entity[property.name]"
+                            ng-options="el for el in selectList"
+                            title="{{property.label}}">
 
-                </select>
+                        <option selected="" value="">--Chose {{property.label}}--</option>
 
-                <span class="input-group-btn">
-                    <button class="btn btn-default"
-                            ng-click="refreshSelectList(property, selectList)"
-                            type="button"
-                            title="refresh report">
+                    </select>
 
-                        <span class="glyphicon glyphicon-refresh"></span>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary btn-default"
+                                ng-click="refreshSelectList(property, selectList)"
+                                title="refresh report"
+                                type="button">
 
-                    </button>
-                </span>
+                            <span class="glyphicon glyphicon-refresh"></span>
+
+                        </button>
+                    </span>
+
+                </div>
 
             </div>
 
@@ -40,27 +44,27 @@
 
             <div class="form-group">
 
-                <label class="label label-success">{{property.label}}:</label>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{property.label}}:</label>
 
                 <div class="input-group">
 
                     <select class="form-control"
-                            ng-model="entity[property.name]"
-                            ng-disabled="{{!property.availability}}"
-                            ng-options="el.representation for el in selectList track by el.id"
                             ng-change="propertyChanged()"
+                            ng-disabled="{{!property.availability}}"
+                            ng-model="entity[property.name]"
+                            ng-options="el.representation for el in selectList track by el.id"
                             title="{{property.label}}">
 
-                        <option value="" selected="">--Chose {{property.label}}--</option>
+                        <option selected="" value="">--Chose {{property.label}}--</option>
 
                     </select>
 
-                        <span class="input-group-btn">
+                    <span class="input-group-btn">
                            <button
-                                   class="btn btn-default"
+                                   class="btn btn-primary"
                                    ng-click="refreshSelectList(property, selectList)"
-                                   type="button"
-                                   title="refresh report">
+                                   title="refresh report"
+                                   type="button">
 
                                <span class="glyphicon glyphicon-refresh"></span>
 
@@ -77,28 +81,28 @@
 
             <div class="form-group">
 
-                <label class="label label-success">{{property.label}}:</label>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{property.label}}:</label>
 
                 <div class="input-group">
 
                     <oi-select
-                            ng-model="entity[property.name]"
-                            ng-disabled="{{!property.availability}}"
-                            oi-options="el.representation for el in selectList track by el.id"
                             multiple
-                            placeholder="Select"
+                            ng-disabled="{{!property.availability}}"
+                            ng-model="entity[property.name]"
+                            oi-options="el.representation for el in selectList track by el.id"
                             oi-select-options="{
                                             closeList: false,
-                                            cleanModel: true}">
+                                            cleanModel: true}"
+                            placeholder="Select">
 
                     </oi-select>
 
-                <span class="input-group-btn">
+                    <span class="input-group-btn">
                     <button
-                            class="btn btn-default"
+                            class="btn btn-primary"
                             ng-click="refreshSelectList(property, selectList)"
-                            type="button"
-                            title="refresh report">
+                            title="refresh report"
+                            type="button">
 
                         <span class="glyphicon glyphicon-refresh"></span>
 
@@ -113,14 +117,14 @@
         <!--date-->
         <div ng-switch-when="date">
             <div class="form-group">
-                <label class="label label-success">{{property.label}}:</label>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{property.label}}:</label>
 
                 <input
-                        type="date"
-                        sm-datepicker
-                        ng-model="entity[property.name]"
+                        class="date form-control"
                         ng-disabled="{{!property.availability}}"
-                        class="date form-control"/>
+                        ng-model="entity[property.name]"
+                        sm-datepicker
+                        type="date"/>
             </div>
         </div>
 
@@ -129,25 +133,25 @@
 
             <div class="form-group">
 
-                <label class="label label-success">{{property.label}}:</label>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{property.label}}:</label>
 
                 <input
-                        type="checkbox"
-                        ng-model="entity[property.name]"
+                        class="form-control"
                         ng-disabled="{{!property.availability}}"
-                        class="form-control"/>
+                        ng-model="entity[property.name]"
+                        type="checkbox"/>
             </div>
         </div>
 
         <!--textarea-->
         <div ng-switch-when="textarea">
             <div class="form-group">
-                <label class="label label-success">{{property.label}}:</label>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{property.label}}:</label>
                 <textarea
-                        style="min-width: 100%"
-                        ng-model="entity[property.name]"
                         ng-disabled="{{!property.availability}}"
-                        />
+                        ng-model="entity[property.name]"
+                        style="min-width: 100%"
+                />
                 </textarea>
             </div>
         </div>
@@ -155,13 +159,13 @@
         <!--default-->
         <div ng-switch-default>
             <div class="form-group">
-                <label class="label label-success">{{property.label}}:</label>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{property.label}}:</label>
                 <input
-                        type="{{property.inputType}}"
-                        ng-model="entity[property.name]"
-                        ng-disabled="{{!property.availability}}"
                         class="form-control"
-                        />
+                        ng-disabled="{{!property.availability}}"
+                        ng-model="entity[property.name]"
+                        type="{{property.inputType}}"
+                />
             </div>
         </div>
 
