@@ -3,23 +3,45 @@
                                         'alt+x': closeForm,
                                         'alt+s': createEntity
                                         }">
-        <b> {{entityEditForm.editFormName}} </b>
-        <p>
-        <button ng-click="closeForm()" class="btn btn-primary" type="button" size="sm" title="close form">
-            <span class="glyphicon glyphicon-remove"></span>
-        </button>
-        <button ng-click="updateForm()" class="btn btn-primary" type="button" size="sm" title="refresh form">
-            <span class="glyphicon glyphicon-refresh"></span>
-        </button>
-        <button ng-click="createEntity()" class="btn btn-primary" type="button" size="sm" title="save form">
-            <span class="glyphicon glyphicon-floppy-save"></span>
-        </button>
-
-        </p>
+        <h2>Edit Entity
+            <small>{{entityEditForm.editFormName}}</small>
+        </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Settings 1</a>
+                    </li>
+                    <li><a href="#">Settings 2</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
     </div>
 
 
     <div class="x_content">
+
+        <div class="col-sm-12" >
+
+            <button ng-click="closeForm()" class="btn btn-primary" type="button" size="sm" title="close form">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+            <button ng-click="updateForm()" class="btn btn-primary" type="button" size="sm" title="refresh form">
+                <span class="glyphicon glyphicon-refresh"></span>
+            </button>
+            <button ng-click="createEntity()" class="btn btn-primary" type="button" size="sm" title="save form">
+                <span class="glyphicon glyphicon-floppy-save"></span>
+            </button>
+
+        </div>
+
         <form>
             <div ng-repeat="entityfieldsrow in entityEditForm.entityFieldsPlacing track by $index">
                 <entity-edit-form-row

@@ -178,6 +178,7 @@
                 $scope.editEntity = function (id) {
                     $scope.entityListForm.eventEditEntity(id);
                 };
+                init_panel_toolbox();
             }]
         }
     }
