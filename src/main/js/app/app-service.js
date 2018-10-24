@@ -85,12 +85,15 @@
                     init_panel_toolbox();
                 }
             })
+            .otherwise({
+                redirectTo: '/appTaskList'
+            })
 
         ;
         return routeProvider;
     };
 
-    appService.appHttpResponseInterceptor = function ($q, dataStorage) {
+    appService.appHttpResponseInterceptor = function ($q, $location, dataStorage) {
         return {
             'request': function (config) {
                 config.url = config.url.split('%2F').join('/');
@@ -103,6 +106,12 @@
                     var errorDescriptions = appMetadataSet.userInterface.errorDescriptions;
                     if (errorDescriptions) {
                         errorDescriptions.handleResponse(response);
+                    }
+                }
+                if (typeof response.data === 'string') {
+                    if (response.data.indexOf instanceof Function &&
+                        response.data.indexOf('id="app-login-page"') != -1) {
+                        $location.path("/login");
                     }
                 }
                 return response;

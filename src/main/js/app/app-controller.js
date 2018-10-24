@@ -20,7 +20,6 @@
         };
 
         $scope.login = function () {
-            selfScope.showLogin = true;
             $location.url("/login");
         };
         $scope.eventAfterLogin = function () {
@@ -28,6 +27,7 @@
             appMetadataSet.loadAllEntities();
 
             refreshSessionInformation();
+            $location.url("/appTaskList");
         };
         $scope.logout = function () {
             var appMetadataSet = dataStorage.getAppMetadaSet();
@@ -47,7 +47,6 @@
                 principal.getSessionInformation(resourceService);
                 principal.updatePrincipalUser(appMetadataSet);
                 selfScope.principal = principal;
-                selfScope.showLogin = false;
             } else {
                 $location.url(dataStorage.getAppConfig().appUrl);
             }

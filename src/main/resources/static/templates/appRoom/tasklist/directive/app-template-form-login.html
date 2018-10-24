@@ -14,7 +14,7 @@
                         <form role="form" ng-submit="login()">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" ng-model="credentials.username" placeholder="username" id="username" name="username" type="text" autofocus="">
+                                    <input class="form-control" ng-model="credentials.username" placeholder="username: admin" id="username" name="username" type="text" autofocus="">
                                 </div>
                                                              
                                 <div class="form-group">
@@ -22,7 +22,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <input class="form-control" ng-model="credentials.password" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" ng-model="credentials.password" placeholder="Password: admin" name="password" type="password" value="">
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -31,7 +31,7 @@
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
 						        <button type="submit" class="btn btn-lg btn-success btn-block">LET'S GO</button>
-						        <button ng-click="showLogin=false; eventAfterLogin()" class="btn" title="cancel">
+						        <button ng-click="eventAfterLogin()" class="btn" title="cancel">
 						            <span class="glyphicon glyphicon-remove-circle"></span>
 						        </button>
                             </fieldset>

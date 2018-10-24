@@ -25,8 +25,8 @@
             scope: {
                 eventAfterLogin: "&"
             },
-            controller: ['$http', '$rootScope', '$scope', 'dataStorage', function ($http, $rootScope, $scope, dataStorage) {
-                $scope.credentials = {};
+            controller: ['$location', '$http', '$rootScope', '$scope', 'dataStorage', function ($location, $http, $rootScope, $scope, dataStorage) {
+                $scope.credentials = {username: 'admin', password: 'admin'};
                 $scope.login = function () {
                     let appMetadataSet = dataStorage.getAppMetadaSet();
                     if (!appMetadataSet) {

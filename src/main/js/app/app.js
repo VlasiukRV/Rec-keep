@@ -40,8 +40,8 @@ app
 
 // Factories
 app
-    .factory('myHttpResponseInterceptor', ['$q', 'dataStorage', function ($q, dataStorage) {
-        return appService.appHttpResponseInterceptor($q, dataStorage);
+    .factory('myHttpResponseInterceptor', ['$q', '$location', 'dataStorage', function ($q, $location, dataStorage) {
+        return appService.appHttpResponseInterceptor($q, $location, dataStorage);
     }])
     .factory('entityEditService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
         return appService.entityEditService($resource, appEnvironment);
