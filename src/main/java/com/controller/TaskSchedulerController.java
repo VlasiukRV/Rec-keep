@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.approom.tasklist.service.ServiceTaskArchiveTask;
+import com.approom.tasklist.service.ServiceTaskCreateReport;
 import com.approom.tasklist.service.ServiceTaskSendMailForAuthor;
 import com.approom.tasklist.service.TaskService;
 import com.service.MailSender;
@@ -27,6 +28,20 @@ public class TaskSchedulerController {
     private TaskService entityService;
     @Autowired
     private MailSender appMailSender;
+
+    @RequestMapping("/runCreateReport")
+    @ResponseBody
+    public Map<String, Object> runCreateReport(){
+        taskExecutor.putTask(new ServiceTaskCreateReport());
+        return AjaxResponse.successResponse("Done");
+    }
+
+    @RequestMapping("/stopCreateReport")
+    @ResponseBody
+    public Map<String, Object> stopCreateReport(){
+        taskExecutor.interruptTask("CreateReport");
+        return AjaxResponse.successResponse("Done");
+    }
 
     @RequestMapping("/runArchiveService")
     @ResponseBody

@@ -1267,19 +1267,25 @@
             var menuModel = appInterface.getNewDropdownCommand("modelDD", "Model");
             var menuSystem = appInterface.getNewDropdownCommand("systemDD", "System")
                 .addCommand(appInterface.getNewCommand("initDataBase", "initDataBase", function () {
-                    ExecuteSystemCommand(abstractAppModel.resourceService, "jdbc/initDataBase")
+                    appService.ExecuteSystemCommand(abstractAppModel.resourceService, "jdbc/initDataBase")
+                }))
+                .addCommand(appInterface.getNewCommand("runCreateReport", "runCreateReport", function () {
+                    appService.ExecuteSystemCommand(abstractAppModel.resourceService, "taskScheduler/runCreateReport")
+                }))
+                .addCommand(appInterface.getNewCommand("stopCreateReport", "stopCreateReport", function () {
+                    appService.ExecuteSystemCommand(abstractAppModel.resourceService, "taskScheduler/stopCreateReport")
                 }))
                 .addCommand(appInterface.getNewCommand("runArchiveService", "runArchiveService", function () {
-                    ExecuteSystemCommand(abstractAppModel.resourceService, "taskScheduler/runArchiveService")
+                    appService.ExecuteSystemCommand(abstractAppModel.resourceService, "taskScheduler/runArchiveService")
                 }))
                 .addCommand(appInterface.getNewCommand("stopArchiveService", "stopArchiveService", function () {
-                    ExecuteSystemCommand(abstractAppModel.resourceService, "taskScheduler/stopArchiveService")
+                    appService.ExecuteSystemCommand(abstractAppModel.resourceService, "taskScheduler/stopArchiveService")
                 }))
                 .addCommand(appInterface.getNewCommand("sendMail", "sendMail", function () {
-                    ExecuteSystemCommand(abstractAppModel.resourceService, "taskScheduler/sendMail")
+                    appService.ExecuteSystemCommand(abstractAppModel.resourceService, "taskScheduler/sendMail")
                 }))
                 .addCommand(appInterface.getNewCommand("interruptTaskExecutor", "interruptTaskExecutor", function () {
-                    ExecuteSystemCommand(abstractAppModel.resourceService, "taskScheduler/interruptTaskExecutor")
+                    appService.ExecuteSystemCommand(abstractAppModel.resourceService, "taskScheduler/interruptTaskExecutor")
                 }));
 
             var userInterface = new appInterface.UserInterface();

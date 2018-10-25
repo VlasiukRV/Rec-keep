@@ -37,16 +37,6 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     @Autowired
     public JdbcService jdbcService;
 
-/*
-    @Bean
-    public UserDetailsService userDetailsService() {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("user").password("password").roles("USER").build());
-        manager.createUser(User.withUsername("admin").password("password").roles("USER","ADMIN").build());
-        return manager;
-    }
-*/
-
     @Autowired
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
