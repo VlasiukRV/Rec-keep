@@ -14,6 +14,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
@@ -41,9 +43,11 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         DataSource dataSource = jdbcService.getDataSource();
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
+                .passwordEncoder(encoder)
                 .usersByUsernameQuery("select username, password, 'true' as enabled FROM user where username=?")
                 .authoritiesByUsernameQuery("select u.username, r.role from user as u inner join role_user_detail as ur on(u.id=ur.user_id) inner join role as r on(ur.role_id=r.id) where username=?")
         ;

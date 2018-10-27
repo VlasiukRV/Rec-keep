@@ -7,13 +7,13 @@ import com.config.AppStartupRunner;
 import com.entity.Role;
 import com.entity.User;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import javax.transaction.Transactional;
 
@@ -25,7 +25,7 @@ public class JdbcService {
     @Autowired
     private JdbcTemplate jdbc;
     @Autowired
-    private SessionFactory sessionFactory;
+    private EntityManagerFactory entityManagerFactory;
 
     @Autowired
     TaskService taskService;
@@ -45,7 +45,7 @@ public class JdbcService {
     }
 
     public Session getORMSession(){
-        return sessionFactory.getCurrentSession();
+        return entityManagerFactory.unwrap(org.hibernate.Session.class);
     }
 
     public Boolean dropDataBase() {
@@ -66,8 +66,8 @@ public class JdbcService {
         userService.saveEntity(userAdmin);
 
         User userUser = new User();
-        userUser.setUsername("user");
-        userUser.setPassword("user");
+        userUser.setUsername("roma");
+        userUser.setPassword("roma");
         userUser.setMailAddress("alyona.lisitsyna@gmail.com");
         userService.saveEntity(userUser);
 

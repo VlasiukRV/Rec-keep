@@ -4,6 +4,7 @@ import com.AppUtils;
 import com.dao.EntityRepositoryCastom;
 import com.dao.SearchCriteria;
 import com.entity.BaseEntity;
+import lombok.NoArgsConstructor;
 import org.springframework.data.repository.CrudRepository;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@NoArgsConstructor
 public abstract class BaseEntityService<T extends BaseEntity<ID>, ID extends Serializable, R extends CrudRepository<T, ID> & EntityRepositoryCastom> {
 
     protected R entityRepository;
@@ -28,7 +30,7 @@ public abstract class BaseEntityService<T extends BaseEntity<ID>, ID extends Ser
     }
 
     public T getEntityById(ID id){
-        return entityRepository.findOne(id);
+        return entityRepository.findById(id).get();
     }
 
     public List<T> getAll(){
@@ -61,16 +63,12 @@ public abstract class BaseEntityService<T extends BaseEntity<ID>, ID extends Ser
     
     public boolean deleteEntity(T entity){
         entityRepository.delete(entity);
-        return entityRepository.exists(entity.getId());
+        return entityRepository.existsById(entity.getId());
     }
 
     public boolean deleteEntity(ID id){
-        try {
-            entityRepository.delete(id);
-        }catch (Exception ex){
-            return false;
-        }
-        return !entityRepository.exists(id);
+        T entity = getEntityById(id);
+        return deleteEntity(entity);
     }
 
     public T saveEntity(T entity){

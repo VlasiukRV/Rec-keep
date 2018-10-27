@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -33,7 +34,7 @@ public class User extends BaseEntity<Integer> {
     private @Getter @Setter String username;
     @Column
     @JsonProperty
-    private @Getter @Setter String password;
+    private @Getter String password;
     @Column(name = "mailadress")
     @JsonProperty
     private @Getter @Setter String mailAddress;
@@ -46,6 +47,10 @@ public class User extends BaseEntity<Integer> {
 
         this.username = username;
         this.password = password;
+    }
+
+    public void setPassword(String password) {
+        this.password = PasswordEncoderFactories.createDelegatingPasswordEncoder().encode(password);
     }
 
     @Override
