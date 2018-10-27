@@ -65,6 +65,9 @@ app
     .directive('ngElementReady', function () {
         return appDirective.directiveElementReady();
     })
+    .directive('textValue', [function () {
+        return appDirective.directiveTextValue();
+    }])
     .directive('messageLine', [function () {
         return appDirective.directiveMessageLine();
     }])

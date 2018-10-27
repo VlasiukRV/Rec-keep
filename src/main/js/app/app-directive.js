@@ -28,11 +28,11 @@
             controller: ['$location', '$http', '$rootScope', '$scope', 'dataStorage', function ($location, $http, $rootScope, $scope, dataStorage) {
                 $scope.credentials = {username: 'admin', password: 'admin'};
                 $scope.login = function () {
-                    let appMetadataSet = dataStorage.getAppMetadaSet();
+                    var appMetadataSet = dataStorage.getAppMetadaSet();
                     if (!appMetadataSet) {
                         return;
                     }
-                    let principal = appMetadataSet.userInterface.security.principal;
+                    var principal = appMetadataSet.userInterface.security.principal;
                     if (!principal) {
                         return;
                     }
@@ -188,6 +188,24 @@
             }
 
         };
-    }
+    };
+
+    appDirective.directiveTextValue = function () {
+        return {
+            restrict: 'E',
+            require: '',
+            templateUrl: '/templates/appRoom/tasklist/directive/app-template-text-value.html',
+            scope: {
+                textValue: "",
+                limitLength: ""
+            },
+            link: function link(scope, element, attrs) {
+
+            },
+            controller: ['$scope', function ($scope) {
+
+            }]
+        }
+    };
 
 })(window);

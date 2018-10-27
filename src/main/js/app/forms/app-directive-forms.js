@@ -158,6 +158,22 @@
 
             },
             controller: ['$scope', function ($scope) {
+                var listType = $scope.entityListForm.metadataSpecification.metadataObject.fmListForm.type.name;
+                var listConfig = {
+                    'panel': {
+                        quantityProperties: 5,
+                        limitCellLength: 20,
+                    }
+                };
+                $scope.quantity = Number.MAX_VALUE;
+                if(listConfig[listType] && listConfig[listType].quantityProperties) {
+                    $scope.quantityProperties = listConfig[listType].quantityProperties;
+                }
+                $scope.limitCellLength = Number.MAX_VALUE;
+                if(listConfig[listType] && listConfig[listType].limitCellLength) {
+                    $scope.limitCellLength = listConfig[listType].limitCellLength;
+                }
+
                 $scope.closeForm = function () {
                     $scope.entityListForm.eventCloseForm();
                 };

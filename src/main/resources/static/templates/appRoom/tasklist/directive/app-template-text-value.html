@@ -1,0 +1,13 @@
+<span>
+    <span ng-show="textValue.length > limitLength">
+        {{textValue | limitTo:limitLength}}
+        <span tooltip-is-open="tooltipIsOpen" tooltip-placement="bottom" tooltip-popup-close-delay='1000'
+              uib-tooltip="{{textValue}}">
+            ...
+        </span>
+    </span>
+
+    <span ng-show="textValue.length <= limitLength">
+        {{textValue}}
+    </span>
+</span>
