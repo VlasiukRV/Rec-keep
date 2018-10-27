@@ -70,8 +70,8 @@ var setContentHeight = function () {
     $RIGHT_COL.css('min-height', contentHeight);
 };
 
-function init_panel_toolbox() {
-    $('.collapse-link').on('click', function () {
+function init_panel_toolbox(parentElement) {
+    parentElement.find('.collapse-link').on('click', function () {
         var $BOX_PANEL = $(this).closest('.x_panel'),
             $ICON = $(this).find('i'),
             $BOX_CONTENT = $BOX_PANEL.find('.x_content');
@@ -89,7 +89,7 @@ function init_panel_toolbox() {
         $ICON.toggleClass('fa-chevron-up fa-chevron-down');
     });
 
-    $('.close-link').click(function () {
+    parentElement.find('.close-link').click(function () {
         var $BOX_PANEL = $(this).closest('.x_panel');
 
         $BOX_PANEL.remove();

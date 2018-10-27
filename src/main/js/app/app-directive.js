@@ -8,7 +8,7 @@
     appDirective.directiveElementReady = function() {
         return {
             priority: -1000, // a low number so this directive loads after all other directives have loaded.
-            restrict: "A", // attribute only
+            restrict: 'A', // attribute only
             link: function($scope, $element, $attributes) {
                 $scope.$eval($attributes.ngElementReady);
             }
@@ -23,7 +23,7 @@
             replace: true,
             templateUrl: '/templates/appRoom/tasklist/directive/app-template-form-login.html',
             scope: {
-                eventAfterLogin: "&"
+                eventAfterLogin: '&'
             },
             controller: ['$location', '$http', '$rootScope', '$scope', 'dataStorage', function ($location, $http, $rootScope, $scope, dataStorage) {
                 $scope.credentials = {username: 'admin', password: 'admin'};
@@ -55,7 +55,7 @@
             require: '',
             templateUrl: '/templates/appRoom/tasklist/directive/app-template-message-line.html',
             scope: {
-                errorDescriptions: "="
+                errorDescriptions: '='
             },
             link: function (scope, element, attrs) {
             },
@@ -82,7 +82,7 @@
             replace: true,
             templateUrl: '/templates/appRoom/tasklist/directive/app-template-menu-bar.html',
             scope: {
-                menuBar: "="
+                menuBar: '='
             },
             link: function (scope, element, attrs) {
                 init_sidebar_addEvent(element);
@@ -97,8 +97,8 @@
             replace: true,
             templateUrl: '/templates/appRoom/tasklist/directive/app-template-menu-collection.html',
             scope: {
-                menuCollection: "=",
-                command: "="
+                menuCollection: '=',
+                command: '='
             },
             link: function (scope, element, attrs) {
                 init_sidebar_addEvent(element);
@@ -113,11 +113,11 @@
             replace: true,
             templateUrl: '/templates/appRoom/tasklist/directive/app-template-menu-item.html',
             scope: {
-                command: "="
+                command: '='
             },
             link: function (scope, element, attrs) {
                 if (scope.command.dropdownMenu) {
-                    var e = $compile("<menu-collection command = 'command' menu-collection='command.commandList'></menu-collection>")(scope);
+                    var e = $compile('<menu-collection command = "command" menu-collection="command.commandList"></menu-collection>')(scope);
                     element.replaceWith(e);
                 }
             },
@@ -137,7 +137,7 @@
         return {
             restrict: 'E',
             scope: {
-                fCallBack: "&"
+                fCallBack: '&'
             },
             link: function link(scope, element, attrs) {
                 var timeoutId;
@@ -196,14 +196,16 @@
             require: '',
             templateUrl: '/templates/appRoom/tasklist/directive/app-template-text-value.html',
             scope: {
-                textValue: "",
-                limitLength: ""
+                textValue: '=',
+                limitLength: '=?'
             },
             link: function link(scope, element, attrs) {
 
             },
             controller: ['$scope', function ($scope) {
-
+                if(!$scope.limitLength) {
+                    $scope.limitLength = Number.MAX_VALUE;
+                }
             }]
         }
     };

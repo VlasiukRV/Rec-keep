@@ -80,10 +80,7 @@
                 templateUrl: "/appTaskList/tasksList"
             })
             .when("/currentPrincipalInformation", {
-                templateUrl: "/appTaskList/currentPrincipalInformation",
-                controller: function () {
-                    init_panel_toolbox();
-                }
+                templateUrl: "/appTaskList/currentPrincipalInformation"
             })
             .otherwise({
                 redirectTo: '/appTaskList'

@@ -89,6 +89,9 @@ app
     .directive('button', function () {
         return appDirective.formsDirective.directiveButton();
     })
+    .directive('formToolbox', function () {
+        return appDirective.formsDirective.directiveFormToolbox();
+    })
     .directive('entityProperty', function () {
         return appDirective.formsDirective.directiveEntityProperty();
     })

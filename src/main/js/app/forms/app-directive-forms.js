@@ -50,14 +50,14 @@
     };
 
     function refreshSelectList (scope) {
-        if (scope.property == undefined) {
+        if (!scope.property) {
             return;
         }
-        if (scope.property.inputType == "enum") {
+        if (scope.property.inputType === 'enum') {
             if (scope.property.entityListService()) {
                 scope.selectList = scope.property.entityListService().list
             }
-        } else if (scope.property.inputType == "select" || scope.property.inputType == "multiselect") {
+        } else if (scope.property.inputType === 'select' || scope.property.inputType === 'multiselect') {
             if (scope.property.entityListService()) {
                 scope.selectList = scope.property.entityListService().list
             }
@@ -73,7 +73,7 @@
                 entity: '=',
                 property: '='
             },
-            link: function (scope, element, attrs) {
+            link: function (scope) {
                 refreshSelectList(scope);
             },
             controller: ['$scope', function ($scope) {
@@ -90,7 +90,7 @@
             require: '',
             templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/app-template-entity-edit-form.html ',
             scope: {
-                entityEditForm: "="
+                entityEditForm: '='
             },
             link: function (scope, element, attrs) {
 
@@ -115,8 +115,8 @@
             require: '',
             templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/app-template-entity-edit-form-row.html ',
             scope: {
-                entityfieldsrow: "=",
-                entityeditform: "="
+                entityfieldsrow: '=',
+                entityeditform: '='
             },
             link: function (scope, element, attrs) {
             }
@@ -129,16 +129,16 @@
             require: '',
             templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/app-template-entity-edit-form-col.html ',
             scope: {
-                fieldplacing: "=",
-                entityeditform: "="
+                fieldplacing: '=',
+                entityeditform: '='
             },
-            link: function (scope, element, attrs) {
+            link: function (scope, element) {
                 if (angular.isArray(scope.fieldplacing.editFieldId)) {
                     var e = $compile("" +
-                        "<div ng-repeat='entityfieldsrow in fieldplacing.editFieldId track by $index'>" +
-                        "<entity-edit-form-row entityfieldsrow='entityfieldsrow' entityeditform='entityeditform'> " +
-                        "</entity-edit-form-row>" +
-                        "</div>"
+                        '<div ng-repeat="entityfieldsrow in fieldplacing.editFieldId track by $index">' +
+                        '<entity-edit-form-row entityfieldsrow="entityfieldsrow" entityeditform="entityeditform">' +
+                        '</entity-edit-form-row>' +
+                        '</div>'
                     )(scope);
                     element.replaceWith(e);
                 }
@@ -152,7 +152,7 @@
             require: '',
             templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/app-template-entity-list-form.html ',
             scope: {
-                entityListForm: "="
+                entityListForm: '='
             },
             link: function (scope, element, attrs) {
 
@@ -162,7 +162,7 @@
                 var listConfig = {
                     'panel': {
                         quantityProperties: 5,
-                        limitCellLength: 20,
+                        limitCellLength: 20
                     }
                 };
                 $scope.quantity = Number.MAX_VALUE;
@@ -194,9 +194,31 @@
                 $scope.editEntity = function (id) {
                     $scope.entityListForm.eventEditEntity(id);
                 };
-                init_panel_toolbox();
+
+                $scope.toolboxMenu = [];
+                $scope.toolboxMenu.push({comand:'editEntity(entity.id)', text:'Edit', ico: 'glyphicon glyphicon-pencil'});
+                $scope.toolboxMenu.push({comand:'deleteEntity(entity.id)', text:'Delete', ico: 'glyphicon glyphicon-trash'});
             }]
         }
-    }
+    };
+
+    formsDirective.directiveFormToolbox = function () {
+        return {
+            restrict: 'E',
+            require: '',
+            templateUrl: '/templates/appRoom/tasklist/directive/form/app-template-form-toolbox.html',
+            scope: {
+                toolboxMenu: '=?'
+            },
+            link: function link(scope, element) {
+                init_panel_toolbox(element);
+            },
+            controller: ['$scope', function ($scope) {
+                if(!$scope.toolboxMenu) {
+                    $scope.toolboxMenu = [{comand:'', text:'', ico: ''}];
+                }
+            }]
+        }
+    };
 
 })(window);
