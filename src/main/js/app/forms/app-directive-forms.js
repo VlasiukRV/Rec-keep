@@ -195,9 +195,23 @@
                     $scope.entityListForm.eventEditEntity(id);
                 };
 
-                $scope.toolboxMenu = [];
-                $scope.toolboxMenu.push({comand:'editEntity(entity.id)', text:'Edit', ico: 'glyphicon glyphicon-pencil'});
-                $scope.toolboxMenu.push({comand:'deleteEntity(entity.id)', text:'Delete', ico: 'glyphicon glyphicon-trash'});
+                $scope.toolboxMenu = {
+                    editEntity: {
+                        command: function (selfScope) {
+                            $scope.editEntity(selfScope.entity.id);
+                        },
+                        text:'Edit',
+                        ico: 'glyphicon glyphicon-pencil'
+                    },
+                    deleteEntity: {
+                        command:function (selfScope) {
+                            $scope.deleteEntity(selfScope.entity.id);
+                        },
+                        text:'Delete',
+                        ico: 'glyphicon glyphicon-trash'
+                    }
+                };
+
             }]
         }
     };
@@ -207,15 +221,14 @@
             restrict: 'E',
             require: '',
             templateUrl: '/templates/appRoom/tasklist/directive/form/app-template-form-toolbox.html',
-            scope: {
-                toolboxMenu: '=?'
-            },
+            scope: true,
             link: function link(scope, element) {
                 init_panel_toolbox(element);
             },
             controller: ['$scope', function ($scope) {
-                if(!$scope.toolboxMenu) {
-                    $scope.toolboxMenu = [{comand:'', text:'', ico: ''}];
+                $scope.selfScope = $scope;
+                if (!$scope.toolboxMenu) {
+                    $scope.toolboxMenu = {};
                 }
             }]
         }
