@@ -196,6 +196,30 @@
                 };
 
                 $scope.toolboxMenu = {
+                    swichPanel: {
+                        command:function (selfScope) {
+                            $scope.entityListForm.metadataSpecification.metadataObject.fmListForm.type.name = 'panel'
+                        },
+                        text:'swich Panel',
+                        ico: ''
+                    },
+                    swichTable: {
+                        command:function (selfScope) {
+                            $scope.entityListForm.metadataSpecification.metadataObject.fmListForm.type.name = 'table'
+                        },
+                        text:'swich Table',
+                        ico: ''
+                    },
+                    swichTile: {
+                        command:function (selfScope) {
+                            $scope.entityListForm.metadataSpecification.metadataObject.fmListForm.type.name = 'tile'
+                        },
+                        text:'swich Tile',
+                        ico: ''
+                    }
+
+                };
+                $scope.entityToolboxMenu = {
                     editEntity: {
                         command: function (selfScope) {
                             $scope.editEntity(selfScope.entity.id);
@@ -210,6 +234,7 @@
                         text:'Delete',
                         ico: 'glyphicon glyphicon-trash'
                     }
+
                 };
 
             }]
@@ -221,15 +246,18 @@
             restrict: 'E',
             require: '',
             templateUrl: '/templates/appRoom/tasklist/directive/form/app-template-form-toolbox.html',
-            scope: true,
-            link: function link(scope, element) {
-                init_panel_toolbox(element);
+            scope: {
+                toolboxMenu: '=?'
             },
-            controller: ['$scope', function ($scope) {
-                $scope.selfScope = $scope;
+            link: function link($scope, iElement, iAttrs, controller) {
+                $scope.selfScope = $scope.$parent;
                 if (!$scope.toolboxMenu) {
                     $scope.toolboxMenu = {};
                 }
+
+                init_panel_toolbox(iElement);
+            },
+            controller: ['$scope', function ($scope) {
             }]
         }
     };
