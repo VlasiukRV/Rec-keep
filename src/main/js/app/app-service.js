@@ -247,6 +247,24 @@
 // App metadata
 ////////////////////////////////////
 
+    var systemEnums = {
+        fmListForm_TYPES: {
+            table: {
+                name: 'table',
+                quantityProperties: 5,
+                limitCellLength: 20,
+            },
+            tile: {
+                name: 'tile'
+            },
+            panel: {
+                name: 'panel',
+                quantityProperties: 5,
+                limitCellLength: 20,
+            }
+        }
+    };
+
     // Abstract model of application interface
     var appInterface = Object.create(null);
     (function () {
@@ -433,7 +451,6 @@
                 this.includeFd({
                     editFormName: "<--label for form-->",
                     formProperties: {},
-                    formPropertiesPlacing: {},
 
                     eventCloseForm: function () {
                     },
@@ -448,6 +465,7 @@
             EntityEditForm.prototype.$_buildObject = function () {
                 this.includeFd({
                     currentEntity: {},
+                    formPropertiesPlacing: {},
 
                     eventCreateEntity: function () {
                     }
@@ -460,6 +478,59 @@
             EntityListForm.prototype.$_buildObject = function () {
                 this.includeFd({
                     entities: [],
+
+                    toolboxMenu: {
+                        swichPanel: {
+                            command:function (selfScope) {
+                                selfScope.entityListForm.setListType(systemEnums.fmListForm_TYPES.panel);
+                            },
+                            text:'swich Panel',
+                            ico: 'glyphicon glyphicon-list-alt'
+                        },
+                        swichTable: {
+                            command:function (selfScope) {
+                                selfScope.entityListForm.setListType(systemEnums.fmListForm_TYPES.table);
+                            },
+                            text:'swich Table',
+                            ico: 'glyphicon glyphicon-align-justify'
+                        },
+                        swichTile: {
+                            command:function (selfScope) {
+                                selfScope.entityListForm.setListType(systemEnums.fmListForm_TYPES.tile);
+                            },
+                            text:'swich Tile',
+                            ico: 'glyphicon glyphicon-th'
+                        }
+
+                    },
+                    entityToolboxMenu: {
+                        editEntity: {
+                            command: function (selfScope) {
+                                selfScope.entityListForm.eventEditEntity(selfScope.entity.id);
+                            },
+                            text:'Edit',
+                            ico: 'glyphicon glyphicon-pencil'
+                        },
+                        deleteEntity: {
+                            command:function (selfScope) {
+                                selfScope.entityListForm.eventDeleteEntity(selfScope.entity.id);
+                            },
+                            text:'Delete',
+                            ico: 'glyphicon glyphicon-trash'
+                        }
+
+                    },
+
+                    listConfig: {
+                        'panel': {
+                            quantityProperties: 5,
+                            limitCellLength: 20
+                        }
+                    },
+                    listType: systemEnums.fmListForm_TYPES.table,
+                    setListType: function (listType) {
+                        this.listType = listType;
+                    },
 
                     eventAddNewEntity: function () {
                     },
@@ -908,7 +979,6 @@
                     fmListForm: {
                         metadataEditFieldsSet: [],
                         metadataFilterFieldsSet: [],
-                        type: systemEnums.fmListForm_TYPES.table,
                     }
                 })
             };
@@ -940,8 +1010,8 @@
                     var i;
 
                     if(_fmListForm) {
-                        if(_fmListForm.type) {
-                            this.fmListForm.type = _fmListForm.type;
+                        if(_fmListForm.listType) {
+                            this.fmListForm.listType = _fmListForm.listType;
                         }
                     }
 
@@ -996,7 +1066,7 @@
                     },
 
                     fmListForm: {
-                        type: systemEnums.fmListForm_TYPES.table
+                        listType: systemEnums.fmListForm_TYPES.table
                     },
                     entityFieldsPlacing: []
                 })
@@ -1052,20 +1122,6 @@
                 }
             });
         })();
-
-        var systemEnums = {
-            fmListForm_TYPES: {
-                table: {
-                    name: 'table'
-                },
-                tile: {
-                    name: 'tile'
-                },
-                panel: {
-                    name: 'panel'
-                }
-            }
-        };
 
         var MetadataSet = appUtils.Class();
         (function () {
@@ -1132,8 +1188,8 @@
                     };
                     metadataEntitySpecification.entityFieldsPlacing = entitySpecification.entityFieldsPlacing;
                     if(entitySpecification.fmListForm) {
-                        if(entitySpecification.fmListForm.type) {
-                            metadataEntitySpecification.fmListForm.type = entitySpecification.fmListForm.type;
+                        if(entitySpecification.fmListForm.listType) {
+                            metadataEntitySpecification.fmListForm.listType = entitySpecification.fmListForm.listType;
                         }
                     }
 

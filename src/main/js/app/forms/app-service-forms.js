@@ -24,7 +24,9 @@
             entityListForm.editFormName = metadataSpecification.metadataObject.description;
             entityListForm.formProperties = metadataSpecification.metadataObject.fmListForm.metadataEditFieldsSet;
             entityListForm.entities = metadataSpecification.list;
-
+            if(metadataSpecification.metadataObject.fmListForm.listType) {
+                entityListForm.listType = metadataSpecification.metadataObject.fmListForm.listType;
+            }
             entityListForm.numPerPage = this.numPerpage;
             entityListForm.currentPage = 1;
             entityListForm.totalItems = metadataSpecification.list.length;
@@ -129,7 +131,7 @@
             entityEditForm.metadataSpecification = metadataSpecification;
             entityEditForm.editFormName = "New " + this.metadataName + ":";
             entityEditForm.formProperties = metadataSpecification.metadataObject.fmEditForm.metadataEditFieldsSet;
-            entityEditForm.entityFieldsPlacing = metadataSpecification.metadataObject.fmEditForm.metadataEditFieldsPlacing;
+            entityEditForm.formPropertiesPlacing = metadataSpecification.metadataObject.fmEditForm.metadataEditFieldsPlacing;
 
             entityEditForm.eventCloseForm = this.closeEditForm;
             entityEditForm.eventUpdateForm = this.updateForm;

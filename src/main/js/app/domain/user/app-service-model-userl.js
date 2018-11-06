@@ -69,7 +69,7 @@
             },
 
             fmListForm: {
-                type: appMetadataSet.system.enums.fmListForm_TYPES.panel
+                listType: appMetadataSet.system.enums.fmListForm_TYPES.panel
             },
 
             entityFieldsPlacing: [

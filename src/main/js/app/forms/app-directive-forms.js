@@ -158,21 +158,6 @@
 
             },
             controller: ['$scope', function ($scope) {
-                var listType = $scope.entityListForm.metadataSpecification.metadataObject.fmListForm.type.name;
-                var listConfig = {
-                    'panel': {
-                        quantityProperties: 5,
-                        limitCellLength: 20
-                    }
-                };
-                $scope.quantity = Number.MAX_VALUE;
-                if(listConfig[listType] && listConfig[listType].quantityProperties) {
-                    $scope.quantityProperties = listConfig[listType].quantityProperties;
-                }
-                $scope.limitCellLength = Number.MAX_VALUE;
-                if(listConfig[listType] && listConfig[listType].limitCellLength) {
-                    $scope.limitCellLength = listConfig[listType].limitCellLength;
-                }
 
                 $scope.closeForm = function () {
                     $scope.entityListForm.eventCloseForm();
@@ -193,48 +178,6 @@
                 };
                 $scope.editEntity = function (id) {
                     $scope.entityListForm.eventEditEntity(id);
-                };
-
-                $scope.toolboxMenu = {
-                    swichPanel: {
-                        command:function (selfScope) {
-                            $scope.entityListForm.metadataSpecification.metadataObject.fmListForm.type.name = 'panel'
-                        },
-                        text:'swich Panel',
-                        ico: ''
-                    },
-                    swichTable: {
-                        command:function (selfScope) {
-                            $scope.entityListForm.metadataSpecification.metadataObject.fmListForm.type.name = 'table'
-                        },
-                        text:'swich Table',
-                        ico: ''
-                    },
-                    swichTile: {
-                        command:function (selfScope) {
-                            $scope.entityListForm.metadataSpecification.metadataObject.fmListForm.type.name = 'tile'
-                        },
-                        text:'swich Tile',
-                        ico: ''
-                    }
-
-                };
-                $scope.entityToolboxMenu = {
-                    editEntity: {
-                        command: function (selfScope) {
-                            $scope.editEntity(selfScope.entity.id);
-                        },
-                        text:'Edit',
-                        ico: 'glyphicon glyphicon-pencil'
-                    },
-                    deleteEntity: {
-                        command:function (selfScope) {
-                            $scope.deleteEntity(selfScope.entity.id);
-                        },
-                        text:'Delete',
-                        ico: 'glyphicon glyphicon-trash'
-                    }
-
                 };
 
             }]

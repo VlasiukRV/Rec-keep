@@ -7,7 +7,7 @@
             <small>{{entityListForm.editFormName}}</small>
         </h2>
 
-        <form-toolbox toolbox-menu="toolboxMenu"/>
+        <form-toolbox toolbox-menu="entityListForm.toolboxMenu"/>
     </div>
 
     <div class="x_content">
@@ -64,7 +64,7 @@
 
         <div class="col-sm-12">
 
-            <div ng-switch on="entityListForm.metadataSpecification.metadataObject.fmListForm.type.name">
+            <div ng-switch on="entityListForm.listType.name">
 
                 <div ng-switch-when="tile">
 
@@ -75,7 +75,7 @@
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2>{{entity.representation}}</h2>
-                                    <form-toolbox toolbox-menu="entityToolboxMenu"/>
+                                    <form-toolbox toolbox-menu="entityListForm.entityToolboxMenu"/>
                                 </div>
 
                                 <div class="x_content" style="display: block;">
@@ -101,13 +101,13 @@
                             <div class="x_panel fixed_height_390">
                                 <div class="x_title">
                                     <h2>{{entity.representation}}</h2>
-                                    <form-toolbox toolbox-menu="entityToolboxMenu"/>
+                                    <form-toolbox toolbox-menu="entityListForm.entityToolboxMenu"/>
                                 </div>
 
                                 <div class="x_content" style="display: block;">
                                     <div>
                                         <ul class="list-inline widget_tally">
-                                            <li ng-repeat="entityProperty in entityListForm.formProperties | limitTo:quantityProperties track by $index">
+                                            <li ng-repeat="entityProperty in entityListForm.formProperties | limitTo:entityListForm.listType.quantityProperties track by $index">
                                                 <p>
 
                                                     <span class="month">{{entityProperty.label}}</span>
@@ -122,7 +122,7 @@
                                                             {{entity[entityProperty.name] | date:'yyyy-MM-dd'}}
                                                         </span>
                                                         <span ng-switch-default>
-                                                            <text-value text-value="entity[entityProperty.name]" limit-length="limitCellLength">
+                                                            <text-value text-value="entity[entityProperty.name]" limit-length="entityListForm.listType.limitCellLength">
 
                                                             </text-value>
                                                         </span>

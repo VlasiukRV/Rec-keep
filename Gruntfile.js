@@ -65,7 +65,7 @@ module.exports = function (grunt) {
                         'src/main/js/app/forms/app-service-forms.js',
                         'src/main/js/app/domain/app-service-model-enum.js',
                         'src/main/js/app/domain/user/app-service-model-userl.js',
-                        'src/main/js/app/domain/project/app-service-model-projectl.js',
+                        'src/main/js/app/domain/project/app-service-model-project.js',
                         'src/main/js/app/domain/task/app-service-model-taskl.js',
                         'src/main/js/app/domain/farm/app-service-model-farm.js',
 

@@ -43,7 +43,7 @@
             },
 
             fmListForm: {
-                type: appMetadataSet.system.enums.fmListForm_TYPES.tile
+                listType: appMetadataSet.system.enums.fmListForm_TYPES.tile
             },
             entityFieldsPlacing: [
                 [
