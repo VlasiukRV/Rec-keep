@@ -11,22 +11,22 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class ReportPDFBuilder {
+public class ReportBuilderTextPdf implements IReportBuilder {
 
     public static String DEST = "E:\\Work\\eclipse-workspace\\taskList\\target\\classes\\pdfBuilder\\report1.pdf";
     public static final String HTML = "E:\\Work\\eclipse-workspace\\taskList\\target\\classes\\pdfBuilder\\movies.html";
     public static final String CSS = "E:\\Work\\eclipse-workspace\\taskList\\target\\classes\\pdfBuilder\\style1.css";
 
     public static final String templatePDF =  "pdfBuilder/stationery.pdf";
-    public ReportPDFBuilder() {
+    public ReportBuilderTextPdf() {
 
     }
 
-    public ReportPDFBuilder(String DEST) {
+    public ReportBuilderTextPdf(String DEST) {
         this.DEST = DEST;
     }
 
-    public void createPdf(String result) throws IOException, DocumentException {
+    private void createPdf(String result) throws IOException, DocumentException {
         FillTemplateHelper template = new FillTemplateHelper(templatePDF);
         template.setSender("Bruno Lowagie\nAdolf Baeyensstraat 121\n9040 Sint-Amandsberg\nBELGIUM");
         template.setReceiver("iText Software Corp.\nCambridge Innovation Center\n1 Broadway, 14th Floor\nCambridge, MA 02142 USA");
@@ -46,10 +46,18 @@ public class ReportPDFBuilder {
         // step 5
         document.close();
     }
-    public File getPDF() throws IOException, DocumentException{
+
+    @Override
+    public File getPDF() throws IOException {
         File file = new File(DEST);
         file.getParentFile().mkdirs();
-        createPdf(DEST);
+
+        try {
+            createPdf(DEST);
+        } catch (DocumentException e) {
+            e.printStackTrace();
+            throw new IOException(e);
+        }
 
         return file;
     }
