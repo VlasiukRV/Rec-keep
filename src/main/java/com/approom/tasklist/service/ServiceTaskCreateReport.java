@@ -1,7 +1,7 @@
 package com.approom.tasklist.service;
 
-import com.itextpdf.text.DocumentException;
-import com.service.pdfBuilder.ReportPDFBuilder;
+import com.service.pdfBuilder.IReportBuilder;
+import com.service.pdfBuilder.ReportBuilderPhantomjs;
 import com.service.taskScheduler.AbstractServiceTask;
 
 import java.io.IOException;
@@ -16,13 +16,11 @@ public class ServiceTaskCreateReport extends AbstractServiceTask {
     @Override
     protected boolean runServiceTask() {
 
-        ReportPDFBuilder pdfBuilder = new ReportPDFBuilder();
+        IReportBuilder report = new ReportBuilderPhantomjs();
 
         try {
-            pdfBuilder.getPDF();
+            report.getPDF();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
             e.printStackTrace();
         }
 
