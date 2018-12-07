@@ -116,7 +116,7 @@
                 command: '='
             },
             link: function (scope, element, attrs) {
-                if (scope.command.dropdownMenu) {
+                if (scope.command.isDropdown) {
                     var e = $compile('<menu-collection command = "command" menu-collection="command.commandList"></menu-collection>')(scope);
                     element.replaceWith(e);
                 }

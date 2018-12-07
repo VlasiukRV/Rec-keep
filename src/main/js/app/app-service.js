@@ -51,10 +51,11 @@
     appService.appEnvironment = function ($location, appConfig) {
         var location = $location;
         return {
-            getAppHttpUrl: function getAppHttpUrl(urlSuffix) {
-                var appAddress = "http://" + location.$$host + ":" + location.$$port;
-
-                return appAddress + "/" + appConfig.appName + urlSuffix;
+            getAppAddress: function () {
+                return "http://" + location.$$host + ":" + location.$$port;
+            },
+            getAppHttpUrl: function (urlSuffix) {
+                return this.getAppAddress() + "/" + appConfig.appName + urlSuffix;
             }
         }
     };
@@ -323,10 +324,10 @@
                     var self = this;
                     authenticate($http, credentials, function (data) {
                         if (data.authenticated) {
-                            console.log("Login succeeded");
+                            appUtils.log("Login succeeded");
                             credentials.error = false;
                         } else {
-                            console.log("Login failed");
+                            appUtils.log("Login failed");
                             credentials.error = true;
                         }
                         self.setAuthenticated(data.principal);
@@ -377,17 +378,17 @@
                 })
             };
             ErrorDescription.includeMthd({
-                SetHTTPError: function (statusText, status) {
+                setHTTPError: function (statusText, status) {
                     this.error = true;
                     this.status = status;
                     this.statusText = "HTTP error: " + statusText;
                 },
-                SetNoError: function () {
+                setNoError: function () {
                     this.error = false;
                     this.status = 200;
                     this.statusText = "";
                 },
-                SetAppError: function (statusText) {
+                setAppError: function (statusText) {
                     this.error = true;
                     this.status = 0;
                     this.statusText = "App error: " + statusText;
@@ -406,7 +407,7 @@
             ErrorDescriptions.includeMthd({
                 handleResponse: function (response) {
                     var errorDescription = new ErrorDescription();
-                    errorDescription.SetNoError();
+                    errorDescription.setNoError();
                     if ((response.status == 200) ||
                         (response.status == 404) ||
                         (response.status == 403)
@@ -415,15 +416,15 @@
                         if (objectResponse instanceof Object) {
                             if ("message" in objectResponse && "status" in objectResponse) { //ToDo
                                 if (response.data.status != 200) {
-                                    errorDescription.SetAppError(objectResponse.message);
+                                    errorDescription.setAppError(objectResponse.message);
                                 }
                             }
                         } else if (response.status != 200) {
                             objectResponse = eval("(" + response.data + ")");
-                            errorDescription.SetAppError(objectResponse.message);
+                            errorDescription.setAppError(objectResponse.message);
                         }
                     } else {
-                        errorDescription.SetHTTPError(response.statusText, response.status);
+                        errorDescription.setHTTPError(response.statusText, response.status);
                     }
                     if (errorDescription.error) {
                         this.addErrorDescription(errorDescription);
@@ -551,7 +552,7 @@
                 this.includeFd({
                     commandName: "",
 
-                    dropdownMenu: false,
+                    isDropdown: false,
                     text: "",
                     command: null,
                     commandList: []
@@ -614,7 +615,7 @@
         appInterface.UserInterface = UserInterface;
         appInterface.getNewEntityCommand = function (commandName, text) {
             var command = new MenuCommand();
-            command.dropdownMenu = false;
+            command.isDropdown = false;
             command.commandName = commandName;
             command.text = text;
             command.command = commandName;
@@ -623,14 +624,14 @@
         };
         appInterface.getNewDropdownCommand = function (commandName, text) {
             var command = new MenuCommand();
-            command.dropdownMenu = true;
+            command.isDropdown = true;
             command.commandName = commandName;
             command.text = text;
             return command;
         };
         appInterface.getNewCommand = function (commandName, text, functionCommand) {
             var command = new MenuCommand();
-            command.dropdownMenu = false;
+            command.isDropdown = false;
             command.commandName = commandName;
             command.text = text;
             command.command = functionCommand;
@@ -781,7 +782,7 @@
                             this.addEntity(entity);
                         }, this);
                     }
-                    console.log("Update " + this.metadataObject.metadataName);
+                    appUtils.log("Update " + this.metadataObject.metadataName);
                 }
 
                 if (fCallBack) {
@@ -986,7 +987,17 @@
                 getEntityInstance: function () {
                     return null;
                 },
-                installMetadata: function (metadataName, fnGetEntityInstance, representation, description, image) {
+                installMetadata: function (metadataEntitySpecification, entitySpecification) {
+                    this._installMetadata(metadataEntitySpecification.metadataName,
+                        entitySpecification.fnGetEntityInstance,
+                        metadataEntitySpecification.metadataRepresentation,
+                        metadataEntitySpecification.metadataDescription
+                    );
+
+                    this._bookEntityForms(metadataEntitySpecification);
+                },
+
+                _installMetadata: function (metadataName, fnGetEntityInstance, representation, description, image) {
                     this.metadataName = metadataName;
                     this.getEntityInstance = fnGetEntityInstance;
 
@@ -1001,7 +1012,7 @@
                     }
 
                 },
-                bookEntityForms: function (metadataEntitySpecification) {
+                _bookEntityForms: function (metadataEntitySpecification) {
                     var _metadataEditFieldsSet = metadataEntitySpecification.getEntityFieldsDescription();
                     var _metadataFilterFieldsSet = undefined;
                     var _editFieldsPlacing = metadataEntitySpecification.getEntityFieldsPlacing();
@@ -1066,7 +1077,8 @@
                     },
 
                     fmListForm: {
-                        listType: systemEnums.fmListForm_TYPES.table
+                        listType: systemEnums.fmListForm_TYPES.table,
+                        numPerPage: 10
                     },
                     entityFieldsPlacing: []
                 })
@@ -1143,20 +1155,18 @@
                 installMetadataObjectEnum: function (metadataEnumSpecification) {
                     var EnumClass = metadataEnumSpecification.enumClass;
                     EnumClass.metadataName = metadataEnumSpecification.metadataName;
-                    var metadataSet = this;
 
-                    metadataSet.bookEntityList(EnumClass);
+                    this._bookEntityList(EnumClass);
                     // event
-                    metadataSet.metadataEvents.subscribe("ev:entityList:" + metadataEnumSpecification.metadataName + ":update",
+                    this.metadataEvents.subscribe("ev:entityList:" + metadataEnumSpecification.metadataName + ":update",
                         function (event, fCallBack) {
                             EnumClass.update(fCallBack)
                         }
                     );
 
-                    return metadataSet;
+                    return this;
                 },
                 installMetadataObjectEntity: function (entitySpecification) {
-                    var metadataSet = this;
                     var EntityClass = entitySpecification.entityClass;
 
                     var metadataEntitySpecification = new MetadataEntitySpecification();
@@ -1208,17 +1218,10 @@
                     entityList.metadataName = metadataEntitySpecification.metadataName;
 
                     var metadataObject = new MetadataObject();
+                    metadataObject.installMetadata(metadataEntitySpecification, entitySpecification);
 
-                    metadataObject.installMetadata(metadataEntitySpecification.metadataName,
-                        entitySpecification.fnGetEntityInstance,
-                        metadataEntitySpecification.metadataRepresentation,
-                        metadataEntitySpecification.metadataDescription
-                    );
-
-                    metadataObject.bookEntityForms(metadataEntitySpecification);
-
-                    metadataSet.bookMetadataObject(metadataObject);
-                    metadataSet.bookEntityList(entityList);
+                    this._bookMetadataObject(metadataObject);
+                    this._bookEntityList(entityList);
 
                     // event
                     metadataEventsImpl.subscribe("ev:entityList:" + metadataEntitySpecification.metadataName + ":update",
@@ -1233,31 +1236,12 @@
                     );
 
                     // EditMenu
-                    var entitySubMenu = metadataSet.userInterface.commandBar.commandBar.getSubMenu('modelDD');
+                    var entitySubMenu = this.userInterface.commandBar.commandBar.getSubMenu('modelDD');
                     if (entitySubMenu !== undefined) {
                         entitySubMenu.addCommand(appInterface.getNewEntityCommand(entitySpecification.metadataName, entitySpecification.metadataRepresentation))
                     }
 
-                    return metadataSet;
-                },
-                getMetadataSpecification: function (metadataName) {
-                    var metadataSpecification = this.entityList[metadataName];
-                    if (metadataSpecification) {
-                        return metadataSpecification
-                    } else {
-                        metadataSpecification = {metadataName: metadataName, metadataObject: null, entityList: null};
-                        this.entityList[metadataName] = metadataSpecification;
-                        return metadataSpecification;
-                    }
-                },
-                bookMetadataObject: function (metadataObject) {
-                    var metadataSpecification = this.getMetadataSpecification(metadataObject.metadataName);
-                    metadataSpecification.metadataObject = metadataObject;
-                },
-                bookEntityList: function (entityList) {
-                    var metadataSpecification = this.getMetadataSpecification(entityList.metadataName);
-                    metadataSpecification.entityList = entityList;
-                    metadataSpecification.entityList.metadataObject = metadataSpecification.metadataObject;
+                    return this;
                 },
                 getMetadataObject: function (metadataName) {
                     if (this.entityList[metadataName]) {
@@ -1292,6 +1276,25 @@
                     for (entityName in this.entityList) {
                         this.metadataEvents.publish("ev:entityList:" + entityName + ":update")
                     }
+                },
+                _getMetadataSpecification: function (metadataName) {
+                    var metadataSpecification = this.entityList[metadataName];
+                    if (metadataSpecification) {
+                        return metadataSpecification
+                    } else {
+                        metadataSpecification = {metadataName: metadataName, metadataObject: null, entityList: null};
+                        this.entityList[metadataName] = metadataSpecification;
+                        return metadataSpecification;
+                    }
+                },
+                _bookMetadataObject: function (metadataObject) {
+                    var metadataSpecification = this._getMetadataSpecification(metadataObject.metadataName);
+                    metadataSpecification.metadataObject = metadataObject;
+                },
+                _bookEntityList: function (entityList) {
+                    var metadataSpecification = this._getMetadataSpecification(entityList.metadataName);
+                    metadataSpecification.entityList = entityList;
+                    metadataSpecification.entityList.metadataObject = metadataSpecification.metadataObject;
                 }
             })
         })();
