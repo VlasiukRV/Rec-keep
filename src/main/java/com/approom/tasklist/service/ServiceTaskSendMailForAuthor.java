@@ -8,6 +8,8 @@ import com.service.taskScheduler.AbstractServiceTask;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
@@ -23,6 +25,8 @@ public class ServiceTaskSendMailForAuthor extends AbstractServiceTask {
     private MailSender appMailSender;
 
     private Set<Task> tasksWithSendMail = new HashSet<>();
+
+    private static final Logger logger = LoggerFactory.getLogger(ServiceTaskArchiveTask.class);
 
     // ToDo
     @Value("#{config['mailSenderService.link_app'] ?: 'http://192.168.0.110:8080'}")
@@ -54,7 +58,7 @@ public class ServiceTaskSendMailForAuthor extends AbstractServiceTask {
             String mailAddress = recipient.getMailAddress();
 
             if (mailAddress.equals("")) {
-                System.out.println("" + recipient.getUsername() + ": Have no mail address");
+                logger.warn("" + recipient.getUsername() + ": Have no mail address");
                 continue;
             }
             try {
@@ -66,6 +70,7 @@ public class ServiceTaskSendMailForAuthor extends AbstractServiceTask {
             }
             tasksWithSendMail.add(task);
         }
+        runYet();
         return true;
     }
 

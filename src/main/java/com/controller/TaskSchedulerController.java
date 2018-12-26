@@ -53,7 +53,7 @@ public class TaskSchedulerController {
     @RequestMapping("/stopArchiveService")
     @ResponseBody
     public Map<String, Object> stopArchiveService(){
-        taskExecutor.interruptTask("ArchiveService");
+        taskExecutor.removeTask("ArchiveService");
         return AjaxResponse.successResponse("Done");
     }
 
@@ -66,7 +66,7 @@ public class TaskSchedulerController {
     @RequestMapping("/stopSendMail")
     @ResponseBody
     public Map<String, Object> stopSendMail(){
-        taskExecutor.interruptTask("MailSendService");
+        taskExecutor.removeTask("MailSendService");
         return AjaxResponse.successResponse("Done");
     }
 

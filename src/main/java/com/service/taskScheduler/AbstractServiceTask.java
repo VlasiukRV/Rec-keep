@@ -1,9 +1,15 @@
 package com.service.taskScheduler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public abstract class AbstractServiceTask extends Thread implements IServiceTask{
 
     private String taskName = "";
     private Boolean execute = false;
+    private Boolean taskIsRunning = false;
+
+    private static final Logger logger = LoggerFactory.getLogger(AbstractServiceTask.class);
 
     public AbstractServiceTask(){
         setExecute(false);
@@ -27,6 +33,10 @@ public abstract class AbstractServiceTask extends Thread implements IServiceTask
         return execute;
     }
 
+    public void runYet() {
+        this.taskIsRunning = false;
+    }
+
     @Override
     public Boolean isRun() {
         return isAlive();
@@ -40,17 +50,20 @@ public abstract class AbstractServiceTask extends Thread implements IServiceTask
 
     @Override
     public void run() {
-        System.out.println("" +getName()+ " start");
+        logger.info("" +getName()+ " start");
         do {
             if (Thread.interrupted())    //Проверка прерывания
             {
                 break;
             }
 
-            try {
-                runServiceTask();
-            }catch (Exception e){
-                System.out.println(e.getMessage());
+            if(!this.taskIsRunning) {
+                try {
+                    this.taskIsRunning = true;
+                    runServiceTask();
+                } catch (Exception e) {
+                    logger.error(e.getMessage());
+                }
             }
 
             try {
@@ -60,8 +73,8 @@ public abstract class AbstractServiceTask extends Thread implements IServiceTask
             }
         }
         while (true);
-        execute = true;
-        System.out.println("" +getName()+ " stop");
+        this.execute = true;
+        logger.info("" +getName()+ " stop");
     }
 
 }

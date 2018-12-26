@@ -1,5 +1,7 @@
 package com.service.taskScheduler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -12,6 +14,8 @@ public class TaskScheduler extends Thread{
     private int MAX_RUNNING_TASK = 5;
     private int runningTaskCount;
     private volatile Map<String, IServiceTask> taskPool = new HashMap<>();
+
+    private static final Logger logger = LoggerFactory.getLogger(TaskScheduler.class);
 
     public TaskScheduler(){
 
@@ -36,14 +40,16 @@ public class TaskScheduler extends Thread{
         return null;
     }
 
+    public Boolean removeTask(String serviceTaskName){
+        removeTask(getTaskByName(serviceTaskName));
+        return true;
+    }
+
     public Boolean removeTask(IServiceTask serviceTask){
         String taskName = serviceTask.getTaskName();
-        if(taskPool.containsKey(taskName)) {
-            return false;
-        }
-
         taskPool.remove(taskName);
-
+        interruptTask(serviceTask);
+        logger.info("Removed task: "+taskName);
         return true;
     }
 
@@ -60,12 +66,12 @@ public class TaskScheduler extends Thread{
     public void runService(){
         if (!isAlive()){
             start();
-        };
+        }
     }
 
     @Override
     public void run() {
-        System.out.println("Task executor run");
+        logger.info("Task executor run");
         do {
             if (Thread.interrupted())    //Проверка прерывания
             {
@@ -86,7 +92,7 @@ public class TaskScheduler extends Thread{
         }
         while (true);
         interruptTasks();
-        System.out.println("Task executor stop");
+        logger.info("Task executor stop");
     }
 
     private void handleTask(IServiceTask serviceTask){
@@ -99,15 +105,13 @@ public class TaskScheduler extends Thread{
             removeTask(serviceTask);
             runningTaskCount--;
         }
+        logger.info("Tasks running:"+runningTaskCount);
     }
 
     private void interruptTasks() {
         Set<String> tasksName = taskPool.keySet();
         for (String taskName : tasksName) {
-            IServiceTask task = taskPool.get(taskName);
-            if (task.isRun()){
-                task.stopTask();
-            }
+            interruptTask(taskName);
         }
 
     }

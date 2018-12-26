@@ -4,6 +4,8 @@ import com.AppUtils;
 import com.service.taskScheduler.AbstractServiceTask;
 import com.approom.tasklist.entity.Task;
 import com.approom.tasklist.entity.TaskState;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,8 @@ public class ServiceTaskArchiveTask extends AbstractServiceTask {
     // ToDo
     @Value("${mailSenderService.link_app}")
     static private String fileName= "D:\\archiveTask.yaml";
+
+    private static final Logger logger = LoggerFactory.getLogger(ServiceTaskArchiveTask.class);
 
     public ServiceTaskArchiveTask(){
 
@@ -56,7 +60,7 @@ public class ServiceTaskArchiveTask extends AbstractServiceTask {
                 entityService.deleteEntity(task.getId());
                 Task archiveTask = AppUtils.initializeAndUnproxy(task);
                 archiveTaskList.add(archiveTask);
-                System.out.println(" - Task " + archiveTask.toString() + " arhived");
+                logger.info(" - Task " + archiveTask.toString() + " arhived");
             }
         }
 
@@ -64,7 +68,8 @@ public class ServiceTaskArchiveTask extends AbstractServiceTask {
             AppUtils.saveObjectToYaml(archiveTaskList, fileName);
         }
 
+        runYet();
         return true;
-    };
+    }
 
 }
