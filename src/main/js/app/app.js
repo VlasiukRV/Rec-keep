@@ -10,15 +10,6 @@ var app = angular.module('app', [
     'module.ui'    
 ]);
 
-/*
-// Constants
-app.constant('appConfig', {
-    appName: "appTaskList",
-    appUrl: "/"+this.appName
-})
-;
-
-*/
 // Configs
 app
     .config(['$locationProvider', function ($locationProvider) {
@@ -42,9 +33,6 @@ app
 
 // Services
 app
-/*    .service('appEnvironment', ['$location', 'appConfig', function ($location, appConfig) {
-        return appService.appEnvironment($location, appConfig);
-    }])*/
     .service('dataStorage', ['appConfig', function (appConfig) {
         return appService.dataStorage(appConfig);
     }])
@@ -58,70 +46,9 @@ app
     .factory('entityEditService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
         return appService.entityEditService($resource, appEnvironment);
     }])
-/*    .factory('securityService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
-        return appService.securityService($resource, appEnvironment);
-    }])
-    .factory('operationService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
-        return appService.operationService($resource, appEnvironment);
-    }])
-    .factory('systemService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
-        return appService.systemService($resource, appEnvironment);
-    }])*/
     .factory('resourceService', function (entityEditService, systemService, securityService, operationService) {
         return appService.resourceService(entityEditService, systemService, securityService, operationService);
     })
-;
-
-// Directives
-app
-    .directive('ngElementReady', function () {
-        return appDirective.directiveElementReady();
-    })
-    .directive('textValue', [function () {
-        return appDirective.directiveTextValue();
-    }])
-    .directive('messageLine', [function () {
-        return appDirective.directiveMessageLine();
-    }])
-    .directive('menuBar', [function () {
-        return appDirective.directiveMenuBar();
-    }])
-    .directive('menuCollection', [function () {
-        return appDirective.directiveMenuCollection();
-    }])
-    .directive('menuItem', ['$compile', function ($compile) {
-        return appDirective.directiveMenuItem($compile);
-    }])
-    .directive('loginPage', [function () {
-        return appDirective.directiveLoginPage();
-    }])
-    .directive('smDatepicker', function () {
-        return appDirective.formsDirective.directiveDatePicker();
-    })
-    .directive('button', function () {
-        return appDirective.formsDirective.directiveButton();
-    })
-    .directive('formToolbox', function () {
-        return appDirective.formsDirective.directiveFormToolbox();
-    })
-    .directive('entityProperty', function () {
-        return appDirective.formsDirective.directiveEntityProperty();
-    })
-    .directive('entityEditForm', function () {
-        return appDirective.formsDirective.directiveEntityEditForm();
-    })
-    .directive('entityEditFormCol', ['$compile', function ($compile) {
-        return appDirective.formsDirective.directiveEntityEditFormCol($compile);
-    }])
-    .directive('entityEditFormRow', function () {
-        return appDirective.formsDirective.directiveEntityEditFormRow();
-    })
-    .directive('entityListForm', function () {
-        return appDirective.formsDirective.directiveEntityListForm();
-    })
-    .directive('updatableText', ['$interval', function ($interval) {
-        return appDirective.directiveUpdatableText($interval);
-    }])
 ;
 
 // Filters

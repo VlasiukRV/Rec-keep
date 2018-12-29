@@ -1,10 +1,10 @@
 ;
 (function(exp) {
-    if(!exp.appDirective){
-        exp.appDirective = new Object(null);
+    if(!exp.moduleUI){
+        exp.moduleUI = new Object(null);
     }
     var formsDirective = new Object(null);
-    exp.appDirective.formsDirective = formsDirective;
+    exp.moduleUI.formsDirective = formsDirective;
 
     formsDirective.directiveButton = function () {
         return {

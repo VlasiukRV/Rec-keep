@@ -1,11 +1,12 @@
 ;
 (function (exp) {
-    if(!exp.appDirective){
-        exp.appDirective = new Object(null);
+    if(!exp.moduleUI){
+        exp.moduleUI = new Object(null);
     }
-    var appDirective = exp.appDirective;
+    var directive = new Object(null);
+    exp.moduleUI.directive = directive;
 
-    appDirective.directiveElementReady = function() {
+    directive.directiveElementReady = function() {
         return {
             priority: -1000, // a low number so this directive loads after all other directives have loaded.
             restrict: 'A', // attribute only
@@ -15,7 +16,7 @@
         };
     };
 
-    appDirective.directiveLoginPage = function () {
+    directive.directiveLoginPage = function () {
 
         return {
             restrict: 'E',
@@ -49,7 +50,7 @@
         }
     };
 
-    appDirective.directiveMessageLine = function () {
+    directive.directiveMessageLine = function () {
         return {
             restrict: 'E',
             require: '',
@@ -75,7 +76,7 @@
         }
     };
 
-    appDirective.directiveMenuBar = function () {
+    directive.directiveMenuBar = function () {
         return {
             restrict: 'E',
             require: '',
@@ -90,7 +91,7 @@
         }
     };
 
-    appDirective.directiveMenuCollection = function () {
+    directive.directiveMenuCollection = function () {
         return {
             restrict: 'E',
             require: '',
@@ -106,7 +107,7 @@
         }
     };
 
-    appDirective.directiveMenuItem = function ($compile) {
+    directive.directiveMenuItem = function ($compile) {
         return {
             restrict: 'E',
             require: '',
@@ -133,7 +134,7 @@
         }
     };
 
-    appDirective.directiveUpdatableText = function ($interval) {
+    directive.directiveUpdatableText = function ($interval) {
         return {
             restrict: 'E',
             scope: {
@@ -163,7 +164,7 @@
         };
     };
 
-    appDirective.directiveCurrentTime = function ($interval, dateFilter) {
+    directive.directiveCurrentTime = function ($interval, dateFilter) {
         return {
             link: function link(scope, element, attrs) {
                 var format = 'M/d/yy h:mm:ss a';
@@ -190,7 +191,7 @@
         };
     };
 
-    appDirective.directiveTextValue = function () {
+    directive.directiveTextValue = function () {
         return {
             restrict: 'E',
             require: '',

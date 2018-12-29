@@ -58,12 +58,12 @@ module.exports = function (grunt) {
                     'src/main/resources/static/js/build.js': [
                         
                         'src/main/js/app/config/config.service.js',
+
+                        'src/main/js/app/ui/ui.directive.forms.js',
+                        'src/main/js/app/ui/ui.directive.js',
                         'src/main/js/app/ui/ui.service.js',
 
                         'src/main/js/app/app-utils.js',
-
-                        'src/main/js/app/app-directive.js',
-                        'src/main/js/app/forms/app-directive-forms.js',
 
                         'src/main/js/app/app-service.js',
                         'src/main/js/app/forms/app-service-forms.js',
