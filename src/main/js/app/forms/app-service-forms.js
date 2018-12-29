@@ -7,19 +7,19 @@
     exp.appService.forms = forms;
 
     forms.ListEntityController = function ($scope, dataStorage) {
+        this.appMetadataSet = dataStorage.getAppMetadataSet();
+        this.numPerpage = 10;
 
         this.initController = function () {
-            var appMetadataSet = dataStorage.getAppMetadaSet();
-
             $scope.flagShowSearch = false;
             $scope.$parent.openListForm = this.openListForm;
             $scope.$parent.closeListForm = this.closeListForm;
 
-            var metadataSpecification = appMetadataSet.getEntityList(this.metadataName);
-            var entityListForm = appMetadataSet.userInterface.editFormGetEntityListForm();
+            var metadataSpecification = this.appMetadataSet.getEntityList(this.metadataName);
+            var entityListForm = this.appMetadataSet.userInterface.editFormGetEntityListForm();
 
             entityListForm.metadataName = this.metadataName;
-            entityListForm.appMetadataSet = appMetadataSet;
+            entityListForm.appMetadataSet = this.appMetadataSet;
             entityListForm.metadataSpecification = metadataSpecification;
             entityListForm.editFormName = metadataSpecification.metadataObject.description;
             entityListForm.formProperties = metadataSpecification.metadataObject.fmListForm.metadataEditFieldsSet;
@@ -27,7 +27,7 @@
             if(metadataSpecification.metadataObject.fmListForm.listType) {
                 entityListForm.listType = metadataSpecification.metadataObject.fmListForm.listType;
             }
-            entityListForm.numPerPage = metadataSpecification.metadataObject.fmListForm.numPerPage;
+            entityListForm.numPerPage = this.numPerpage;
             entityListForm.currentPage = 1;
             entityListForm.totalItems = metadataSpecification.list.length;
             entityListForm.entitiesFiltered = [];
@@ -59,15 +59,13 @@
         };
 
         this.addNewEntity = function () {
-            var appMetadataSet = dataStorage.getAppMetadaSet();
-            this.openEditForm(appMetadataSet.getEntityList(this.metadataName).metadataObject.getEntityInstance())
+            this.openEditForm(this.appMetadataSet.getEntityList(this.metadataName).metadataObject.getEntityInstance())
         };
 
         this.editEntity = function (id) {
-            var appMetadataSet = dataStorage.getAppMetadaSet();
-            var entity = appMetadataSet.getEntityList(this.metadataName).findEntityById(id);
+            var entity = this.appMetadataSet.getEntityList(this.metadataName).findEntityById(id);
             if (entity != undefined) {
-                var editEntity = appMetadataSet.getEntityList(this.metadataName).metadataObject.getEntityInstance();
+                var editEntity = this.appMetadataSet.getEntityList(this.metadataName).metadataObject.getEntityInstance();
                 appUtils.fillValuesProperty(entity, editEntity);
                 this.openEditForm(editEntity);
             }
@@ -75,18 +73,14 @@
 
         this.deleteEntity = function (id) {
             var self = this;
-
-            var appMetadataSet = dataStorage.getAppMetadaSet();
-            appMetadataSet.getEntityList(this.metadataName).deleteEntity(id, function (data) {
+            this.appMetadataSet.getEntityList(this.metadataName).deleteEntity(id, function (data) {
                 self.updateViewEntityList();
             });
         };
 
         this.findEntity = function (searchEx) {
             var self = this;
-
-            var appMetadataSet = dataStorage.getAppMetadaSet();
-            appMetadataSet.getEntityList(this.metadataName).findEntity(searchEx, function (data) {
+            this.appMetadataSet.getEntityList(this.metadataName).findEntity(searchEx, function (data) {
                 self.totalItems = self.entities.length;
                 self.eventPageChanged();
             });
@@ -94,9 +88,7 @@
 
         this.updateViewEntityList = function () {
             var self = this;
-
-            var appMetadataSet = dataStorage.getAppMetadaSet();
-            appMetadataSet.metadataEvents.publish("ev:entityList:" + this.metadataName + ":update", function () {
+            this.appMetadataSet.metadataEvents.publish("ev:entityList:" + this.metadataName + ":update", function () {
                 self.totalItems = self.entities.length;
                 self.eventPageChanged();
             });
@@ -124,18 +116,18 @@
     };
 
     forms.EditEntityController = function ($scope, dataStorage) {
+        this.appMetadataSet = dataStorage.getAppMetadataSet();
         this.currentEntity = dataStorage.getCurrentEntityByName(this.metadataName);
 
         this.initController = function () {
             $scope.$parent.openEditForm = this.openEditForm;
             $scope.$parent.closeEditForm = this.closeEditForm;
-            var appMetadataSet = dataStorage.getAppMetadaSet();
 
-            var metadataSpecification = appMetadataSet.getEntityList(this.metadataName);
+            var metadataSpecification = this.appMetadataSet.getEntityList(this.metadataName);
 
-            var entityEditForm = appMetadataSet.userInterface.editFormGetEntityEditForm();
+            var entityEditForm = this.appMetadataSet.userInterface.editFormGetEntityEditForm();
             entityEditForm.metadataName = this.metadataName;
-            entityEditForm.appMetadataSet = appMetadataSet;
+            entityEditForm.appMetadataSet = this.appMetadataSet;
             entityEditForm.metadataSpecification = metadataSpecification;
             entityEditForm.editFormName = "New " + this.metadataName + ":";
             entityEditForm.formProperties = metadataSpecification.metadataObject.fmEditForm.metadataEditFieldsSet;
@@ -159,12 +151,10 @@
         };
 
         this.createEntity = function (template) {
+            var entityList = this.appMetadataSet.getEntityList(this.metadataName);
             var self = this;
-            var appMetadataSet = dataStorage.getAppMetadaSet();
-
-            var entityList = appMetadataSet.getEntityList(this.metadataName);
             entityList.addEntityByTemplate(template, function () {
-                appMetadataSet.metadataEvents.publish("ev:entityList:" + self.metadataName + ":update", function () {
+                self.appMetadataSet.metadataEvents.publish("ev:entityList:" + self.metadataName + ":update", function () {
                     self.closeEditForm();
                 });
             });

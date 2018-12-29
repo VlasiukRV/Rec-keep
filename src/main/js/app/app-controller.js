@@ -23,14 +23,14 @@
             $location.url("/login");
         };
         $scope.eventAfterLogin = function () {
-            var appMetadataSet = dataStorage.getAppMetadaSet();
+            var appMetadataSet = dataStorage.getAppMetadataSet();
             appMetadataSet.loadAllEntities();
 
             refreshSessionInformation();
             $location.url("/appTaskList");
         };
         $scope.logout = function () {
-            var appMetadataSet = dataStorage.getAppMetadaSet();
+            var appMetadataSet = dataStorage.getAppMetadataSet();
             var principal = appMetadataSet.userInterface.security.principal;
 
             if (principal.authenticated) {
@@ -40,7 +40,7 @@
         };
 
         function refreshSessionInformation() {
-            var appMetadataSet = dataStorage.getAppMetadaSet();
+            var appMetadataSet = dataStorage.getAppMetadataSet();
 
             var principal = appMetadataSet.userInterface.security.principal;
             if (principal.authenticated) {

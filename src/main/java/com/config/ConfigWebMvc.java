@@ -28,19 +28,19 @@ public class ConfigWebMvc extends WebMvcConfigurerAdapter {
 
 	String appTaskListUrl = "/appTaskList";
 	registry.addViewController("/taskList").setViewName("/templates/taskList.html");
-	registry.addViewController(appTaskListUrl).setViewName("/templates/appRoom/taskList/app-template.html");
+	registry.addViewController(appTaskListUrl).setViewName("/templates/appRoom/tasklist/app-template.html");
 	registry.addViewController(appTaskListUrl + "/security/usersList")
-		.setViewName("/templates/appRoom/taskList/app-template-model-user.html");
+		.setViewName("/templates/appRoom/tasklist/app-template-model-user.html");
 	registry.addViewController(appTaskListUrl + "/security/roleList")
-		.setViewName("/templates/appRoom/taskList/app-template-model-role.html");
+		.setViewName("/templates/appRoom/tasklist/app-template-model-role.html");
 	registry.addViewController(appTaskListUrl + "/currentPrincipalInformation")
-		.setViewName("/templates/appRoom/taskList/app-template-current-principal-information.html");
+		.setViewName("/templates/appRoom/tasklist/app-template-current-principal-information.html");
 	registry.addViewController(appTaskListUrl + "/projectsList")
-		.setViewName("/templates/appRoom/taskList/app-template-model-project.html");
+		.setViewName("/templates/appRoom/tasklist/app-template-model-project.html");
 	registry.addViewController(appTaskListUrl + "/tasksList")
-		.setViewName("/templates/appRoom/taskList/app-template-model-task.html");
+		.setViewName("/templates/appRoom/tasklist/app-template-model-task.html");
 	registry.addViewController(appTaskListUrl + "/farmsList")
-		.setViewName("/templates/appRoom/taskList/app-template-model-farm.html");
+		.setViewName("/templates/appRoom/tasklist/app-template-model-farm.html");
 
     }
 

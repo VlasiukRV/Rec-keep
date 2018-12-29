@@ -28,7 +28,7 @@
             controller: ['$location', '$http', '$rootScope', '$scope', 'dataStorage', function ($location, $http, $rootScope, $scope, dataStorage) {
                 $scope.credentials = {username: 'admin', password: 'admin'};
                 $scope.login = function () {
-                    var appMetadataSet = dataStorage.getAppMetadaSet();
+                    var appMetadataSet = dataStorage.getAppMetadataSet();
                     if (!appMetadataSet) {
                         return;
                     }
@@ -116,7 +116,7 @@
                 command: '='
             },
             link: function (scope, element, attrs) {
-                if (scope.command.isDropdown) {
+                if (scope.command.isDropdownMenu) {
                     var e = $compile('<menu-collection command = "command" menu-collection="command.commandList"></menu-collection>')(scope);
                     element.replaceWith(e);
                 }

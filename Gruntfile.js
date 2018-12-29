@@ -56,6 +56,10 @@ module.exports = function (grunt) {
                         'src/main/js/template-service.js'
                     ],
                     'src/main/resources/static/js/build.js': [
+                        
+                        'src/main/js/app/config/config.service.js',
+                        'src/main/js/app/ui/ui.service.js',
+
                         'src/main/js/app/app-utils.js',
 
                         'src/main/js/app/app-directive.js',
@@ -75,6 +79,8 @@ module.exports = function (grunt) {
                         'src/main/js/app/domain/task/app-controller-task.js',
                         'src/main/js/app/domain/farm/app-controller-farm.js',
 
+                        'src/main/js/app/config/config.module.js',
+                        'src/main/js/app/ui/ui.module.js',
                         'src/main/js/app/app.js'
 
                     ]

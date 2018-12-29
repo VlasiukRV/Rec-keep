@@ -1,5 +1,16 @@
-var app = angular.module('app', ['ui.bootstrap', 'ngResource', 'ngRoute', 'ngCookies', 'oi.select', 'cfp.hotkeys']);
+var app = angular.module('app', [
+    'ui.bootstrap', 
+    'ngResource', 
+    'ngRoute', 
+    'ngCookies', 
+    'oi.select', 
+    'cfp.hotkeys',
 
+    'module.config',
+    'module.ui'    
+]);
+
+/*
 // Constants
 app.constant('appConfig', {
     appName: "appTaskList",
@@ -7,6 +18,7 @@ app.constant('appConfig', {
 })
 ;
 
+*/
 // Configs
 app
     .config(['$locationProvider', function ($locationProvider) {
@@ -30,9 +42,9 @@ app
 
 // Services
 app
-    .service('appEnvironment', ['$location', 'appConfig', function ($location, appConfig) {
+/*    .service('appEnvironment', ['$location', 'appConfig', function ($location, appConfig) {
         return appService.appEnvironment($location, appConfig);
-    }])
+    }])*/
     .service('dataStorage', ['appConfig', function (appConfig) {
         return appService.dataStorage(appConfig);
     }])
@@ -46,7 +58,7 @@ app
     .factory('entityEditService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
         return appService.entityEditService($resource, appEnvironment);
     }])
-    .factory('securityService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
+/*    .factory('securityService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
         return appService.securityService($resource, appEnvironment);
     }])
     .factory('operationService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
@@ -54,7 +66,7 @@ app
     }])
     .factory('systemService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
         return appService.systemService($resource, appEnvironment);
-    }])
+    }])*/
     .factory('resourceService', function (entityEditService, systemService, securityService, operationService) {
         return appService.resourceService(entityEditService, systemService, securityService, operationService);
     })
