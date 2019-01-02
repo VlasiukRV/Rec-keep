@@ -1,67 +1,59 @@
 ;
 (function (exp) {
-    if (!exp.moduleUI) {
-        exp.moduleUI = new Object(null);
+    if (!exp.appController) {
+        exp.appController = new Object(null);
     }
-    var moduleUI = exp.moduleUI;
+    var appController = exp.appController;
 
-    moduleUI.securityService = function (resource, appEnvironment) {
-        return resource(
-            appEnvironment.getAppHttpUrl('/system/security/:command'),
-            {
-                sessionID: "@sessionID"
-            },
-            {
-                getAllPrincipals: {
-                    method: "GET",
-                    params: {
-                        command: "getAllPrincipals"
-                    }
-                },
-                getSessionInformation: {
-                    method: "GET",
-                    params: {
-                        command: "getSessionInformation"
-                    }
-                },
-                getAllSessionsInformation: {
-                    method: "GET",
-                    params: {
-                        command: "getAllSessionsInformation"
-                    }
-                },
+    appController.workPlaceController = function ($window, $http, $cookies, $rootScope, $scope, $location, dataStorage, resourceService, dateFilter, errorDescriptions) {
+        var cookies = $cookies;
 
+        var appMetadataSet = appService.getMetadataSet(resourceService);
+        dataStorage.setAppMetadataSet(appMetadataSet);
+        $scope.errorDescriptions = errorDescriptions;
+        $scope.commandBar = appMetadataSet.userInterface.commandBar;
+        $scope.principal = appMetadataSet.userInterface.security.principal;
+        var selfScope = $scope;
+
+        $scope.getCurrentTime = function () {
+            return dateFilter(new Date(), 'M/d/yy h:mm:ss a');
+        };
+
+        $scope.login = function () {
+            $location.url("/login");
+        };
+        $scope.eventAfterLogin = function () {
+            var appMetadataSet = dataStorage.getAppMetadataSet();
+            appMetadataSet.loadAllEntities();
+
+            refreshSessionInformation();
+            $location.url("/appTaskList");
+        };
+        $scope.logout = function () {
+            var appMetadataSet = dataStorage.getAppMetadataSet();
+            var principal = appMetadataSet.userInterface.security.principal;
+
+            if (principal.authenticated) {
+                principal.logout($http);
+                $location.url(dataStorage.getAppConfig().appUrl);
             }
-        );
-    };
+        };
 
-    moduleUI.operationService = function (resource, appEnvironment) {
-        return resource(
-            appEnvironment.getAppHttpUrl('/service/:command'),
-            {
-                command: "@command"
-            },
-            {
-                executeCommand: {
-                    method: "GET"
-                }
+        function refreshSessionInformation() {
+            var appMetadataSet = dataStorage.getAppMetadataSet();
+
+            var principal = appMetadataSet.userInterface.security.principal;
+            if (principal.authenticated) {
+                principal.getSessionInformation(resourceService);
+                principal.updatePrincipalUser(appMetadataSet);
+                selfScope.principal = principal;
+            } else {
+                $location.url(dataStorage.getAppConfig().appUrl);
             }
-        );
-    };
 
-    moduleUI.systemService = function (resource, appEnvironment) {
-        return resource(
-            appEnvironment.getAppHttpUrl('/system/:command'),
-            {
-                command: "@command"
-            },
-            {
-                executeCommand: {
-                    method: "GET"
-                }
-            }
-        );
-    };
+        };
 
+        refreshSessionInformation();
+    };
 
 })(window);

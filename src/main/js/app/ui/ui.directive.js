@@ -16,7 +16,7 @@
         };
     };
 
-    directive.directiveLoginPage = function () {
+    directive.directiveLoginPage = function (principal) {
 
         return {
             restrict: 'E',
@@ -33,7 +33,7 @@
                     if (!appMetadataSet) {
                         return;
                     }
-                    var principal = appMetadataSet.userInterface.security.principal;
+                    var principal = principal;
                     if (!principal) {
                         return;
                     }
@@ -48,120 +48,6 @@
                 };
             }]
         }
-    };
-
-    directive.directiveMessageLine = function () {
-        return {
-            restrict: 'E',
-            require: '',
-            templateUrl: '/templates/appRoom/tasklist/directive/app-template-message-line.html',
-            scope: {
-                errorDescriptions: '='
-            },
-            link: function (scope, element, attrs) {
-            },
-            controller: ['$scope', 'dataStorage', function ($scope, dataStorage) {
-                $scope.updateErrorDescription = function () {
-                    $scope.errorDescriptions = dataStorage.getErrorDescriptions();
-                };
-                $scope.deleteErrorDescription = function (index) {
-                    $scope.errorDescriptions.delErrorDescription(index);
-                    if ($scope.errorDescriptions.errorsCount() != 0) {
-                        return;
-                    }
-
-                    $scope.errorDescriptions.show = false;
-                };
-            }]
-        }
-    };
-
-    directive.directiveMenuBar = function () {
-        return {
-            restrict: 'E',
-            require: '',
-            replace: true,
-            templateUrl: '/templates/appRoom/tasklist/directive/app-template-menu-bar.html',
-            scope: {
-                menuBar: '='
-            },
-            link: function (scope, element, attrs) {
-                init_sidebar_addEvent(element);
-            }
-        }
-    };
-
-    directive.directiveMenuCollection = function () {
-        return {
-            restrict: 'E',
-            require: '',
-            replace: true,
-            templateUrl: '/templates/appRoom/tasklist/directive/app-template-menu-collection.html',
-            scope: {
-                menuCollection: '=',
-                command: '='
-            },
-            link: function (scope, element, attrs) {
-                init_sidebar_addEvent(element);
-            }
-        }
-    };
-
-    directive.directiveMenuItem = function ($compile) {
-        return {
-            restrict: 'E',
-            require: '',
-            replace: true,
-            templateUrl: '/templates/appRoom/tasklist/directive/app-template-menu-item.html',
-            scope: {
-                command: '='
-            },
-            link: function (scope, element, attrs) {
-                if (scope.command.isDropdownMenu) {
-                    var e = $compile('<menu-collection command = "command" menu-collection="command.commandList"></menu-collection>')(scope);
-                    element.replaceWith(e);
-                }
-            },
-            controller: ['$scope', '$window', '$location', function ($scope, $window, $location) {
-                $scope.commandHandler = function () {
-                    if (typeof($scope.command.command) == 'string') {
-                        $location.url($scope.command.command);
-                    } else {
-                        $scope.command.command();
-                    }
-                };
-            }]
-        }
-    };
-
-    directive.directiveUpdatableText = function ($interval) {
-        return {
-            restrict: 'E',
-            scope: {
-                fCallBack: '&'
-            },
-            link: function link(scope, element, attrs) {
-                var timeoutId;
-
-                var updateText = function updateText() {
-                    element.text(scope.fCallBack());
-                };
-
-                scope.$watch(attrs.smCurrentTime, function () {
-                    updateText();
-                });
-
-                element.on('$destroy', function () {
-                    $interval.cancel(timeoutId);
-                });
-
-                // start the UI update process; save the timeoutId for canceling
-                timeoutId = $interval(function () {
-                    updateText(); // update DOM
-                }, 1000);
-            }
-
-        };
     };
 
     directive.directiveCurrentTime = function ($interval, dateFilter) {
@@ -189,26 +75,6 @@
             }
 
         };
-    };
-
-    directive.directiveTextValue = function () {
-        return {
-            restrict: 'E',
-            require: '',
-            templateUrl: '/templates/appRoom/tasklist/directive/app-template-text-value.html',
-            scope: {
-                textValue: '=',
-                limitLength: '=?'
-            },
-            link: function link(scope, element, attrs) {
-
-            },
-            controller: ['$scope', function ($scope) {
-                if(!$scope.limitLength) {
-                    $scope.limitLength = Number.MAX_VALUE;
-                }
-            }]
-        }
     };
 
 })(window);

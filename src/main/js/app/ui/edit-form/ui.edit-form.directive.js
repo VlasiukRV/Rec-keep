@@ -146,44 +146,6 @@
         }
     };
 
-    formsDirective.directiveEntityListForm = function () {
-        return {
-            restrict: 'E',
-            require: '',
-            templateUrl: '/templates/appRoom/tasklist/directive/entityEditDirective/app-template-entity-list-form.html ',
-            scope: {
-                entityListForm: '='
-            },
-            link: function (scope, element, attrs) {
-
-            },
-            controller: ['$scope', function ($scope) {
-
-                $scope.closeForm = function () {
-                    $scope.entityListForm.eventCloseForm();
-                };
-                $scope.updateForm = function () {
-                    $scope.entityListForm.eventUpdateForm();
-                    $scope.entityListForm.entities = $scope.entityListForm.appMetadataSet.getEntityList($scope.entityListForm.metadataName).list;
-                };
-                $scope.findEntity = function (searchEx) {
-                    $scope.entityListForm.eventFindEntity(searchEx);
-                    $scope.entityListForm.entities = $scope.entityListForm.appMetadataSet.getEntityList($scope.entityListForm.metadataName).list;
-                };
-                $scope.addNewEntity = function () {
-                    $scope.entityListForm.eventAddNewEntity();
-                };
-                $scope.deleteEntity = function (id) {
-                    $scope.entityListForm.eventDeleteEntity(id);
-                };
-                $scope.editEntity = function (id) {
-                    $scope.entityListForm.eventEditEntity(id);
-                };
-
-            }]
-        }
-    };
-
     formsDirective.directiveFormToolbox = function () {
         return {
             restrict: 'E',
@@ -203,6 +165,56 @@
             controller: ['$scope', function ($scope) {
             }]
         }
+    };
+    
+    directive.directiveTextValue = function () {
+        return {
+            restrict: 'E',
+            require: '',
+            templateUrl: '/templates/appRoom/tasklist/directive/app-template-text-value.html',
+            scope: {
+                textValue: '=',
+                limitLength: '=?'
+            },
+            link: function link(scope, element, attrs) {
+
+            },
+            controller: ['$scope', function ($scope) {
+                if(!$scope.limitLength) {
+                    $scope.limitLength = Number.MAX_VALUE;
+                }
+            }]
+        }
+    };
+    
+    directive.directiveUpdatableText = function ($interval) {
+        return {
+            restrict: 'E',
+            scope: {
+                fCallBack: '&'
+            },
+            link: function link(scope, element, attrs) {
+                var timeoutId;
+
+                var updateText = function updateText() {
+                    element.text(scope.fCallBack());
+                };
+
+                scope.$watch(attrs.smCurrentTime, function () {
+                    updateText();
+                });
+
+                element.on('$destroy', function () {
+                    $interval.cancel(timeoutId);
+                });
+
+                // start the UI update process; save the timeoutId for canceling
+                timeoutId = $interval(function () {
+                    updateText(); // update DOM
+                }, 1000);
+            }
+
+        };
     };
 
 })(window);

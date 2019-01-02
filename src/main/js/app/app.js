@@ -40,15 +40,12 @@ app
 
 // Factories
 app
-    .factory('myHttpResponseInterceptor', ['$q', '$location', 'dataStorage', function ($q, $location, dataStorage) {
-        return appService.appHttpResponseInterceptor($q, $location, dataStorage);
+    .factory('myHttpResponseInterceptor', ['$q', '$location', 'errorDescriptions', function ($q, $location, errorDescriptions) {
+        return appService.appHttpResponseInterceptor($q, $location, errorDescriptions);
     }])
     .factory('entityEditService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
         return appService.entityEditService($resource, appEnvironment);
     }])
-    .factory('resourceService', function (entityEditService, systemService, securityService, operationService) {
-        return appService.resourceService(entityEditService, systemService, securityService, operationService);
-    })
 ;
 
 // Filters
