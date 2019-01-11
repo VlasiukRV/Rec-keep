@@ -1,7 +1,16 @@
 {
   "name": "taskList",
   "version": "0.0.1",
+  "scripts": {
+    "build:js": "grunt build",
+    "build:css": "node-sass --omit-source-map-url src/sass/mystyles.scss src/css/mystyles.css",
+    "css-watch": "npm run build:css -- --watch",
+    "build": "npm run build:css && npm run build:js",
+    "start": "npm run css-watch"
+  },
   "devDependencies": {
+    "node-sass": "^4.11.0",
+    "bulma": "^0.7.2",
     "grunt": "^1.0.3",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-concat": "latest",
