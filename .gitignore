@@ -24,7 +24,7 @@ nbdist/
 .nb-gradle/
 
 ### node ###
-node_module/
+node_modules/
 
 src/main/resources/application.properties
 src/main/resources/static/js/build.js
