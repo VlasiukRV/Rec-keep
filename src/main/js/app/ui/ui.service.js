@@ -5,14 +5,26 @@
     }
     var appController = exp.appController;
 
-    appController.workPlaceController = function ($window, $http, $cookies, $rootScope, $scope, $location, dataStorage, resourceService, dateFilter, errorDescriptions) {
+    appController.workPlaceController = function (
+        $window, 
+        $http, 
+        $cookies, 
+        $rootScope, 
+        $scope, 
+        $location,
+        metadataSet, 
+        dataStorage, 
+        appConfig, 
+        resourceService, 
+        dateFilter, 
+        errorDescriptions) {
+        
         var cookies = $cookies;
 
-        var appMetadataSet = appService.getMetadataSet(resourceService);
-        dataStorage.setAppMetadataSet(appMetadataSet);
+        dataStorage.setAppMetadataSet(metadataSet);
         $scope.errorDescriptions = errorDescriptions;
-        $scope.commandBar = appMetadataSet.userInterface.commandBar;
-        $scope.principal = appMetadataSet.userInterface.security.principal;
+        $scope.commandBar = metadataSet.userInterface.commandBar;
+        $scope.principal = metadataSet.userInterface.security.principal;
         var selfScope = $scope;
 
         $scope.getCurrentTime = function () {
@@ -23,32 +35,32 @@
             $location.url("/login");
         };
         $scope.eventAfterLogin = function () {
-            var appMetadataSet = dataStorage.getAppMetadataSet();
-            appMetadataSet.loadAllEntities();
+            var metadataSet = dataStorage.getAppMetadataSet();
+            metadataSet.loadAllEntities();
 
             refreshSessionInformation();
             $location.url("/appTaskList");
         };
         $scope.logout = function () {
-            var appMetadataSet = dataStorage.getAppMetadataSet();
-            var principal = appMetadataSet.userInterface.security.principal;
+            var metadataSet = dataStorage.getAppMetadataSet();
+            var principal = metadataSet.userInterface.security.principal;
 
             if (principal.authenticated) {
                 principal.logout($http);
-                $location.url(dataStorage.getAppConfig().appUrl);
+                $location.url(appConfig.appUrl);
             }
         };
 
         function refreshSessionInformation() {
-            var appMetadataSet = dataStorage.getAppMetadataSet();
+            var metadataSet = dataStorage.getAppMetadataSet();
 
-            var principal = appMetadataSet.userInterface.security.principal;
+            var principal = metadataSet.userInterface.security.principal;
             if (principal.authenticated) {
                 principal.getSessionInformation(resourceService);
-                principal.updatePrincipalUser(appMetadataSet);
+                principal.updatePrincipalUser(metadataSet);
                 selfScope.principal = principal;
             } else {
-                $location.url(dataStorage.getAppConfig().appUrl);
+                $location.url(appConfig.appUrl);
             }
 
         };

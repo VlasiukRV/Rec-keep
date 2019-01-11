@@ -20,13 +20,13 @@
         };
     };
 
-    appController.editProjectController = function ($scope, dataStorage) {
+    appController.editProjectController = function ($scope, dataStorage, EntityEditForm) {
         appService.forms.EditEntityController.apply(this, arguments);
         this.metadataName = "project";
         this.initController();
     };
 
-    appController. projectListController = function ($scope, dataStorage) {
+    appController. projectListController = function ($scope, dataStorage, EntityListForm) {
         appService.forms.ListEntityController.apply(this, arguments);
         this.metadataName = "project";
         this.initController();

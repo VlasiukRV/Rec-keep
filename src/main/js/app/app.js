@@ -7,156 +7,291 @@ var app = angular.module('app', [
     'cfp.hotkeys',
 
     'module.config',
-    'module.ui'    
-]);
+    'module.ui',
+
+    'module.metadata-model',
+    'module.domain-model'
+
+    ]);
 
 // Configs
 app
-    .config(['$locationProvider', function ($locationProvider) {
-        $locationProvider.hashPrefix('');
-    }])
-    .config(['$httpProvider', function ($httpProvider) {
-        $httpProvider.interceptors.push('myHttpResponseInterceptor');
-    }])
-    .config(['$routeProvider', function ($routeProvider) {
-        appService.setRoute($routeProvider);
-    }])
-    .config(['$provide', function ($provide) {
-        $provide.decorator('$locale', ['$delegate', function ($delegate) {
-            $delegate.NUMBER_FORMATS.PATTERNS[1].negPre = '-\u00A4';
-            $delegate.NUMBER_FORMATS.PATTERNS[1].negSuf = '';
-            return $delegate;
-        }]);
+.config(['$locationProvider', function ($locationProvider) {
+    $locationProvider.hashPrefix('');
+}])
+.config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push('myHttpResponseInterceptor');
+}])
+.config(['$routeProvider', function ($routeProvider) {
+    appService.setRoute($routeProvider);
+}])
+.config(['$provide', function ($provide) {
+    $provide.decorator('$locale', ['$delegate', function ($delegate) {
+        $delegate.NUMBER_FORMATS.PATTERNS[1].negPre = '-\u00A4';
+        $delegate.NUMBER_FORMATS.PATTERNS[1].negSuf = '';
+        return $delegate;
+    }]);
 
-    }])
+}])
 ;
 
 // Services
 app
-    .service('dataStorage', ['appConfig', function (appConfig) {
-        return appService.dataStorage(appConfig);
+.service('dataStorage', function () {
+    return appService.dataStorage();
+})
+
+.service('metadataSet', [
+    'abstractAppModel',
+    'userInterface',
+
+    'metadataEntitySpecification_Farm',
+    'metadataEntitySpecification_Project',
+    'metadataEntitySpecification_User',
+    'metadataEntitySpecification_Role',
+    'metadataEntitySpecification_Task',
+
+    function(abstractAppModel, 
+        userInterface,
+
+        metadataEnumSpecification_TaskState,
+        
+        metadataEntitySpecification_Farm,
+        metadataEntitySpecification_Project,
+        metadataEntitySpecification_User,
+        metadataEntitySpecification_Role,
+        metadataEntitySpecification_Task
+        ){
+
+        appInitialization = {
+            abstractAppModel: abstractAppModel,
+            metadataSet: undefined,
+            metadataSpecifications: {
+                enums: [],
+                entities: []
+            },
+            setMetadataSet: function (metadataSet) {
+                if (metadataSet) {
+                    this.metadataSet = metadataSet;                    
+                } else {
+                    this.metadataSet = new abstractAppModel.MetadataSet();
+                }
+                this.metadataSet.userInterface = userInterface;
+
+                return this;
+            },
+            getMetadataSet: function () {
+                return this.metadataSet;
+            },
+            initMetadataSet: function () {                
+                var i;
+                for (i = 0; i < this.metadataSpecifications.enums.length; i++) {
+                    this.metadataSet.installMetadataObjectEnum(this.metadataSpecifications.enums[i]);
+                }
+                for (i = 0; i < appInitialization.metadataSpecifications.entities.length; i++) {
+                    this.metadataSet.installMetadataObjectEntity(this.metadataSpecifications.entities[i]);
+                }
+
+                return this;
+            },
+
+            addMetadataEntitySpecification: function(metadataEntitySpecification) {
+                this.metadataSpecifications.entities.push(metadataEntitySpecification);
+
+                return this;
+            },
+            addMetadataEnumSpecification: function(metadataEnumSpecification) {
+                this.metadataSpecifications.enums.push(metadataEnumSpecification);
+
+                return this;
+            }
+
+        };
+
+        appInitialization
+            .setMetadataSet()
+
+            .addMetadataEnumSpecification(metadataEnumSpecification_TaskState)
+            .addMetadataEntitySpecification(metadataEntitySpecification_Project)
+            .addMetadataEntitySpecification(metadataEntitySpecification_User)
+            .addMetadataEntitySpecification(metadataEntitySpecification_Role)
+            .addMetadataEntitySpecification(metadataEntitySpecification_Task)
+            .addMetadataEntitySpecification(metadataEntitySpecification_Farm)
+
+            .initMetadataSet();
+
+        return appInitialization.getMetadataSet();        
     }])
+
 ;
 
 // Factories
 app
-    .factory('myHttpResponseInterceptor', ['$q', '$location', 'errorDescriptions', function ($q, $location, errorDescriptions) {
-        return appService.appHttpResponseInterceptor($q, $location, errorDescriptions);
-    }])
-    .factory('entityEditService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
-        return appService.entityEditService($resource, appEnvironment);
-    }])
+.factory('myHttpResponseInterceptor', ['$q', '$location', 'errorDescriptions', function ($q, $location, errorDescriptions) {
+    return appService.appHttpResponseInterceptor($q, $location, errorDescriptions);
+}])
 ;
 
 // Filters
 app
-    .filter('myDate', ['dateFilter', function (dateFilter) {
-        return function (input) {
-            if (input == null) {
-                return "";
-            }
-            var _date = dateFilter(new Date(input), 'dd.MM.yyyy');
+.filter('myDate', ['dateFilter', function (dateFilter) {
+    return function (input) {
+        if (input == null) {
+            return "";
+        }
+        var _date = dateFilter(new Date(input), 'dd.MM.yyyy');
 
-            return _date.toUpperCase();
-        };
-    }])
+        return _date.toUpperCase();
+    };
+}])
 ;
 
 // Controllers
 app
-    .controller('workPlaceController',
+.controller('workPlaceController',
     [
-        '$window', '$http', '$cookies', '$rootScope', '$scope', '$location', 'dataStorage', 'resourceService', 'dateFilter',
-        appController.workPlaceController
+    '$window', 
+    '$http', 
+    '$cookies', 
+    '$rootScope', 
+    '$scope', 
+    '$location', 
+    'metadataSet',
+    'dataStorage',
+    'appConfig', 
+    'resourceService', 
+    'dateFilter',
+    'errorDescriptions',
+    
+    appController.workPlaceController
     ]
-)
-    .controller('farmController',
+    )
+
+.controller('farmController',
     [
-        '$scope',
-        appController.farmController
+    '$scope',
+    appController.farmController
     ]
-)
-    .controller('farmListController',
+    )
+.controller('farmListController',
     [
-        '$scope', 'dataStorage',
-        appController.farmListController
+    '$scope', 
+    'dataStorage', 
+    'EntityListForm',
+
+    appController.farmListController
     ]
-)
-    .controller('editFarmController',
+    )
+.controller('editFarmController',
     [
-        '$scope', 'dataStorage',
-        appController.editFarmController
+    '$scope', 
+    'dataStorage', 
+    'EntityEditForm',
+
+    appController.editFarmController
     ]
-)
-    .controller('projectController',
+    )
+
+.controller('projectController',
     [
-        '$scope',
-        appController.projectController
+    '$scope',
+    
+    appController.projectController
     ]
-)
-    .controller('projectListController',
+    )
+.controller('projectListController',
     [
-        '$scope', 'dataStorage',
-        appController.projectListController
+    '$scope', 
+    'dataStorage', 
+    'EntityListForm',
+
+    appController.projectListController
     ]
-)
-    .controller('editProjectController',
+    )
+.controller('editProjectController',
     [
-        '$scope', 'dataStorage',
-        appController.editProjectController
+    '$scope', 
+    'dataStorage', 
+    'EntityEditForm',
+
+    appController.editProjectController
     ]
-)
-    .controller('taskController',
+    )
+
+.controller('taskController',
     [
-        '$scope',
-        appController.taskController
+    '$scope',
+    
+    appController.taskController
     ]
-)
-    .controller('taskListController',
+    )
+.controller('taskListController',
     [
-        '$scope', 'dataStorage',
-        appController.taskListController
+    '$scope', 
+    'dataStorage', 
+    'EntityListForm',
+
+    appController.taskListController
     ]
-)
-    .controller('editTaskController',
+    )
+.controller('editTaskController',
     [
-        '$scope', 'dataStorage',
-        appController.editTaskController
+    '$scope', 
+    'dataStorage', 
+    'EntityEditForm',
+
+    appController.editTaskController
     ]
-)
-    .controller('userController',
+    )
+
+.controller('userController',
     [
-        '$scope',
-        appController.userController
+    '$scope',
+
+    appController.userController
     ]
-)
-    .controller('userListController',
+    )
+.controller('userListController',
     [
-        '$scope', 'dataStorage',
-        appController.userListController
+    '$scope', 
+    'dataStorage', 
+    'EntityListForm',
+
+    appController.userListController
     ]
-)
-    .controller('editUserController',
+    )
+.controller('editUserController',
     [
-        '$scope', 'dataStorage',
-        appController.editUserController
+    '$scope', 
+    'dataStorage', 
+    'EntityEditForm',
+
+    appController.editUserController
     ]
-)
-    .controller('roleController',
+    )
+
+.controller('roleController',
     [
-        '$scope',
-        appController.roleController
+    '$scope',
+    
+    appController.roleController
     ]
-)
-    .controller('roleListController',
+    )
+.controller('roleListController',
     [
-        '$scope', 'dataStorage',
-        appController.roleListController
+    '$scope', 
+    'dataStorage', 
+    'EntityListForm',
+
+    appController.roleListController
     ]
-)
-    .controller('editRoleController',
+    )
+.controller('editRoleController',
     [
-        '$scope', 'dataStorage',
-        appController.editRoleController
+    '$scope', 
+    'dataStorage', 
+    'EntityEditForm',
+
+    appController.editRoleController
     ]
-);
+    );

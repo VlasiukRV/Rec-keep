@@ -1,14 +1,23 @@
-angular.module('module.config', [
+angular.module('module.config', 
+	[
 	'ngResource'
-	])
+	]
+)
 
-.constant('appConfig', {
-    appName: "appTaskList",
-    appUrl: "/"+this.appName
-})
+.constant('appConfig', 
+	{
+    	appName: "appTaskList",
+    	appUrl: "/"+this.appName
+	}
+)
 
 // Services
-.service('appEnvironment', ['$location', 'appConfig', function ($location, appConfig) {
-	return moduleConfig.appEnvironment($location, appConfig);
-}])
+.service('appEnvironment', 
+	[
+	'$location', 
+	'appConfig', 
+
+	moduleConfig.appEnvironment
+	]
+)
 ;

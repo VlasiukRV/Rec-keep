@@ -1,4 +1,5 @@
-angular.module('module.ui', [
+angular.module('module.ui', 
+	[
 	'ngResource', 
 
 	'module.config',
@@ -7,28 +8,39 @@ angular.module('module.ui', [
 	'module.ui.main-menu',
 	'module.ui.edit-form',
 	'module.ui.list-form'
-	])
+	]
+)
 
 
-.directive('ngElementReady', function () {
-	return moduleUI.directive.directiveElementReady();
-})
-.directive('loginPage', ['principal', function (principal) {
-	return moduleUI.directive.directiveLoginPage(principal);
-}])
+.directive('ngElementReady', 
+	[
+	moduleUI.directive.directiveElementReady
+	]
+)
+.directive('loginPage', 
+	[
+	'principal', 
 
-.controller('workPlaceController',[
+	moduleUI.directive.directiveLoginPage
+	]
+)
+
+.controller('workPlaceController',
+	[
 	'$window', 
 	'$http', 
 	'$cookies', 
 	'$rootScope', 
 	'$scope', 
 	'$location', 
-	'dataStorage', 
+	'dataStorage',
+	'appConfig', 
 	'resourceService', 
 	'dateFilter', 
 	'errorDescriptions',
 	
 	appController.workPlaceController
 	]
-	;
+)
+
+;

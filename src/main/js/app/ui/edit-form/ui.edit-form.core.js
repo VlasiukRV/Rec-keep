@@ -3,27 +3,14 @@
     if (!exp.appService) {
         exp.appService = new Object(null);
     }
+    var appService = exp.appService;
 
     if (!exp.appService.forms) {
         exp.appService.forms = new Object(null);
     }
-
     var forms = exp.appService.forms;
 
-    var EntityEditForm = appUtils.Class(forms.EditForm);
-    (function () {
-        EntityEditForm.prototype.$_buildObject = function () {
-            this.includeFd({
-                currentEntity: {},
-                formPropertiesPlacing: {},
-
-                eventCreateEntity: function () {
-                }
-            });
-        };
-    })();
-
-    forms.EditEntityController = function ($scope, dataStorage) {
+    forms.EditEntityController = function ($scope, dataStorage, EntityEditForm) {
         this.appMetadataSet = dataStorage.getAppMetadaSet();
         this.currentEntity = dataStorage.getCurrentEntityByName(this.metadataName);
 
@@ -78,6 +65,27 @@
             $scope.$parent.openListForm();
         };
 
+    };
+
+    appService.entityEditService = function (resource, appEnvironment) {
+        return resource(
+            appEnvironment.getAppHttpUrl('/entity/:entityName/:entityId'),
+            {
+                entityName: "@entityName",
+                entityId: "@entityId"
+            },
+            {
+                getEntity: {
+                    method: "GET"
+                },
+                createEntity: {
+                    method: "POST"
+                },
+                deleteEntity: {
+                    method: "DELETE"
+                }
+            }
+        );
     };
 
 })(window);

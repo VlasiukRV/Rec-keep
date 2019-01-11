@@ -1,5 +1,30 @@
 angular.module('module.ui.edit-form', [
+	'module.ui.form'
 	])
+
+.service('EntityEditForm', ['EditForm',function(EditForm){
+	
+	var EntityEditForm = appUtils.Class(forms.EditForm);
+	(function () {
+		EntityEditForm.prototype.$_buildObject = function () {
+			this.includeFd({
+				currentEntity: {},
+				formPropertiesPlacing: {},
+
+				eventCreateEntity: function () {
+				}
+			});
+		};
+	})();
+
+	return EntityEditForm;
+}])
+
+
+.factory('entityEditService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
+	return moduleUI.entityEditService($resource, appEnvironment);
+}])
+
 
 .directive('formToolbox', function () {
 	return moduleUI.formsDirective.directiveFormToolbox();

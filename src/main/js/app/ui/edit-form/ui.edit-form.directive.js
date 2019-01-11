@@ -167,7 +167,7 @@
         }
     };
     
-    directive.directiveTextValue = function () {
+    formsDirective.directiveTextValue = function () {
         return {
             restrict: 'E',
             require: '',
@@ -187,7 +187,7 @@
         }
     };
     
-    directive.directiveUpdatableText = function ($interval) {
+    formsDirective.directiveUpdatableText = function ($interval) {
         return {
             restrict: 'E',
             scope: {

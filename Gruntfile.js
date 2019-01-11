@@ -57,20 +57,37 @@ module.exports = function (grunt) {
                     ],
                     'src/main/resources/static/js/build.js': [
                         
+                        'src/main/js/app/app-utils.js',
+
+                        'src/main/js/app/config/system/system.service.js',
+                        'src/main/js/app/config/system/system.module.js',
                         'src/main/js/app/config/config.service.js',
+                        'src/main/js/app/config/config.module.js',
+
+                        'src/main/js/app/ui/main-menu/ui.main-menu.core.js',
+                        'src/main/js/app/ui/main-menu/ui.main-menu.directive.js',
+                        'src/main/js/app/ui/main-menu/ui.main-menu.module.js',
+
+                        'src/main/js/app/ui/form/form.module.js',
+                        'src/main/js/app/ui/edit-form/ui.edit-form.core.js',
+                        'src/main/js/app/ui/edit-form/ui.edit-form.directive.js',
+                        'src/main/js/app/ui/edit-form/ui.edit-form.module.js',
+                        'src/main/js/app/ui/list-form/ui.list-form.core.js',
+                        'src/main/js/app/ui/list-form/ui.list-form.directive.js',
+                        'src/main/js/app/ui/list-form/ui.list-form.module.js',
 
                         'src/main/js/app/ui/ui.directive.forms.js',
                         'src/main/js/app/ui/ui.directive.js',
                         'src/main/js/app/ui/ui.service.js',
 
-                        'src/main/js/app/app-utils.js',
+                        'src/main/js/app/ui/ui.service.js',
+                        'src/main/js/app/ui/ui.directive.js',
+                        'src/main/js/app/ui/ui.module.js',
+
+                        'src/main/js/app/metadata-model/metadata-model.module.js',
+                        'src/main/js/app/metadata-model/domain-model.module.js',
 
                         'src/main/js/app/app-service.js',
-                        'src/main/js/app/domain/app-service-model-enum.js',
-                        'src/main/js/app/domain/user/app-service-model-userl.js',
-                        'src/main/js/app/domain/project/app-service-model-project.js',
-                        'src/main/js/app/domain/task/app-service-model-taskl.js',
-                        'src/main/js/app/domain/farm/app-service-model-farm.js',
 
                         'src/main/js/app/app-controller.js',
                         'src/main/js/app/domain/user/app-controller-user.js',
@@ -78,10 +95,7 @@ module.exports = function (grunt) {
                         'src/main/js/app/domain/task/app-controller-task.js',
                         'src/main/js/app/domain/farm/app-controller-farm.js',
 
-                        'src/main/js/app/config/config.module.js',
-                        'src/main/js/app/ui/ui.module.js',
                         'src/main/js/app/app.js'
-
                     ]
                 }
             }

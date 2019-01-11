@@ -20,13 +20,13 @@
         };
     };
 
-    appController.editFarmController = function ($scope, dataStorage) {
+    appController.editFarmController = function ($scope, dataStorage, EntityEditForm) {
         appService.forms.EditEntityController.apply(this, arguments);
         this.metadataName = "farm";
         this.initController();
     };
 
-    appController.farmListController = function ($scope, dataStorage) {
+    appController.farmListController = function ($scope, dataStorage, EntityListForm) {
         appService.forms.ListEntityController.apply(this, arguments);
         this.metadataName = "farm";
         this.initController();

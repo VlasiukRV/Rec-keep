@@ -20,13 +20,13 @@
         };
     };
 
-    appController.editTaskController = function ($scope, dataStorage) {
+    appController.editTaskController = function ($scope, dataStorage, EntityEditForm) {
         appService.forms.EditEntityController.apply(this, arguments);
         this.metadataName = "task";
         this.initController();
     };
 
-    appController.taskListController = function ($scope, dataStorage) {
+    appController.taskListController = function ($scope, dataStorage, EntityListForm) {
         appService.forms.ListEntityController.apply(this, arguments);
         this.metadataName = "task";
         this.initController();

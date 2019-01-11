@@ -20,7 +20,7 @@
         };
     };
 
-    appController.editUserController = function ($scope, dataStorage) {
+    appController.editUserController = function ($scope, dataStorage, EntityEditForm) {
 
         appService.forms.EditEntityController.apply(this, arguments);
         this.metadataName = "user";
@@ -28,7 +28,7 @@
 
     };
 
-    appController.userListController = function ($scope, dataStorage) {
+    appController.userListController = function ($scope, dataStorage, EntityListForm) {
         appService.forms.ListEntityController.apply(this, arguments);
         this.metadataName = "user";
         this.initController();
@@ -49,13 +49,13 @@
         };
     };
 
-    appController.editRoleController = function ($scope, dataStorage) {
+    appController.editRoleController = function ($scope, dataStorage, EntityEditForm) {
         appService.forms.EditEntityController.apply(this, arguments);
         this.metadataName = "role";
         this.initController();
     };
 
-    appController.roleListController = function ($scope, dataStorage) {
+    appController.roleListController = function ($scope, dataStorage, EntityListForm) {
         appService.forms.ListEntityController.apply(this, arguments);
         this.metadataName = "role";
         this.initController();
