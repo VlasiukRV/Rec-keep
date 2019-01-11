@@ -1,9 +1,10 @@
 {
-  "name": "taskList",
+  "name": "rec-keep",
   "version": "0.0.1",
+  "description": "Record keep application frontend",
   "scripts": {
     "build:js": "grunt build",
-    "build:css": "node-sass --omit-source-map-url src/sass/mystyles.scss src/css/mystyles.css",
+    "build:css": "node-sass --omit-source-map-url src/main/sass/app.scss src/main/resources/static/css/app.css",
     "css-watch": "npm run build:css -- --watch",
     "build": "npm run build:css && npm run build:js",
     "start": "npm run css-watch"

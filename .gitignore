@@ -27,6 +27,9 @@ nbdist/
 node_modules/
 
 src/main/resources/application.properties
+
+src/main/resources/static/css/app.css
+
 src/main/resources/static/js/build.js
 src/main/resources/static/js/build.min.js
 src/main/resources/static/js/custom.js
