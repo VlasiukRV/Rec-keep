@@ -123,11 +123,11 @@
     	UserInterface.prototype.$_buildObject = function () {
     		this.includeFd({
     			security: {
-    				principal: new Principal()
+    				principal: null
     			},
     			commandBar: {
     				mainUrl: '#',
-    				commandBar: new MenuCommand()
+                    commandBar: new MenuCommand()
     			},
     			appMetadataSet: null
     		});

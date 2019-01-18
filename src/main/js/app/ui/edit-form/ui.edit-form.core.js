@@ -67,7 +67,7 @@
 
     };
 
-    appService.entityEditService = function (resource, appEnvironment) {
+    forms.entityEditService = function (resource, appEnvironment) {
         return resource(
             appEnvironment.getAppHttpUrl('/entity/:entityName/:entityId'),
             {

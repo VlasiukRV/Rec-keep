@@ -7,6 +7,11 @@ var app = angular.module('app', [
     'cfp.hotkeys',
 
     'module.config',
+
+    'module.ui.main-menu',
+    'module.ui.edit-form',
+    'module.ui.list-form',
+
     'module.ui',
 
     'module.metadata-model',
@@ -45,6 +50,8 @@ app
     'abstractAppModel',
     'userInterface',
 
+    'metadataEnumSpecification_TaskState',
+    
     'metadataEntitySpecification_Farm',
     'metadataEntitySpecification_Project',
     'metadataEntitySpecification_User',

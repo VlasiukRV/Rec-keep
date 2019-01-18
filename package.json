@@ -20,5 +20,8 @@
     "grunt-contrib-uglify": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-remove-logging": "latest"
+  },
+  "dependencies": {
+    "oi.select": "^0.2.21"
   }
 }

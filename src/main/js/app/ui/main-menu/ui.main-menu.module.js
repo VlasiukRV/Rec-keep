@@ -1,5 +1,7 @@
 angular.module('module.ui.main-menu', [
-	'ngResource'
+	'ngResource',
+	'module.ui.form',
+	'module.config.system'
 	])
 
 .factory('systemService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
@@ -14,11 +16,11 @@ angular.module('module.ui.main-menu', [
 	return varInterfaceUtill.operationService($resource, appEnvironment);
 }])
 
-.factory('resourceService', ['', 'systemService', 'securityService', 'operationService', function (entityEditService, systemService, securityService, operationService) {
+.factory('resourceService', ['entityEditService', 'systemService', 'securityService', 'operationService', function (entityEditService, systemService, securityService, operationService) {
 	return varInterfaceUtill.resourceService(entityEditService, systemService, securityService, operationService);
 }])
 
-.factory('menuModel', [, function () {
+.factory('menuModel', [function () {
 	return varInterfaceUtill.getNewDropdownCommand("modelDD", "Model");
 }])
 
@@ -48,12 +50,13 @@ angular.module('module.ui.main-menu', [
 	return menuSystem;
 }])
 
-.factory('errorDescriptions', ['', function(){
+.service('errorDescriptions', [function(){
 	return new varInterfaceUtill.ErrorDescriptions();
 }])
-.factory('userInterface', ['menuModel, menuSystem', function (menuModel, menuSystem) {
+.service('userInterface', ['principal', 'menuModel', 'menuSystem', function (principal, menuModel, menuSystem) {
 
 	var userInterface = new varInterfaceUtill.UserInterface();
+	userInterface.security.principal = principal;
 	/*userInterface.appMetadataSet = appMetadataSet;*/
 	userInterface
 	.commandBarSetMainUrl("#/task")

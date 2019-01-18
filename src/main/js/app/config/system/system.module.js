@@ -1,7 +1,7 @@
 angular.module('module.config.system', [
 	])
 
-.service('principal', ['', function () {
+.service('principal', [function () {
 	var Principal = appUtils.Class();
 	(function () {
 		Principal.prototype.$_buildObject = function () {

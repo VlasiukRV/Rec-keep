@@ -500,7 +500,7 @@ angular.module('module.domain-model',
 )
 .service('metadataEnumSpecification_TaskState', [
     'Enum', 
-    function(){
+    function(Enum){
         var EnumTaskState = new Enum;
         return {
             enumClass: EnumTaskState,

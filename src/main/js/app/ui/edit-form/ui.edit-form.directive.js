@@ -3,8 +3,10 @@
     if(!exp.moduleUI){
         exp.moduleUI = new Object(null);
     }
-    var formsDirective = new Object(null);
-    exp.moduleUI.formsDirective = formsDirective;
+    if(!exp.moduleUI.formsDirective){
+        exp.moduleUI.formsDirective = new Object(null);
+    }    
+    var formsDirective = exp.moduleUI.formsDirective;
 
     formsDirective.directiveButton = function () {
         return {

@@ -433,8 +433,9 @@ angular.module('module.metadata-model',
 
 .service('MetadataEntitySpecification', [
     'fmListForm_TYPES',
+    'MetadataEditField',
 
-	function(){
+	function(fmListForm_TYPES, MetadataEditField){
 
         var MetadataEntitySpecification = appUtils.Class();
         (function () {
@@ -514,8 +515,11 @@ angular.module('module.metadata-model',
 .service('MetadataSet', [
     'userInterface',
     'EntityList',
+    'metadataEvents',
+    'MetadataEntitySpecification',
+    'MetadataObject',
 
-	function(userInterface, EntityList){
+	function(userInterface, EntityList, metadataEvents, MetadataEntitySpecification, MetadataObject){
 
         var MetadataSet = appUtils.Class();
         (function () {
@@ -523,14 +527,15 @@ angular.module('module.metadata-model',
                 this.includeFd({
                     // entities
                     entityList: Object.create(null),
-                    metadataEvents: metadataEventsImpl,
+                    metadataEvents: metadataEvents,
 
                     // user interface
-                    userInterface: userInterface,
-
+                    userInterface: userInterface
+/*
                     system: {
                         enums: systemEnums
                     }
+                    */
                 });
             };
             MetadataSet.includeMthd({
@@ -615,12 +620,12 @@ angular.module('module.metadata-model',
                     metadataSet.bookEntityList(entityList);
 
                     // event
-                    metadataEventsImpl.subscribe("ev:entityList:" + metadataEntitySpecification.metadataName + ":update",
+                    metadataEvents.subscribe("ev:entityList:" + metadataEntitySpecification.metadataName + ":update",
                         function (event, fCallBack) {
                             entityList.update(fCallBack)
                         }
                     );
-                    metadataEventsImpl.subscribe("ev:entityList:" + metadataEntitySpecification.metadataName + ":deleteEntity",
+                    metadataEvents.subscribe("ev:entityList:" + metadataEntitySpecification.metadataName + ":deleteEntity",
                         function (event, id, fCallBack) {
                             entityList.deleteEntity(id, fCallBack);
                         }
@@ -734,5 +739,9 @@ angular.module('module.metadata-model',
         }
     }]
 )
+
+.service('appMetadataSet', ['abstractAppModel', function(abstractAppModel){
+    return new abstractAppModel.MetadataSet();
+}])
 
 ;

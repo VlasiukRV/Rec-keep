@@ -3,8 +3,10 @@
     if(!exp.moduleUI){
         exp.moduleUI = new Object(null);
     }
-    var directive = new Object(null);
-    exp.moduleUI.directive = directive;
+    if(!exp.moduleUI.directive){
+        exp.moduleUI.directive = new Object(null);
+    }    
+    var directive = exp.moduleUI.directive;
 
     directive.directiveMenuBar = function () {
         return {
