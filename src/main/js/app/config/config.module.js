@@ -6,6 +6,7 @@ angular.module('module.config',
 
 .constant('appConfig', 
 	{
+		name: "Rec-Keep",
     	appName: "appTaskList",
     	appUrl: "/"+this.appName
 	}

@@ -42,12 +42,16 @@ app
 
 // Services
 app
-.service('dataStorage', function () {
-    return appService.dataStorage();
-})
+.service('dataStorage', ['metadataSet', function (metadataSet) {
+    var dataStorage = appService.dataStorage();
+    dataStorage.setAppMetadataSet(metadataSet);
 
-.service('metadataSet', [
+    return dataStorage;
+}])
+
+.service('appInitialization', [
     'abstractAppModel',
+    'metadataSet',
     'userInterface',
 
     'metadataEnumSpecification_TaskState',
@@ -59,6 +63,7 @@ app
     'metadataEntitySpecification_Task',
 
     function(abstractAppModel, 
+        metadataSet,
         userInterface,
 
         metadataEnumSpecification_TaskState,
@@ -77,11 +82,11 @@ app
                 enums: [],
                 entities: []
             },
-            setMetadataSet: function (metadataSet) {
-                if (metadataSet) {
-                    this.metadataSet = metadataSet;                    
+            setMetadataSet: function (_metadataSet) {
+                if (_metadataSet) {
+                    this.metadataSet = _metadataSet;                    
                 } else {
-                    this.metadataSet = new abstractAppModel.MetadataSet();
+                    this.metadataSet = metadataSet;
                 }
                 this.metadataSet.userInterface = userInterface;
 
@@ -127,7 +132,7 @@ app
 
             .initMetadataSet();
 
-        return appInitialization.getMetadataSet();        
+        return appInitialization;        
     }])
 
 ;
@@ -163,6 +168,7 @@ app
     '$rootScope', 
     '$scope', 
     '$location', 
+    'appInitialization',
     'metadataSet',
     'dataStorage',
     'appConfig', 

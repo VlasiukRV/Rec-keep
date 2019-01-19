@@ -4,7 +4,7 @@ angular.module('module.ui.edit-form', [
 
 .service('EntityEditForm', ['EditForm',function(EditForm){
 	
-	var EntityEditForm = appUtils.Class(forms.EditForm);
+	var EntityEditForm = appUtils.Class(EditForm);
 	(function () {
 		EntityEditForm.prototype.$_buildObject = function () {
 			this.includeFd({

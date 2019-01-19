@@ -89,7 +89,7 @@ angular.module('module.metadata-model',
                 var fCallBack = arguments[0];
                 var data = arguments[1];
 
-                if (data.result = 200) {
+                if (data.status == 200) {
                     var originalEntity = data.data;
                     if (originalEntity) {
                         appUtils.fillValuesProperty(originalEntity, this);
@@ -124,7 +124,7 @@ angular.module('module.metadata-model',
                  var data = arguments[1];
                  */
 
-                if (data.result = 200) {
+                if (data.status == 200) {
                     var originalUserList = data.data;
                     if (originalUserList) {
                         originalUserList.forEach(function (item, i, arr) {
@@ -146,7 +146,7 @@ angular.module('module.metadata-model',
                 var fCallBack = arguments[1];
                 var data = arguments[2];
 
-                if (data.result = 200) {
+                if (data.status == 200) {
                     this.list.forEach(function (item, i) {
                         if (item.id == id) {
                             this.list.splice(i, 1);
@@ -740,7 +740,7 @@ angular.module('module.metadata-model',
     }]
 )
 
-.service('appMetadataSet', ['abstractAppModel', function(abstractAppModel){
+.service('metadataSet', ['abstractAppModel', function(abstractAppModel){
     return new abstractAppModel.MetadataSet();
 }])
 

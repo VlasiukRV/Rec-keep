@@ -228,8 +228,7 @@ angular.module('module.domain-model',
     '$injector',
 
 	function(Entity, $injector){
-
-        var appMetadataSet = $injector.get('appMetadataSet');
+        
         var Role = appUtils.Class(Entity);
 
         var metadataEntitySpecification_Role = {
@@ -261,7 +260,8 @@ angular.module('module.domain-model',
                             label: "users",
                             availability: true,
                             entityListService: function () {
-                                return appMetadataSet.getEntityList("user");
+                                var metadataSet = $injector.get('metadataSet');
+                                return metadataSet.getEntityList("user");
                             }
                         }
                     }
@@ -309,13 +309,14 @@ angular.module('module.domain-model',
             return str;
         };
         metadataEntitySpecification_Role.entityField.entityField.users.value.fillByTemplate = function (template) {
+            var metadataSet = $injector.get('metadataSet');
             this.length = 0;
             var k = 0;
             while (true) {
                 if (k == template.length) {
                     break;
                 }
-                var entity = appMetadataSet.getEntityInstance("user");
+                var entity = metadataSet.getEntityInstance("user");
                 appUtils.fillValuesProperty(template[k], entity);
                 this.push(entity);
                 k = k + 1;
@@ -330,7 +331,6 @@ angular.module('module.domain-model',
     '$injector',
 
 	function(Entity, $injector){
-        var appMetadataSet = $injector.get('appMetadataSet');
 	    var Task = appUtils.Class(Entity);
 
 	    var metadataEntitySpecification_Task = {
@@ -380,10 +380,12 @@ angular.module('module.domain-model',
 	                        label: "author",
 	                        availability: true,
 	                        getInstance: function(){
-	                            return appMetadataSet.getEntityInstance("user");
+                                var metadataSet = $injector.get('metadataSet');
+	                            return metadataSet.getEntityInstance("user");
 	                        },
 	                        entityListService: function () {
-	                            return appMetadataSet.getEntityList("user");
+                                var metadataSet = $injector.get('metadataSet');
+	                            return metadataSet.getEntityList("user");
 	                        }
 	                    }
 	                },
@@ -394,7 +396,8 @@ angular.module('module.domain-model',
 	                        label: "executor",
 	                        availability: true,
 	                        entityListService: function () {
-	                            return appMetadataSet.getEntityList("user");
+                                var metadataSet = $injector.get('metadataSet');
+	                            return metadataSet.getEntityList("user");
 	                        }
 	                    }
 	                },
@@ -405,10 +408,12 @@ angular.module('module.domain-model',
 	                        label: "project",
 	                        availability: true,
 	                        getInstance: function(){
-	                            return appMetadataSet.getEntityInstance("project");
+                                var metadataSet = $injector.get('metadataSet');
+	                            return metadataSet.getEntityInstance("project");
 	                        },
 	                        entityListService: function () {
-	                            return appMetadataSet.getEntityList("project")
+                                var metadataSet = $injector.get('metadataSet');
+	                            return metadataSet.getEntityList("project")
 	                        }
 	                    }
 	                },
@@ -419,7 +424,8 @@ angular.module('module.domain-model',
 	                        label: "state",
 	                        availability: true,
 	                        entityListService: function(){
-	                            return appMetadataSet.getEntityList("taskState")
+                                var metadataSet = $injector.get('metadataSet');
+	                            return metadataSet.getEntityList("taskState")
 	                        }
 	                    }
 	                }
@@ -484,11 +490,12 @@ angular.module('module.domain-model',
 	    metadataEntitySpecification_Task.entityField.entityField.executor.value.fillByTemplate = function(template) {
 	        this.length=0;
 	        var k=0;
+            var metadataSet = $injector.get('metadataSet');
 	        while (true) {
 	            if(k == template.length){
 	                break;
 	            }
-	            var entity = appMetadataSet.getEntityInstance("user");
+	            var entity = metadataSet.getEntityInstance("user");
 	            appUtils.fillValuesProperty(template[k], entity);
 	            this.push(entity);
 	            k = k+1;

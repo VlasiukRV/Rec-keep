@@ -11,7 +11,7 @@
     var forms = exp.appService.forms;
 
     forms.EditEntityController = function ($scope, dataStorage, EntityEditForm) {
-        this.appMetadataSet = dataStorage.getAppMetadaSet();
+        this.appMetadataSet = dataStorage.getAppMetadataSet();
         this.currentEntity = dataStorage.getCurrentEntityByName(this.metadataName);
 
         this.initController = function () {

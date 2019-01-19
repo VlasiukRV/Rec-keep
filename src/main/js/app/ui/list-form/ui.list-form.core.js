@@ -11,7 +11,7 @@
     var forms = exp.appService.forms;
     
     forms.ListEntityController = function ($scope, dataStorage, EntityListForm) {
-        this.appMetadataSet = dataStorage.getAppMetadaSet();
+        this.appMetadataSet = dataStorage.getAppMetadataSet();
         this.numPerpage = 10;
 
         this.initController = function () {

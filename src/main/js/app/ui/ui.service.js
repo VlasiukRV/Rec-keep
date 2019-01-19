@@ -12,6 +12,7 @@
         $rootScope, 
         $scope, 
         $location,
+        appInitialization,
         metadataSet, 
         dataStorage, 
         appConfig, 
@@ -21,7 +22,6 @@
         
         var cookies = $cookies;
 
-        dataStorage.setAppMetadataSet(metadataSet);
         $scope.errorDescriptions = errorDescriptions;
         $scope.commandBar = metadataSet.userInterface.commandBar;
         $scope.principal = metadataSet.userInterface.security.principal;

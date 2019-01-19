@@ -36,7 +36,7 @@
                     if (!appMetadataSet) {
                         return;
                     }
-                    var principal = principal;
+                    var principal = appMetadataSet.userInterface.security.principal;
                     if (!principal) {
                         return;
                     }
