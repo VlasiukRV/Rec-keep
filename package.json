@@ -4,19 +4,20 @@
   "description": "Record keep application frontend",
   "scripts": {
     "build:js": "grunt build",
-    "build:css": "node-sass --omit-source-map-url src/main/sass/app.scss src/main/resources/static/css/app.css",
-    "css-watch": "npm run build:css -- --watch",
-    "build": "npm run build:css && npm run build:js",
-    "start": "npm run css-watch"
+    "build:css": "grunt sass",
+    "watch": "grunt watch",
+    "build": "npm run build:js",
+    "start": "npm run build && npm run watch"
   },
   "devDependencies": {
-    "node-sass": "^4.11.0",
     "bulma": "^0.7.2",
     "grunt": "^1.0.3",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-concat": "latest",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "latest",
     "grunt-contrib-jshint": "latest",
+    "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-remove-logging": "latest"

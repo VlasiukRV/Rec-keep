@@ -30,7 +30,7 @@ module.exports = function (grunt) {
             },
             test: {
                 src: 
-                	['src/main/js/**/*.js']
+                    ['src/main/js/**/*.js']
             }
         },
 
@@ -115,13 +115,43 @@ module.exports = function (grunt) {
             }
         },
 
-        watch: {
+        sass: {
             build: {
-                files: ['src/main/js/**/*.js'],
-                tasks: build_Tasks
+                options: {
+                    trace: true,
+                    style: 'expanded'
+                },
+                files: {
+                    'src/main/resources/static/css/app.css': 'src/main/sass/app.scss'
+                }
+            }   
+        },
+
+        copy: {
+            main: {
+                expand: true,
+                cwd: 'src/main/resources/static',
+                src: '**',
+                dest: 'target/classes/static/',
             }
         },
 
+        watch: {
+            build: {
+                files: [
+                        'src/main/js/**/*.js', 
+                        'src/main/sass/**/*.scss'
+                        ],
+                tasks: [
+                        'clean',
+                        'concat',
+                        'uglify',
+                        'removelogging',
+
+                        'copy'
+                        ]
+            }
+        },
 
         removelogging: {
             build: {
@@ -130,7 +160,6 @@ module.exports = function (grunt) {
             }
         }
 
-
     });
 
     //подгружаем необходимые плагины
@@ -138,7 +167,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-remove-logging');
 
     //регистрируем задачу
