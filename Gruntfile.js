@@ -4,6 +4,7 @@ module.exports = function (grunt) {
 
     var build_js = [
         'clean',
+        'ngtemplates',
         'concat',
         'uglify',
         'removelogging'
@@ -142,6 +143,20 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     'src/main/resources/static/css/app.css': 'src/main/sass/app.scss'
+                }
+            }
+        },
+
+        ngtemplates:  {
+            app:        {
+                cwd:      'src/main/resources/static/templates',
+                src:      'appRoom/tasklist/directive/**/*.html',
+                dest:     'src/main/resources/static/js/app-templates.js',
+                options:    {
+                    htmlmin:  {
+                        collapseWhitespace: true,
+                        collapseBooleanAttributes: true
+                    }
                 }
             }
         },
