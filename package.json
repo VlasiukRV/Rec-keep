@@ -22,7 +22,8 @@
     "grunt-contrib-watch": "latest",
     "grunt-remove-logging": "latest",
     "grunt-sass": "^2.1.0",
-    "load-grunt-tasks": "^3.5.2"
+    "load-grunt-tasks": "^3.5.2",
+    "node-sass": "^4.11.0"
   },
   "dependencies": {
     "oi.select": "^0.2.21"
