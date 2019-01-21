@@ -73,14 +73,14 @@ module.exports = function (grunt) {
             build: {
                 files: {
                     'src/main/resources/static/js/lib/angularjs.js': [
-                        'src/main/js/lib/angularjs/angular.js',
-                        'src/main/js/lib/angularjs/angular-cookies.js',
-                        'src/main/js/lib/angularjs/angular-resource.js',
-                        'src/main/js/lib/angularjs/angular-route.js',
-                        'src/main/js/lib/angularjs/angular-sanitize.js',
-                        'src/main/js/lib/angularjs/hotkeys.min.js',
-                        'src/main/js/lib/angularjs/select-tpls.min.js',
-                        'src/main/js/lib/angularjs/ui-bootstrap.js',
+                        'src/main/js/app-lib/angularjs/angular.js',
+                        'src/main/js/app-lib/angularjs/angular-cookies.js',
+                        'src/main/js/app-lib/angularjs/angular-resource.js',
+                        'src/main/js/app-lib/angularjs/angular-route.js',
+                        'src/main/js/app-lib/angularjs/angular-sanitize.js',
+                        'src/main/js/app-lib/angularjs/hotkeys.min.js',
+                        'src/main/js/app-lib/angularjs/select-tpls.min.js',
+                        'src/main/js/app-lib/angularjs/ui-bootstrap.js',
                     ],
                     'src/main/resources/static/js/custom.js': [
                         'src/main/js/template-service.js'
