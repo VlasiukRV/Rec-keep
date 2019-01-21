@@ -1,12 +1,12 @@
 {
   "name": "rec-keep",
   "version": "0.0.1",
-  "description": "Record keep application frontend",
+  "description": "Record keep application frontends",
   "scripts": {
-    "build:js": "grunt build",
-    "build:css": "grunt sass",
+    "build:js": "grunt build-js",
+    "build:css": "grunt build-css",
     "watch": "grunt watch",
-    "build": "npm run build:js",
+    "build": "npm run build:js && npm run build:css",
     "start": "npm run build && npm run watch"
   },
   "devDependencies": {
@@ -17,10 +17,11 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "latest",
     "grunt-contrib-jshint": "latest",
-    "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "latest",
     "grunt-contrib-watch": "latest",
-    "grunt-remove-logging": "latest"
+    "grunt-remove-logging": "latest",
+    "grunt-sass": "^2.1.0",
+    "load-grunt-tasks": "^3.5.2"
   },
   "dependencies": {
     "oi.select": "^0.2.21"

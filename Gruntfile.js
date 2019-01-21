@@ -1,11 +1,29 @@
 module.exports = function (grunt) {
 
-    var build_Tasks = [
+    require('load-grunt-tasks')(grunt);
+
+    var build_js = [
         'clean',
         'concat',
         'uglify',
         'removelogging'
     ];
+
+    var build_css = [
+        'sass'
+    ];
+
+    var deploy_frontend_local = [
+        'copy'
+    ];
+
+    grunt.registerTask('build-js', build_js);
+    grunt.registerTask('build-css', build_css);
+    grunt.registerTask('deploy-frontend-local', deploy_frontend_local);
+
+    grunt.registerTask('test', [
+        'jshint'
+    ]);
 
     grunt.config.init({
         pkg: grunt.file.readJSON('package.json'),
@@ -46,6 +64,7 @@ module.exports = function (grunt) {
 
         concat: {
             options: {
+                sourceMap: true,
                 stripBanners: true,
                 banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
                 '<%= grunt.template.today("dddd, mmmm dS, yyyy, h:MM:ss TT") %> */'
@@ -116,15 +135,15 @@ module.exports = function (grunt) {
         },
 
         sass: {
-            build: {
-                options: {
-                    trace: true,
-                    style: 'expanded'
-                },
+            options: {
+                sourceMap: true,
+                outputStyle: 'compressed'
+            },
+            dist: {
                 files: {
                     'src/main/resources/static/css/app.css': 'src/main/sass/app.scss'
                 }
-            }   
+            }
         },
 
         copy: {
@@ -140,16 +159,10 @@ module.exports = function (grunt) {
             build: {
                 files: [
                         'src/main/js/**/*.js', 
-                        'src/main/sass/**/*.scss'
+                        'src/main/sass/**/*.scss',
+                        'src/main/resources/static/templates/**/*.scss'
                         ],
-                tasks: [
-                        'clean',
-                        'concat',
-                        'uglify',
-                        'removelogging',
-
-                        'copy'
-                        ]
+                tasks: build_js.concat(build_css, deploy_frontend_local)
             }
         },
 
@@ -162,21 +175,4 @@ module.exports = function (grunt) {
 
     });
 
-    //подгружаем необходимые плагины
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-remove-logging');
-
-    //регистрируем задачу
-
-    grunt.registerTask('build', build_Tasks);
-
-    grunt.registerTask('test', [
-        'jshint'
-    ]);
 };
