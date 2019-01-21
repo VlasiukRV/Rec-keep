@@ -33,6 +33,9 @@ src/main/resources/static/js/app-templates.js
 src/main/resources/static/css/app.css
 src/main/resources/static/css/app.css.map
 
+src/main/resources/static/js/lib/angularjs.js
+src/main/resources/static/js/lib/angularjs.js.map
+src/main/resources/static/js/lib/angularjs.min.js
 src/main/resources/static/js/build.js
 src/main/resources/static/js/build.js.map
 src/main/resources/static/js/build.min.js
