@@ -160,7 +160,7 @@ module.exports = function (grunt) {
 
         ngtemplates:  {
             app:        {
-                cwd:      'src/main/resources/static/templates',
+                cwd:      'src/main/resources/static/templates/appRoom/tasklist/direcive',
                 src:      'appRoom/tasklist/directive/**/*.html',
                 dest:     'src/main/resources/static/js/app-templates.js',
                 options:    {
