@@ -139,69 +139,117 @@
 
                 </div>
 
+                <div ng-switch-when="mediaList">
+
+                    <ul class="list-unstyled top_profiles scroll-view">
+
+                        <li class="media event"
+                        ng-repeat="entity in entityListForm.entitiesFiltered">
+
+                            <a class="pull-left border-aero profile_thumb">
+                                <i class="fa fa-user aero"></i>
+                            </a>
+                                <!-- <div class="x_title"> -->
+                                    <span class="title">{{entity.representation}}</span>
+                                    <form-toolbox toolbox-menu="entityListForm.entityToolboxMenu"/>
+                                <!-- </div> -->
+
+                            <div class="media-body">
+                                <p ng-repeat="entityProperty in entityListForm.formProperties | limitTo:entityListForm.listType.quantityProperties track by $index">
+                                    <strong>{{entityProperty.label}}: </strong>
+
+                                    <span class="count" ng-switch on="entityProperty.inputType">
+                                        <span ng-switch-when="select">
+                                            {{entity[entityProperty.name].representation}}
+                                        </span>
+                                        <span ng-switch-when="multiselect">
+                                            {{entity[entityProperty.name].representationList()}}
+                                        </span>
+                                        <span ng-switch-when="date">
+                                            {{entity[entityProperty.name] | date:'yyyy-MM-dd'}}
+                                        </span>
+                                        <span ng-switch-default>
+                                            <text-value text-value="entity[entityProperty.name]" limit-length="entityListForm.listType.limitCellLength">
+
+                                            </text-value>
+                                        </span>
+                                    </span>
+
+                                </p>
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
                 <div ng-switch-default>
+                    
+                    <div class="table-responsive">
 
-                    <table class="table">
+                        <table class="table table-striped jambo_table bulk_action">
 
-                        <thead>
-                        <tr>
-                            <th
-                                    ng-repeat="entityProperty in entityListForm.formProperties track by $index">
-                                {{entityProperty.label}}
-                            </th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </thead>
+                            <thead>
+                            <tr class="headings">
+                                <th class="column-title" 
+                                        ng-repeat="entityProperty in entityListForm.formProperties track by $index">
+                                    {{entityProperty.label}}
+                                </th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
 
-                        <tbody>
-                        <tr class="hvr-curl-top-left" ng-repeat="entity in entityListForm.entitiesFiltered">
-                            <td ng-repeat="entityProperty in entityListForm.formProperties track by $index">
-                                <div ng-switch on="entityProperty.inputType">
-                                    <span ng-switch-when="select">
-                                        {{entity[entityProperty.name].representation}}
-                                    </span>
-                                    <span ng-switch-when="multiselect">
-                                        {{entity[entityProperty.name].representationList()}}
-                                    </span>
-                                    <span ng-switch-when="date">
-                                        {{entity[entityProperty.name] | date:'yyyy-MM-dd'}}
-                                    </span>
-                                    <span ng-switch-default>
-                                        {{entity[entityProperty.name]}}
-                                    </span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="buttons fade">
-                                    <button ng-click="deleteEntity(entity.id)" size="sm" title="remove task"
-                                            type="button">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="buttons fade">
-                                    <button ng-click="editEntity(entity.id)" size="sm" title="edit task"
-                                            type="button">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                            <tbody>
+                            <tr class="hvr-curl-top-left even pointer" ng-repeat="entity in entityListForm.entitiesFiltered">
+                                <td ng-repeat="entityProperty in entityListForm.formProperties track by $index">
+                                    <div ng-switch on="entityProperty.inputType">
+                                        <span ng-switch-when="select">
+                                            {{entity[entityProperty.name].representation}}
+                                        </span>
+                                        <span ng-switch-when="multiselect">
+                                            {{entity[entityProperty.name].representationList()}}
+                                        </span>
+                                        <span ng-switch-when="date">
+                                            {{entity[entityProperty.name] | date:'yyyy-MM-dd'}}
+                                        </span>
+                                        <span ng-switch-default>
+                                            {{entity[entityProperty.name]}}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="buttons fade">
+                                        <button ng-click="deleteEntity(entity.id)" size="sm" title="remove task"
+                                                type="button">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="buttons fade">
+                                        <button ng-click="editEntity(entity.id)" size="sm" title="edit task"
+                                                type="button">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
 
-                        <tr ng-repeat="entityEmpty in entityListForm.entitiesEmpty track by $index">
-                            <td align="center"
-                                ng-repeat="entityPropertyEmpty in entityListForm.formProperties track by $index">
-                                <!--<img src="/img/FFFFFF-0.8.png">-->
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        </tbody>
+                            <tr ng-repeat="entityEmpty in entityListForm.entitiesEmpty track by $index">
+                                <td align="center"
+                                    ng-repeat="entityPropertyEmpty in entityListForm.formProperties track by $index">
+                                    <!--<img src="/img/FFFFFF-0.8.png">-->
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
 
-                    </table>
+                        </table>
 
+                    </div>>
 
                 </div>
 
