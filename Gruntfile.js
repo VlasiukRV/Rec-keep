@@ -184,6 +184,7 @@ module.exports = function (grunt) {
         watch: {
             build: {
                 files: [
+                        'src/main/templates/**/*.html', 
                         'src/main/js/**/*.js', 
                         'src/main/sass/**/*.scss',
                         'src/main/resources/static/templates/**/*.scss'
