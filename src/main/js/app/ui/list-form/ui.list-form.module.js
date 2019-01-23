@@ -15,6 +15,10 @@ angular.module('module.ui.list-form', [
 		name: 'panel',
 		quantityProperties: 5,
 		limitCellLength: 20,
+	},
+	mediaList: {
+		name: 'mediaList',
+		quantityProperties: 5,
 	}
 })
 
@@ -34,6 +38,13 @@ angular.module('module.ui.list-form', [
 						text:'swich Panel',
 						ico: 'glyphicon glyphicon-list-alt'
 					},
+					swichMediaList: {
+						command:function (selfScope) {
+							selfScope.entityListForm.setListType(fmListForm_TYPES.mediaList);
+						},
+						text:'swich Media Llist',
+						ico: 'glyphicon glyphicon-list-alt'
+					},					
 					swichTable: {
 						command:function (selfScope) {
 							selfScope.entityListForm.setListType(fmListForm_TYPES.table);
