@@ -39,7 +39,7 @@
             metadataSet.loadAllEntities();
 
             refreshSessionInformation();
-            $location.url("/appTaskList");
+            $location.url(appConfig.appUrl);
         };
         $scope.logout = function () {
             var metadataSet = dataStorage.getAppMetadataSet();
@@ -52,6 +52,7 @@
         };
 
         function refreshSessionInformation() {
+            $scope.appConfig = appConfig;
             var metadataSet = dataStorage.getAppMetadataSet();
 
             var principal = metadataSet.userInterface.security.principal;

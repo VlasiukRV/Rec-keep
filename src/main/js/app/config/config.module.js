@@ -6,8 +6,10 @@ angular.module('module.config',
 
 .constant('appConfig', 
 	{
-		name: "Rec-Keep",
+		name: "Record Keeper",
     	appName: "appTaskList",
+    	version: "0.0.1",
+    	appIcon: "fa fa-database",
     	appUrl: "/"+this.appName
 	}
 )

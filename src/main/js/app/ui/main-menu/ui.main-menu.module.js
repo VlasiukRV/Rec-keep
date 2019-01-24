@@ -21,7 +21,7 @@ angular.module('module.ui.main-menu', [
 }])
 
 .factory('menuModel', [function () {
-	return varInterfaceUtill.getNewDropdownCommand("modelDD", "Model");
+	return varInterfaceUtill.getNewDropdownCommand("modelDD", "Records");
 }])
 
 .factory('menuSystem', ['resourceService', function (resourceService) {
