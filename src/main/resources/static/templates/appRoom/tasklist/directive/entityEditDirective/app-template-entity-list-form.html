@@ -74,7 +74,11 @@
 
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>{{entity.representation}}</h2>
+                                    <h2>
+                                        <a ng-click="editEntity(entity.id)">
+                                            {{entity.representation}}
+                                        </a>
+                                    </h2>
                                     <form-toolbox toolbox-menu="entityListForm.entityToolboxMenu"/>
                                 </div>
 
@@ -100,7 +104,11 @@
                              ng-repeat="entity in entityListForm.entitiesFiltered">
                             <div class="x_panel fixed_height_390">
                                 <div class="x_title">
-                                    <h2>{{entity.representation}}</h2>
+                                    <h2>
+                                        <a ng-click="editEntity(entity.id)">
+                                            {{entity.representation}}
+                                        </a>
+                                    </h2>
                                     <form-toolbox toolbox-menu="entityListForm.entityToolboxMenu"/>
                                 </div>
 
@@ -150,7 +158,11 @@
                                 <i class="fa fa-user aero"></i>
                             </a>
                                 <!-- <div class="x_title"> -->
-                                    <span class="title">{{entity.representation}}</span>
+                                    <span>
+                                        <a ng-click="editEntity(entity.id)">
+                                            {{entity.representation}}
+                                        </a>
+                                    </span>
                                     <form-toolbox toolbox-menu="entityListForm.entityToolboxMenu"/>
                                 <!-- </div> -->
 
