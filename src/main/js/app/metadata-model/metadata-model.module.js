@@ -37,7 +37,8 @@ angular.module('module.metadata-model',
                 this.includeEntityFd(
                     {
                         // object field
-                        metadataName: ""
+                        metadataName: "",
+                        icon: "fa-folder-o",
                     }, {
                         // entity field
                         id: null,
@@ -634,7 +635,7 @@ angular.module('module.metadata-model',
                     // EditMenu
                     var entitySubMenu = metadataSet.userInterface.commandBar.commandBar.getSubMenu('modelDD');
                     if (entitySubMenu !== undefined) {
-                        entitySubMenu.addCommand(varInterfaceUtill.getNewEntityCommand(entitySpecification.metadataName, entitySpecification.metadataRepresentation))
+                        entitySubMenu.addCommand(varInterfaceUtill.getNewEntityCommand(entitySpecification.metadataName, entitySpecification))
                     }
 
                     return metadataSet;

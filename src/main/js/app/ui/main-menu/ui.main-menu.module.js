@@ -64,6 +64,7 @@ angular.module('module.ui.main-menu', [
 		varInterfaceUtill.ExecuteSystemCommand(resourceService, "taskScheduler/interruptTaskExecutor")
 	}));
 
+    menuSystem.icon = "fa fa-plug";
 	return varInterfaceUtill.getNewGroupCommand("systemG", "System")
 	.addCommand(menuModel)
 	.addCommand(menuSystem)

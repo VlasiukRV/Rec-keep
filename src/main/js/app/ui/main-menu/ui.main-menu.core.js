@@ -105,14 +105,14 @@
     			return this;
     		},
     		getSubMenu: function (commandName) {
+                if (this.commandName === commandName) {
+                    return this;
+                }
     			for (var i = 0; i < this.commandList.length; i++) {
-    				var currentCommand = this.commandList[i];
-    				if (currentCommand.commandName === commandName) {
-    					return currentCommand;
-    				}
-    				if (currentCommand.commandList.length > 0) {
-    					return currentCommand.getSubMenu(commandName);
-    				}
+                    var command = this.commandList[i].getSubMenu(commandName);
+                    if(command) {
+                        return command;
+                    }
     			}
     			return undefined;
     		}
@@ -160,12 +160,13 @@
 
         return command;
     };    
-    varInterfaceUtill.getNewEntityCommand = function (commandName, text) {
+    varInterfaceUtill.getNewEntityCommand = function (commandName, entitySpecification) {
     	var command = new MenuCommand();
         command.isGroupMenu = false;
     	command.isDropdownMenu = false;
     	command.commandName = commandName;
-    	command.text = text;
+    	command.text = entitySpecification.metadataRepresentation;
+        command.icon = "fa fa-folder-o";
     	command.command = commandName;
 
     	return command;

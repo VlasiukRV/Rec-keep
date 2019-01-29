@@ -144,7 +144,9 @@ angular.module('module.domain-model',
             metadataRepresentation: "User",
             metadataDescription: "User list",
             entityField: {
-                objectField: {},
+                objectField: {
+                    icon: 'fa user',
+                },
                 entityField: {
 
                     username: {
@@ -240,7 +242,9 @@ angular.module('module.domain-model',
             metadataRepresentation: "Role",
             metadataDescription: "Role list",
             entityField: {
-                objectField: {},
+                objectField: {
+                    icon: "fa-group",
+                },
                 entityField: {
 
                     // entity field
@@ -269,7 +273,6 @@ angular.module('module.domain-model',
 
                 },
                 defineField: {
-
                     representation: {
                         enumerable: true,
                         get: function () {

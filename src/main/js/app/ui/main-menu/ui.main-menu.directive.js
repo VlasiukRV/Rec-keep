@@ -53,7 +53,7 @@
                     var e = $compile('<menu-collection command = "command" menu-collection="command.commandList"></menu-collection>')(scope);
                     element.replaceWith(e);
                 } else if (scope.command.isGroupMenu) {
-                    var e = $compile('<menu-bar menu-bar="command" ng-element-ready="init_sidebar()"></menu-bar>')(scope);
+                    var e = $compile('<menu-bar menu-bar="command"></menu-bar>')(scope);
                     element.replaceWith(e);                    
                 }
             },
