@@ -134,7 +134,7 @@ module.exports = function (grunt) {
                 files: {
                     'src/main/resources/static/js/lib/angularjs.min.js': ['src/main/resources/static/js/lib/angularjs.js'],
                     'src/main/resources/static/js/build.min.js': ['src/main/resources/static/js/build.js'],
-                    'src/main/resources/static/js/custom.min.js': ['src/main/resources/static/js/custom.js']
+                    'src/main/resources/static/js/gentelella.min.js': ['src/main/resources/static/js/gentelella.js']
                 }
             }
         },

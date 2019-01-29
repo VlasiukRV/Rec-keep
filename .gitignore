@@ -39,9 +39,9 @@ src/main/resources/static/js/lib/angularjs.min.js
 src/main/resources/static/js/build.js
 src/main/resources/static/js/build.js.map
 src/main/resources/static/js/build.min.js
-src/main/resources/static/js/custom.js
-src/main/resources/static/js/custom.js.map
-src/main/resources/static/js/custom.min.js
+src/main/resources/static/js/gentelella.js
+src/main/resources/static/js/gentelella.js.map
+src/main/resources/static/js/gentelella.min.js
 
 lib/
 src/main/resources/application.properties
