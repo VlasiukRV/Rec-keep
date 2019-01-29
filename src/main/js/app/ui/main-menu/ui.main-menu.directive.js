@@ -52,6 +52,9 @@
                 if (scope.command.isDropdownMenu) {
                     var e = $compile('<menu-collection command = "command" menu-collection="command.commandList"></menu-collection>')(scope);
                     element.replaceWith(e);
+                } else if (scope.command.isGroupMenu) {
+                    var e = $compile('<menu-bar menu-bar="command" ng-element-ready="init_sidebar()"></menu-bar>')(scope);
+                    element.replaceWith(e);                    
                 }
             },
             controller: ['$scope', '$window', '$location', function ($scope, $window, $location) {

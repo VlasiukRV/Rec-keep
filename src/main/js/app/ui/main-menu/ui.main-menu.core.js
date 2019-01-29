@@ -91,7 +91,9 @@
     		this.includeFd({
     			commandName: "",
 
+                isGroupMenu: false,
     			isDropdownMenu: false,
+                icon:"",
     			text: "",
     			command: null,
     			commandList: []
@@ -126,17 +128,12 @@
     				principal: null
     			},
     			commandBar: {
-    				mainUrl: '#',
                     commandBar: new MenuCommand()
     			},
     			appMetadataSet: null
     		});
     	};
     	UserInterface.includeMthd({
-    		commandBarSetMainUrl: function (mainUrl) {
-    			this.commandBar.mainUrl = mainUrl;
-    			return this;
-    		},
     		commandBarAddCommand: function (command) {
     			this.commandBar.commandList.push(command);
     			return this;
@@ -152,8 +149,20 @@
 
     varInterfaceUtill.ErrorDescriptions = ErrorDescriptions;
     varInterfaceUtill.UserInterface = UserInterface;
+
+    varInterfaceUtill.getNewGroupCommand = function (commandName, text) {
+        var command = new MenuCommand();
+        command.isGroupMenu = true;
+        command.isDropdownMenu = false;
+        command.commandName = commandName;
+        command.text = text;
+        command.command = commandName;
+
+        return command;
+    };    
     varInterfaceUtill.getNewEntityCommand = function (commandName, text) {
     	var command = new MenuCommand();
+        command.isGroupMenu = false;
     	command.isDropdownMenu = false;
     	command.commandName = commandName;
     	command.text = text;
@@ -163,6 +172,7 @@
     };
     varInterfaceUtill.getNewDropdownCommand = function (commandName, text) {
     	var command = new MenuCommand();
+        command.isGroupMenu = false;
     	command.isDropdownMenu = true;
     	command.commandName = commandName;
     	command.text = text;
@@ -170,6 +180,7 @@
     };
     varInterfaceUtill.getNewCommand = function (commandName, text, functionCommand) {
     	var command = new MenuCommand();
+        command.isGroupMenu = false;
     	command.isDropdownMenu = false;
     	command.commandName = commandName;
     	command.text = text;

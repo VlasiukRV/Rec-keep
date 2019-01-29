@@ -1,8 +1,7 @@
+ <div class="menu_section">
+	<h3>{{command.text}}</h3>
+	<ul class="nav side-menu">
+		<menu-item command="command" ng-repeat="command in menuBar.commandList track by $index"></menu-item>
+	</ul>
 
-    <li><a><i class="fa fa-edit"></i> Operation <span class="fa fa-chevron-down"></span></a>
-        <ul class="nav child_menu">
-            <menu-item command="command" ng-repeat="command in menuBar.commandBar.commandList track by $index"></menu-item>
-        </ul>
-    </li>
-
-
+</div>

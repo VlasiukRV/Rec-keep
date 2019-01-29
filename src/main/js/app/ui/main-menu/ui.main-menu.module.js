@@ -20,11 +20,27 @@ angular.module('module.ui.main-menu', [
 	return varInterfaceUtill.resourceService(entityEditService, systemService, securityService, operationService);
 }])
 
-.factory('menuModel', [function () {
-	return varInterfaceUtill.getNewDropdownCommand("modelDD", "Records");
+.factory('menuGeneral', [function () {	
+	var homeDashboard = varInterfaceUtill.getNewCommand("homeDashboard", "Dashboard", function() {
+
+	});
+
+	var homeDD = varInterfaceUtill.getNewDropdownCommand("homeDD", "Home")
+				.addCommand(homeDashboard);
+	homeDD.icon = "fa fa-home";
+
+	return varInterfaceUtill.getNewGroupCommand("generalG", "GENERAL")
+				.addCommand(homeDD)
 }])
 
-.factory('menuSystem', ['resourceService', function (resourceService) {
+.factory('menuModel', [function () {
+	var modelDD = varInterfaceUtill.getNewDropdownCommand("modelDD", "Records");
+	modelDD.icon = "fa fa-edit";
+
+	return modelDD;
+}])
+
+.factory('menuSystem', ['resourceService', 'menuModel', function (resourceService, menuModel) {
 	var menuSystem = varInterfaceUtill.getNewDropdownCommand("systemDD", "System")
 	.addCommand(varInterfaceUtill.getNewCommand("initDataBase", "initDataBase", function () {
 		varInterfaceUtill.ExecuteSystemCommand(resourceService, "jdbc/initDataBase")
@@ -47,21 +63,25 @@ angular.module('module.ui.main-menu', [
 	.addCommand(varInterfaceUtill.getNewCommand("interruptTaskExecutor", "interruptTaskExecutor", function () {
 		varInterfaceUtill.ExecuteSystemCommand(resourceService, "taskScheduler/interruptTaskExecutor")
 	}));
-	return menuSystem;
+
+	return varInterfaceUtill.getNewGroupCommand("systemG", "System")
+	.addCommand(menuModel)
+	.addCommand(menuSystem)
+	;	
+
 }])
 
 .service('errorDescriptions', [function(){
 	return new varInterfaceUtill.ErrorDescriptions();
 }])
-.service('userInterface', ['principal', 'menuModel', 'menuSystem', function (principal, menuModel, menuSystem) {
+.service('userInterface', ['principal', 'menuGeneral', 'menuSystem', function (principal, menuGeneral, menuSystem) {
 
 	var userInterface = new varInterfaceUtill.UserInterface();
 	userInterface.security.principal = principal;
-	/*userInterface.appMetadataSet = appMetadataSet;*/
+	
 	userInterface
-	.commandBarSetMainUrl("#/task")
 	.commandBar.commandBar
-	.addCommand(menuModel)
+	.addCommand(menuGeneral)
 	.addCommand(menuSystem);
 
 	return userInterface;

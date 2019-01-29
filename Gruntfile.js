@@ -18,14 +18,6 @@ module.exports = function (grunt) {
         'copy'
     ];
 
-    grunt.registerTask('build-js', build_js);
-    grunt.registerTask('build-css', build_css);
-    grunt.registerTask('deploy-frontend-local', deploy_frontend_local);
-
-    grunt.registerTask('test', [
-        'jshint'
-    ]);
-
     grunt.config.init({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -59,7 +51,7 @@ module.exports = function (grunt) {
             },
             build: [
                 'src/main/resources/static/js/build.js',
-                'src/main/resources/static/js/custom.js'
+                'src/main/resources/static/js/gentelella.js'
             ]
         },
 
@@ -82,8 +74,9 @@ module.exports = function (grunt) {
                         'src/main/js/app-lib/angularjs/select-tpls.min.js',
                         'src/main/js/app-lib/angularjs/ui-bootstrap.js',
                     ],
-                    'src/main/resources/static/js/custom.js': [
-                        'src/main/js/template-service.js'
+                    'src/main/resources/static/js/gentelella.js': [
+                        'src/main/js/gentelella/gentelella-vendors.js',
+                        'src/main/js/gentelella/gentelella.js',
                     ],
                     'src/main/resources/static/js/build.js': [
                         
@@ -201,5 +194,13 @@ module.exports = function (grunt) {
         }
 
     });
+
+    grunt.registerTask('build-js', build_js);
+    grunt.registerTask('build-css', build_css);
+    grunt.registerTask('deploy-frontend-local', deploy_frontend_local);
+
+    grunt.registerTask('test', [
+        'jshint'
+    ]);
 
 };

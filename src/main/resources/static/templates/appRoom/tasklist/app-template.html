@@ -81,23 +81,7 @@
 
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
-                        <h3>General</h3>
-                        <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="index.html">Dashboard</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="menu_section">
-                        <h3>System</h3>
-                        <ul class="nav side-menu">
-                            <menu-bar menu-bar="commandBar" ng-element-ready="init_sidebar()"></menu-bar>
-                        </ul>
-                    </div>
-
+                    <menu-bar menu-bar="commandBar.commandBar"></menu-bar>
                 </div>
                 <!-- /sidebar menu -->
 
@@ -230,8 +214,8 @@
 <!-- Vendor libraries -->
 <script src="../../../js/lib/bootstrap.min.js"></script>
 
-<!-- Custom Theme Scripts -->
-<script src="../../../js/custom.js"></script>
+<!-- Gentelella Theme Scripts -->
+<script src="../../../js/gentelella.js"></script>
 
 <!-- Application Files -->
 <script src="../../../js/build.js"></script>
