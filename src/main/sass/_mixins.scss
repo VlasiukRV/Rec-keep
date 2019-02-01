@@ -1,0 +1,439 @@
+
+@mixin add-shadow{
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+/// Generates vendor prefixes.
+///
+/// @argument {string} $property
+///   Property to prefix.
+///
+/// @argument {string} $value
+///   Value to use.
+///
+/// @argument {list} $prefixes
+///   Vendor prefixes to output.
+///
+/// @example scss
+///   .element {
+///     @include prefixer(appearance, none, ("webkit", "moz"));
+///   }
+///
+///   // CSS Output
+///   .element {
+///     -webkit-appearance: none;
+///     -moz-appearance: none;
+///     appearance: none;
+///   }
+///
+/// @author Hugo Giraudel
+@mixin prefixer(
+  $property,
+  $value,
+  $prefixes: ()
+) {
+  @each $prefix in $prefixes {
+    #{"-" + $prefix + "-" + $property}: $value;
+  }
+  #{$property}: $value;
+}
+
+// Generates vendor prefixes for values.
+///
+/// @argument {string} $property
+///   Property to use.
+///
+/// @argument {string} $value
+///   Value to prefix.
+///
+/// @argument {list} $prefixes
+///   Vendor prefixes to output.
+///
+/// @example scss
+///   .element {
+///     @include value-prefixer(cursor, grab, ("webkit", "moz"));
+///   }
+///
+///   // CSS Output
+///   .element {
+///     cursor: -webkit-grab;
+///     cursor: -moz-grab;
+///     cursor: grab;
+///   }
+///
+/// @author Matthew Tobiasz
+
+@mixin value-prefixer(
+  $property,
+  $value,
+  $prefixes: ()
+) {
+  @each $prefix in $prefixes {
+    #{$property}: #{"-" + $prefix + "-" + $value};
+  }
+  #{$property}: $value;
+}
+
+/// Hides an element visually while still allowing the content to be accessible
+/// to assistive technology, e.g. screen readers. Passing `unhide` will reverse
+/// the affects of the hiding, which is handy for showing the element on focus,
+/// for example.
+///
+/// @link https://goo.gl/Vf1TGn
+///
+/// @argument {string} $toggle [hide]
+///   Accepts `hide` or `unhide`. `unhide` reverses the affects of `hide`.
+///
+/// @example scss
+///   .element {
+///     @include hide-visually;
+///
+///     &:active,
+///     &:focus {
+///       @include hide-visually("unhide");
+///     }
+///   }
+///
+///   // CSS Output
+///   .element {
+///     border: 0;
+///     clip: rect(1px, 1px, 1px, 1px);
+///     clip-path: inset(100%);
+///     height: 1px;
+///     overflow: hidden;
+///     padding: 0;
+///     position: absolute;
+///     width: 1px;
+///   }
+///
+///   .hide-visually:active,
+///   .hide-visually:focus {
+///     clip: auto;
+///     clip-path: none;
+///     height: auto;
+///     overflow: visible;
+///     position: static;
+///     width: auto;
+///   }
+///
+/// @since 5.0.0
+
+@mixin hide-visually($toggle: "hide") {
+  @if not index("hide" "unhide", $toggle) {
+    @error "`#{$toggle}` is not a valid value for the `$toggle` argument in " +
+           "the `hide-visually` mixin. Must be either `hide` or `unhide`.";
+  } @else if $toggle == "hide" {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  } @else if $toggle == "unhide" {
+    clip: auto;
+    clip-path: none;
+    height: auto;
+    overflow: visible;
+    position: static;
+    white-space: inherit;
+    width: auto;
+  }
+}
+
+/// Checks for a valid CSS length.
+///
+/// @argument {string} $value
+///
+/// @return {boolean}
+///
+/// @access private
+
+@function _is-length($value) {
+  @return type-of($value) != "null" and (str-slice($value + "", 1, 4) == "calc"
+       or index(auto inherit initial 0, $value)
+       or (type-of($value) == "number" and not(unitless($value))));
+}
+
+/// Provides a concise, one-line method for setting an element’s positioning
+/// properties: `position`, `top`, `right`, `bottom` and `left`. Use a `null`
+/// value to “skip” an edge of the box.
+///
+/// @argument {string} $position
+///   A CSS position value.
+///
+/// @argument {list} $box-edge-values
+///   List of lengths; accepts CSS shorthand.
+///
+/// @example scss
+///   .element {
+///     @include position(relative, 0 null null 10em);
+///   }
+///
+///   // CSS Output
+///   .element {
+///     left: 10em;
+///     position: relative;
+///     top: 0;
+///   }
+///
+/// @example scss
+///   .element {
+///     @include position(absolute, 0);
+///   }
+///
+///   // CSS Output
+///   .element {
+///     position: absolute;
+///     top: 0;
+///     right: 0;
+///     bottom: 0;
+///     left: 0;
+///   }
+///
+/// @require {function} _is-length
+///
+/// @require {function} _unpack-shorthand
+
+/// Transforms shorthand that can range from 1-to-4 values to be 4 values.
+///
+/// @argument {list} $shorthand
+///
+/// @example scss
+///   .element {
+///     margin: _unpack-shorthand(1em 2em);
+///   }
+///
+///   // CSS Output
+///   .element {
+///     margin: 1em 2em 1em 2em;
+///   }
+///
+/// @access private
+
+@function _unpack-shorthand($shorthand) {
+  @if length($shorthand) == 1 {
+    @return nth($shorthand, 1) nth($shorthand, 1) nth($shorthand, 1) nth($shorthand, 1);
+  } @else if length($shorthand) == 2 {
+    @return nth($shorthand, 1) nth($shorthand, 2) nth($shorthand, 1) nth($shorthand, 2);
+  } @else if length($shorthand) == 3 {
+    @return nth($shorthand, 1) nth($shorthand, 2) nth($shorthand, 3) nth($shorthand, 2);
+  } @else {
+    @return $shorthand;
+  }
+}
+
+@mixin position(
+  $position,
+  $box-edge-values
+) {
+  $box-edge-values: _unpack-shorthand($box-edge-values);
+  $offsets: (
+          top:    nth($box-edge-values, 1),
+          right:  nth($box-edge-values, 2),
+          bottom: nth($box-edge-values, 3),
+          left:   nth($box-edge-values, 4),
+  );
+
+  position: $position;
+
+  @each $offset, $value in $offsets {
+    @if _is-length($value) {
+      #{$offset}: $value;
+    }
+  }
+}
+
+///
+/// SCUT
+/// @SCUT
+
+@function _strip-unit (
+  $num
+) {
+
+  @return $num / ($num * 0 + 1);
+
+}
+$scut-rem-base: 16 !default;
+
+/// Convert pixel-values to rem-values.
+///
+/// @example scss
+///    .rem-2 { font-size: rem(24); }
+///
+///    // CSS Output
+///    .rem-2 {
+///      font-size: 1.5rem;
+///    }
+@function rem (
+  $pixels
+) {
+
+  $rem-vals: ();
+  @each $val in $pixels {
+    $val-in-rems: _strip-unit($val) / $scut-rem-base * 1rem;
+    $rem-vals: append($rem-vals, $val-in-rems);
+  }
+
+  @if length($rem-vals) == 1 {
+    // return a single value instead of a list,
+    // so it can be used in calculations
+    @return nth($rem-vals, 1);
+  }
+  @else {
+    @return $rem-vals;
+  }
+
+}
+
+/// Create a CSS circle.
+/// @example scss
+///   circle-1 {
+///     @include scut-circle(1em);
+///   }
+///    // CSS Output
+///    .circle-1 {
+///      border-radius: 50%;
+///      display: inline-block;
+///      border-width: 0.5em;
+///      border-style: solid;
+///      height: 0;
+///      width: 0;
+///    }
+@mixin circle (
+  $size,
+  $color: inherit
+) {
+
+  border-radius: 50%;
+  display: inline-block;
+
+  @if $color == inherit {
+    // If user wants to inherit the color,
+    // take advantage of the fact that border
+    // color defaults to the text color of the element.
+    border-width: $size / 2;
+    border-style: solid;
+    height: 0;
+    width: 0;
+  }
+  @else {
+    // Otherwise, just use background-color.
+    background-color: $color;
+    height: $size;
+    width: $size;
+  }
+
+}
+
+/// A shorthand for setting two color-states,
+///    — active (hover/focus) and
+///    inactive — involving text color and background-color,
+///    with the option of adding a transition.
+///
+/// @example scss
+///
+///    .color-swap-3 {
+///      color: #fff;
+///      // only `background-color` changes, with a transition
+///      @include scut-color-swap($eg-dark, $eg-light, 0.5s, true);
+///    }
+///    // CSS Output
+///    .color-swap-3 {
+///      color: #fff;
+///      background-color: #002834;
+///      transition-property: background-color;
+///      transition-duration: 0.5s;
+///    }
+.color-swap-3:hover, .color-swap-3:focus {
+  background-color: #9AE9FF;
+}
+
+@mixin color-swap (
+  $off,
+  $on,
+  $duration: 0,
+  $bg: false
+) {
+
+  $transition-properties: null;
+  $off-is-list: type-of($off) == list;
+  $on-is-list: type-of($on) == list;
+
+  // If $off IS a list,
+  // assign color and background-color.
+  @if $off-is-list {
+    color: nth($off, 1);
+    background-color: nth($off, 2);
+    $transition-properties: background-color, color;
+  }
+
+    // If $off IS NOT a list and $bg is TRUE,
+    // assign background-color.
+  @else if $bg and not($off-is-list) {
+    background-color: $off;
+    $transition-properties: background-color;
+  }
+
+    // If $off IS NOT a list and $bg is FALSE,
+    // assign color.
+  @else {
+    color: $off;
+    $transition-properties: color;
+  }
+
+  // Only set-up transition if $duration != 0.
+  @if $duration != 0 {
+    transition-property: $transition-properties;
+    transition-duration: $duration;
+  }
+
+  &:hover,
+  &:focus {
+
+    // $on is treated the same as $off, above.
+    @if $on-is-list {
+      color: nth($on, 1);
+      background-color: nth($on, 2);
+    }
+
+    @else if $bg and not($on-is-list) {
+      background-color: $on;
+    }
+
+    @else {
+      color: $on;
+    }
+  }
+
+}
+
+/// Truncate text to a single line, clipped with an ellipsis.
+///
+/// @example scss
+///   .truncate {
+///     @include scut-truncate;
+///     // or @extend %scut-truncate;
+///   }
+///   // CSS Output
+///   .truncate {
+///     white-space: nowrap;
+///     overflow: hidden;
+///     text-overflow: ellipsis;
+///   }
+@mixin truncate {
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+%truncate {
+  @include truncate;
+}
