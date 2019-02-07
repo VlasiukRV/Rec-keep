@@ -14,7 +14,7 @@
                 status: 0,
                 statusText: "",
                 type: 'success'
-            })
+            });
         };
         ErrorDescription.includeMthd({
             SetHTTPError: function (statusText, status) {
@@ -47,18 +47,18 @@
             handleResponse: function (response) {
                 var errorDescription = new ErrorDescription();
                 errorDescription.SetNoError();
-                if ((response.status == 200) ||
-                    (response.status == 404) ||
-                    (response.status == 403)
+                if ((response.status === 200) ||
+                    (response.status === 404) ||
+                    (response.status === 403)
                     ) {
                     var objectResponse = response.data;
                 if (objectResponse instanceof Object) {
                             if ("message" in objectResponse && "status" in objectResponse) { //ToDo
-                                if (response.data.status != 200) {
+                                if (response.data.status !== 200) {
                                     errorDescription.SetAppError(objectResponse.message);
                                 }
                             }
-                        } else if (response.status != 200) {
+                        } else if (response.status !== 200) {
                             objectResponse = eval("(" + response.data + ")");
                             errorDescription.SetAppError(objectResponse.message);
                         }
@@ -97,7 +97,7 @@
     			text: "",
     			command: null,
     			commandList: []
-    		})
+    		});
     	};
     	MenuCommand.includeMthd({
     		addCommand: function (command) {
@@ -144,7 +144,7 @@
     		editFormGetEntityListForm: function () {
     			return new EntityListForm();
     		}
-    	})
+    	});
     }());
 
     varInterfaceUtill.ErrorDescriptions = ErrorDescriptions;

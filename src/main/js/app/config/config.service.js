@@ -13,7 +13,7 @@
 
                 return appAddress + "/" + appConfig.appName + urlSuffix;
             }
-        }
+        };
     };
 
 })(window);

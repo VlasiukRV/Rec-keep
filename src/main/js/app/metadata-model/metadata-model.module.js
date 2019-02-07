@@ -23,12 +23,14 @@ angular.module('module.metadata-model',
                     for (var key in entityFd) {
                         strEntityFd = "" + strEntityFd + ", " + key;
                     }
-                    if (strEntityFd.length > 0) strEntityFd = strEntityFd.slice(2);
+                    if (strEntityFd.length > 0) {
+                        strEntityFd = strEntityFd.slice(2);
+                    }
                     this.includeFd({entityFd: strEntityFd});
                 }
                 if (defineFd) {
                     for (var key in defineFd) {
-                        this.includeDefineFd(key, defineFd[key])
+                        this.includeDefineFd(key, defineFd[key]);
                     }
                 }
             };
@@ -60,10 +62,23 @@ angular.module('module.metadata-model',
 
             };
 
+            var baseCreateEntity = function () {
+                var fCallBack = arguments[0];
+                var data = arguments[1];
+
+                if (data.status === 200) {
+                    var originalEntity = data.data;
+                    if (originalEntity) {
+                        appUtils.fillValuesProperty(originalEntity, this);
+                        fCallBack(this);
+                    }
+                }
+            };
+
             Entity.includeMthd({
                 isEmpty: function () {
                     // ToDo write what attribute of empty entity
-                    return this.id == 0 || this.id == null;
+                    return this.id === 0 || this.id == null;
                 },
 
                 translateToEntityJSON: function () {
@@ -82,22 +97,10 @@ angular.module('module.metadata-model',
                         function (httpResponse) {
                             /*resourceService.collError(httpResponse)*/
                         }
-                    )
+                    );
                 }
 
             });
-            var baseCreateEntity = function () {
-                var fCallBack = arguments[0];
-                var data = arguments[1];
-
-                if (data.status == 200) {
-                    var originalEntity = data.data;
-                    if (originalEntity) {
-                        appUtils.fillValuesProperty(originalEntity, this);
-                        fCallBack(this);
-                    }
-                }
-            };
         })();
 
         return Entity;
@@ -125,7 +128,7 @@ angular.module('module.metadata-model',
                  var data = arguments[1];
                  */
 
-                if (data.status == 200) {
+                if (data.status === 200) {
                     var originalUserList = data.data;
                     if (originalUserList) {
                         originalUserList.forEach(function (item, i, arr) {
@@ -147,9 +150,9 @@ angular.module('module.metadata-model',
                 var fCallBack = arguments[1];
                 var data = arguments[2];
 
-                if (data.status == 200) {
+                if (data.status === 200) {
                     this.list.forEach(function (item, i) {
-                        if (item.id == id) {
+                        if (item.id === id) {
                             this.list.splice(i, 1);
                             return true;
                         }
@@ -206,7 +209,7 @@ angular.module('module.metadata-model',
                     resourceService.getEntityEditService()
                         .getEntity({entityName: this.metadataName}, {},
                         function (data) {
-                            updateEnt.call(self, fCallBack, data)
+                            updateEnt.call(self, fCallBack, data);
                         },
                         function (httpResponse) {
                             /*resourceService.collError(httpResponse)*/
@@ -219,7 +222,7 @@ angular.module('module.metadata-model',
                     resourceService.getEntityEditService()
                         .getEntity({entityName: this.metadataName, search: searchEx}, {},
                         function (data) {
-                            updateEnt.call(self, fCallBack, data)
+                            updateEnt.call(self, fCallBack, data);
                         },
                         function (httpResponse) {
                             /*resourceService.collError(httpResponse)*/
@@ -233,10 +236,10 @@ angular.module('module.metadata-model',
                         function (httpResponse) {
                             /*resourceService.collError(httpResponse)*/
                         }
-                    )
+                    );
                 }
 
-            })
+            });
         })();
 
         return EntityList;
@@ -301,7 +304,7 @@ angular.module('module.metadata-model',
                     visibilityInEditForm: true,
                     availabilityInListForm: true,
                     visibilityInListForm: true
-                })
+                });
             };
             MetadataEditField.includeMthd({
                 buildEditField: function (fieldDescription, name) {
@@ -327,7 +330,7 @@ angular.module('module.metadata-model',
                         this.entityListService = fieldDescription.entityListService;
                     }
                 }
-            })
+            });
         })();
 
         return MetadataEditField;
@@ -356,7 +359,7 @@ angular.module('module.metadata-model',
                         metadataEditFieldsSet: [],
                         metadataFilterFieldsSet: [],
                     }
-                })
+                });
             };
             MetadataObject.includeMthd({
                 getEntityInstance: function () {
@@ -418,14 +421,14 @@ angular.module('module.metadata-model',
                     }
                     if (_metadataFilterFieldsSet) {
                         for (i = 0; i < _metadataEditFieldsSet.length; i++) {
-                            editField = _metadataEditFieldsSet[i];
+                            var editField = _metadataEditFieldsSet[i];
                             /*if (appUtils.find(this.fmListForm.metadataEditFieldsSet, editField) > 0) {*/
                             this.fmListForm.metadataFilterFieldsSet.push(editField);
                             /*}*/
                         }
                     }
                 }
-            })
+            });
         })();
 
         return MetadataObject;
@@ -455,7 +458,7 @@ angular.module('module.metadata-model',
                         listType: fmListForm_TYPES.table
                     },
                     entityFieldsPlacing: []
-                })
+                });
             };
             MetadataEntitySpecification.includeMthd({
                 getObjectFields: function () {
@@ -549,7 +552,7 @@ angular.module('module.metadata-model',
                     // event
                     metadataSet.metadataEvents.subscribe("ev:entityList:" + metadataEnumSpecification.metadataName + ":update",
                         function (event, fCallBack) {
-                            EnumClass.update(fCallBack)
+                            EnumClass.update(fCallBack);
                         }
                     );
 
@@ -623,7 +626,7 @@ angular.module('module.metadata-model',
                     // event
                     metadataEvents.subscribe("ev:entityList:" + metadataEntitySpecification.metadataName + ":update",
                         function (event, fCallBack) {
-                            entityList.update(fCallBack)
+                            entityList.update(fCallBack);
                         }
                     );
                     metadataEvents.subscribe("ev:entityList:" + metadataEntitySpecification.metadataName + ":deleteEntity",
@@ -635,7 +638,7 @@ angular.module('module.metadata-model',
                     // EditMenu
                     var entitySubMenu = metadataSet.userInterface.commandBar.commandBar.getSubMenu('modelDD');
                     if (entitySubMenu !== undefined) {
-                        entitySubMenu.addCommand(varInterfaceUtill.getNewEntityCommand(entitySpecification.metadataName, entitySpecification))
+                        entitySubMenu.addCommand(varInterfaceUtill.getNewEntityCommand(entitySpecification.metadataName, entitySpecification));
                     }
 
                     return metadataSet;
@@ -643,7 +646,7 @@ angular.module('module.metadata-model',
                 getMetadataSpecification: function (metadataName) {
                     var metadataSpecification = this.entityList[metadataName];
                     if (metadataSpecification) {
-                        return metadataSpecification
+                        return metadataSpecification;
                     } else {
                         metadataSpecification = {metadataName: metadataName, metadataObject: null, entityList: null};
                         this.entityList[metadataName] = metadataSpecification;
@@ -690,10 +693,10 @@ angular.module('module.metadata-model',
                     window.status = "Load objects...";
                     var entityName;
                     for (entityName in this.entityList) {
-                        this.metadataEvents.publish("ev:entityList:" + entityName + ":update")
+                        this.metadataEvents.publish("ev:entityList:" + entityName + ":update");
                     }
                 }
-            })
+            });
         })();
 
         return MetadataSet;
@@ -737,7 +740,7 @@ angular.module('module.metadata-model',
             Entity: Entity,
             Enum: Enum,
             MetadataSet: MetadataSet
-        }
+        };
     }]
 )
 

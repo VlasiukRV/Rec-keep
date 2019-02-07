@@ -75,7 +75,7 @@ app
         metadataEntitySpecification_Task
         ){
 
-        appInitialization = {
+        var appInitialization = {
             abstractAppModel: abstractAppModel,
             metadataSet: undefined,
             metadataSpecifications: {

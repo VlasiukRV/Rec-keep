@@ -50,7 +50,7 @@
                     });
                 };
             }]
-        }
+        };
     };
 
     directive.directiveCurrentTime = function ($interval, dateFilter) {

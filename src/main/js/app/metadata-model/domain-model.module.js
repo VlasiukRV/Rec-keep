@@ -16,7 +16,7 @@ angular.module('module.domain-model',
         return {
             entityClass: Farm,
             fnGetEntityInstance: function () {
-                	return new Farm()
+                	return new Farm();
             	},
             metadataName: "farm",
             metadataRepresentation: "farm",
@@ -66,7 +66,7 @@ angular.module('module.domain-model',
                     {editFieldId: "description", fieldLength: 12}
                 ]
             ]
-        }
+        };
 	}]
 )
 .service('metadataEntitySpecification_Project', [
@@ -78,7 +78,7 @@ angular.module('module.domain-model',
         return {
             entityClass: Project,
             fnGetEntityInstance: function () {
-                return new Project()
+                return new Project();
             },
             metadataName: "project",
             metadataRepresentation: "Project",
@@ -138,7 +138,7 @@ angular.module('module.domain-model',
         return {
             entityClass: User,
             fnGetEntityInstance: function () {
-                return new User()
+                return new User();
             },
             metadataName: "user",
             metadataRepresentation: "User",
@@ -236,7 +236,7 @@ angular.module('module.domain-model',
         var metadataEntitySpecification_Role = {
             entityClass: Role,
             fnGetEntityInstance: function () {
-                return new Role()
+                return new Role();
             },
             metadataName: "role",
             metadataRepresentation: "Role",
@@ -302,7 +302,7 @@ angular.module('module.domain-model',
             var str = "";
             var k = 0;
             while (true) {
-                if (k == this.length) {
+                if (k === this.length) {
                     break;
                 }
                 str = str + "; " + this[k].representation;
@@ -316,7 +316,7 @@ angular.module('module.domain-model',
             this.length = 0;
             var k = 0;
             while (true) {
-                if (k == template.length) {
+                if (k === template.length) {
                     break;
                 }
                 var entity = metadataSet.getEntityInstance("user");
@@ -339,7 +339,7 @@ angular.module('module.domain-model',
 	    var metadataEntitySpecification_Task = {
 	        entityClass: Task,
 	        fnGetEntityInstance: function () {
-	            return new Task()
+	            return new Task();
 	        },
 	        metadataName: "task",
 	        metadataRepresentation: "Task",
@@ -416,7 +416,7 @@ angular.module('module.domain-model',
 	                        },
 	                        entityListService: function () {
                                 var metadataSet = $injector.get('metadataSet');
-	                            return metadataSet.getEntityList("project")
+	                            return metadataSet.getEntityList("project");
 	                        }
 	                    }
 	                },
@@ -428,7 +428,7 @@ angular.module('module.domain-model',
 	                        availability: true,
 	                        entityListService: function(){
                                 var metadataSet = $injector.get('metadataSet');
-	                            return metadataSet.getEntityList("taskState")
+	                            return metadataSet.getEntityList("taskState");
 	                        }
 	                    }
 	                }
@@ -481,7 +481,7 @@ angular.module('module.domain-model',
 	        var str = "";
 	        var k=0;
 	        while (true) {
-	            if(k == this.length){
+	            if(k === this.length){
 	                break;
 	            }
 	            str = str+"; "+this[k].representation;
@@ -495,7 +495,7 @@ angular.module('module.domain-model',
 	        var k=0;
             var metadataSet = $injector.get('metadataSet');
 	        while (true) {
-	            if(k == template.length){
+	            if(k === template.length){
 	                break;
 	            }
 	            var entity = metadataSet.getEntityInstance("user");
@@ -511,7 +511,7 @@ angular.module('module.domain-model',
 .service('metadataEnumSpecification_TaskState', [
     'Enum', 
     function(Enum){
-        var EnumTaskState = new Enum;
+        var EnumTaskState = new Enum();
         return {
             enumClass: EnumTaskState,
             metadataName: "taskState"

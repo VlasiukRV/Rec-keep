@@ -20,14 +20,14 @@
             },
 
             setCurrentEntityByName: function (entityName, _date) {
-                if(entityName != undefined) {
+                if(entityName !== undefined) {
                     currentEntities[entityName] = _date;
                 }
             },
             getCurrentEntityByName: function (entityName) {
-                if(entityName != undefined) {
+                if(entityName !== undefined) {
                     if (currentEntities[entityName] == null) {
-                        currentUser = this.getNewEntityByName(entityName);
+                        currentEntities[entityName] = this.getNewEntityByName(entityName);
                     }
                     return currentEntities[entityName];
                 }else{
@@ -88,7 +88,7 @@
                 }
                 if (typeof response.data === 'string') {
                     if (response.data.indexOf instanceof Function &&
-                        response.data.indexOf('id="app-login-page"') != -1) {
+                        response.data.indexOf('id="app-login-page"') !== -1) {
                         $location.path("/login");
                 }
             }
@@ -101,7 +101,7 @@
             }
             return $q.reject(response);
             }
-    }
+    };
 };
 
 

@@ -12,7 +12,7 @@ angular.module('module.config.system', [
 				authorities: [],
 				currentUserId: 0,
 				currentUser: {}
-			})
+			});
 		};
 		var setNotAuthenticated = function (currentPrincipal) {
 			currentPrincipal.authenticated = false;
@@ -24,7 +24,7 @@ angular.module('module.config.system', [
 		};
 		var authenticate = function ($http, credentials, callback) {
 
-			var principal = undefined;
+			var principal;
 			var headers = credentials ? {
 				authorization: "Basic "
 				+ btoa(credentials.username + ":"
@@ -35,8 +35,8 @@ angular.module('module.config.system', [
 				headers: headers
 			})
 			.then(function (response) {
-				if (response.data.status == 200) {
-					var principal = response.data.data;
+				if (response.data.status === 200) {
+					principal = response.data.data;
 				}
 				callback && callback({authenticated: true, principal: principal});
 			}, function () {
@@ -64,18 +64,18 @@ angular.module('module.config.system', [
 					}
 					self.setAuthenticated(data.principal);
 					callback && callback(self);
-				})
+				});
 			},
 			getSessionInformation: function (resourceService) {
 				var securityService = resourceService.getSecurityService();
 
 				var currentPrincipal = this;
 				securityService.getSessionInformation({}, {}, function (response) {
-					if (response.status == 200) {
+					if (response.status === 200) {
 						var data = response.data;
 						currentPrincipal.setAuthenticated(data);
 					}
-				})
+				});
 			},
 			updatePrincipalUser: function (appMetadataSet) {
 				var self = this;
@@ -87,6 +87,7 @@ angular.module('module.config.system', [
 				});
 			},
 			setAuthenticated: function (data) {
+                var self = this;
 				setNotAuthenticated(self);
 				if (data != undefined) {
 					this.authenticated = true;

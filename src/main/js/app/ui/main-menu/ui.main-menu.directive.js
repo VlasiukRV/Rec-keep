@@ -20,7 +20,7 @@
             link: function (scope, element, attrs) {
                 init_sidebar_addEvent(element);
             }
-        }
+        };
     };
 
     directive.directiveMenuCollection = function () {
@@ -36,7 +36,7 @@
             link: function (scope, element, attrs) {
                 init_sidebar_addEvent(element);
             }
-        }
+        };
     };
 
     directive.directiveMenuItem = function ($compile) {
@@ -50,23 +50,21 @@
             },
             link: function (scope, element, attrs) {
                 if (scope.command.isDropdownMenu) {
-                    var e = $compile('<menu-collection command = "command" menu-collection="command.commandList"></menu-collection>')(scope);
-                    element.replaceWith(e);
+                    element.replaceWith($compile('<menu-collection command = "command" menu-collection="command.commandList"></menu-collection>')(scope));
                 } else if (scope.command.isGroupMenu) {
-                    var e = $compile('<menu-bar menu-bar="command"></menu-bar>')(scope);
-                    element.replaceWith(e);                    
+                    element.replaceWith($compile('<menu-bar menu-bar="command"></menu-bar>')(scope));
                 }
             },
             controller: ['$scope', '$window', '$location', function ($scope, $window, $location) {
                 $scope.commandHandler = function () {
-                    if (typeof($scope.command.command) == 'string') {
+                    if (typeof($scope.command.command) === 'string') {
                         $location.url($scope.command.command);
                     } else {
                         $scope.command.command();
                     }
                 };
             }]
-        }
+        };
     };
 
     directive.directiveMessageLine = function () {
@@ -82,14 +80,14 @@
             controller: ['$scope', function ($scope) {
                 $scope.deleteErrorDescription = function (index) {
                     $scope.errorDescriptions.delErrorDescription(index);
-                    if ($scope.errorDescriptions.errorsCount() != 0) {
+                    if ($scope.errorDescriptions.errorsCount() !== 0) {
                         return;
                     }
 
                     $scope.errorDescriptions.show = false;
                 };
             }]
-        }
+        };
     };
 
 })(window);

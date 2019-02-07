@@ -56,19 +56,19 @@
         };
 
         this.pageChanged = function () {
-            var begin = ((this.currentPage - 1) * this.numPerPage)
-                , end = begin + this.numPerPage;
+            var begin = ((this.currentPage - 1) * this.numPerPage);
+            var end = begin + this.numPerPage;
             this.entitiesFiltered = this.entities.slice(begin, end);
             this.entitiesEmpty = new Array(0);
         };
 
         this.addNewEntity = function () {
-            this.openEditForm(this.appMetadataSet.getEntityList(this.metadataName).metadataObject.getEntityInstance())
+            this.openEditForm(this.appMetadataSet.getEntityList(this.metadataName).metadataObject.getEntityInstance());
         };
 
         this.editEntity = function (id) {
             var entity = this.appMetadataSet.getEntityList(this.metadataName).findEntityById(id);
-            if (entity != undefined) {
+            if (entity !== undefined) {
                 var editEntity = this.appMetadataSet.getEntityList(this.metadataName).metadataObject.getEntityInstance();
                 appUtils.fillValuesProperty(entity, editEntity);
                 this.openEditForm(editEntity);

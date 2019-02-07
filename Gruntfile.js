@@ -36,9 +36,18 @@ module.exports = function (grunt) {
                 globals: {
                     jQuery: true,
                     $: true,
-                    console: true
+                    console: true,
+                    angular: true,
+
+                    moduleConfig: true,
+                    appService: true,
+                    appUtils: true,
+                    moduleUI: true,
+                    appController: true,
+                    varInterfaceUtill: true
                 }
             },
+            all: ['src/main/js/app/**/*.js'],
             test: {
                 src: 
                     ['src/main/js/**/*.js']

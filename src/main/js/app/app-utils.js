@@ -33,7 +33,9 @@
             for (var key in obj) {
                 klass[key] = obj[key];
             }
-            if (extended) extended(klass);
+            if (extended) {
+                extended(klass);
+            }
         };
 
         // Add methods for object
@@ -50,7 +52,9 @@
                  };
                  */
             }
-            if (included) included(klass);
+            if (included) {
+                included(klass);
+            }
         };
         // Add fields for object
         klass.prototype.includeFd = function (obj) {
@@ -58,7 +62,9 @@
             for (var key in obj) {
                 this[key] = obj[key];
             }
-            if (included) included(klass);
+            if (included) {
+                included(klass);
+            }
         };
         // Add define fields for object
         klass.prototype.includeDefineFd = function (key, desc) {
@@ -99,7 +105,7 @@
             if (key.indexOf("$$") >= 0) {
                 continue;
             }
-            if (typeof sourceProperty == 'function') {
+            if (typeof sourceProperty === 'function') {
                 continue;
             }
 
@@ -208,7 +214,9 @@
     } else {
         appUtils.find = function (array, value) {
             for (var i = 0; i < array.length; i++) {
-                if (array[i] === value) return i;
+                if (array[i] === value) {
+                    return i;
+                }
             }
 
             return -1;
@@ -224,7 +232,9 @@
     };
 
     appUtils.log = function () {
-        if (typeof console == "undefined") return;
+        if (typeof console == "undefined") {
+            return;
+        }
 
         var args = jQuery.makeArray(arguments);
         args.unshift("(App:)");

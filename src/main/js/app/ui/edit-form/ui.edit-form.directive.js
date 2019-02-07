@@ -22,7 +22,7 @@
                     element.addClass('btn-' + attrs.size);
                 }
             }
-        }
+        };
     };
 
     formsDirective.directiveDatePicker = function () {
@@ -57,11 +57,11 @@
         }
         if (scope.property.inputType === 'enum') {
             if (scope.property.entityListService()) {
-                scope.selectList = scope.property.entityListService().list
+                scope.selectList = scope.property.entityListService().list;
             }
         } else if (scope.property.inputType === 'select' || scope.property.inputType === 'multiselect') {
             if (scope.property.entityListService()) {
-                scope.selectList = scope.property.entityListService().list
+                scope.selectList = scope.property.entityListService().list;
             }
         }
     }
@@ -81,9 +81,9 @@
             controller: ['$scope', function ($scope) {
                 $scope.refreshSelectList = refreshSelectList($scope);
                 $scope.propertyChanged = function () {
-                }
+                };
             }]
-        }
+        };
     };
 
     formsDirective.directiveEntityEditForm = function () {
@@ -108,7 +108,7 @@
                     $scope.entityEditForm.eventCreateEntity($scope.entityEditForm.currentEntity);
                 };
             }]
-        }
+        };
     };
 
     formsDirective.directiveEntityEditFormRow = function () {
@@ -122,7 +122,7 @@
             },
             link: function (scope, element, attrs) {
             }
-        }
+        };
     };
 
     formsDirective.directiveEntityEditFormCol = function ($compile) {
@@ -145,7 +145,7 @@
                     element.replaceWith(e);
                 }
             }
-        }
+        };
     };
 
     formsDirective.directiveFormToolbox = function () {
@@ -166,7 +166,7 @@
             },
             controller: ['$scope', function ($scope) {
             }]
-        }
+        };
     };
     
     formsDirective.directiveTextValue = function () {
@@ -186,7 +186,7 @@
                     $scope.limitLength = Number.MAX_VALUE;
                 }
             }]
-        }
+        };
     };
     
     formsDirective.directiveUpdatableText = function ($interval) {
