@@ -31,3 +31,8 @@
       opacity: 0;
     }
 }
+
+/// PANEL
+.x_panel {
+  @include add-shadow();
+}

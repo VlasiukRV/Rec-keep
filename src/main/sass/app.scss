@@ -6,9 +6,7 @@
 @import "mixins";
 @import "variables";
 
-@import "object";
+@import "bulma/all";
+@import "gentelella/all";
 
-@import "bulma";
-@import "gentelella";
-
-@import "custom";
+@import "app/all";
