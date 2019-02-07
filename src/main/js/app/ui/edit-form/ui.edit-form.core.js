@@ -5,10 +5,10 @@
     }
     var appService = exp.appService;
 
-    if (!exp.appService.forms) {
-        exp.appService.forms = new Object(null);
+    if (!appService.forms) {
+        appService.forms = new Object(null);
     }
-    var forms = exp.appService.forms;
+    var forms = appService.forms;
 
     forms.EditEntityController = function ($scope, dataStorage, EntityEditForm) {
         this.appMetadataSet = dataStorage.getAppMetadataSet();

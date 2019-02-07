@@ -17,7 +17,7 @@
             scope: {
                 menuBar: '='
             },
-            link: function (scope, element, attrs) {
+            link: function (scope, element) {
                 init_sidebar_addEvent(element);
             }
         };
@@ -33,7 +33,7 @@
                 menuCollection: '=',
                 command: '='
             },
-            link: function (scope, element, attrs) {
+            link: function (scope, element) {
                 init_sidebar_addEvent(element);
             }
         };
@@ -48,7 +48,7 @@
             scope: {
                 command: '='
             },
-            link: function (scope, element, attrs) {
+            link: function (scope, element) {
                 if (scope.command.isDropdownMenu) {
                     element.replaceWith($compile('<menu-collection command = "command" menu-collection="command.commandList"></menu-collection>')(scope));
                 } else if (scope.command.isGroupMenu) {
@@ -74,8 +74,6 @@
             templateUrl: '/templates/appRoom/tasklist/directive/app-template-message-line.html',
             scope: {
                 errorDescriptions: '='
-            },
-            link: function (scope, element, attrs) {
             },
             controller: ['$scope', function ($scope) {
                 $scope.deleteErrorDescription = function (index) {

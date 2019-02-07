@@ -94,9 +94,6 @@
             scope: {
                 entityEditForm: '='
             },
-            link: function (scope, element, attrs) {
-
-            },
             controller: ['$scope', function ($scope) {
                 $scope.closeForm = function () {
                     $scope.entityEditForm.eventCloseForm();
@@ -119,8 +116,6 @@
             scope: {
                 entityfieldsrow: '=',
                 entityeditform: '='
-            },
-            link: function (scope, element, attrs) {
             }
         };
     };
@@ -156,16 +151,14 @@
             scope: {
                 toolboxMenu: '=?'
             },
-            link: function link($scope, iElement, iAttrs, controller) {
+            link: function link($scope, iElement) {
                 $scope.selfScope = $scope.$parent;
                 if (!$scope.toolboxMenu) {
                     $scope.toolboxMenu = {};
                 }
 
                 init_panel_toolbox(iElement);
-            },
-            controller: ['$scope', function ($scope) {
-            }]
+            }
         };
     };
     
@@ -177,9 +170,6 @@
             scope: {
                 textValue: '=',
                 limitLength: '=?'
-            },
-            link: function link(scope, element, attrs) {
-
             },
             controller: ['$scope', function ($scope) {
                 if(!$scope.limitLength) {

@@ -16,9 +16,6 @@
             scope: {
                 entityListForm: '='
             },
-            link: function (scope, element, attrs) {
-
-            },
             controller: ['$scope', function ($scope) {
 
                 $scope.closeForm = function () {

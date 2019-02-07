@@ -33,6 +33,7 @@ module.exports = function (grunt) {
                 undef: true,
                 eqnull: true,
                 browser: true,
+                unused: true,
                 globals: {
                     jQuery: true,
                     $: true,

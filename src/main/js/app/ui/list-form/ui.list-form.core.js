@@ -77,14 +77,14 @@
 
         this.deleteEntity = function (id) {
             var self = this;
-            this.appMetadataSet.getEntityList(this.metadataName).deleteEntity(id, function (data) {
+            this.appMetadataSet.getEntityList(this.metadataName).deleteEntity(id, function () {
                 self.updateViewEntityList();
             });
         };
 
         this.findEntity = function (searchEx) {
             var self = this;
-            this.appMetadataSet.getEntityList(this.metadataName).findEntity(searchEx, function (data) {
+            this.appMetadataSet.getEntityList(this.metadataName).findEntity(searchEx, function () {
                 self.totalItems = self.entities.length;
                 self.eventPageChanged();
             });

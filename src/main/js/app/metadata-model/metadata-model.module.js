@@ -131,7 +131,7 @@ angular.module('module.metadata-model',
                 if (data.status === 200) {
                     var originalUserList = data.data;
                     if (originalUserList) {
-                        originalUserList.forEach(function (item, i, arr) {
+                        originalUserList.forEach(function (item) {
                             var entity = this.metadataObject.getEntityInstance();
                             appUtils.fillValuesProperty(item, entity);
                             this.addEntity(entity);
@@ -398,7 +398,7 @@ angular.module('module.metadata-model',
                         this.fmEditForm.metadataEditFieldsPlacing = _editFieldsPlacing;
                     }
                     if (_metadataEditFieldsSet) {
-                        var editField = undefined;
+                        var editField;
 
                         for (i = 0; i < _metadataEditFieldsSet.length; i++) {
                             editField = _metadataEditFieldsSet[i];
@@ -421,7 +421,7 @@ angular.module('module.metadata-model',
                     }
                     if (_metadataFilterFieldsSet) {
                         for (i = 0; i < _metadataEditFieldsSet.length; i++) {
-                            var editField = _metadataEditFieldsSet[i];
+                            editField = _metadataEditFieldsSet[i];
                             /*if (appUtils.find(this.fmListForm.metadataEditFieldsSet, editField) > 0) {*/
                             this.fmListForm.metadataFilterFieldsSet.push(editField);
                             /*}*/
