@@ -1,0 +1,103 @@
+
+@import "gentelella/all";
+
+html, body {
+  height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+/*
+.x_content {
+    direction: rtl;
+}
+*/
+
+.main_menu .label {
+  line-height: 11px;
+  margin-top: 4px;
+}
+
+@media (max-width: 460px) {
+  .dataTables_wrapper .col-sm-6 {
+    width: 100%;
+    margin-bottom: 5px;
+    .dataTables_filter {
+      float: none;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .dataTables_length {
+    float: none;
+  }
+}
+
+
+.daterangepicker.xdisplay {
+  width: 228px;
+}
+
+.dataTables_wrapper > .row {
+  overflow: auto !important;
+  /*prevent datatables overflowing its container*/
+}
+.tooltip-inner {
+  background-color: #1ABB9C !important;
+  box-shadow: 0 6px 12px #536A7F;
+}
+
+
+
+
+
+/** NProgress **/
+#nprogress {
+  .bar {
+    background: #1ABB9C;
+  }
+  .peg {
+    box-shadow: 0 0 10px #1ABB9C, 0 0 5px #1ABB9C;
+  }
+  .spinner-icon {
+    border-top-color: #1ABB9C;
+    border-left-color: #1ABB9C;
+  }
+}
+/** NProgress **/
+
+/** /Normalize.css **/
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+/** /Normalize.css **/
+
+/** FullCalendar **/
+.fc-state-default {
+  background: #f5f5f5;
+  color: #73879C;
+}
+
+.fc-state-down, .fc-state-active {
+  color: #333;
+  background: #ccc;
+}
+/** FullCalendar **/
+
+/** bootstrap-datetimepicker **/
+
+.input-group.date .input-group-addon {
+  border-radius: 0px !important;
+  background-color: #ffff !important;
+}
+
+/** /bootstrap-datetimepicker **/

@@ -1,0 +1,139 @@
+.cropper {
+  .img-container, .img-preview {
+    background-color: #f7f7f7;
+    width: 100%;
+    text-align: center;
+  }
+  .img-container {
+    min-height: 200px;
+    max-height: 516px;
+    margin-bottom: 20px;
+    > img {
+      max-width: 100%;
+    }
+  }
+  .docs-preview {
+    margin-right: -15px;
+  }
+  .img-preview {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    > img {
+      max-width: 100%;
+    }
+  }
+  .preview-lg {
+    width: 263px;
+    height: 148px;
+  }
+  .preview-md {
+    width: 139px;
+    height: 78px;
+  }
+  .preview-sm {
+    width: 69px;
+    height: 39px;
+  }
+  .preview-xs {
+    width: 35px;
+    height: 20px;
+    margin-right: 0;
+  }
+  .docs-data > .input-group {
+    margin-bottom: 10px;
+    > {
+      label {
+        min-width: 80px;
+      }
+      span {
+        min-width: 50px;
+      }
+    }
+  }
+  .docs-buttons > {
+    .btn, .btn-group, .form-control {
+      margin-right: 5px;
+      margin-bottom: 10px;
+    }
+  }
+  .docs-toggles > {
+    .btn, .btn-group, .dropdown {
+      margin-bottom: 10px;
+    }
+  }
+  .docs-tooltip {
+    display: block;
+    margin: -6px -12px;
+    padding: 6px 12px;
+    > .icon {
+      margin: 0 -3px;
+      vertical-align: top;
+    }
+  }
+  .tooltip-inner {
+    white-space: normal;
+  }
+  .btn-upload .tooltip-inner {
+    white-space: nowrap;
+  }
+  .btn-toggle {
+    .tooltip-inner {
+      white-space: nowrap;
+    }
+    padding: 6px;
+    > .docs-tooltip {
+      margin: -6px;
+      padding: 6px;
+    }
+  }
+  .docs-options .dropdown-menu {
+    width: 100%;
+    > li {
+      padding: 3px 20px;
+      &:hover {
+        background-color: #f7f7f7;
+      }
+      > label {
+        display: block;
+      }
+    }
+  }
+  .docs-cropped .modal-body {
+    text-align: center;
+    > {
+      img, canvas {
+        max-width: 100%;
+      }
+    }
+  }
+  .docs-diagram .modal-dialog {
+    max-width: 352px;
+  }
+  .docs-cropped canvas {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .cropper .img-container {
+    min-height: 516px;
+  }
+}
+
+@media (max-width: 400px) {
+  .cropper .btn-group-crop {
+    margin-right: -15px !important;
+    > .btn {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    .docs-tooltip {
+      margin-left: -5px;
+      margin-right: -5px;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+}

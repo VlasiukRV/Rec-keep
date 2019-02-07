@@ -1,64 +1,142 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
 
-    <title>AppRoom</title>
-    <meta charset="utf-8"/>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>    <link href="../css/main.css" type="text/css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="../css/appRoom1.css" type="text/css" rel="stylesheet">
+<title>AppRoom</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+
+<!-- Font Awesome -->
+<link href="../../css/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+<link href="../../css/app.css" type="text/css" rel="stylesheet"/>
+
+<!--javascript-->
+<script src="../../js/lib/jquery.min.js"></script>
+
 </head>
-<body>
+<body class="nav-md footer_fixed">
 
-<header class="container">
-    <div class="row">
-        <h1 class="col-sm-4">App room</h1>
-        <nav class="col-sm-8 text-right">
-            <p><a href="/"/>Home</a></p>
+<section class="container is-fullhd body">
 
-            <p><a href="/appRoom"/>App room</a></p>
+    <div class="main_container">
 
-            <p><a href="/service/team">Team</a></p>
-        </nav>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+              <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+          </a>
+
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+          </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/">
+            Home
+        </a>
+
+        <a class="navbar-item" href="/appRoom">
+            App room
+        </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              More
+          </a>
+
+          <div class="navbar-dropdown">
+              <a class="navbar-item">
+                Documentation
+            </a>
+            <a class="navbar-item" href="/service/team">
+                Contact
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item">
+                Report an issue
+            </a>
+        </div>
     </div>
-</header>
+</div>
 
-<section class="container">
-    <a href="/taskList">
-        <figure class="col-sm-2">
-            <p>
-                <div id="appDescriptionTaskList" class="appDescription">
-                    <h3>TaskList</h3>
-                </div>
-            </p>
-            <figcaption><a class="btn btn-primary btn-sm" href="/appTaskList">Get started</a></figcaption>
-        </figure>
+<div class="navbar-end">
+  <div class="navbar-item">
+    <div class="buttons">
+      <a class="button is-primary">
+        <strong>Sign up</strong>
     </a>
-    <a href="/#">
-        <figure class="col-sm-2">
-            <p>
-                <div class="appDescription">
-                    <h3>App 1</h3>
-                </div>
-            </p>
-            <figcaption><a class="btn btn-primary btn-sm" href="/#">Get started</a></figcaption>
-        </figure>
+    <a class="button is-light">
+        Log in
     </a>
-    <a href="/#">
-        <figure class="col-sm-2">
-            <p>
-            <div class="appDescription">
-                <h3>App 2</h3>
+</div>
+</div>
+</div>
+</div>
+        </nav>
+
+        <div class="right_col" role="main">
+
+            <div class="columns">
+
+                <div class="column">
+                    <a href="/taskList">
+                        <figure class="col-sm-2">
+                            <p>
+                                <div id="appDescriptionTaskList" class="appDescription">
+                                    <h3>TaskList</h3>
+                                </div>
+                            </p>
+                            <figcaption><a class="btn btn-primary btn-sm" href="/appTaskList">Get started</a></figcaption>
+                        </figure>
+                    </a>
+                </div>
+
+                <div class="column">
+                    <a href="/#">
+                        <figure class="col-sm-2">
+                            <p>
+                                <div class="appDescription">
+                                    <h3>App 1</h3>
+                                </div>
+                            </p>
+                            <figcaption><a class="btn btn-primary btn-sm" href="/#">Get started</a></figcaption>
+                        </figure>
+                    </a>
+                </div>
+
+
+                <div>
+                    <a href="/#">
+                        <figure class="col-sm-2">
+                            <p>
+                                <div class="appDescription">
+                                    <h3>App 2</h3>
+                                </div>
+                            </p>
+                            <figcaption><a class="btn btn-primary btn-sm" href="/#">Get started</a></figcaption>
+                        </figure>
+                    </a>
+                </div>
+
             </div>
-            </p>
-            <figcaption><a class="btn btn-primary btn-sm" href="/#">Get started</a></figcaption>
-        </figure>
-    </a>
+
+        </div>
+    </div>
+
 </section>
 
-<footer class="container">
+<footer class="container is-fullhd">
     <div class="row">
         <p class="col-sm-4">&copy; 2017 vRoma</p>
         <ul class="col-sm-8">
@@ -69,8 +147,11 @@
     </div>
 </footer>
 
-<script src="../js/lib/jquery.min.js"></script>
-<script src="../js/lib/bootstrap.min.js"></script>
+<!-- Vendor libraries -->
+<script src="../../js/lib/bootstrap.min.js"></script>
+
+<!-- Gentelella Theme Scripts -->
+<script src="../../../js/gentelella.js"></script>
 
 </body>
 </html>
