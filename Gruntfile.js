@@ -34,6 +34,9 @@ module.exports = function (grunt) {
                 eqnull: true,
                 browser: true,
                 unused: true,
+                trailing: true,
+                quotmark: true,
+                noempty: true,
                 globals: {
                     jQuery: true,
                     $: true,

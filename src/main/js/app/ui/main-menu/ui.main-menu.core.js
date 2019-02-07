@@ -12,7 +12,7 @@
             this.includeFd({
                 error: false,
                 status: 0,
-                statusText: "",
+                statusText: '',
                 type: 'success'
             });
         };
@@ -20,17 +20,17 @@
             SetHTTPError: function (statusText, status) {
                 this.error = true;
                 this.status = status;
-                this.statusText = "HTTP error: " + statusText;
+                this.statusText = 'HTTP error: ' + statusText;
             },
             SetNoError: function () {
                 this.error = false;
                 this.status = 200;
-                this.statusText = "";
+                this.statusText = '';
             },
             SetAppError: function (statusText) {
                 this.error = true;
                 this.status = 0;
-                this.statusText = "App error: " + statusText;
+                this.statusText = 'App error: ' + statusText;
             }
         });
     })();
@@ -53,13 +53,13 @@
                     ) {
                     var objectResponse = response.data;
                 if (objectResponse instanceof Object) {
-                            if ("message" in objectResponse && "status" in objectResponse) { //ToDo
+                            if ('message' in objectResponse && 'status' in objectResponse) { //ToDo
                                 if (response.data.status !== 200) {
                                     errorDescription.SetAppError(objectResponse.message);
                                 }
                             }
                         } else if (response.status !== 200) {
-                            objectResponse = eval("(" + response.data + ")");
+                            objectResponse = eval('(' + response.data + ')');
                             errorDescription.SetAppError(objectResponse.message);
                         }
                     } else {
@@ -89,12 +89,12 @@
     (function () {
     	MenuCommand.prototype.$_buildObject = function () {
     		this.includeFd({
-    			commandName: "",
+    			commandName: '',
 
                 isGroupMenu: false,
     			isDropdownMenu: false,
-                icon:"",
-    			text: "",
+                icon:'',
+    			text: '',
     			command: null,
     			commandList: []
     		});
@@ -166,7 +166,7 @@
     	command.isDropdownMenu = false;
     	command.commandName = commandName;
     	command.text = entitySpecification.metadataRepresentation;
-        command.icon = "fa fa-folder-o";
+        command.icon = 'fa fa-folder-o';
     	command.command = commandName;
 
     	return command;
@@ -204,25 +204,25 @@
         return resource(
             appEnvironment.getAppHttpUrl('/system/security/:command'),
             {
-                sessionID: "@sessionID"
+                sessionID: '@sessionID'
             },
             {
                 getAllPrincipals: {
-                    method: "GET",
+                    method: 'GET',
                     params: {
-                        command: "getAllPrincipals"
+                        command: 'getAllPrincipals'
                     }
                 },
                 getSessionInformation: {
-                    method: "GET",
+                    method: 'GET',
                     params: {
-                        command: "getSessionInformation"
+                        command: 'getSessionInformation'
                     }
                 },
                 getAllSessionsInformation: {
-                    method: "GET",
+                    method: 'GET',
                     params: {
-                        command: "getAllSessionsInformation"
+                        command: 'getAllSessionsInformation'
                     }
                 },
 
@@ -234,11 +234,11 @@
         return resource(
             appEnvironment.getAppHttpUrl('/service/:command'),
             {
-                command: "@command"
+                command: '@command'
             },
             {
                 executeCommand: {
-                    method: "GET"
+                    method: 'GET'
                 }
             }
         );
@@ -248,11 +248,11 @@
         return resource(
             appEnvironment.getAppHttpUrl('/system/:command'),
             {
-                command: "@command"
+                command: '@command'
             },
             {
                 executeCommand: {
-                    method: "GET"
+                    method: 'GET'
                 }
             }
         );

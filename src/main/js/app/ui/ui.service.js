@@ -47,7 +47,7 @@
         };
 
         $scope.login = function () {
-            $location.url("/login");
+            $location.url('/login');
         };
         $scope.eventAfterLogin = function () {
             var metadataSet = dataStorage.getAppMetadataSet();

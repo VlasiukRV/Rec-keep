@@ -10,7 +10,7 @@ angular.module('module.ui.form',
         (function () {
             EditForm.prototype.$_buildObject = function () {
                 this.includeFd({
-                    editFormName: "<--label for form-->",
+                    editFormName: '<--label for form-->',
                     formProperties: {},
 
                     eventCloseForm: function () {

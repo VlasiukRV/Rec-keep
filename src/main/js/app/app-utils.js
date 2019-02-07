@@ -72,7 +72,7 @@
                 configurable: true,
                 enumerable: true,
                 get: function () {
-                    return "";
+                    return '';
                 }
             };
             if (desc.enumerable) {
@@ -102,7 +102,7 @@
             if (!(key in receiver)) {
                 continue;
             }
-            if (key.indexOf("$$") >= 0) {
+            if (key.indexOf('$$') >= 0) {
                 continue;
             }
             if (typeof sourceProperty === 'function') {
@@ -153,7 +153,7 @@
     appUtils.fillAllValuesProperty = function (source, receiver) {
         for (var key in source) {
             var sourceProperty = source[key];
-            if (key.indexOf("$$") >= 0) {
+            if (key.indexOf('$$') >= 0) {
                 continue;
             }
 
@@ -196,7 +196,7 @@
             if (typeof property === 'number') {
                 property = 0;
             } else if (typeof property === 'string') {
-                property = "";
+                property = '';
             } else if (typeof property === 'boolean') {
                 property = false;
             } else if (this.getClass(property) === 'Date') {
@@ -232,12 +232,12 @@
     };
 
     appUtils.log = function () {
-        if (typeof console == "undefined") {
+        if (typeof console == 'undefined') {
             return;
         }
 
         var args = jQuery.makeArray(arguments);
-        args.unshift("(App:)");
+        args.unshift('(App:)');
         console.log.apply(console, args);
     };
 

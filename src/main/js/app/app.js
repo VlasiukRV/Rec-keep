@@ -149,7 +149,7 @@ app
 .filter('myDate', ['dateFilter', function (dateFilter) {
     return function (input) {
         if (input == null) {
-            return "";
+            return '';
         }
         var _date = dateFilter(new Date(input), 'dd.MM.yyyy');
 

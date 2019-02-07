@@ -13,15 +13,15 @@ angular.module('module.metadata-model',
         var Entity = appUtils.Class();
         (function () {
             Entity.prototype.includeEntityFd = function (fd, entityFd, defineFd) {
-                var strEntityFd = "";
-                this.includeFd({entityFd: ""});
+                var strEntityFd = '';
+                this.includeFd({entityFd: ''});
                 if (fd) {
                     this.includeFd(fd);
                 }
                 if (entityFd) {
                     this.includeFd(entityFd);
                     for (var key in entityFd) {
-                        strEntityFd = "" + strEntityFd + ", " + key;
+                        strEntityFd = '' + strEntityFd + ', ' + key;
                     }
                     if (strEntityFd.length > 0) {
                         strEntityFd = strEntityFd.slice(2);
@@ -39,21 +39,21 @@ angular.module('module.metadata-model',
                 this.includeEntityFd(
                     {
                         // object field
-                        metadataName: "",
-                        icon: "fa-folder-o",
+                        metadataName: '',
+                        icon: 'fa-folder-o',
                     }, {
                         // entity field
                         id: null,
-                        description: ""
+                        description: ''
                     }, {
                         // define field
                         representation: {
                             enumerable: true,
                             get: function () {
                                 if (this.name) {
-                                    return "" + this.name;
+                                    return '' + this.name;
                                 } else {
-                                    return "entity [" + this.metadataName + "] id: " + this.id + "";
+                                    return 'entity [' + this.metadataName + '] id: ' + this.id + '';
                                 }
                             }
                         }
@@ -82,7 +82,7 @@ angular.module('module.metadata-model',
                 },
 
                 translateToEntityJSON: function () {
-                    var replacer = this.entityFd.split(", ");
+                    var replacer = this.entityFd.split(', ');
                     return JSON.stringify(this, replacer);
                 },
 
@@ -117,7 +117,7 @@ angular.module('module.metadata-model',
             EntityList.prototype.$_buildObject = function () {
                 this.includeFd(
                     {
-                        metadataName: "",
+                        metadataName: '',
                         list: [],
                         metadataObject: null
                     });
@@ -137,7 +137,7 @@ angular.module('module.metadata-model',
                             this.addEntity(entity);
                         }, this);
                     }
-                    console.log("Update " + this.metadataObject.metadataName);
+                    console.log('Update ' + this.metadataObject.metadataName);
                 }
 
                 if (fCallBack) {
@@ -257,7 +257,7 @@ angular.module('module.metadata-model',
             Enum.prototype.$_buildObject = function () {
                 this.includeFd(
                     {
-                        metadataName: "",
+                        metadataName: '',
                         list: {}
                     });
             };
@@ -266,7 +266,7 @@ angular.module('module.metadata-model',
                 update: function () {
                     var source = this;
                     resourceService.getEntityEditService()
-                        .getEntity({entityName: "enum", entityId: this.metadataName}, {},
+                        .getEntity({entityName: 'enum', entityId: this.metadataName}, {},
                         function (data) {
                             source.list = data.data;
                         },
@@ -291,9 +291,9 @@ angular.module('module.metadata-model',
         (function () {
             MetadataEditField.prototype.$_buildObject = function () {
                 this.includeFd({
-                    name: "",
-                    inputType: "text",
-                    label: "<--label for property-->",
+                    name: '',
+                    inputType: 'text',
+                    label: '<--label for property-->',
 
                     entityListService: {},
 
@@ -344,10 +344,10 @@ angular.module('module.metadata-model',
         (function () {
             MetadataObject.prototype.$_buildObject = function () {
                 this.includeFd({
-                    metadataName: "",
+                    metadataName: '',
 
-                    representation: "",
-                    description: "",
+                    representation: '',
+                    description: '',
                     image: null,
 
                     metadataEditFieldsSet: [],
@@ -445,9 +445,9 @@ angular.module('module.metadata-model',
         (function () {
             MetadataEntitySpecification.prototype.$_buildObject = function () {
                 this.includeFd({
-                    metadataName: "",
-                    metadataRepresentation: "",
-                    metadataDescription: "",
+                    metadataName: '',
+                    metadataRepresentation: '',
+                    metadataDescription: '',
                     entityField: {
                         objectField: {},
                         entityField: {},
@@ -550,7 +550,7 @@ angular.module('module.metadata-model',
 
                     metadataSet.bookEntityList(EnumClass);
                     // event
-                    metadataSet.metadataEvents.subscribe("ev:entityList:" + metadataEnumSpecification.metadataName + ":update",
+                    metadataSet.metadataEvents.subscribe('ev:entityList:' + metadataEnumSpecification.metadataName + ':update',
                         function (event, fCallBack) {
                             EnumClass.update(fCallBack);
                         }
@@ -572,19 +572,19 @@ angular.module('module.metadata-model',
                     metadataEntitySpecification.entityField.defineField = entitySpecification.entityField.defineField;
 
                     metadataEntitySpecification.entityField.entityField.id = {
-                        value: "",
+                        value: '',
                         fieldDescription: {
-                            inputType: "text",
-                            label: "id",
+                            inputType: 'text',
+                            label: 'id',
                             availability: true,
                             entityListService: null
                         }
                     };
                     metadataEntitySpecification.entityField.entityField.description = {
-                        value: "",
+                        value: '',
                         fieldDescription: {
-                            inputType: "textarea",
-                            label: "description",
+                            inputType: 'textarea',
+                            label: 'description',
                             availability: true,
                             entityListService: null
                         }
@@ -624,12 +624,12 @@ angular.module('module.metadata-model',
                     metadataSet.bookEntityList(entityList);
 
                     // event
-                    metadataEvents.subscribe("ev:entityList:" + metadataEntitySpecification.metadataName + ":update",
+                    metadataEvents.subscribe('ev:entityList:' + metadataEntitySpecification.metadataName + ':update',
                         function (event, fCallBack) {
                             entityList.update(fCallBack);
                         }
                     );
-                    metadataEvents.subscribe("ev:entityList:" + metadataEntitySpecification.metadataName + ":deleteEntity",
+                    metadataEvents.subscribe('ev:entityList:' + metadataEntitySpecification.metadataName + ':deleteEntity',
                         function (event, id, fCallBack) {
                             entityList.deleteEntity(id, fCallBack);
                         }
@@ -690,10 +690,10 @@ angular.module('module.metadata-model',
                 },
 
                 loadAllEntities: function () {
-                    window.status = "Load objects...";
+                    window.status = 'Load objects...';
                     var entityName;
                     for (entityName in this.entityList) {
-                        this.metadataEvents.publish("ev:entityList:" + entityName + ":update");
+                        this.metadataEvents.publish('ev:entityList:' + entityName + ':update');
                     }
                 }
             });

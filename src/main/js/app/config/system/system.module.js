@@ -26,8 +26,8 @@ angular.module('module.config.system', [
 
 			var principal;
 			var headers = credentials ? {
-				authorization: "Basic "
-				+ btoa(credentials.username + ":"
+				authorization: 'Basic '
+				+ btoa(credentials.username + ':'
 					+ credentials.password)
 			} : {};
 
@@ -56,10 +56,10 @@ angular.module('module.config.system', [
 				var self = this;
 				authenticate($http, credentials, function (data) {
 					if (data.authenticated) {
-						console.log("Login succeeded");
+						console.log('Login succeeded');
 						credentials.error = false;
 					} else {
-						console.log("Login failed");
+						console.log('Login failed');
 						credentials.error = true;
 					}
 					self.setAuthenticated(data.principal);
@@ -79,8 +79,8 @@ angular.module('module.config.system', [
 			},
 			updatePrincipalUser: function (appMetadataSet) {
 				var self = this;
-				appMetadataSet.metadataEvents.publish("ev:entityList:" + "user" + ":update", function () {
-					var entityList = appMetadataSet.getEntityList("user");
+				appMetadataSet.metadataEvents.publish('ev:entityList:' + 'user' + ':update', function () {
+					var entityList = appMetadataSet.getEntityList('user');
 					if (entityList) {
 						self.currentUser = entityList.findEntityById(self.currentUserId);
 					}

@@ -24,7 +24,7 @@
             entityEditForm.metadataName = this.metadataName;
             entityEditForm.appMetadataSet = this.appMetadataSet;
             entityEditForm.metadataSpecification = metadataSpecification;
-            entityEditForm.editFormName = "New " + this.metadataName + ":";
+            entityEditForm.editFormName = 'New ' + this.metadataName + ':';
             entityEditForm.formProperties = metadataSpecification.metadataObject.fmEditForm.metadataEditFieldsSet;
             entityEditForm.formPropertiesPlacing = metadataSpecification.metadataObject.fmEditForm.metadataEditFieldsPlacing;
 
@@ -49,7 +49,7 @@
             var entityList = this.appMetadataSet.getEntityList(this.metadataName);
             var self = this;
             entityList.addEntityByTemplate(template, function () {
-                self.appMetadataSet.metadataEvents.publish("ev:entityList:" + self.metadataName + ":update", function () {
+                self.appMetadataSet.metadataEvents.publish('ev:entityList:' + self.metadataName + ':update', function () {
                     self.closeEditForm();
                 });
             });
@@ -71,18 +71,18 @@
         return resource(
             appEnvironment.getAppHttpUrl('/entity/:entityName/:entityId'),
             {
-                entityName: "@entityName",
-                entityId: "@entityId"
+                entityName: '@entityName',
+                entityId: '@entityId'
             },
             {
                 getEntity: {
-                    method: "GET"
+                    method: 'GET'
                 },
                 createEntity: {
-                    method: "POST"
+                    method: 'POST'
                 },
                 deleteEntity: {
-                    method: "DELETE"
+                    method: 'DELETE'
                 }
             }
         );

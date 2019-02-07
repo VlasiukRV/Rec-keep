@@ -21,51 +21,51 @@ angular.module('module.ui.main-menu', [
 }])
 
 .factory('menuGeneral', [function () {	
-	var homeDashboard = varInterfaceUtill.getNewCommand("homeDashboard", "Dashboard", function() {
+	var homeDashboard = varInterfaceUtill.getNewCommand('homeDashboard', 'Dashboard', function() {
 
 	});
 
-	var homeDD = varInterfaceUtill.getNewDropdownCommand("homeDD", "Home")
+	var homeDD = varInterfaceUtill.getNewDropdownCommand('homeDD', 'Home')
 				.addCommand(homeDashboard);
-	homeDD.icon = "fa fa-home";
+	homeDD.icon = 'fa fa-home';
 
-	return varInterfaceUtill.getNewGroupCommand("generalG", "GENERAL")
+	return varInterfaceUtill.getNewGroupCommand('generalG', 'GENERAL')
 				.addCommand(homeDD);
 }])
 
 .factory('menuModel', [function () {
-	var modelDD = varInterfaceUtill.getNewDropdownCommand("modelDD", "Records");
-	modelDD.icon = "fa fa-edit";
+	var modelDD = varInterfaceUtill.getNewDropdownCommand('modelDD', 'Records');
+	modelDD.icon = 'fa fa-edit';
 
 	return modelDD;
 }])
 
 .factory('menuSystem', ['resourceService', 'menuModel', function (resourceService, menuModel) {
-	var menuSystem = varInterfaceUtill.getNewDropdownCommand("systemDD", "System")
-	.addCommand(varInterfaceUtill.getNewCommand("initDataBase", "initDataBase", function () {
-		varInterfaceUtill.ExecuteSystemCommand(resourceService, "jdbc/initDataBase");
+	var menuSystem = varInterfaceUtill.getNewDropdownCommand('systemDD', 'System')
+	.addCommand(varInterfaceUtill.getNewCommand('initDataBase', 'initDataBase', function () {
+		varInterfaceUtill.ExecuteSystemCommand(resourceService, 'jdbc/initDataBase');
 	}))
-	.addCommand(varInterfaceUtill.getNewCommand("runCreateReport", "runCreateReport", function () {
-		varInterfaceUtill.ExecuteSystemCommand(resourceService, "taskScheduler/runCreateReport");
+	.addCommand(varInterfaceUtill.getNewCommand('runCreateReport', 'runCreateReport', function () {
+		varInterfaceUtill.ExecuteSystemCommand(resourceService, 'taskScheduler/runCreateReport');
 	}))
-	.addCommand(varInterfaceUtill.getNewCommand("stopCreateReport", "stopCreateReport", function () {
-		varInterfaceUtill.ExecuteSystemCommand(resourceService, "taskScheduler/stopCreateReport");
+	.addCommand(varInterfaceUtill.getNewCommand('stopCreateReport', 'stopCreateReport', function () {
+		varInterfaceUtill.ExecuteSystemCommand(resourceService, 'taskScheduler/stopCreateReport');
 	}))
-	.addCommand(varInterfaceUtill.getNewCommand("runArchiveService", "runArchiveService", function () {
-		varInterfaceUtill.ExecuteSystemCommand(resourceService, "taskScheduler/runArchiveService");
+	.addCommand(varInterfaceUtill.getNewCommand('runArchiveService', 'runArchiveService', function () {
+		varInterfaceUtill.ExecuteSystemCommand(resourceService, 'taskScheduler/runArchiveService');
 	}))
-	.addCommand(varInterfaceUtill.getNewCommand("stopArchiveService", "stopArchiveService", function () {
-		varInterfaceUtill.ExecuteSystemCommand(resourceService, "taskScheduler/stopArchiveService");
+	.addCommand(varInterfaceUtill.getNewCommand('stopArchiveService', 'stopArchiveService', function () {
+		varInterfaceUtill.ExecuteSystemCommand(resourceService, 'taskScheduler/stopArchiveService');
 	}))
-	.addCommand(varInterfaceUtill.getNewCommand("sendMail", "sendMail", function () {
-		varInterfaceUtill.ExecuteSystemCommand(resourceService, "taskScheduler/sendMail");
+	.addCommand(varInterfaceUtill.getNewCommand('sendMail', 'sendMail', function () {
+		varInterfaceUtill.ExecuteSystemCommand(resourceService, 'taskScheduler/sendMail');
 	}))
-	.addCommand(varInterfaceUtill.getNewCommand("interruptTaskExecutor", "interruptTaskExecutor", function () {
-		varInterfaceUtill.ExecuteSystemCommand(resourceService, "taskScheduler/interruptTaskExecutor");
+	.addCommand(varInterfaceUtill.getNewCommand('interruptTaskExecutor', 'interruptTaskExecutor', function () {
+		varInterfaceUtill.ExecuteSystemCommand(resourceService, 'taskScheduler/interruptTaskExecutor');
 	}));
 
-    menuSystem.icon = "fa fa-plug";
-	return varInterfaceUtill.getNewGroupCommand("systemG", "System")
+    menuSystem.icon = 'fa fa-plug';
+	return varInterfaceUtill.getNewGroupCommand('systemG', 'System')
 	.addCommand(menuModel)
 	.addCommand(menuSystem)
 	;	

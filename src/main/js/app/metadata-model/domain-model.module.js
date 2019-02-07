@@ -18,19 +18,19 @@ angular.module('module.domain-model',
             fnGetEntityInstance: function () {
                 	return new Farm();
             	},
-            metadataName: "farm",
-            metadataRepresentation: "farm",
-            metadataDescription: "Farm list",
+            metadataName: 'farm',
+            metadataRepresentation: 'farm',
+            metadataDescription: 'Farm list',
             entityField: {
                 objectField: {},
                 entityField: {
 
                     // entity field
                     name: {
-                        value: "",
+                        value: '',
                         fieldDescription: {
-                            inputType: "text",
-                            label: "name",
+                            inputType: 'text',
+                            label: 'name',
                             availability: true,
                             entityListService: null
                         }
@@ -42,7 +42,7 @@ angular.module('module.domain-model',
                     representation: {
                         enumerable: true,
                         get: function () {
-                            return "" + this.name;
+                            return '' + this.name;
                         }
                     }
 
@@ -54,16 +54,16 @@ angular.module('module.domain-model',
             	},
             entityFieldsPlacing: [
                 [
-                    {editFieldId: "id", fieldLength: 3},
+                    {editFieldId: 'id', fieldLength: 3},
                     {
                         editFieldId: [
-                            [{editFieldId: "name", fieldLength: 12}]
+                            [{editFieldId: 'name', fieldLength: 12}]
                         ],
                         fieldLength: 5
                     }
                 ],
                 [
-                    {editFieldId: "description", fieldLength: 12}
+                    {editFieldId: 'description', fieldLength: 12}
                 ]
             ]
         };
@@ -80,19 +80,19 @@ angular.module('module.domain-model',
             fnGetEntityInstance: function () {
                 return new Project();
             },
-            metadataName: "project",
-            metadataRepresentation: "Project",
-            metadataDescription: "Project list",
+            metadataName: 'project',
+            metadataRepresentation: 'Project',
+            metadataDescription: 'Project list',
             entityField: {
                 objectField: {},
                 entityField: {
 
                     // entity field
                     name: {
-                        value: "",
+                        value: '',
                         fieldDescription: {
-                            inputType: "text",
-                            label: "name",
+                            inputType: 'text',
+                            label: 'name',
                             availability: true,
                             entityListService: null
                         }
@@ -104,7 +104,7 @@ angular.module('module.domain-model',
                     representation: {
                         enumerable: true,
                         get: function () {
-                            return "" + this.name;
+                            return '' + this.name;
                         }
                     }
 
@@ -113,16 +113,16 @@ angular.module('module.domain-model',
 
             entityFieldsPlacing: [
                 [
-                    {editFieldId: "id", fieldLength: 3},
+                    {editFieldId: 'id', fieldLength: 3},
                     {
                         editFieldId: [
-                            [{editFieldId: "name", fieldLength: 12}]
+                            [{editFieldId: 'name', fieldLength: 12}]
                         ],
                         fieldLength: 5
                     }
                 ],
                 [
-                    {editFieldId: "description", fieldLength: 12}
+                    {editFieldId: 'description', fieldLength: 12}
                 ]
             ]
         };	
@@ -140,9 +140,9 @@ angular.module('module.domain-model',
             fnGetEntityInstance: function () {
                 return new User();
             },
-            metadataName: "user",
-            metadataRepresentation: "User",
-            metadataDescription: "User list",
+            metadataName: 'user',
+            metadataRepresentation: 'User',
+            metadataDescription: 'User list',
             entityField: {
                 objectField: {
                     icon: 'fa user',
@@ -150,28 +150,28 @@ angular.module('module.domain-model',
                 entityField: {
 
                     username: {
-                        value: "",
+                        value: '',
                         fieldDescription: {
-                            inputType: "text",
-                            label: "username",
+                            inputType: 'text',
+                            label: 'username',
                             availability: true,
                             entityListService: null
                         }
                     },
                     password: {
-                        value: "",
+                        value: '',
                         fieldDescription: {
-                            inputType: "text",
-                            label: "password",
+                            inputType: 'text',
+                            label: 'password',
                             availability: true,
                             entityListService: null
                         }
                     },
                     mailAddress: {
-                        value: "",
+                        value: '',
                         fieldDescription: {
-                            inputType: "text",
-                            label: "mailAddress",
+                            inputType: 'text',
+                            label: 'mailAddress',
                             availability: true,
                             entityListService: null
                         }
@@ -179,8 +179,8 @@ angular.module('module.domain-model',
                     enabled: {
                         value: false,
                         fieldDescription: {
-                            inputType: "checkbox",
-                            label: "enabled",
+                            inputType: 'checkbox',
+                            label: 'enabled',
                             availability: false,
                             entityListService: null
                         }
@@ -192,7 +192,7 @@ angular.module('module.domain-model',
                     representation: {
                         enumerable: true,
                         get: function () {
-                            return "" + this.username + " (" + this.description + ") ";
+                            return '' + this.username + ' (' + this.description + ') ';
                         }
                     }
 
@@ -205,20 +205,20 @@ angular.module('module.domain-model',
 
             entityFieldsPlacing: [
                 [
-                    {editFieldId: "id", fieldLength: 3}
+                    {editFieldId: 'id', fieldLength: 3}
                 ],
                 [
                     {
                         editFieldId: [
-                            [{editFieldId: "username", fieldLength: 12}],
-                            [{editFieldId: "password", fieldLength: 12}],
-                            [{editFieldId: "mailAddress", fieldLength: 12}]
+                            [{editFieldId: 'username', fieldLength: 12}],
+                            [{editFieldId: 'password', fieldLength: 12}],
+                            [{editFieldId: 'mailAddress', fieldLength: 12}]
                         ],
                         fieldLength: 5
                     }
                 ],
                 [
-                    {editFieldId: "description", fieldLength: 12}
+                    {editFieldId: 'description', fieldLength: 12}
                 ]
             ]
 
@@ -238,21 +238,21 @@ angular.module('module.domain-model',
             fnGetEntityInstance: function () {
                 return new Role();
             },
-            metadataName: "role",
-            metadataRepresentation: "Role",
-            metadataDescription: "Role list",
+            metadataName: 'role',
+            metadataRepresentation: 'Role',
+            metadataDescription: 'Role list',
             entityField: {
                 objectField: {
-                    icon: "fa-group",
+                    icon: 'fa-group',
                 },
                 entityField: {
 
                     // entity field
                     role: {
-                        value: "",
+                        value: '',
                         fieldDescription: {
-                            inputType: "text",
-                            label: "role",
+                            inputType: 'text',
+                            label: 'role',
                             availability: true,
                             entityListService: null
                         }
@@ -260,12 +260,12 @@ angular.module('module.domain-model',
                     users: {
                         value: [],
                         fieldDescription: {
-                            inputType: "multiselect",
-                            label: "users",
+                            inputType: 'multiselect',
+                            label: 'users',
                             availability: true,
                             entityListService: function () {
                                 var metadataSet = $injector.get('metadataSet');
-                                return metadataSet.getEntityList("user");
+                                return metadataSet.getEntityList('user');
                             }
                         }
                     }
@@ -276,7 +276,7 @@ angular.module('module.domain-model',
                     representation: {
                         enumerable: true,
                         get: function () {
-                            return "" + this.role;
+                            return '' + this.role;
                         }
                     }
 
@@ -284,28 +284,28 @@ angular.module('module.domain-model',
             },
             entityFieldsPlacing: [
                 [
-                    {editFieldId: "id", fieldLength: 3},
+                    {editFieldId: 'id', fieldLength: 3},
                     {
                         editFieldId: [
-                            [{editFieldId: "role", fieldLength: 12}]
+                            [{editFieldId: 'role', fieldLength: 12}]
                         ],
                         fieldLength: 5
                     }
                 ],
                 [
-                    {editFieldId: "users", fieldLength: 5},
-                    {editFieldId: "description", fieldLength: 12}
+                    {editFieldId: 'users', fieldLength: 5},
+                    {editFieldId: 'description', fieldLength: 12}
                 ]
             ]
         };
         metadataEntitySpecification_Role.entityField.entityField.users.value.representationList = function () {
-            var str = "";
+            var str = '';
             var k = 0;
             while (true) {
                 if (k === this.length) {
                     break;
                 }
-                str = str + "; " + this[k].representation;
+                str = str + '; ' + this[k].representation;
                 k = k + 1;
 
             }
@@ -319,7 +319,7 @@ angular.module('module.domain-model',
                 if (k === template.length) {
                     break;
                 }
-                var entity = metadataSet.getEntityInstance("user");
+                var entity = metadataSet.getEntityInstance('user');
                 appUtils.fillValuesProperty(template[k], entity);
                 this.push(entity);
                 k = k + 1;
@@ -341,9 +341,9 @@ angular.module('module.domain-model',
 	        fnGetEntityInstance: function () {
 	            return new Task();
 	        },
-	        metadataName: "task",
-	        metadataRepresentation: "Task",
-	        metadataDescription: "Task list",
+	        metadataName: 'task',
+	        metadataRepresentation: 'Task',
+	        metadataDescription: 'Task list',
 	        entityField: {
 	            objectField: {},
 	            entityField: {
@@ -351,27 +351,27 @@ angular.module('module.domain-model',
 	                plainTime:{
 	                    value: 0,
 	                    fieldDescription: {
-	                        inputType: "number",
-	                        label: "plain time",
+	                        inputType: 'number',
+	                        label: 'plain time',
 	                        availability: true,
 	                        entityListService: null
 	                    }
 	                },
 
 	                date: {
-	                    value: "",
+	                    value: '',
 	                    fieldDescription: {
-	                        inputType: "date",
-	                        label: "date",
+	                        inputType: 'date',
+	                        label: 'date',
 	                        availability: true,
 	                        entityListService: null
 	                    }
 	                },
 	                title: {
-	                    value: "",
+	                    value: '',
 	                    fieldDescription: {
-	                        inputType: "text",
-	                        label: "title",
+	                        inputType: 'text',
+	                        label: 'title',
 	                        availability: true,
 	                        entityListService: null
 	                    }
@@ -379,56 +379,56 @@ angular.module('module.domain-model',
 	                author: {
 	                    value: {},
 	                    fieldDescription: {
-	                        inputType: "select",
-	                        label: "author",
+	                        inputType: 'select',
+	                        label: 'author',
 	                        availability: true,
 	                        getInstance: function(){
                                 var metadataSet = $injector.get('metadataSet');
-	                            return metadataSet.getEntityInstance("user");
+	                            return metadataSet.getEntityInstance('user');
 	                        },
 	                        entityListService: function () {
                                 var metadataSet = $injector.get('metadataSet');
-	                            return metadataSet.getEntityList("user");
+	                            return metadataSet.getEntityList('user');
 	                        }
 	                    }
 	                },
 	                executor: {
 	                    value: [],
 	                    fieldDescription: {
-	                        inputType: "multiselect",
-	                        label: "executor",
+	                        inputType: 'multiselect',
+	                        label: 'executor',
 	                        availability: true,
 	                        entityListService: function () {
                                 var metadataSet = $injector.get('metadataSet');
-	                            return metadataSet.getEntityList("user");
+	                            return metadataSet.getEntityList('user');
 	                        }
 	                    }
 	                },
 	                project: {
 	                    value: {},
 	                    fieldDescription: {
-	                        inputType: "select",
-	                        label: "project",
+	                        inputType: 'select',
+	                        label: 'project',
 	                        availability: true,
 	                        getInstance: function(){
                                 var metadataSet = $injector.get('metadataSet');
-	                            return metadataSet.getEntityInstance("project");
+	                            return metadataSet.getEntityInstance('project');
 	                        },
 	                        entityListService: function () {
                                 var metadataSet = $injector.get('metadataSet');
-	                            return metadataSet.getEntityList("project");
+	                            return metadataSet.getEntityList('project');
 	                        }
 	                    }
 	                },
 	                state: {
-	                    value: "TODO",
+	                    value: 'TODO',
 	                    fieldDescription: {
-	                        inputType: "enum",
-	                        label: "state",
+	                        inputType: 'enum',
+	                        label: 'state',
 	                        availability: true,
 	                        entityListService: function(){
                                 var metadataSet = $injector.get('metadataSet');
-	                            return metadataSet.getEntityList("taskState");
+	                            return metadataSet.getEntityList('taskState');
 	                        }
 	                    }
 	                }
@@ -439,7 +439,7 @@ angular.module('module.domain-model',
 	                representation: {
 	                    enumerable: true,
 	                    get: function () {
-	                        return "" + this.date + " /" + this.title + "/ (" + this.description + ") ";
+	                        return '' + this.date + ' /' + this.title + '/ (' + this.description + ') ';
 	                    }
 	                }
 
@@ -448,43 +448,43 @@ angular.module('module.domain-model',
 
 	        entityFieldsPlacing: [
 	            [
-	                    {editFieldId: "id", fieldLength: 3},
+	                    {editFieldId: 'id', fieldLength: 3},
 	                    {
 	                        editFieldId: [
 	                            [
-	                                {editFieldId: "date", fieldLength: 6},
-	                                {editFieldId: "state", fieldLength: 6}
+	                                {editFieldId: 'date', fieldLength: 6},
+	                                {editFieldId: 'state', fieldLength: 6}
 	                            ],
-	                            [{editFieldId: "title", fieldLength: 12}],
+	                            [{editFieldId: 'title', fieldLength: 12}],
 	                            [
-	                                {editFieldId: "project", fieldLength: 7},
-	                                {editFieldId: "executor", fieldLength: 5}
+	                                {editFieldId: 'project', fieldLength: 7},
+	                                {editFieldId: 'executor', fieldLength: 5}
 	                            ]
 	                        ],
 	                        fieldLength: 9
 	                    }
 	            ],
 	            [
-	                {editFieldId: "plainTime", fieldLength: 3}
+	                {editFieldId: 'plainTime', fieldLength: 3}
 	            ],
 	            [
-	                {editFieldId: "description", fieldLength: 12}
+	                {editFieldId: 'description', fieldLength: 12}
 	            ],
 	            [
-	                {editFieldId: "author", fieldLength: 3}
+	                {editFieldId: 'author', fieldLength: 3}
 	            ]
 	        ]
 
 	    };
 
 	    metadataEntitySpecification_Task.entityField.entityField.executor.value.representationList = function() {
-	        var str = "";
+	        var str = '';
 	        var k=0;
 	        while (true) {
 	            if(k === this.length){
 	                break;
 	            }
-	            str = str+"; "+this[k].representation;
+	            str = str+'; '+this[k].representation;
 	            k = k+1;
 
 	        }
@@ -498,7 +498,7 @@ angular.module('module.domain-model',
 	            if(k === template.length){
 	                break;
 	            }
-	            var entity = metadataSet.getEntityInstance("user");
+	            var entity = metadataSet.getEntityInstance('user');
 	            appUtils.fillValuesProperty(template[k], entity);
 	            this.push(entity);
 	            k = k+1;
@@ -514,7 +514,7 @@ angular.module('module.domain-model',
         var EnumTaskState = new Enum();
         return {
             enumClass: EnumTaskState,
-            metadataName: "taskState"
+            metadataName: 'taskState'
         };    
     }]
 )

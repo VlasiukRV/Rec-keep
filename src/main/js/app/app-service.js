@@ -46,26 +46,26 @@
 
     appService.setRoute = function (routeProvider) {
         routeProvider
-            .when("/user", {
-                templateUrl: "/appTaskList/security/usersList"
+            .when('/user', {
+                templateUrl: '/appTaskList/security/usersList'
             })
-            .when("/role", {
-                templateUrl: "/appTaskList/security/roleList"
+            .when('/role', {
+                templateUrl: '/appTaskList/security/roleList'
             })
-            .when("/farm", {
+            .when('/farm', {
                 templateUrl: '/appTaskList/farmsList'
             })            
-            .when("/project", {
+            .when('/project', {
                 templateUrl: '/appTaskList/projectsList'
             })
-            .when("/task", {
-                templateUrl: "/appTaskList/tasksList"
+            .when('/task', {
+                templateUrl: '/appTaskList/tasksList'
             })
             .when('/login', {
                 templateUrl: '/login'
             })            
-            .when("/currentPrincipalInformation", {
-                templateUrl: "/appTaskList/currentPrincipalInformation"
+            .when('/currentPrincipalInformation', {
+                templateUrl: '/appTaskList/currentPrincipalInformation'
             })
             .otherwise({
                 redirectTo: '/appTaskList'
@@ -89,7 +89,7 @@
                 if (typeof response.data === 'string') {
                     if (response.data.indexOf instanceof Function &&
                         response.data.indexOf('id="app-login-page"') !== -1) {
-                        $location.path("/login");
+                        $location.path('/login');
                 }
             }
             return response;
