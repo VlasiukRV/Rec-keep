@@ -19,6 +19,9 @@ angular.module('module.ui.list-form', [
 	mediaList: {
 		name: 'mediaList',
 		quantityProperties: 5,
+	},
+	calendar: {
+		name: 'calendar'
 	}
 })
 
@@ -57,6 +60,13 @@ angular.module('module.ui.list-form', [
 							selfScope.entityListForm.setListType(fmListForm_TYPES.tile);
 						},
 						text:'swich Tile',
+						ico: 'glyphicon glyphicon-th'
+					},
+					swichCalendar: {
+						command: function (selfScope) {
+							selfScope.entityListForm.setListType(fmListForm_TYPES.calendar);
+						},
+						text:'swich Calendar',
 						ico: 'glyphicon glyphicon-th'
 					}
 
@@ -109,6 +119,10 @@ angular.module('module.ui.list-form', [
 
 .directive('entityListForm', function () {
 	return moduleUI.formsDirective.directiveEntityListForm();
+})
+
+.directive('calendar', function () {
+	return moduleUI.formsDirective.directiveCalendar();
 })
 
 ;

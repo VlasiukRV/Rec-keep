@@ -7,7 +7,8 @@
     "build:css": "grunt build-css",
     "watch": "grunt watch",
     "build": "npm run build:js && npm run build:css",
-    "start": "npm run build && npm run watch"
+    "start": "npm run build && npm run watch",
+    "deploy-frontend-local": "npm run build && grunt deploy-frontend-local"
   },
   "devDependencies": {
     "bulma": "^0.7.2",

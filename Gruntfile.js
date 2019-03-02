@@ -88,6 +88,12 @@ module.exports = function (grunt) {
                         'src/main/js/app-lib/angularjs/ui-bootstrap.js',
                     ],
                     'src/main/resources/static/js/gentelella.js': [
+
+                        'src/main/js/gentelella/vendors/nprogress.js',
+
+                        'src/main/js/gentelella/vendors/moment.min.js',
+                        'src/main/js/gentelella/vendors/fullcalendar.min.js',
+                        
                         'src/main/js/gentelella/gentelella-vendors.js',
                         'src/main/js/gentelella/gentelella.js',
                     ],

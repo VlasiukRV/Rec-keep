@@ -78,7 +78,7 @@ angular.module('module.metadata-model',
             Entity.includeMthd({
                 isEmpty: function () {
                     // ToDo write what attribute of empty entity
-                    return this.id === 0 || this.id == null;
+                    return this.id === 0 || this.id == null || this.id === '';
                 },
 
                 translateToEntityJSON: function () {

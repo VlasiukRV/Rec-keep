@@ -65,6 +65,16 @@
         <div class="col-sm-12">
 
             <div ng-switch on="entityListForm.listType.name">
+                
+                <div ng-switch-when="calendar">
+
+                    <calendar
+                            toolbox-menu="entityListForm.entityToolboxMenu"
+                            entity-list-form="entityListForm">
+
+                    </calendar>
+
+                </div>
 
                 <div ng-switch-when="tile">
 

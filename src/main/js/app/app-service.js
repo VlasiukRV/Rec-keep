@@ -101,8 +101,8 @@
             }
             return $q.reject(response);
             }
+        }
     };
-};
 
 
 })(window);

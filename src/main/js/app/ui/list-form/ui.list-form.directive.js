@@ -43,4 +43,71 @@
         };
     };
 
+    formsDirective.directiveCalendar = function () {
+        return {
+            restrict: 'E',
+            require: '',
+            scope: {
+                entityListForm: '=',
+                toolboxMenu: '=?'
+            },
+            link: function ($scope, element, attrs) {
+
+                if (typeof ($.fn.fullCalendar) === 'undefined') {
+                    return;
+                }
+
+                if (!$scope.toolboxMenu) {
+                    $scope.toolboxMenu = {};
+                }
+
+                var fullCalendar_events = [];
+                angular.forEach($scope.entityListForm.entitiesFiltered, function (entity) {
+                    fullCalendar_events.push({
+                        id: entity.id,
+                        title: entity.representation,
+                        start: entity.date,
+                        end: entity.date + entity.plainTime,
+                        allDay: false,
+
+                        entity_scope: {
+                            entityListForm: $scope.entityListForm,
+                            entity: entity
+                        }
+                    })
+                });
+
+                var date = new Date(),
+                    d = date.getDate(),
+                    m = date.getMonth(),
+                    y = date.getFullYear(),
+                    started,
+                    categoryClass;
+
+                var calendar = $('<div> </div>').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay,listMonth'
+                    },
+                    selectable: true,
+                    selectHelper: true,
+                    editable: true,
+                    events: fullCalendar_events,
+                    select: function (start, end, allDay) {
+                        $scope.entityListForm.eventAddNewEntity();
+                    },
+                    eventClick: function(calEvent, jsEvent, view) {
+                        $scope.toolboxMenu.editEntity.command(calEvent.entity_scope);
+                    }
+                });
+
+                $(element).append(calendar);
+                calendar.fullCalendar('today');
+            },
+            controller: ['$scope', function ($scope) {
+            }]
+        }
+    }
+
 })(window);

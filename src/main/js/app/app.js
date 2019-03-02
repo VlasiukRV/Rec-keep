@@ -49,7 +49,8 @@ app
     return dataStorage;
 }])
 
-.service('appInitialization', [
+.service('appInitialization', 
+    [
     'abstractAppModel',
     'metadataSet',
     'userInterface',
@@ -139,9 +140,14 @@ app
 
 // Factories
 app
-.factory('myHttpResponseInterceptor', ['$q', '$location', 'errorDescriptions', function ($q, $location, errorDescriptions) {
-    return appService.appHttpResponseInterceptor($q, $location, errorDescriptions);
-}])
+.factory('myHttpResponseInterceptor', 
+    [
+    '$q', 
+    '$location', 
+    'errorDescriptions', 
+    appService.appHttpResponseInterceptor
+    ]
+)
 ;
 
 // Filters
