@@ -26,7 +26,7 @@ public class ServiceTaskSendMailForAuthor extends AbstractServiceTask {
 
     private Set<Task> tasksWithSendMail = new HashSet<>();
 
-    private static final Logger logger = LoggerFactory.getLogger(ServiceTaskArchiveTask.class);
+    private static final Logger logger = LoggerFactory.getLogger(ServiceTaskSendMailForAuthor.class);
 
     // ToDo
     @Value("#{config['mailSenderService.link_app'] ?: 'http://192.168.0.110:8080'}")

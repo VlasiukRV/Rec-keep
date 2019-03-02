@@ -50,7 +50,7 @@ public abstract class AbstractServiceTask extends Thread implements IServiceTask
 
     @Override
     public void run() {
-        logger.info("" +getName()+ " start");
+        /*logger.info("" +getName()+ " start");*/
         do {
             if (Thread.interrupted())    //Проверка прерывания
             {
@@ -62,7 +62,7 @@ public abstract class AbstractServiceTask extends Thread implements IServiceTask
                     this.taskIsRunning = true;
                     runServiceTask();
                 } catch (Exception e) {
-                    logger.error(e.getMessage());
+                    System.out.println(e.getMessage());
                 }
             }
 
@@ -74,7 +74,7 @@ public abstract class AbstractServiceTask extends Thread implements IServiceTask
         }
         while (true);
         this.execute = true;
-        logger.info("" +getName()+ " stop");
+        /*logger.info("" +getName()+ " stop");*/
     }
 
 }
