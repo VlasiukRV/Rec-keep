@@ -1,8 +1,5 @@
 <div class="x_panel">
-    <div class="x_title" hotkey="{
-                                        'alt+ins': addNewEntity,
-                                        'alt+x': closeForm
-                                        }">
+    <div class="x_title"">
         <h2>List
             <span>{{entityListForm.editFormName}}</span>
         </h2>
@@ -71,7 +68,6 @@
                     <calendar
                             toolbox-menu="entityListForm.entityToolboxMenu"
                             entity-list-form="entityListForm">
-
                     </calendar>
 
                 </div>
@@ -164,44 +160,15 @@
                         <li class="media event"
                         ng-repeat="entity in entityListForm.entitiesFiltered">
 
-                            <a class="pull-left border-aero profile_thumb">
-                                <i class="fa fa-user aero"></i>
-                            </a>
-                                <!-- <div class="x_title"> -->
-                                    <span>
-                                        <a ng-click="editEntity(entity.id)">
-                                            {{entity.representation}}
-                                        </a>
-                                    </span>
-                                    <form-toolbox toolbox-menu="entityListForm.entityToolboxMenu"/>
-                                <!-- </div> -->
-
-                            <div class="media-body">
-                                <p ng-repeat="entityProperty in entityListForm.formProperties | limitTo:entityListForm.listType.quantityProperties track by $index">
-                                    <strong>{{entityProperty.label}}: </strong>
-
-                                    <span class="count" ng-switch on="entityProperty.inputType">
-                                        <span ng-switch-when="select">
-                                            {{entity[entityProperty.name].representation}}
-                                        </span>
-                                        <span ng-switch-when="multiselect">
-                                            {{entity[entityProperty.name].representationList()}}
-                                        </span>
-                                        <span ng-switch-when="date">
-                                            {{entity[entityProperty.name] | date:'yyyy-MM-dd'}}
-                                        </span>
-                                        <span ng-switch-default>
-                                            <text-value text-value="entity[entityProperty.name]" limit-length="entityListForm.listType.limitCellLength">
-
-                                            </text-value>
-                                        </span>
-                                    </span>
-
-                                </p>
-                            </div>
+                            <media-card
+                                entity="entity"
+                                toolbox-menu="entityListForm.entityToolboxMenu"
+                                media-properties="entityListForm.formProperties"
+                                options=entityListForm.listType>
+                            </media-card>
 
                         </li>
-
+                        
                     </ul>
 
                 </div>

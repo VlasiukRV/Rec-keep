@@ -4,7 +4,7 @@
   "description": "Record keep application frontends",
   "scripts": {
     "build:js": "grunt build-js",
-    "build:css": "grunt build-css",
+    "build:css": "sass src/main/sass/app.scss src/main/resources/static/css/app.css",
     "watch": "grunt watch",
     "build": "npm run build:js && npm run build:css",
     "start": "npm run build && npm run watch",

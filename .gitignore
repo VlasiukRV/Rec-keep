@@ -25,6 +25,7 @@ nbdist/
 
 ### node ###
 node_modules/
+.sass-cache
 
 src/main/resources/application.properties
 

@@ -1,0 +1,36 @@
+
+	<a class="pull-left border-aero profile_thumb">
+		<i class="fa fa-user aero"></i>
+	</a>
+	<!-- <div class="x_title"> -->
+	<span>
+		<a ng-click="editEntity(entity.id)">
+			{{entity.representation}}
+		</a>
+	</span>
+	<form-toolbox toolbox-menu="toolboxMenu"/>
+	<!-- </div> -->
+
+	<div class="media-body">
+		<p ng-repeat="entityProperty in mediaProperties | limitTo:options.quantityProperties track by $index">
+			<strong>{{entityProperty.label}}: </strong>
+
+			<span class="count" ng-switch on="entityProperty.inputType">
+				<span ng-switch-when="select">
+					{{entity[entityProperty.name].representation}}
+				</span>
+				<span ng-switch-when="multiselect">
+					{{entity[entityProperty.name].representationList()}}
+				</span>
+				<span ng-switch-when="date">
+					{{entity[entityProperty.name] | date:'yyyy-MM-dd'}}
+				</span>
+				<span ng-switch-default>
+					<text-value text-value="entity[entityProperty.name]" limit-length="options.limitCellLength">
+
+					</text-value>
+				</span>
+			</span>
+
+		</p>
+	</div>

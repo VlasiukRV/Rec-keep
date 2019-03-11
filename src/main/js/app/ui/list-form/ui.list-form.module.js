@@ -121,6 +121,10 @@ angular.module('module.ui.list-form', [
 	return moduleUI.formsDirective.directiveEntityListForm();
 })
 
+.directive('mediaCard', function() {
+	return moduleUI.formsDirective.directiveMediaCard();
+})
+
 .directive('calendar', function () {
 	return moduleUI.formsDirective.directiveCalendar();
 })

@@ -381,6 +381,7 @@ $('body').popover({
 });
 
 function init_GentelellaVendorsComponents() {
+    init_sidebar();
     // init_sparklines();
     // init_flot_chart();
     // init_sidebar();
@@ -410,7 +411,7 @@ function init_GentelellaVendorsComponents() {
     // init_gauge();
     // init_PNotify();
     // init_starrr();
-     init_calendar();
+     // init_calendar();
     // init_compose();
     // init_CustomNotification();
     // init_autosize();

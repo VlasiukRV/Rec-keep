@@ -55,11 +55,11 @@
         if (!scope.property) {
             return;
         }
-        if (scope.property.inputType === 'enum') {
-            if (scope.property.entityListService()) {
-                scope.selectList = scope.property.entityListService().list;
-            }
-        } else if (scope.property.inputType === 'select' || scope.property.inputType === 'multiselect') {
+        if (
+            scope.property.inputType === 'select' || 
+            scope.property.inputType === 'multiselect' ||
+            scope.property.inputType === 'enum'
+            ) {
             if (scope.property.entityListService()) {
                 scope.selectList = scope.property.entityListService().list;
             }

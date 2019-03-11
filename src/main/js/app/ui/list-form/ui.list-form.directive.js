@@ -43,13 +43,33 @@
         };
     };
 
+    formsDirective.directiveMediaCard = function () {
+        return {
+            restrict: 'E',
+            require: '',
+            templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-media-card.html',
+            scope: {
+                entity: '=',
+                mediaProperties: '=',
+                toolboxMenu: '=?',                
+                options: '='
+            },
+            link: function ($scope, element, attrs) {
+                console.log($scope.entity);
+            },
+            controller: ['$scope', function ($scope) {
+                console.log($scope.entity);
+            }]
+        }
+    };
+
     formsDirective.directiveCalendar = function () {
         return {
             restrict: 'E',
             require: '',
             scope: {
-                entityListForm: '=',
-                toolboxMenu: '=?'
+                toolboxMenu: '=?',
+                entityListForm: '='
             },
             link: function ($scope, element, attrs) {
 
