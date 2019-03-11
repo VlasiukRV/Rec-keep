@@ -326,7 +326,7 @@ function countChecked() {
 $(document).ready(function () {
     $(".expand").on("click", function () {
         $(this).next().slideToggle(200);
-        $expand = $(this).find(">:first-child");
+        var $expand = $(this).find(">:first-child");
 
         if ($expand.text() == "+") {
             $expand.text("-");
@@ -382,9 +382,9 @@ $('body').popover({
 
 function init_GentelellaVendorsComponents() {
     init_sidebar();
+
     // init_sparklines();
     // init_flot_chart();
-    // init_sidebar();
     // init_wysiwyg();
     // init_InputMask();
     // init_JQVmap();
@@ -411,7 +411,6 @@ function init_GentelellaVendorsComponents() {
     // init_gauge();
     // init_PNotify();
     // init_starrr();
-     // init_calendar();
     // init_compose();
     // init_CustomNotification();
     // init_autosize();
