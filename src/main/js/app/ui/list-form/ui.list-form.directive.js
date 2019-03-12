@@ -43,6 +43,64 @@
         };
     };
 
+    formsDirective.directiveFieldValue = function () {
+        return {
+            restrict: 'E',
+            require: '',
+            templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-field-value.html',
+            scope: {
+                entity: '=',
+                field: '=',
+            },
+            link: function ($scope, element, attrs) {
+                
+            },
+            controller: ['$scope', function ($scope) {
+                
+            }]
+        }
+    };
+
+    formsDirective.directiveTile = function () {
+        return {
+            restrict: 'E',
+            require: '',
+            templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-tile.html',
+            scope: {
+                entity: '=',
+                fields: '=',
+                toolboxMenu: '=?',                
+                options: '='
+            },
+            link: function ($scope, element, attrs) {
+                
+            },
+            controller: ['$scope', function ($scope) {
+                
+            }]
+        }
+    };
+
+    formsDirective.directivePanel = function () {
+        return {
+            restrict: 'E',
+            require: '',
+            templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-panel.html',
+            scope: {
+                entity: '=',
+                fields: '=',
+                toolboxMenu: '=?',                
+                options: '='
+            },
+            link: function ($scope, element, attrs) {
+                
+            },
+            controller: ['$scope', function ($scope) {
+                
+            }]
+        }
+    };
+
     formsDirective.directiveMediaCard = function () {
         return {
             restrict: 'E',
@@ -50,15 +108,15 @@
             templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-media-card.html',
             scope: {
                 entity: '=',
-                mediaProperties: '=',
+                fields: '=',
                 toolboxMenu: '=?',                
                 options: '='
             },
             link: function ($scope, element, attrs) {
-                console.log($scope.entity);
+                
             },
             controller: ['$scope', function ($scope) {
-                console.log($scope.entity);
+                
             }]
         }
     };

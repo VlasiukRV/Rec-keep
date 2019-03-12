@@ -1,0 +1,20 @@
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>
+            <a ng-click="editEntity(entity.id)">
+                {{entity.representation}}
+            </a>
+        </h2>
+        <form-toolbox toolbox-menu="toolboxMenu"/>
+    </div>
+
+    <div class="x_content" style="display: block;">
+        <div class="tile-stats">
+            <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
+            <div class="count">{{entity.id}}</div>
+            <!--<h3>{{entityEditForm.editFormName}}</h3>-->
+            <p>{{entity.representation}}</p>
+        </div>
+    </div>
+</div>

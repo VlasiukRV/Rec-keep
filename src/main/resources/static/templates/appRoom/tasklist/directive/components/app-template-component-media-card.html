@@ -12,25 +12,13 @@
 	<!-- </div> -->
 
 	<div class="media-body">
-		<p ng-repeat="entityProperty in mediaProperties | limitTo:options.quantityProperties track by $index">
-			<strong>{{entityProperty.label}}: </strong>
+		<p ng-repeat="field in fields | limitTo:options.quantityProperties track by $index">
 
-			<span class="count" ng-switch on="entityProperty.inputType">
-				<span ng-switch-when="select">
-					{{entity[entityProperty.name].representation}}
-				</span>
-				<span ng-switch-when="multiselect">
-					{{entity[entityProperty.name].representationList()}}
-				</span>
-				<span ng-switch-when="date">
-					{{entity[entityProperty.name] | date:'yyyy-MM-dd'}}
-				</span>
-				<span ng-switch-default>
-					<text-value text-value="entity[entityProperty.name]" limit-length="options.limitCellLength">
-
-					</text-value>
-				</span>
-			</span>
+			<strong>{{field.label}}: </strong>
+			<field-value
+				entity="entity"
+				field="field">
+			</field-value>
 
 		</p>
 	</div>

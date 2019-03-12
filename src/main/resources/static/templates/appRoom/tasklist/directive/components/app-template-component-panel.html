@@ -1,0 +1,29 @@
+
+<div class="x_panel fixed_height_390">
+	<div class="x_title">
+		<h2>
+			<a ng-click="editEntity(entity.id)">
+				{{entity.representation}}
+			</a>
+		</h2>
+		<form-toolbox toolbox-menu="toolboxMenu"/>
+	</div>
+
+	<div class="x_content" style="display: block;">
+		<div>
+			<ul class="list-inline widget_tally">
+				<li ng-repeat="field in fields | limitTo:options.quantityProperties track by $index">
+					<p>
+
+						<span class="month">{{field.label}}</span>
+						<field-value
+							entity="entity"
+							field="field">
+						</field-value>
+						
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

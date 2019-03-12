@@ -121,6 +121,18 @@ angular.module('module.ui.list-form', [
 	return moduleUI.formsDirective.directiveEntityListForm();
 })
 
+.directive('fieldValue', function() {
+	return moduleUI.formsDirective.directiveFieldValue();
+})
+
+.directive('tile', function() {
+	return moduleUI.formsDirective.directiveTile();
+})
+
+.directive('panel', function() {
+	return moduleUI.formsDirective.directivePanel();
+})
+
 .directive('mediaCard', function() {
 	return moduleUI.formsDirective.directiveMediaCard();
 })

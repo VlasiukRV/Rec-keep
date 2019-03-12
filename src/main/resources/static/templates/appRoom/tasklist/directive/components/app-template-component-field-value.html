@@ -1,0 +1,18 @@
+
+<span class="count" ng-switch on="field.inputType">
+	<span ng-switch-when="select">
+		{{entity[field.name].representation}}
+	</span>
+	<span ng-switch-when="multiselect">
+		{{entity[field.name].representationList()}}
+	</span>
+	<span ng-switch-when="date">
+		{{entity[field.name] | date:'yyyy-MM-dd'}}
+	</span>
+	<span ng-switch-default>
+		<text-value 
+			text-value="entity[field.name]"
+			limit-length="options.limitCellLength">
+		</text-value>
+	</span>
+</span>
