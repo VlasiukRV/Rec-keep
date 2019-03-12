@@ -141,7 +141,6 @@
                                     {{field.label}}
                                 </th>
                                 <th></th>
-                                <th></th>
                             </tr>
                             </thead>
 
@@ -149,25 +148,13 @@
                             <tr class="hvr-curl-top-left even pointer" ng-repeat="entity in entityListForm.entitiesFiltered">
                                 <td ng-repeat="field in entityListForm.formProperties track by $index">
                                     <field-value
+                                        ng-click="editEntity(entity.id)"
                                         entity="entity"
                                         field="field">
                                     </field-value>
                                 </td>
                                 <td>
-                                    <div class="buttons fade">
-                                        <button ng-click="deleteEntity(entity.id)" size="sm" title="remove task"
-                                                type="button">
-                                            <span class="glyphicon glyphicon-trash"></span>
-                                        </button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="buttons fade">
-                                        <button ng-click="editEntity(entity.id)" size="sm" title="edit task"
-                                                type="button">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </button>
-                                    </div>
+                                    <form-toolbox toolbox-menu="entityListForm.entityToolboxMenu"/>
                                 </td>
                             </tr>
 
@@ -176,7 +163,6 @@
                                     ng-repeat="field in entityListForm.formProperties track by $index">
                                     <!--<img src="/img/FFFFFF-0.8.png">-->
                                 </td>
-                                <td></td>
                                 <td></td>
                             </tr>
                             </tbody>
