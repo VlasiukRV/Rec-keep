@@ -12,6 +12,7 @@
 	<!-- </div> -->
 
 	<div class="media-body">
+
 		<p ng-repeat="field in fields | limitTo:options.quantityProperties track by $index">
 
 			<strong>{{field.label}}: </strong>
@@ -21,4 +22,5 @@
 			</field-value>
 
 		</p>
+		
 	</div>

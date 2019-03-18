@@ -209,4 +209,32 @@
         };
     };
 
+    formsDirective.directiveValueTileCount = function() {
+        return {            
+            restrict; 'E',
+            templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-value-tile-count.html',
+            scope: {
+                countValue: '='
+            },
+            link: function link($scope, iElement) {
+                $scope.valueLabel = countValue.valueLabel;
+                $scope.value = countValue.value;
+            }
+        }
+    }
+    formsDirective.directiveValueProgresCount = function() {
+        return {
+            restrict; 'E',
+            templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-value-progres-count.html',
+            scope: {
+                countValue: '='
+            },
+            link: function link($scope, iElement) {
+                $scope.valueLabel = countValue.valueLabel;
+                $scope.value = countValue.value;
+                $('.progress-bar', $(iElement)).progressbar();
+            }
+        }
+    }
+
 })(window);

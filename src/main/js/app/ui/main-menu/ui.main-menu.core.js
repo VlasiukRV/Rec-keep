@@ -184,6 +184,7 @@
         command.isGroupMenu = false;
     	command.isDropdownMenu = false;
     	command.commandName = commandName;
+        command.icon = '';
     	command.text = text;
     	command.command = functionCommand;
 

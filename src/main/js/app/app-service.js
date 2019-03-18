@@ -44,8 +44,8 @@
 // angular SERVICEs
 ////////////////////////////////////
 
-    appService.setRoute = function (routeProvider) {
-        routeProvider
+    appService.setRoute = function ($routeProvider) {
+        $routeProvider
             .when('/user', {
                 templateUrl: '/appTaskList/security/usersList'
             })
@@ -63,7 +63,10 @@
             })
             .when('/login', {
                 templateUrl: '/login'
-            })            
+            })
+            .when('/dashboard', {
+                templateUrl: '/templates/appRoom/tasklist/app-template-dashboard.html'
+            })
             .when('/currentPrincipalInformation', {
                 templateUrl: '/appTaskList/currentPrincipalInformation'
             })

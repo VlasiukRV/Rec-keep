@@ -52,6 +52,12 @@ angular.module('module.ui.edit-form', [
 .directive('updatableText', ['$interval', function ($interval) {
 	return moduleUI.formsDirective.directiveUpdatableText($interval);
 }])
+.directive('valueTileCount', function() {
+	return moduleUI.formsDirective.directiveValueTileCount();
+})
+.directive('valueProgresCount', function() {
+	return moduleUI.formsDirective.directiveValueProgresCount();
+})
 .directive('textValue', [function () {
 	return moduleUI.formsDirective.directiveTextValue();
 }])

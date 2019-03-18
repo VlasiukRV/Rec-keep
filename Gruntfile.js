@@ -89,6 +89,7 @@ module.exports = function (grunt) {
                     ],
                     'src/main/resources/static/js/gentelella.js': [
 
+                        'src/main/js/gentelella/vendors/bootstrap-progressbar.min.js',
                         'src/main/js/gentelella/vendors/nprogress.js',
 
                         'src/main/js/gentelella/vendors/moment.min.js',
