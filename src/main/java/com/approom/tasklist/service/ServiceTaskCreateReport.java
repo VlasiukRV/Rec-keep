@@ -6,6 +6,7 @@ import com.service.reportBuilder.IReportBuilder;
 import com.service.reportBuilder.ReportBuilderFreeMarker;
 import com.service.reportBuilder.ReportBuilderPhantomjs;
 import com.service.taskScheduler.AbstractServiceTask;
+import freemarker.template.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,15 @@ public class ServiceTaskCreateReport extends AbstractServiceTask {
 
     @Autowired
     protected UserService entityService;
+    @Autowired
+    private Configuration freemarkerConfig;
 
     private static final Logger logger = LoggerFactory.getLogger(AbstractServiceTask.class);
 
-    public ServiceTaskCreateReport() {
+    public ServiceTaskCreateReport(Configuration freemarkerConfig) {
         super();
         setTaskName("CreateReport");
+        this.freemarkerConfig = freemarkerConfig;
     }
 
     @Override
@@ -35,7 +39,7 @@ public class ServiceTaskCreateReport extends AbstractServiceTask {
         Map<String, Object> model = getModel();
 
         try {
-            ReportBuilderFreeMarker htmlReportBuilder = new ReportBuilderFreeMarker(model);
+            ReportBuilderFreeMarker htmlReportBuilder = new ReportBuilderFreeMarker(model, freemarkerConfig);
             File htmlReport = htmlReportBuilder.getReport();
             IReportBuilder reportBuilder = new ReportBuilderPhantomjs(htmlReport);
 

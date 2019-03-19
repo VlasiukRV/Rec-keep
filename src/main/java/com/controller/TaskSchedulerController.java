@@ -32,7 +32,7 @@ public class TaskSchedulerController {
     @RequestMapping("/runCreateReport")
     @ResponseBody
     public Map<String, Object> runCreateReport(){
-        taskExecutor.putTask(new ServiceTaskCreateReport());
+        taskExecutor.putTask(new ServiceTaskCreateReport(freemarkerConfig));
         return AjaxResponse.successResponse("Done");
     }
 

@@ -24,8 +24,9 @@ public class ReportBuilderFreeMarker implements IReportBuilder {
 
     private static final Logger logger = LoggerFactory.getLogger(ReportBuilderFreeMarker.class);
 
-    public ReportBuilderFreeMarker(Map<String, Object> model) {
+    public ReportBuilderFreeMarker(Map<String, Object> model, Configuration freemarkerConfig) {
         this.model = model;
+        this.freemarkerConfig = freemarkerConfig;
     }
 
     @Override
