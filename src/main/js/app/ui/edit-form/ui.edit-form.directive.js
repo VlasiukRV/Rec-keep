@@ -211,30 +211,98 @@
 
     formsDirective.directiveValueTileCount = function() {
         return {            
-            restrict; 'E',
+            restrict: 'E',
             templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-value-tile-count.html',
             scope: {
-                countValue: '='
+                countValueList: '='
             },
             link: function link($scope, iElement) {
-                $scope.valueLabel = countValue.valueLabel;
-                $scope.value = countValue.value;
             }
-        }
-    }
+        };
+    };
+
     formsDirective.directiveValueProgresCount = function() {
         return {
-            restrict; 'E',
+            restrict: 'E',
             templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-value-progres-count.html',
+            scope: {
+                countValueList: '='
+            },
+            link: function link($scope, iElement) {
+                for (var i = $scope.countValueList.length - 1; i >= 0; i--) {
+                    var element = $scope.countValueList[i]
+                    element.portion = element.maxValue*element.value/100;
+                }
+                $('.progress-bar', $(iElement)).progressbar();
+            }
+        };
+    };
+
+    formsDirective.directiveValueKnobCount = function() {
+        return {
+            restrict: 'E',
+            templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-value-knob-count.html',
             scope: {
                 countValue: '='
             },
             link: function link($scope, iElement) {
-                $scope.valueLabel = countValue.valueLabel;
-                $scope.value = countValue.value;
-                $('.progress-bar', $(iElement)).progressbar();
+            
+
+                $(iElement).knob({
+                  change: function(value) {
+                    //console.log("change : " + value);
+                  },
+                  release: function(value) {
+                    //console.log(this.$.attr('value'));
+                    console.log("release : " + value);
+                    $scope.countValue.value = value;
+                  },
+                  cancel: function() {
+                    console.log("cancel : ", this);
+                  },
+                  /*format : function (value) {
+                   return value + '%';
+                   },*/
+                  draw: function() {
+
+                    // "tron" case
+                    if (this.$.data('skin') == 'tron') {
+
+                      this.cursorExt = 0.3;
+
+                      var a = this.arc(this.cv) // Arc
+                        ,
+                        pa // Previous arc
+                        , r = 1;
+
+                      this.g.lineWidth = this.lineWidth;
+
+                      if (this.o.displayPrevious) {
+                        pa = this.arc(this.v);
+                        this.g.beginPath();
+                        this.g.strokeStyle = this.pColor;
+                        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, pa.s, pa.e, pa.d);
+                        this.g.stroke();
+                      }
+
+                      this.g.beginPath();
+                      this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
+                      this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, a.s, a.e, a.d);
+                      this.g.stroke();
+
+                      this.g.lineWidth = 2;
+                      this.g.beginPath();
+                      this.g.strokeStyle = this.o.fgColor;
+                      this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
+                      this.g.stroke();
+
+                      return false;
+                    }
+                  }
+                });
+
             }
-        }
-    }
+        };
+    };
 
 })(window);

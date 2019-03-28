@@ -186,6 +186,20 @@ app
     ]
     )
 
+.controller('dashboard', 
+    [
+    '$scope', 
+    'appInitialization',
+    'metadataSet',
+    'dataStorage',
+    'appConfig', 
+    'resourceService', 
+    'errorDescriptions',
+
+    appController.dashboard 
+    ]
+    )
+
 .controller('farmController',
     [
     '$scope',

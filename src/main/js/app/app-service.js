@@ -75,7 +75,7 @@
             })
 
         ;
-        return routeProvider;
+        return $routeProvider;
     };
 
     appService.appHttpResponseInterceptor = function ($q, $location, errorDescriptions) {
@@ -104,7 +104,7 @@
             }
             return $q.reject(response);
             }
-        }
+        };
     };
 
 

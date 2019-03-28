@@ -7,7 +7,7 @@
     "build:css_sass": "sass src/main/sass/app.scss src/main/resources/static/css/app.css",
     "build:css": "grunt build-css",
     "watch": "grunt watch",
-    "build": "npm run build:js && npm run build:css",
+    "build": "npm run build:js && npm run build:css_sass",
     "start": "npm run build && npm run watch",
     "deploy-frontend-local": "npm run build && grunt deploy-frontend-local"
   },

@@ -58,6 +58,9 @@ angular.module('module.ui.edit-form', [
 .directive('valueProgresCount', function() {
 	return moduleUI.formsDirective.directiveValueProgresCount();
 })
+.directive('valueKnobCount', function() {
+	return moduleUI.formsDirective.directiveValueKnobCount();
+})
 .directive('textValue', [function () {
 	return moduleUI.formsDirective.directiveTextValue();
 }])

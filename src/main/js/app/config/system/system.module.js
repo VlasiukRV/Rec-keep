@@ -89,7 +89,7 @@ angular.module('module.config.system', [
 			setAuthenticated: function (data) {
                 var self = this;
 				setNotAuthenticated(self);
-				if (data != undefined) {
+				if (data !== undefined) {
 					this.authenticated = true;
 					this.name = data.userName;
 					this.sessionId = data.sessionId;
