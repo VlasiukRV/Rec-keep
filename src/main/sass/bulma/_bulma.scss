@@ -14,9 +14,4 @@ $size-7:	0.50rem;
 $navbar-background-color: #2A3F54;
 $link: #5A738E;
 // Import Bulma components
-@import "../../../../node_modules/bulma/sass/utilities/all";
-@import "../../../../node_modules/bulma/sass/base/all";
-@import "../../../../node_modules/bulma/sass/elements/all";
-@import "../../../../node_modules/bulma/sass/components/all";
-@import "../../../../node_modules/bulma/sass/grid/all";
-@import "../../../../node_modules/bulma/sass/layout/all";
+@import "../../../../node_modules/bulma/bulma";
