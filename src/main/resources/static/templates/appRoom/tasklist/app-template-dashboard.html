@@ -1,20 +1,36 @@
+<div ng-controller="dashboard" class="x_panel">
 
-<div ng-controller="dashboard" class="">
-	
-	<value-tile-count
-		count-value-list="countValueList">
-	</value-tile-count>
+    <div class="columns is-multiline">
 
-	<value-tile-count
-		count-value-list="countValueList1">
-	</value-tile-count>		
+        <div class="column is-12">
+            <value-tile-count class="column is-12"
+                              count-value-list="countValueList">
+            </value-tile-count>
+        </div>
 
-	<value-progres-count
-		count-value-list="countValueList2">
-	</value-progres-count>	
+        <div class="column is-12">
+            <value-tile-count class="column is-12"
+                              count-value-list="countValueList1">
+            </value-tile-count>
+        </div>
 
-	<value-knob-count
-		count-value="countValue">
-	</value-knob-count>
+        <div class="column is-12">
+            <value-progres-count class="column is-12"
+                                 count-value-list="countValueList2">
+            </value-progres-count>
+        </div>
+
+        <div class="column is-12">
+            <value-knob-count
+                    count-value="countValue">
+            </value-knob-count>
+        </div>
+
+        <div class="column is-12">
+            <a href=" http://localhost:8080/appTaskList/service/download?fileName=pdfReport5065262707367832071.pdf"
+               download="Report">Download</a>
+        </div>
+
+    </div>
 
 </div>
