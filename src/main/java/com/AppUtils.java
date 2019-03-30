@@ -5,8 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import org.hibernate.Hibernate;
 import org.hibernate.proxy.HibernateProxy;
+import org.springframework.http.MediaType;
 import org.yaml.snakeyaml.Yaml;
 
+import javax.servlet.ServletContext;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +95,21 @@ public class AppUtils {
     public static boolean isNullOrBlank(String s)
     {
         return (s==null || s.trim().equals(""));
+    }
+
+    // abc.zip
+    // abc.pdf,..
+    public static MediaType getMediaTypeForFileName(ServletContext servletContext, String fileName) {
+        // application/pdf
+        // application/xml
+        // image/gif, ...
+        String mineType = servletContext.getMimeType(fileName);
+        try {
+            MediaType mediaType = MediaType.parseMediaType(mineType);
+            return mediaType;
+        } catch (Exception e) {
+            return MediaType.APPLICATION_OCTET_STREAM;
+        }
     }
 }
 
