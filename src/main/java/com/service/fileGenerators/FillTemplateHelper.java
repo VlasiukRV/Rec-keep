@@ -1,4 +1,4 @@
-package com.service.reportBuilder;
+package com.service.fileGenerators;
 
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;

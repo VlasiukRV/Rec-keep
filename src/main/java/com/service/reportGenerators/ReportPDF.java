@@ -1,8 +1,6 @@
-package com.approom.tasklist.service.report;
+package com.service.reportGenerators;
 
-import com.service.reportBuilder.IReportBuilder;
-import com.service.reportBuilder.ReportBuilderFreeMarker;
-import com.service.reportBuilder.ReportBuilderPhantomjs;
+import com.service.fileGenerators.*;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
@@ -15,6 +13,7 @@ public abstract class ReportPDF implements Report{
     private String reportPath;
 
     protected Configuration freemarkerConfig;
+    protected PhantomjsConfig phantomjsConfig;
     protected Map<String, Object> model;
 
     @Override
@@ -51,21 +50,22 @@ public abstract class ReportPDF implements Report{
     public File getReport() {
         buildModel();
 
-        File reportPDF = null;
+        File pdfFile = null;
 
         try {
 
             Template freemarkerTemplate = freemarkerConfig.getTemplate(getReportName()+".ftl");
             System.out.println(freemarkerTemplate.getName());
 
-            ReportBuilderFreeMarker htmlReportBuilder = new ReportBuilderFreeMarker(this, freemarkerTemplate);
-            File htmlReport = htmlReportBuilder.getReport();
+            IFileGenerator htmlFileGenerator = new FileGeneratorFreeMarker(this, freemarkerTemplate);
+            File htmlFile = htmlFileGenerator.getFile();
 
-            IReportBuilder reportBuilder = new ReportBuilderPhantomjs(htmlReport);
-            reportPDF = reportBuilder.getReport();
+            PhantomjsProperties phantomjsProperties = phantomjsConfig.getProperties(getReportName(), htmlFile);
+            IFileGenerator pdfFileGenerator = new FileGeneratorPhantomjs(phantomjsProperties);
+            pdfFile = pdfFileGenerator.getFile();
 
-            if(reportPDF.exists()) {
-                setReportPath(reportPDF.getPath());
+            if(pdfFile.exists()) {
+                setReportPath(pdfFile.getPath());
             }
 
         } catch (IOException e) {
@@ -74,7 +74,7 @@ public abstract class ReportPDF implements Report{
 
         }
 
-        return reportPDF;
+        return pdfFile;
     }
 
     abstract public void buildModel();

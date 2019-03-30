@@ -1,4 +1,4 @@
-package com.service.reportBuilder;
+package com.service.fileGenerators;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -11,18 +11,18 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class ReportBuilderTextPdf implements IReportBuilder {
+public class FileGeneratorTextPdf implements IFileGenerator {
 
     public static String DEST = "E:\\Work\\eclipse-workspace\\taskList\\target\\classes\\reportBuilder\\report1.pdf";
     public static final String HTML = "E:\\Work\\eclipse-workspace\\taskList\\target\\classes\\reportBuilder\\movies.html";
     public static final String CSS = "E:\\Work\\eclipse-workspace\\taskList\\target\\classes\\reportBuilder\\style1.css";
 
     public static final String templatePDF = "reportBuilder/stationery.pdf";
-    public ReportBuilderTextPdf() {
+    public FileGeneratorTextPdf() {
 
     }
 
-    public ReportBuilderTextPdf(String DEST) {
+    public FileGeneratorTextPdf(String DEST) {
         this.DEST = DEST;
     }
 
@@ -48,7 +48,7 @@ public class ReportBuilderTextPdf implements IReportBuilder {
     }
 
     @Override
-    public File getReport() throws IOException {
+    public File getFile() throws IOException {
         File file = new File(DEST);
         file.getParentFile().mkdirs();
 

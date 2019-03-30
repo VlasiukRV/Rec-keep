@@ -1,7 +1,7 @@
-package com.service.reportBuilder;
+package com.service.fileGenerators;
 
 import com.AppUtils;
-import com.approom.tasklist.service.report.Report;
+import com.service.reportGenerators.Report;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
@@ -17,20 +17,20 @@ import java.io.File;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-public class ReportBuilderFreeMarker implements IReportBuilder {
+public class FileGeneratorFreeMarker implements IFileGenerator {
 
     private Report report;
     private Template freemarkerTemplate;
 
-    private static final Logger logger = LoggerFactory.getLogger(ReportBuilderFreeMarker.class);
+    private static final Logger logger = LoggerFactory.getLogger(FileGeneratorFreeMarker.class);
 
-    public ReportBuilderFreeMarker(Report report, Template freemarkerTemplate) {
+    public FileGeneratorFreeMarker(Report report, Template freemarkerTemplate) {
         this.report = report;
         this.freemarkerTemplate = freemarkerTemplate;
     }
 
     @Override
-    public File getReport() throws IOException {
+    public File getFile() throws IOException {
 
         File htmlReport = File.createTempFile("html_report", ".html");
         System.out.println("create " + htmlReport.getAbsolutePath());

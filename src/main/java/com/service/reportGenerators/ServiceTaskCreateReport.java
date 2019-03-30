@@ -1,6 +1,5 @@
-package com.service;
+package com.service.reportGenerators;
 
-import com.approom.tasklist.service.report.Report;
 import com.service.taskScheduler.AbstractServiceTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,13 +1,17 @@
 package com.approom.tasklist.service.report;
 
+import com.service.fileGenerators.PhantomjsConfig;
+import com.service.reportGenerators.ReportPDF;
 import freemarker.template.Configuration;
 
 import java.util.*;
 
 public class ReportPDFRecordKeepingCalendar extends ReportPDF {
 
-    public ReportPDFRecordKeepingCalendar(Configuration freemarkerConfig) {
+    public ReportPDFRecordKeepingCalendar(Configuration freemarkerConfig, PhantomjsConfig phantomjsConfig) {
         this.freemarkerConfig = freemarkerConfig;
+        this.phantomjsConfig = phantomjsConfig;
+
         setReportName("RecordKeepingCalendar");
     }
 

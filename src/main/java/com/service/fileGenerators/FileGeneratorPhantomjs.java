@@ -1,4 +1,4 @@
-package com.service.reportBuilder;
+package com.service.fileGenerators;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,21 +6,16 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
 
-public class ReportBuilderPhantomjs implements IReportBuilder {
+public class FileGeneratorPhantomjs implements IFileGenerator {
 
-    private File htmlReport;
+    PhantomjsProperties phantomjsProperties;
 
-    private static final String PDF_REPORT_PREF = "pdfReport";
-
-    private static final String PHANTOMJS_CONFIG_FILE = "/reportBuilder/configFile.js";
-    private static final String PATH_PHANTOMJS =  "C:\\wamp64\\apps\\phantomjs\\bin\\phantomjs";
-
-    public ReportBuilderPhantomjs(File htmlReport) {
-        this.htmlReport = htmlReport;
+    public FileGeneratorPhantomjs(PhantomjsProperties phantomjsProperties) {
+        this.phantomjsProperties = phantomjsProperties;
     }
 
     @Override
-    public File getReport() throws IOException {
+    public File getFile() throws IOException {
 
         File report = null;
         try {
@@ -36,16 +31,16 @@ public class ReportBuilderPhantomjs implements IReportBuilder {
     private File createPdf() throws IOException, URISyntaxException, InterruptedException {
 
         // tmp pdf file for output
-        File pdfReport = File.createTempFile(PDF_REPORT_PREF, ".pdf");
+        File pdfReport = File.createTempFile(phantomjsProperties.getFilePrefix(), ".pdf");
 
         // Get JS config file
-        URL configFileUrl = this.getClass().getResource(PHANTOMJS_CONFIG_FILE);
+        URL configFileUrl = this.getClass().getResource(phantomjsProperties.phantomjsConfig.PHANTOMJS_CONFIG_FILE);
         File configFile = Paths.get(configFileUrl.toURI()).toFile();
 
         ProcessBuilder renderProcess = new ProcessBuilder(
-                PATH_PHANTOMJS,
+                phantomjsProperties.phantomjsConfig.PATH_PHANTOMJS,
                 configFile.getAbsolutePath(),
-                htmlReport.getAbsolutePath(),
+                phantomjsProperties.getHtmlFile().getAbsolutePath(),
                 pdfReport.getAbsolutePath()
         );
 
