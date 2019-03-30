@@ -1,7 +1,7 @@
 package com.service.reportBuilder;
 
 import com.AppUtils;
-import freemarker.template.Configuration;
+import com.approom.tasklist.service.report.Report;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
@@ -15,38 +15,29 @@ import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.StringTokenizer;
 
 public class ReportBuilderFreeMarker implements IReportBuilder {
 
-    private Map<String, Object> model;
-    private Configuration freemarkerConfig;
+    private Report report;
+    private Template freemarkerTemplate;
 
     private static final Logger logger = LoggerFactory.getLogger(ReportBuilderFreeMarker.class);
 
-    public ReportBuilderFreeMarker(Map<String, Object> model, Configuration freemarkerConfig) {
-        this.model = model;
-        this.freemarkerConfig = freemarkerConfig;
+    public ReportBuilderFreeMarker(Report report, Template freemarkerTemplate) {
+        this.report = report;
+        this.freemarkerTemplate = freemarkerTemplate;
     }
 
     @Override
     public File getReport() throws IOException {
 
-        Map<String, Object> model = new HashMap();
-        model.put("userName", "sfsdf");
-        model.put("projectName", "asdfasf");
-        model.put("taskName", "afwasfs");
-        model.put("link_app", "#");
-
         File htmlReport = File.createTempFile("html_report", ".html");
         System.out.println("create " + htmlReport.getAbsolutePath());
-        FileUtils.writeStringToFile(htmlReport, "sfasefqewfqewfwe", "UTF-8");
+        FileUtils.writeStringToFile(htmlReport, "Temp file for htmlReport '" + report.getReportName() + "'", "UTF-8");
 
         try {
-            freemarkerConfig.setClassForTemplateLoading(this.getClass(), "/mailTemplates");
-            Template t = freemarkerConfig.getTemplate("messageForAuthorTaskDone.ftl");
-            System.out.println(t.getName());
-            FileUtils.writeStringToFile(htmlReport, FreeMarkerTemplateUtils.processTemplateIntoString(t, model), "UTF-8");
+            FileUtils.writeStringToFile(htmlReport, FreeMarkerTemplateUtils.processTemplateIntoString(freemarkerTemplate, report.getModel()), "UTF-8");
             /*FileUtils.writeStringToFile(htmlReport, inlineStyles(htmlReport), "UTF-8");*/
         }catch (IOException | TemplateException e) {
             e.printStackTrace();

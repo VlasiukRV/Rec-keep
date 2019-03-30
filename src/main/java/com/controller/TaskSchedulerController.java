@@ -1,10 +1,12 @@
 package com.controller;
 
 import com.approom.tasklist.service.ServiceTaskArchiveTask;
-import com.approom.tasklist.service.ServiceTaskCreateReport;
 import com.approom.tasklist.service.ServiceTaskSendMailForAuthor;
 import com.approom.tasklist.service.TaskService;
+import com.approom.tasklist.service.report.Report;
+import com.approom.tasklist.service.report.ServiceReports;
 import com.service.MailSender;
+import com.service.ServiceTaskCreateReport;
 import com.service.taskScheduler.TaskScheduler;
 import freemarker.template.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,10 @@ import java.util.Map;
 @RequestMapping("/appTaskList/system/taskScheduler")
 public class TaskSchedulerController {
     @Autowired
-    TaskService taskService;
+    private TaskService taskService;
+
+    @Autowired
+    private ServiceReports serviceReports;
 
     @Autowired
     private TaskScheduler taskExecutor;
@@ -32,7 +37,8 @@ public class TaskSchedulerController {
     @RequestMapping("/runCreateReport")
     @ResponseBody
     public Map<String, Object> runCreateReport(){
-        taskExecutor.putTask(new ServiceTaskCreateReport(freemarkerConfig));
+        Report report = serviceReports.getReport("RecordKeepingCalendar");
+        taskExecutor.putTask(new ServiceTaskCreateReport(report));
         return AjaxResponse.successResponse("Done");
     }
 
