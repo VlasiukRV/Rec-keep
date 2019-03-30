@@ -11,15 +11,15 @@
 <body style="margin: 0;padding: 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;height: 100%;background: #efefef;-webkit-font-smoothing: antialiased;-webkit-text-size-adjust: none;width: 100% !important;">
 <table class="body-wrap"
        style="margin: 0;padding: 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;height: 100%;background: #efefef;-webkit-font-smoothing: antialiased;-webkit-text-size-adjust: none;width: 100% !important;">
-    <tr style="margin: 0;padding: 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;">
+    <tr colspan="2" style="margin: 0;padding: 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;">
         <td class="container"
             style="margin: 0 auto !important;padding: 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;display: block !important;clear: both !important;max-width: 580px !important;">
 
             <!-- Message start -->
             <table style="margin: 0;padding: 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;border-collapse: collapse;width: 100% !important;">
                 <tr style="margin: 0;padding: 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;">
-                    <td align="center" class="masthead"
-                        style="margin: 0;padding: 10px 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;background: #71bc37;color: white;">
+                    <td  align="center" class="masthead"
+                        style="margin: 0;padding: 100px 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;background: #71bc37;color: white;">
 
                         <h1 style="margin: 0 auto !important;padding: 0;font-size: 32px;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.25;margin-bottom: 20px;max-width: 90%;text-transform: uppercase;">
                             REC-KEEP Calendar</h1>
@@ -33,22 +33,6 @@
                         <h2 style="margin: 0;padding: 0;font-size: 28px;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.25;margin-bottom: 20px;">
                             Date ${date},</h2>
 
-                        <table border="1" cellspacing="0" cellpadding="1"
-                               style="margin: 0;padding: 0;font-size: 16px;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;font-weight: normal;margin-bottom: 20px;">
-                            <tr>
-                                <#list fieldsTitle as fieldTitle>
-                                    <td>${fieldTitle}</td>
-                                </#list>
-                            </tr>
-                            <#list entities as row>
-                                <tr>
-                                    <#list row as field>
-                                        <td>${field}</td>
-                                    </#list>
-                                </tr>
-                            </#list>
-                        </table>
-
                         <p style="margin: 0;padding: 0;font-size: 16px;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;font-weight: normal;margin-bottom: 20px;">
                             See more <a href="#"
                                         style="margin: 0;padding: 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;color: #71bc37;text-decoration: none;">Task
@@ -61,7 +45,7 @@
                                     <p style="margin: 0;padding: 0;font-size: 16px;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;font-weight: normal;margin-bottom: 20px;">
                                         <a href="#" class="button"
                                            style="margin: 0;padding: 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;color: white;text-decoration: none;display: inline-block;background: #71bc37;border: solid #71bc37;border-width: 10px 20px 8px;font-weight: bold;border-radius: 4px;">Open
-                                            Task list</a>
+                                            Record Keeper</a>
                                     </p>
                                 </td>
                             </tr>
@@ -78,7 +62,7 @@
         </td>
     </tr>
     <tr style="margin: 0;padding: 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;">
-        <td class="container"
+        <td colspan="2" class="container"
             style="margin: 0 auto !important;padding: 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;display: block !important;clear: both !important;max-width: 580px !important;">
 
             <!-- Message start -->
@@ -87,9 +71,8 @@
                     <td class="content footer" align="center"
                         style="margin: 0;padding: 30px 35px;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;background: none;">
                         <p style="margin: 0;padding: 0;font-size: 14px;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;font-weight: normal;margin-bottom: 0;color: #888;text-align: center;">
-                            Sent by <a href="#"
-                                       style="margin: 0;padding: 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;color: #888;text-decoration: none;font-weight: bold;">Task
-                                list</a>, Cherkassy</p>
+                            Kreate by <a href="#"
+                                       style="margin: 0;padding: 0;font-size: 100%;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;color: #888;text-decoration: none;font-weight: bold;">Rec-Keep</a>, Cherkassy</p>
 
                         <p style="margin: 0;padding: 0;font-size: 14px;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;font-weight: normal;margin-bottom: 0;color: #888;text-align: center;">
                             <a href="mailto:"
@@ -103,6 +86,74 @@
 
         </td>
     </tr>
+    <tr>
+        <td colspan="2">
+
+            <table border="1" cellspacing="0" cellpadding="1"
+                   style="margin: 0;padding: 0;font-size: 8px;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;font-weight: normal;margin-bottom: 20px;">
+                <tr style="background: #71bc37;color: white;">
+                    <#list fieldsTitle as fieldTitle>
+                        <td> ${fieldTitle} </td>
+                    </#list>
+                </tr>
+                <#list entities as row>
+                    <tr>
+                        <#list row as field>
+                            <td>${field}</td>
+                        </#list>
+                    </tr>
+                </#list>
+            </table>
+
+
+        </td>
+    </tr>
+    <tr style="height: 20px"></tr>
+    <tr>
+        <td>
+            Activity Log (weekly)
+
+            <table border="1" cellspacing="0" cellpadding="1"
+                   style="margin: 0;padding: 0;font-size: 8px;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;font-weight: normal;margin-bottom: 20px;">
+                <tr style="background: #71bc37;color: white;">
+                    <#list activityLogWeeklyTitle as fieldTitle>
+                        <td> ${fieldTitle} </td>
+                    </#list>
+                </tr>
+                <#list activityLogWeeklyEntities as row>
+                    <tr>
+                        <#list row as field>
+                            <td>${field}</td>
+                        </#list>
+                    </tr>
+                </#list>
+            </table>
+
+
+        </td>
+        <td>
+            Activity Log
+
+            <table border="1" cellspacing="0" cellpadding="1"
+                   style="margin: 0;padding: 0;font-size: 8px;font-family: 'Avenir Next', &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, Helvetica, Arial, sans-serif;line-height: 1.65;font-weight: normal;margin-bottom: 20px;">
+                <tr style="background: #71bc37;color: white;">
+                    <#list activityLogMonthlyTitle as fieldTitle>
+                        <td> ${fieldTitle} </td>
+                    </#list>
+                </tr>
+                <#list activityLogMonthlyEntities as row>
+                    <tr>
+                        <#list row as field>
+                            <td>${field}</td>
+                        </#list>
+                    </tr>
+                </#list>
+            </table>
+
+        </td>
+    </tr>
+
 </table>
+
 </body>
 </html>

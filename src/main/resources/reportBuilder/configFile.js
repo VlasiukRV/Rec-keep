@@ -6,7 +6,7 @@ var page = require('webpage').create(),
 
     page.paperSize = {
         format: 'A4',
-        orientation: 'portrait',
+        orientation: 'landscape',
         margin: {
             top: "1.5cm",
             bottom: "1cm"
