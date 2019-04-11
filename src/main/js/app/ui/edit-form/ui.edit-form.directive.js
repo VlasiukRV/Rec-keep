@@ -214,7 +214,7 @@
             restrict: 'E',
             templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-value-tile-count.html',
             scope: {
-                countValueList: '='
+                countValue: '='
             },
             link: function link($scope, iElement) {
             }
@@ -226,14 +226,15 @@
             restrict: 'E',
             templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-value-progres-count.html',
             scope: {
-                countValueList: '='
+                countValue: '='
             },
             link: function link($scope, iElement) {
-                for (var i = $scope.countValueList.length - 1; i >= 0; i--) {
-                    var element = $scope.countValueList[i]
-                    element.portion = element.maxValue*element.value/100;
-                }
-                $('.progress-bar', $(iElement)).progressbar();
+                    var element = $scope.countValue;
+                    element.portion = element.value*100/element.maxValue;
+                    $scope.$watch('countValue', function(element, oldValue, $scope) {
+                        element.portion = element.value*100/element.maxValue;
+                        $('.progress-bar').progressbar();
+                    }, true);
             }
         };
     };
@@ -248,7 +249,16 @@
             link: function link($scope, iElement) {
             
 
-                $(iElement).knob({
+                $('.knob', iElement).knob({
+                  value: $scope.countValue.value,
+                  fgColor: '#26B99A',
+                  displayPrevious: true,
+                  width: 75,
+                  displayInput: true,
+                  width: 100,
+                  height: 120,
+                  min: $scope.countValue.minValue,
+                  max: $scope.countValue.maxValue,
                   change: function(value) {
                     //console.log("change : " + value);
                   },
@@ -264,7 +274,6 @@
                    return value + '%';
                    },*/
                   draw: function() {
-
                     // "tron" case
                     if (this.$.data('skin') == 'tron') {
 
@@ -305,4 +314,34 @@
         };
     };
 
+    formsDirective.directiveValueCountListSparkline = function() {
+        return {
+            restrict: 'E',
+            templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-values-count-sparkline.html',
+            scope: {
+                countValueList: '='
+            },
+            link: function link($scope, iElement) {                
+                $scope.$watch('countValueList', function(countValueList, oldValue, $scope) {
+                    var arrayValue = [];
+                    for (var i = countValueList.length - 1; i >= 0; i--) {
+                        arrayValue.push(countValueList[i].value);
+                    }
+                    $(".sparkline", iElement).sparkline(arrayValue, {
+                        type: 'bar',
+                        height: '40',
+                        barWidth: 9,
+                        colorMap: {
+                            '7': '#a1a1a1'  
+                        },
+                        barSpacing: 2,
+                        barColor: '#26B99A'
+                    });
+
+                });
+            }
+        };
+    };
+
 })(window);
+

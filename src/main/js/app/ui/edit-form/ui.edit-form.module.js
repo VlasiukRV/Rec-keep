@@ -61,6 +61,9 @@ angular.module('module.ui.edit-form', [
 .directive('valueKnobCount', function() {
 	return moduleUI.formsDirective.directiveValueKnobCount();
 })
+.directive('valueCountListSparkline', function() {
+	return moduleUI.formsDirective.directiveValueCountListSparkline();
+})
 .directive('textValue', [function () {
 	return moduleUI.formsDirective.directiveTextValue();
 }])

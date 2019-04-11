@@ -151,19 +151,16 @@
     varInterfaceUtill.UserInterface = UserInterface;
 
     varInterfaceUtill.getNewGroupCommand = function (commandName, text) {
-        var command = new MenuCommand();
-        command.isGroupMenu = true;
-        command.isDropdownMenu = false;
+        var command = new MenuCommand();        
         command.commandName = commandName;
         command.text = text;
         command.command = commandName;
-
+        command.isGroupMenu = true;
+        
         return command;
     };    
     varInterfaceUtill.getNewEntityCommand = function (commandName, entitySpecification) {
     	var command = new MenuCommand();
-        command.isGroupMenu = false;
-    	command.isDropdownMenu = false;
     	command.commandName = commandName;
     	command.text = entitySpecification.metadataRepresentation;
         command.icon = 'fa fa-folder-o';
@@ -172,19 +169,15 @@
     	return command;
     };
     varInterfaceUtill.getNewDropdownCommand = function (commandName, text) {
-    	var command = new MenuCommand();
-        command.isGroupMenu = false;
-    	command.isDropdownMenu = true;
+    	var command = new MenuCommand();    	
     	command.commandName = commandName;
     	command.text = text;
+        command.isDropdownMenu = true;
     	return command;
     };
     varInterfaceUtill.getNewCommand = function (commandName, text, functionCommand) {
     	var command = new MenuCommand();
-        command.isGroupMenu = false;
-    	command.isDropdownMenu = false;
     	command.commandName = commandName;
-        command.icon = '';
     	command.text = text;
     	command.command = functionCommand;
 

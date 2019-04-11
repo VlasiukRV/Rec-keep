@@ -89,13 +89,15 @@ module.exports = function (grunt) {
                     ],
                     'src/main/resources/static/js/gentelella.js': [
 
+                        'src/main/js/gentelella/vendors/jquery.sparkline.min.js',
+                        
                         'src/main/js/gentelella/vendors/bootstrap-progressbar.min.js',
                         'src/main/js/gentelella/vendors/nprogress.js',
 
                         'src/main/js/gentelella/vendors/moment.min.js',
                         'src/main/js/gentelella/vendors/fullcalendar.min.js',
 
-                        'src/main/js/gentelella/vendors/jquery.knob.min.js',
+                        'src/main/js/gentelella/vendors/jquery.knob.min.js',                        
                         
                         'src/main/js/gentelella/gentelella-vendors.js',
                         'src/main/js/gentelella/gentelella.js',

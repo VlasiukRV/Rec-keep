@@ -1,29 +1,40 @@
 <div ng-controller="dashboard" class="x_panel">
 
     <div class="columns is-multiline">
-
+        
         <div class="column is-12">
-            <value-tile-count class="column is-12"
-                              count-value-list="countValueList">
-            </value-tile-count>
+            <value-count-list-sparkline
+                count-value-list="countValueList1">
+            </value-count-list-sparkline>
         </div>
 
         <div class="column is-12">
-            <value-tile-count class="column is-12"
-                              count-value-list="countValueList1">
-            </value-tile-count>
-        </div>
-
-        <div class="column is-12">
-            <value-progres-count class="column is-12"
-                                 count-value-list="countValueList2">
-            </value-progres-count>
-        </div>
-
-        <div class="column is-12">
-            <value-knob-count
+            <div class="tile_count columns is-multiline">    
+                <value-tile-count class="column is-4"
+                    ng-repeat="countValue in countValueList1"
                     count-value="countValue">
-            </value-knob-count>
+                </value-tile-count>
+            </div>
+        </div>
+
+        <div class="column is-12">
+            <div class="columns is-multiline">
+                <value-progres-count
+                    class="column is-4" 
+                    ng-repeat="countValue in countValueList1"
+                    count-value="countValue">
+                </value-progres-count>
+            </div>
+        </div>
+
+        <div class="column is-12">
+            <div class="columns is-multiline">
+                <div class="column is-4" ng-repeat="countValue in countValueList1">
+                    <value-knob-count                        
+                        count-value="countValue">
+                    </value-knob-count>
+                </div>
+            </div>
         </div>
 
         <div class="column is-12">

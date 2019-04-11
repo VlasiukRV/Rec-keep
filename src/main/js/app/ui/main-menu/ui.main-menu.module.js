@@ -21,9 +21,7 @@ angular.module('module.ui.main-menu', [
 }])
 
 .factory('menuGeneral', [function () {	
-	var homeDashboard = varInterfaceUtill.getNewCommand('homeDashboard', 'Dashboard', function() {
-
-	});
+	var homeDashboard = varInterfaceUtill.getNewCommand('homeDashboard', 'Dashboard', 'dashboard');
 
 	var homeDD = varInterfaceUtill.getNewDropdownCommand('homeDD', 'Home')
 				.addCommand(homeDashboard);

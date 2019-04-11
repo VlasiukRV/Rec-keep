@@ -11,7 +11,9 @@ $size-5:	1rem;
 $size-6:	0.75rem;
 $size-7:	0.50rem;
 
-$navbar-background-color: #2A3F54;
+$navbar-background-color: $color-site-main;
+$navbar-dropdown-background-color: $color-site-main;
+$navbar-item-color: #E7E7E7;
 $link: #5A738E;
 // Import Bulma components
 @import "../../../../node_modules/bulma/bulma";

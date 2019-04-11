@@ -1,6 +1,6 @@
 
 .left_col {
-  background: #2A3F54;
+  background: $color-site-main;
 }
 .nav-sm .container.body .col-md-3.left_col {
   min-height: 100%;
@@ -211,7 +211,7 @@ body .container.body .right_col {
 .nav_title {
   width: 230px;
   float: left;
-  background: #2A3F54;
+  background: $color-site-main;
   border-radius: 0;
   height: 57px;
 }
@@ -337,7 +337,7 @@ body .container.body .right_col {
 }
 body {
   color: #73879C;
-  background: #2A3F54;
+  background: $color-site-main;
   font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
   font-size: 13px;
   font-weight: 400;
@@ -453,6 +453,7 @@ a, a:visited, a:focus, a:active, :visited, :focus, :active, .btn:focus, .btn:act
 a:hover, a:focus {
   text-decoration: none
 }
+
 .navbar {
   margin-bottom: 0
 }
@@ -582,10 +583,10 @@ a:hover, a:focus {
 .nav.side-menu> li.active > a {
   text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5b6479), color-stop(100%, #4c5566)), #686e78;
-  background: -webkit-linear-gradient(#334556, #2C4257), #2A3F54;
-  background: -moz-linear-gradient(#334556, #2C4257), #2A3F54;
-  background: -o-linear-gradient(#334556, #2C4257), #2A3F54;
-  background: linear-gradient(#334556, #2C4257), #2A3F54;
+  background: -webkit-linear-gradient(#334556, #2C4257), $color-site-main;
+  background: -moz-linear-gradient(#334556, #2C4257), $color-site-main;
+  background: -o-linear-gradient(#334556, #2C4257), $color-site-main;
+  background: linear-gradient(#334556, #2C4257), $color-site-main;
   -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
   -moz-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
   box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
@@ -596,6 +597,7 @@ a:hover, a:focus {
   margin-left: 0 !important;
   line-height: 32px;
 }
+
 .site_title {
   text-overflow: ellipsis;
   overflow: hidden;

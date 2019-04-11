@@ -7,9 +7,9 @@
   right:0;
   bottom:0;
   z-index: 130;
-  background: #2A3F54;
-  background: -webkit-linear-gradient(to left, #003F9A, #2A3F54);
-  background: linear-gradient(to left, #003F9A, #2A3F54);
+  background: $color-site-main;
+  background: -webkit-linear-gradient(to left, $color-figure-main, $color-site-main);
+  background: linear-gradient(to left, $color-figure-main, $color-site-main);
 }
 
 .app-popup .app-popup-content {

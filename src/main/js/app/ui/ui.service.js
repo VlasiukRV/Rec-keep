@@ -20,8 +20,6 @@
         dateFilter, 
         errorDescriptions) {
 
-        var cookies = $cookies;
-
         $scope.errorDescriptions = errorDescriptions;
         $scope.commandBar = metadataSet.userInterface.commandBar;
         $scope.principal = metadataSet.userInterface.security.principal;
@@ -77,18 +75,15 @@
         appConfig, 
         resourceService, 
         errorDescriptions){
-        $scope.countValue = {valueLabel: 'Label 75', value: 75, minValue:0, maxValue: 100};
 
-        $scope.countValueList = [];
-        $scope.countValueList.push({valueLabel: 'Label 1 Tile', value: 10});
-        $scope.countValueList.push({valueLabel: 'Label 2 Tile', value: 20});
-        $scope.countValueList.push({valueLabel: 'Label 3 Tile', value: 30});
-        $scope.countValueList.push({valueLabel: 'Label 4 Tile', value: 40});
-
+        $scope.countValue1 = {valueLabel: 'Value 1', value: 30, minValue:0, maxValue: 100};
+        $scope.countValue2 = {valueLabel: 'Value 2', value: 24, minValue:0, maxValue: 100};
+        $scope.countValue3 = {valueLabel: 'Value 3', value: 60, minValue:0, maxValue: 100};
+        
         $scope.countValueList1 = [];
-        $scope.countValueList1.push({valueLabel: 'Label 10 Tile', value: 100});
-        $scope.countValueList1.push({valueLabel: 'Label 20 Tile', value: 200});
-        $scope.countValueList1.push($scope.countValue);
+        $scope.countValueList1.push($scope.countValue1);
+        $scope.countValueList1.push($scope.countValue2);
+        $scope.countValueList1.push($scope.countValue3);
 
         $scope.countValueList2 = [];
         $scope.countValueList2.push($scope.countValue);
