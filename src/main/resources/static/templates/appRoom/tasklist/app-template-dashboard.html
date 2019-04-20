@@ -1,11 +1,15 @@
 <div ng-controller="dashboard" class="x_panel">
 
     <div class="columns is-multiline">
-        
+
+        <div class="column is-12 buttons ">
+            <a class="button is-primary" ng-click="addNewEntity()">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+
         <div class="column is-12">
-            <value-count-list-sparkline
-                count-value-list="countValueList1">
-            </value-count-list-sparkline>
+            <div value-count-list-sparkline ng-model="countValueList1"></div>
         </div>
 
         <div class="column is-12">

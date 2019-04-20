@@ -247,8 +247,6 @@
                 countValue: '='
             },
             link: function link($scope, iElement) {
-            
-
                 $('.knob', iElement).knob({
                   value: $scope.countValue.value,
                   fgColor: '#26B99A',
@@ -316,12 +314,40 @@
 
     formsDirective.directiveValueCountListSparkline = function() {
         return {
-            restrict: 'E',
+            restrict: 'A',
             templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-values-count-sparkline.html',
-            scope: {
-                countValueList: '='
-            },
-            link: function link($scope, iElement) {                
+            require: 'ngModel',
+            link: function link($scope, iElement, attrs, ngModel) {
+
+                opts = {};
+                opts.type = attrs.type || 'bar';
+                opts.barColor = attrs.barColor || '#26B99A';
+                opts.height = attrs.height || '125';
+                opts.barWidth = attrs.barWidth || '13';
+                opts.barSpacing = attrs.barSpacing || '2';
+                opts.zeroAxis = attrs.zeroAxis || 'false';
+
+                $scope.$watch(attrs.ngModel, function () {
+                    render();
+                }, true);
+
+                $scope.$watch(attrs.opts, function(){
+                    render();
+                }, true);
+
+                var render = function () {
+                    var model;
+                    if(attrs.opts) angular.extend(opts, angular.fromJson(attrs.opts));
+                    angular.isString(ngModel.$viewValue) ? model = ngModel.$viewValue.replace(/(^,)|(,$)/g, "") : model = ngModel.$viewValue;
+
+                    var arrayValue = [];
+                    $.each(model, function (index, element) {
+                        arrayValue.push(element.value);
+                    });
+                    $(".sparkline", iElement).sparkline(arrayValue, opts);
+                };
+/*
+
                 $scope.$watch('countValueList', function(countValueList, oldValue, $scope) {
                     var arrayValue = [];
                     for (var i = countValueList.length - 1; i >= 0; i--) {
@@ -339,6 +365,8 @@
                     });
 
                 });
+*/
+
             }
         };
     };

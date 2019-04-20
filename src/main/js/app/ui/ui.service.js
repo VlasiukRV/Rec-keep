@@ -87,7 +87,10 @@
 
         $scope.countValueList2 = [];
         $scope.countValueList2.push($scope.countValue);
-        
+
+        $scope.addNewEntity = function () {
+            $scope.countValueList1.push({valueLabel: 'Value 1', value: 30, minValue:0, maxValue: 100});
+        };
     };
 
 })(window);
