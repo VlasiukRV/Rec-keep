@@ -56,8 +56,9 @@ app
     'userInterface',
 
     'metadataEnumSpecification_TaskState',
-    
+
     'metadataEntitySpecification_Farm',
+    'metadataEntitySpecification_PoultryCalendar',
     'metadataEntitySpecification_Project',
     'metadataEntitySpecification_User',
     'metadataEntitySpecification_Role',
@@ -70,6 +71,7 @@ app
         metadataEnumSpecification_TaskState,
         
         metadataEntitySpecification_Farm,
+        metadataEntitySpecification_PoultryCalendar,
         metadataEntitySpecification_Project,
         metadataEntitySpecification_User,
         metadataEntitySpecification_Role,
@@ -130,6 +132,7 @@ app
             .addMetadataEntitySpecification(metadataEntitySpecification_Role)
             .addMetadataEntitySpecification(metadataEntitySpecification_Task)
             .addMetadataEntitySpecification(metadataEntitySpecification_Farm)
+            .addMetadataEntitySpecification(metadataEntitySpecification_PoultryCalendar)
 
             .initMetadataSet();
 
@@ -197,6 +200,30 @@ app
     'errorDescriptions',
 
     appController.dashboard 
+    ]
+    )
+.controller('poultryCalendarController',
+    [
+        '$scope',
+        appController.poultryCalendarController
+    ]
+    )
+.controller('poultryCalendarListController',
+    [
+        '$scope',
+        'dataStorage',
+        'EntityListForm',
+
+        appController.poultryCalendarListController
+    ]
+    )
+.controller('editPoultryCalendarController',
+    [
+        '$scope',
+        'dataStorage',
+        'EntityEditForm',
+
+        appController.editPoultryCalendarController
     ]
     )
 

@@ -1,23 +1,19 @@
 package com.approom.tasklist.entity;
 
+import com.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
-import com.entity.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 @Component
 @Entity
 @Table
-@JsonIgnoreProperties(value = { "tasks" })
 
 @NoArgsConstructor
 public class Farm extends BaseEntity<Integer> {

@@ -113,7 +113,6 @@ function init_panel_toolbox(parentElement) {
 function init_sidebar_addEvent(parentElement) {
 
     parentElement.find('a').on('click', function (ev) {
-        console.log('clicked - sidebar_menu');
         var $li = $(this).parent();
 
         if ($li.is('.active')) {

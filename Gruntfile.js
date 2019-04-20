@@ -141,6 +141,7 @@ module.exports = function (grunt) {
                         'src/main/js/app/domain/project/app-controller-project.js',
                         'src/main/js/app/domain/task/app-controller-task.js',
                         'src/main/js/app/domain/farm/app-controller-farm.js',
+                        'src/main/js/app/domain/poultryCalendar/app-controller-poultry-calendar.js',
 
                         'src/main/js/app/app.js'
                     ]
@@ -194,7 +195,7 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: 'src/main/resources/static',
                 src: '**',
-                dest: 'target/classes/static/',
+                dest: 'target/classes/static/'
             }
         },
 

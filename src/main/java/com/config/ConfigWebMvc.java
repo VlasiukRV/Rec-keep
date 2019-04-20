@@ -41,7 +41,8 @@ public class ConfigWebMvc extends WebMvcConfigurerAdapter {
 		.setViewName("/templates/appRoom/tasklist/app-template-model-task.html");
 	registry.addViewController(appTaskListUrl + "/farmsList")
 		.setViewName("/templates/appRoom/tasklist/app-template-model-farm.html");
-
+	registry.addViewController(appTaskListUrl + "/poultryCalendarList")
+		.setViewName("/templates/appRoom/tasklist/app-template-model-poultry-calendar.html");
     }
 
     @Override

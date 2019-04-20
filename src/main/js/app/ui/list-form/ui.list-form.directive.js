@@ -50,7 +50,7 @@
             templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-field-value.html',
             scope: {
                 entity: '=',
-                field: '=',
+                field: '='
             },
             link: function ($scope, element, attrs) {
                 
