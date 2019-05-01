@@ -6,16 +6,35 @@
             <a class="button is-primary" ng-click="addNewEntity()">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
+            <a class="button is-primary" ng-click="deleteEntity()">
+                <span class="glyphicon glyphicon-minus"></span>
+            </a>
+            <select id="select-list">
+                <option ng-repeat="tableValue in tableCountValue" >{{tableValue.valueLabel}}</option>
+            </select>            
+        </div>
+
+        <div class="column is-8">
+            <div table-value-count-echarts ng-model="tableCountValue"></div>
+        </div>
+        <div class="column is-4">
+            <div class="columns is-multiline">
+                <div class="column is-6" ng-repeat="countValue in countValueList">
+                    <value-knob-count                        
+                        count-value="countValue">
+                    </value-knob-count>
+                </div>
+            </div>
         </div>
 
         <div class="column is-12">
-            <div value-count-list-sparkline ng-model="countValueList1"></div>
+            <div value-count-list-sparkline ng-model="countValueList"></div>
         </div>
 
         <div class="column is-12">
             <div class="tile_count columns is-multiline">    
                 <value-tile-count class="column is-4"
-                    ng-repeat="countValue in countValueList1"
+                    ng-repeat="countValue in countValueList"
                     count-value="countValue">
                 </value-tile-count>
             </div>
@@ -25,19 +44,9 @@
             <div class="columns is-multiline">
                 <value-progres-count
                     class="column is-4" 
-                    ng-repeat="countValue in countValueList1"
+                    ng-repeat="countValue in countValueList"
                     count-value="countValue">
                 </value-progres-count>
-            </div>
-        </div>
-
-        <div class="column is-12">
-            <div class="columns is-multiline">
-                <div class="column is-4" ng-repeat="countValue in countValueList1">
-                    <value-knob-count                        
-                        count-value="countValue">
-                    </value-knob-count>
-                </div>
             </div>
         </div>
 

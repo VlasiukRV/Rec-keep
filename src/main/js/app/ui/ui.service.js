@@ -76,20 +76,52 @@
         resourceService, 
         errorDescriptions){
 
-        $scope.countValue1 = {valueLabel: 'Value 1', value: 30, minValue:0, maxValue: 100};
-        $scope.countValue2 = {valueLabel: 'Value 2', value: 24, minValue:0, maxValue: 100};
-        $scope.countValue3 = {valueLabel: 'Value 3', value: 60, minValue:0, maxValue: 100};
-        
         $scope.countValueList1 = [];
-        $scope.countValueList1.push($scope.countValue1);
-        $scope.countValueList1.push($scope.countValue2);
-        $scope.countValueList1.push($scope.countValue3);
-
+        $scope.countValueList1.push({valueLabel: 'Mon', value: 30, minValue:0, maxValue: 100});
+        $scope.countValueList1.push({valueLabel: 'Tue', value: 24, minValue:0, maxValue: 100});
+        $scope.countValueList1.push({valueLabel: 'Wed', value: 60, minValue:0, maxValue: 100});
+        $scope.countValueList1.push({valueLabel: 'Thu', value: 38, minValue:0, maxValue: 100});
+        $scope.countValueList1.push({valueLabel: 'Fri', value: 21, minValue:0, maxValue: 100});
+        $scope.countValueList1.push({valueLabel: 'Sat', value: 45, minValue:0, maxValue: 100});
+        $scope.countValueList1.push({valueLabel: 'Sun', value: 58, minValue:0, maxValue: 100});
+        
         $scope.countValueList2 = [];
-        $scope.countValueList2.push($scope.countValue);
+        $scope.countValueList2.push({valueLabel: 'Mon', value: 17, minValue:0, maxValue: 100});
+        $scope.countValueList2.push({valueLabel: 'Tue', value: 24, minValue:0, maxValue: 100});
+        $scope.countValueList2.push({valueLabel: 'Wed', value: 54, minValue:0, maxValue: 100});
+        $scope.countValueList2.push({valueLabel: 'Thu', value: 30, minValue:0, maxValue: 100});
+        $scope.countValueList2.push({valueLabel: 'Fri', value: 29, minValue:0, maxValue: 100});
+        $scope.countValueList2.push({valueLabel: 'Sat', value: 43, minValue:0, maxValue: 100});
+        $scope.countValueList2.push({valueLabel: 'Sun', value: 55, minValue:0, maxValue: 100});
 
+        $scope.countValueList3 = [];
+        $scope.countValueList3.push({valueLabel: 'Mon', value: 17, minValue:0, maxValue: 100});
+        $scope.countValueList3.push({valueLabel: 'Tue', value: 24, minValue:0, maxValue: 100});
+        $scope.countValueList3.push({valueLabel: 'Wed', value: 52, minValue:0, maxValue: 100});
+        $scope.countValueList3.push({valueLabel: 'Thu', value: 32, minValue:0, maxValue: 100});
+        $scope.countValueList3.push({valueLabel: 'Fri', value: 23, minValue:0, maxValue: 100});
+        $scope.countValueList3.push({valueLabel: 'Sat', value: 47, minValue:0, maxValue: 100});
+        $scope.countValueList3.push({valueLabel: 'Sun', value: 51, minValue:0, maxValue: 100});
+
+        $scope.tableCountValue = [];
+        $scope.tableCountValue.push({valueLabel: 'inCome', value: $scope.countValueList1})
+        $scope.tableCountValue.push({valueLabel: 'outCome', value: $scope.countValueList2})
+        $scope.tableCountValue.push({valueLabel: 'plan outCome', value: $scope.countValueList3})
+
+
+        $('#select-list').on('change', function(event, target){
+            $.each($scope.tableCountValue, function(index, element) {
+                if($('#select-list').val() === element.valueLabel) {
+                    $scope.countValueList = element.value
+                }
+            })            
+        })
+            
         $scope.addNewEntity = function () {
-            $scope.countValueList1.push({valueLabel: 'Value 1', value: 30, minValue:0, maxValue: 100});
+            $scope.countValueList.push({valueLabel: 'Value 1', value: 30, minValue:0, maxValue: 100});
+         };
+        $scope.deleteEntity = function () {
+            $scope.countValueList.pop();
         };
     };
 

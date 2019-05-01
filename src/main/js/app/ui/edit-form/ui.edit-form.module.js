@@ -64,6 +64,12 @@ angular.module('module.ui.edit-form', [
 .directive('valueCountListSparkline', function() {
 	return moduleUI.formsDirective.directiveValueCountListSparkline();
 })
+.directive('tableValueCountEcharts', function() {
+	return moduleUI.formsDirective.directiveTableValueCountEcharts();
+})
+.directive('draggable', ['$document', function($document) {
+	return moduleUI.formsDirective.draggable($document);
+}])
 .directive('textValue', [function () {
 	return moduleUI.formsDirective.directiveTextValue();
 }])
