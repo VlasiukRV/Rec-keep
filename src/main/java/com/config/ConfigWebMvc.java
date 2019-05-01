@@ -33,6 +33,8 @@ public class ConfigWebMvc extends WebMvcConfigurerAdapter {
 		.setViewName("/templates/appRoom/tasklist/app-template-model-user.html");
 	registry.addViewController(appTaskListUrl + "/security/roleList")
 		.setViewName("/templates/appRoom/tasklist/app-template-model-role.html");
+	registry.addViewController(appTaskListUrl + "/serviceTaskList")
+				.setViewName("/templates/appRoom/tasklist/app-template-model-service-task.html");
 	registry.addViewController(appTaskListUrl + "/currentPrincipalInformation")
 		.setViewName("/templates/appRoom/tasklist/app-template-current-principal-information.html");
 	registry.addViewController(appTaskListUrl + "/projectsList")

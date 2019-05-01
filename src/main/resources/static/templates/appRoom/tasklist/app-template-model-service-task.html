@@ -1,0 +1,15 @@
+<div ng-controller="serviceTaskController">
+
+    <div ng-controller="editServiceTaskController" ng-show="showEditForm">
+        <entity-edit-form
+                entity-edit-form="entityEditForm">
+        </entity-edit-form>
+    </div>
+
+    <div ng-controller="serviceTaskListController" ng-show="showListForm">
+        <entity-list-form
+                entity-list-form="entityListForm">
+        </entity-list-form>
+    </div>
+
+</div>

@@ -510,6 +510,106 @@ angular.module('module.domain-model',
             return metadataEntitySpecification_Role;
         }]
     )
+    .service('metadataEntitySpecification_ServiceTask', [
+        'Entity',
+        'fmListForm_TYPES',
+
+        function (Entity, fmListForm_TYPES) {
+
+            var ServiceTask = appUtils.Class(Entity);
+            return {
+                entityClass: ServiceTask,
+                fnGetEntityInstance: function () {
+                    return new ServiceTask();
+                },
+                metadataName: 'serviceTask',
+                metadataRepresentation: 'serviceTask',
+                metadataDescription: 'ServiceTask list',
+                entityField: {
+                    objectField: {
+                        icon: '',
+                    },
+                    entityField: {
+
+                        taskName: {
+                            value: '',
+                            fieldDescription: {
+                                inputType: 'text',
+                                label: 'Task name',
+                                availability: true,
+                                entityListService: null
+                            }
+                        },
+                        execute: {
+                            value: '',
+                            fieldDescription: {
+                                inputType: 'checkbox',
+                                label: 'Execute',
+                                availability: true,
+                                entityListService: null
+                            }
+                        },
+                        taskIsRunning: {
+                            value: '',
+                            fieldDescription: {
+                                inputType: 'checkbox',
+                                label: 'Task is running',
+                                availability: true,
+                                entityListService: null
+                            }
+                        },
+                        taskResult: {
+                            value: '',
+                            fieldDescription: {
+                                inputType: 'text',
+                                label: 'task result',
+                                availability: false,
+                                entityListService: null
+                            }
+                        }
+
+                    },
+                    defineField: {
+
+                        representation: {
+                            enumerable: true,
+                            get: function () {
+                                return '' + this.taskName + ' (' + this.description + ') ';
+                            }
+                        }
+
+                    }
+                },
+
+                fmListForm: {
+                    listType: fmListForm_TYPES.table
+                },
+
+                entityFieldsPlacing: [
+                    [
+                        {editFieldId: 'id', fieldLength: 3}
+                    ],
+                    [
+                        {
+                            editFieldId: [
+                                [{editFieldId: 'taskName', fieldLength: 12}],
+                                [{execute: 'password', fieldLength: 12}],
+                                [{taskIsRunning: 'mailAddress', fieldLength: 12}]
+                            ],
+                            fieldLength: 5
+                        }
+                    ],
+                    [
+                        {editFieldId: 'taskResult', fieldLength: 12}
+                    ],
+                    [
+                        {editFieldId: 'description', fieldLength: 12}
+                    ]
+                ]
+
+            };
+        }]
+    )
     .service('metadataEntitySpecification_Task', [
         'Entity',
         '$injector',

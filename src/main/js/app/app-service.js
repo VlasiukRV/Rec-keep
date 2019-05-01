@@ -52,6 +52,9 @@
             .when('/role', {
                 templateUrl: '/appTaskList/security/roleList'
             })
+            .when('/serviceTask', {
+                templateUrl: '/appTaskList/serviceTaskList'
+            })
             .when('/poultryCalendar', {
                 templateUrl: '/appTaskList/poultryCalendarList'
             })

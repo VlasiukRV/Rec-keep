@@ -62,6 +62,7 @@ app
     'metadataEntitySpecification_Project',
     'metadataEntitySpecification_User',
     'metadataEntitySpecification_Role',
+    'metadataEntitySpecification_ServiceTask',
     'metadataEntitySpecification_Task',
 
     function(abstractAppModel, 
@@ -75,6 +76,7 @@ app
         metadataEntitySpecification_Project,
         metadataEntitySpecification_User,
         metadataEntitySpecification_Role,
+        metadataEntitySpecification_ServiceTask,
         metadataEntitySpecification_Task
         ){
 
@@ -130,6 +132,7 @@ app
             .addMetadataEntitySpecification(metadataEntitySpecification_Project)
             .addMetadataEntitySpecification(metadataEntitySpecification_User)
             .addMetadataEntitySpecification(metadataEntitySpecification_Role)
+            .addMetadataEntitySpecification(metadataEntitySpecification_ServiceTask)
             .addMetadataEntitySpecification(metadataEntitySpecification_Task)
             .addMetadataEntitySpecification(metadataEntitySpecification_Farm)
             .addMetadataEntitySpecification(metadataEntitySpecification_PoultryCalendar)
@@ -354,4 +357,30 @@ app
 
     appController.editRoleController
     ]
-    );
+    )
+.controller('serviceTaskController',
+    [
+    '$scope',
+
+    appController.serviceTaskController
+    ]
+    )
+.controller('serviceTaskListController',
+    [
+        '$scope',
+        'dataStorage',
+        'EntityListForm',
+
+        appController.serviceTaskListController
+    ]
+    )
+.controller('editServiceTaskController',
+    [
+        '$scope',
+        'dataStorage',
+        'EntityEditForm',
+
+        appController.editServiceTaskController
+    ]
+    )
+;

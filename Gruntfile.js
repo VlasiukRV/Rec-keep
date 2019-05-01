@@ -142,6 +142,7 @@ module.exports = function (grunt) {
                         'src/main/js/app/domain/task/app-controller-task.js',
                         'src/main/js/app/domain/farm/app-controller-farm.js',
                         'src/main/js/app/domain/poultryCalendar/app-controller-poultry-calendar.js',
+                        'src/main/js/app/domain/serviceTask/app-controller-service-task.js',
 
                         'src/main/js/app/app.js'
                     ]

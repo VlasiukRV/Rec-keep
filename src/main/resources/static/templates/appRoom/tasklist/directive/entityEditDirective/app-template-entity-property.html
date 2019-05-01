@@ -13,7 +13,7 @@
 
                     <select class="form-control"
                             ng-change="propertyChanged()"
-                            ng-disabled="{{!property.availability}}"
+                            ng-disabled="!property.availability"
                             ng-model="entity[property.name]"
                             ng-options="el for el in selectList"
                             title="{{property.label}}">
@@ -50,7 +50,7 @@
 
                     <select class="form-control"
                             ng-change="propertyChanged()"
-                            ng-disabled="{{!property.availability}}"
+                            ng-disabled="!property.availability"
                             ng-model="entity[property.name]"
                             ng-options="el.representation for el in selectList track by el.id"
                             title="{{property.label}}">
@@ -87,7 +87,7 @@
 
                     <oi-select
                             multiple
-                            ng-disabled="{{!property.availability}}"
+                            ng-disabled="!property.availability"
                             ng-model="entity[property.name]"
                             oi-options="el.representation for el in selectList track by el.id"
                             oi-select-options="{
@@ -115,6 +115,23 @@
 
         </div>
 
+        <!--checkbox-->
+        <div ng-switch-when="checkbox">
+            <div class="form-group">
+
+                <div class="checkbox">
+                    <label>
+                        <input
+                                class="form-control"
+                                ng-model="entity[property.name]"
+                                type="checkbox"/>
+                        {{property.label}}
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
         <!--date-->
         <div ng-switch-when="date">
             <div class="form-group">
@@ -122,25 +139,10 @@
 
                 <input
                         class="date form-control"
-                        ng-disabled="{{!property.availability}}"
+                        ng-disabled="!property.availability"
                         ng-model="entity[property.name]"
                         sm-datepicker
                         type="date"/>
-            </div>
-        </div>
-
-        <!--checkbox-->
-        <div ng-switch-when="checkbox">
-
-            <div class="form-group">
-
-                <label class="control-label">{{property.label}}:</label>
-
-                <input
-                        class="form-control"
-                        ng-disabled="{{!property.availability}}"
-                        ng-model="entity[property.name]"
-                        type="checkbox"/>
             </div>
         </div>
 
@@ -149,7 +151,7 @@
             <div class="form-group">
                 <label class="control-label">{{property.label}}:</label>
                 <textarea
-                        ng-disabled="{{!property.availability}}"
+                        ng-disabled="!property.availability"
                         ng-model="entity[property.name]"
                         style="min-width: 100%"
                 />
@@ -163,7 +165,7 @@
                 <label class="control-label">{{property.label}}:</label>
                 <input
                         class="form-control"
-                        ng-disabled="{{!property.availability}}"
+                        ng-disabled="!property.availability"
                         ng-model="entity[property.name]"
                         type="{{property.inputType}}"
                 />
