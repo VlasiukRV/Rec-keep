@@ -8,12 +8,13 @@ angular.module('angular-jsoneditor', [])
             scope: {'json': '='},
             template: '' +
                 '            <div>\n' +
+                '                <pre>{{pretty(json)}}</pre>\n' +
+                '            </div>\n' +
+
+                '            <div>\n' +
                 '                <angular-json-editor ng-model="json" options="options" style="width: 100%; height: 400px;"></angular-json-editor>\n' +
                 '            </div>\n' +
-                '\n' +
-                '            <div>\n' +
-                '                <pre>{{pretty(json)}}</pre>\n' +
-                '            </div>\n',
+                '\n',
             link: function link($scope) {
                 $scope.options = {mode: 'tree'};
                 $scope.pretty = function (obj) {

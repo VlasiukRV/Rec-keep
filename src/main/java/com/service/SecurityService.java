@@ -27,7 +27,7 @@ public class SecurityService implements HttpSessionListener {
     @Autowired
     private SessionRegistry sessionRegistry;
     @Autowired
-    UserService userService;
+    EntityUserService userService;
 
     public static int getTotalActiveSession() {
         return totalActiveSessions;
@@ -66,6 +66,10 @@ public class SecurityService implements HttpSessionListener {
 
     public Authentication getAuthentication() {
         return SecurityContextHolder.getContext().getAuthentication();
+    }
+
+    public User getUser() {
+        return (User) getAuthentication().getPrincipal();
     }
 
     public User getPrincipal(SessionInformation sessionInformation) {

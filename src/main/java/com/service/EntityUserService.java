@@ -9,9 +9,9 @@ import javax.transaction.Transactional;
 
 @Transactional
 @Service
-public class UserService extends BaseEntityService<User, Integer, UserRepository> {
+public class EntityUserService extends EntityBaseService<User, Integer, UserRepository> {
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public EntityUserService(UserRepository userRepository) {
         super(User.class, userRepository);
     }
 

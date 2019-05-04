@@ -2,7 +2,7 @@ package com.approom.tasklist.controller;
 
 import com.approom.tasklist.dao.PoultryCalendarRepository;
 import com.approom.tasklist.entity.PoultryCalendar;
-import com.approom.tasklist.service.PoultryCalendarService;
+import com.approom.tasklist.service.EntityPoultryCalendarService;
 import com.controller.BaseEntityController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +11,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/appTaskList/entity/poultryCalendar")
-public class PoultryCalendarController extends BaseEntityController<PoultryCalendarRepository, Integer, PoultryCalendar, PoultryCalendarService> {
+public class PoultryCalendarController extends BaseEntityController<PoultryCalendarRepository, Integer, PoultryCalendar, EntityPoultryCalendarService> {
 
     @Autowired
-    public PoultryCalendarController(PoultryCalendarService entityService) {
+    public PoultryCalendarController(EntityPoultryCalendarService entityService) {
         entityName = "poultryCalendar";
         this.entityService = entityService;
     }

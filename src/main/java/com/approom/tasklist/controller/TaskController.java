@@ -1,6 +1,6 @@
 package com.approom.tasklist.controller;
 
-import com.approom.tasklist.service.TaskService;
+import com.approom.tasklist.service.EntityTaskService;
 import com.controller.BaseEntityController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import java.util.Map;
 public class TaskController extends BaseEntityController {
 
     @Autowired
-    public TaskController(TaskService entityService) {
+    public TaskController(EntityTaskService entityService) {
         entityName = "task";
         this.entityService = entityService;
     }

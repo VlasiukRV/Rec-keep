@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.service.RoleService;
+import com.service.EntityRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import java.util.Map;
 public class RoleController extends BaseEntityController {
 
     @Autowired
-    public RoleController(RoleService entityService) {
+    public RoleController(EntityRoleService entityService) {
         this.entityName = "role";
         this.entityService = entityService;
     }

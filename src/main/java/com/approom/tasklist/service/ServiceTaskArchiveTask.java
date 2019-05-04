@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 public class ServiceTaskArchiveTask extends AbstractServiceTask {
 
-    TaskService entityService;
+    EntityTaskService entityService;
 
     // ToDo
     @Value("${mailSenderService.link_app}")
@@ -30,7 +30,7 @@ public class ServiceTaskArchiveTask extends AbstractServiceTask {
 
     }
 
-    public ServiceTaskArchiveTask(TaskService entityService) {
+    public ServiceTaskArchiveTask(EntityTaskService entityService) {
         super();
         setTaskName("ArchiveService");
     }

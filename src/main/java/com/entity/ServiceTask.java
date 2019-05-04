@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,13 +20,20 @@ public class ServiceTask extends BaseEntity<Integer>{
 
     @Column
     @JsonProperty
+    private @Getter @Setter User user;
+
+    @Column
+    @JsonProperty
     private @Getter @Setter String taskName = "";
     @Column
     @JsonProperty
-    private @Getter @Setter Boolean execute = false;
+    private @Getter @Setter Date taskRunDate = null;
     @Column
     @JsonProperty
-    private @Getter @Setter Boolean taskIsRunning = false;
+    private @Getter @Setter Date taskExecuteDate = null;
+    @Column
+    @JsonProperty
+    private @Getter @Setter Boolean userGotNotificationDate = false;
 
     @ElementCollection
     @MapKeyColumn(name="name")

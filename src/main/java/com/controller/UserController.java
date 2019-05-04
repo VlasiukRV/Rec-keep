@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.service.UserService;
+import com.service.EntityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import java.util.Map;
 public class UserController extends BaseEntityController {
 
     @Autowired
-    public UserController(UserService entityService) {
+    public UserController(EntityUserService entityService) {
         this.entityName = "user";
         this.entityService = entityService;
     }

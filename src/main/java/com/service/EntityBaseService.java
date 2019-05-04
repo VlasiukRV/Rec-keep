@@ -14,13 +14,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @NoArgsConstructor
-public abstract class BaseEntityService<T extends BaseEntity<ID>, ID extends Serializable, R extends CrudRepository<T, ID> & EntityRepositoryCastom> {
+public abstract class EntityBaseService<T extends BaseEntity<ID>, ID extends Serializable, R extends CrudRepository<T, ID> & EntityRepositoryCastom> {
 
     protected R entityRepository;
 
     protected Class<T> baseEntityClass;
 
-    protected BaseEntityService(Class<T> baseEntityClass, R entityRepository) {
+    protected EntityBaseService(Class<T> baseEntityClass, R entityRepository) {
         this.baseEntityClass = baseEntityClass;
         this.entityRepository = entityRepository;
     }

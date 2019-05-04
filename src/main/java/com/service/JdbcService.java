@@ -1,8 +1,8 @@
 package com.service;
 
 import com.approom.tasklist.entity.Project;
-import com.approom.tasklist.service.ProjectService;
-import com.approom.tasklist.service.TaskService;
+import com.approom.tasklist.service.EntityProjectService;
+import com.approom.tasklist.service.EntityTaskService;
 import com.config.AppStartupRunner;
 import com.entity.Role;
 import com.entity.User;
@@ -28,13 +28,13 @@ public class JdbcService {
     private EntityManagerFactory entityManagerFactory;
 
     @Autowired
-    TaskService taskService;
+    EntityTaskService taskService;
     @Autowired
-    UserService userService;
+    EntityUserService userService;
     @Autowired
-    RoleService roleService;
+    EntityRoleService roleService;
     @Autowired
-    ProjectService projectService;
+    EntityProjectService projectService;
 
     public JdbcService(){
 

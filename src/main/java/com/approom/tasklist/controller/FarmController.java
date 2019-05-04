@@ -2,7 +2,7 @@ package com.approom.tasklist.controller;
 
 import com.approom.tasklist.dao.FarmRepository;
 import com.approom.tasklist.entity.Farm;
-import com.approom.tasklist.service.FarmService;
+import com.approom.tasklist.service.EntityFarmService;
 import com.controller.BaseEntityController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +11,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/appTaskList/entity/farm")
-public class FarmController extends BaseEntityController<FarmRepository, Integer, Farm, FarmService>{
+public class FarmController extends BaseEntityController<FarmRepository, Integer, Farm, EntityFarmService>{
 
     @Autowired
-    public FarmController(FarmService entityService) {
+    public FarmController(EntityFarmService entityService) {
         entityName = "farm";
         this.entityService = entityService;
     }

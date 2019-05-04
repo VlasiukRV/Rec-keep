@@ -2,7 +2,7 @@ package com.controller;
 
 import com.approom.tasklist.service.ServiceTaskArchiveTask;
 import com.approom.tasklist.service.ServiceTaskSendMailForAuthor;
-import com.approom.tasklist.service.TaskService;
+import com.approom.tasklist.service.EntityTaskService;
 import com.service.reportGenerators.Report;
 import com.service.reportGenerators.ServiceReports;
 import com.service.MailSender;
@@ -20,7 +20,7 @@ import java.util.Map;
 @RequestMapping("/appTaskList/system/taskScheduler")
 public class TaskSchedulerController {
     @Autowired
-    private TaskService taskService;
+    private EntityTaskService taskService;
 
     @Autowired
     private ServiceReports serviceReports;
@@ -30,7 +30,7 @@ public class TaskSchedulerController {
     @Autowired
     private Configuration freemarkerConfig;
     @Autowired
-    private TaskService entityService;
+    private EntityTaskService entityService;
     @Autowired
     private MailSender appMailSender;
 

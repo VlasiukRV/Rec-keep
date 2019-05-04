@@ -2,15 +2,14 @@ package com.controller;
 
 import com.dao.EntityRepositoryCastom;
 import com.entity.BaseEntity;
-import com.service.BaseEntityService;
+import com.service.EntityBaseService;
+import org.springframework.data.repository.CrudRepository;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.data.repository.CrudRepository;
-
-public abstract class BaseEntityController<R extends CrudRepository<T, ID> & EntityRepositoryCastom<T>, ID extends Serializable, T extends BaseEntity<ID>, K extends BaseEntityService<T, ID, R>> {
+public abstract class BaseEntityController<R extends CrudRepository<T, ID> & EntityRepositoryCastom<T>, ID extends Serializable, T extends BaseEntity<ID>, K extends EntityBaseService<T, ID, R>> {
     protected String entityName;
     protected K entityService;
 

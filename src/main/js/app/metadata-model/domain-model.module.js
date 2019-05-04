@@ -540,20 +540,29 @@ angular.module('module.domain-model',
                                 entityListService: null
                             }
                         },
-                        execute: {
+                        taskRunDate: {
                             value: '',
                             fieldDescription: {
-                                inputType: 'checkbox',
-                                label: 'Execute',
+                                inputType: 'date',
+                                label: 'Date task is running',
                                 availability: true,
                                 entityListService: null
                             }
                         },
-                        taskIsRunning: {
+                        taskExecuteDate: {
                             value: '',
                             fieldDescription: {
-                                inputType: 'checkbox',
-                                label: 'Task is running',
+                                inputType: 'date',
+                                label: 'Date task is executed',
+                                availability: true,
+                                entityListService: null
+                            }
+                        },
+                        userGotNotificationDate: {
+                            value: '',
+                            fieldDescription: {
+                                inputType: 'date',
+                                label: 'Date User got notification',
                                 availability: true,
                                 entityListService: null
                             }
@@ -599,20 +608,30 @@ angular.module('module.domain-model',
                         {editFieldId: 'id', fieldLength: 3}
                     ],
                     [
+                        {editFieldId: 'taskName', fieldLength: 12}
+                    ],
+                    [
                         {
                             editFieldId: [
-                                [{editFieldId: 'taskName', fieldLength: 12}],
-                                [{execute: 'password', fieldLength: 12}],
-                                [{taskIsRunning: 'mailAddress', fieldLength: 12}]
+                                    [
+                                        {editFieldId: 'taskRunDate', fieldLength: 4},
+                                        {editFieldId: 'taskExecuteDate', fieldLength: 4},
+                                        {editFieldId: 'userGotNotificationDate', fieldLength: 4}
+                                    ]
                             ],
-                            fieldLength: 5
+                            fieldLength: 12
                         }
                     ],
                     [
-                        {editFieldId: 'taskVariable', fieldLength: 12}
-                    ],
-                    [
-                        {editFieldId: 'taskResult', fieldLength: 12}
+                        {
+                            editFieldId: [
+                                [
+                                    {editFieldId: 'taskVariable', fieldLength: 6},
+                                    {editFieldId: 'taskResult', fieldLength: 6}
+                                ]
+                            ],
+                            fieldLength: 12
+                        }
                     ],
                     [
                         {editFieldId: 'description', fieldLength: 12}

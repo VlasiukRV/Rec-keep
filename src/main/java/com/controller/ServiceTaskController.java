@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.service.ServiceTaskService;
+import com.service.EntityServiceTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import java.util.Map;
 public class ServiceTaskController extends BaseEntityController {
 
     @Autowired
-    public ServiceTaskController(ServiceTaskService entityService) {
+    public ServiceTaskController(EntityServiceTaskService entityService) {
         this.entityName = "serviceTask";
         this.entityService = entityService;
     }

@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RoleService extends BaseEntityService<Role, Integer, RoleRepository> {
+public class EntityRoleService extends EntityBaseService<Role, Integer, RoleRepository> {
     @Autowired
-    public RoleService(RoleRepository roleRepository) {
+    public EntityRoleService(RoleRepository roleRepository) {
         super(Role.class, roleRepository);
     }
 }

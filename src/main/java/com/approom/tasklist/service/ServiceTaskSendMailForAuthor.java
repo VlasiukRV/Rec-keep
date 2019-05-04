@@ -21,7 +21,7 @@ import java.util.*;
 public class ServiceTaskSendMailForAuthor extends AbstractServiceTask {
 
     private Configuration freemarkerConfig;
-    private TaskService entityService;
+    private EntityTaskService entityService;
     private MailSender appMailSender;
 
     private Set<Task> tasksWithSendMail = new HashSet<>();
@@ -36,7 +36,7 @@ public class ServiceTaskSendMailForAuthor extends AbstractServiceTask {
 
     }
 
-    public ServiceTaskSendMailForAuthor(TaskService entityService, MailSender appMailSender, Configuration freemarkerConfig) {
+    public ServiceTaskSendMailForAuthor(EntityTaskService entityService, MailSender appMailSender, Configuration freemarkerConfig) {
         super();
         this.entityService = entityService;
         this.appMailSender = appMailSender;
