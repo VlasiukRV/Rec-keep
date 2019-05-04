@@ -139,9 +139,13 @@
                 if (receiver[key]) {
 
                 } else {
-                    receiver[key] = {};
+                    if(typeof receiver[key] === 'string') {
+                        receiver[key] = JSON.stringify(sourceProperty);
+                    } else {
+                        receiver[key] = {};
+                        appUtils.fillValuesProperty(sourceProperty, receiver[key]);
+                    }
                 }
-                appUtils.fillValuesProperty(sourceProperty, receiver[key]);
             } else {
                 receiver[key] = sourceProperty;
             }

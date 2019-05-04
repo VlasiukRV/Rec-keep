@@ -6,6 +6,8 @@ var app = angular.module('app', [
     'oi.select', 
     'cfp.hotkeys',
 
+    'angular-jsoneditor',
+
     'module.config',
 
     'module.ui.main-menu',

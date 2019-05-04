@@ -159,6 +159,17 @@
             </div>
         </div>
 
+        <!--textarea-->
+        <div ng-switch-when="jsonEditor">
+            <div class="form-group">
+
+                <label class="control-label">{{property.label}}:</label>
+
+                <json-editor json="entity[property.name]"></json-editor>
+
+            </div>
+        </div>
+
         <!--default-->
         <div ng-switch-default>
             <div class="form-group">

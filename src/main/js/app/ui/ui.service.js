@@ -76,6 +76,12 @@
         resourceService, 
         errorDescriptions){
 
+        $scope.json = {
+            "Array": [1, 2, 3], "Boolean": true, "Null": null, "Number": 123,
+            "Object": {"a": "b", "c": "d"}, "String": "Hello World",
+            "auto": "$Hello World"
+        };
+
         $scope.countValueList1 = [];
         $scope.countValueList1.push({valueLabel: 'Mon', value: 30, minValue:0, maxValue: 100});
         $scope.countValueList1.push({valueLabel: 'Tue', value: 24, minValue:0, maxValue: 100});

@@ -86,6 +86,7 @@ module.exports = function (grunt) {
                         'src/main/js/app-lib/angularjs/hotkeys.min.js',
                         'src/main/js/app-lib/angularjs/select-tpls.min.js',
                         'src/main/js/app-lib/angularjs/ui-bootstrap.js',
+
                     ],
                     'src/main/resources/static/js/gentelella.js': [
 
@@ -111,6 +112,8 @@ module.exports = function (grunt) {
                         'src/main/js/app/config/system/system.module.js',
                         'src/main/js/app/config/config.service.js',
                         'src/main/js/app/config/config.module.js',
+
+                        'src/main/js/app/components/angular-json-editor.js',
 
                         'src/main/js/app/ui/main-menu/ui.main-menu.core.js',
                         'src/main/js/app/ui/main-menu/ui.main-menu.directive.js',

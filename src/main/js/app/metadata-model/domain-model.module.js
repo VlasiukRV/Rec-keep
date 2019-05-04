@@ -558,10 +558,19 @@ angular.module('module.domain-model',
                                 entityListService: null
                             }
                         },
+                        taskVariable: {
+                            value: '',
+                            fieldDescription: {
+                                inputType: 'jsonEditor',
+                                label: 'task variable',
+                                availability: false,
+                                entityListService: null
+                            }
+                        },
                         taskResult: {
                             value: '',
                             fieldDescription: {
-                                inputType: 'text',
+                                inputType: 'jsonEditor',
                                 label: 'task result',
                                 availability: false,
                                 entityListService: null
@@ -598,6 +607,9 @@ angular.module('module.domain-model',
                             ],
                             fieldLength: 5
                         }
+                    ],
+                    [
+                        {editFieldId: 'taskVariable', fieldLength: 12}
                     ],
                     [
                         {editFieldId: 'taskResult', fieldLength: 12}
