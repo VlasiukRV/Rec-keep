@@ -1,5 +1,6 @@
 package com.service.reportGenerators;
 
+import com.approom.tasklist.service.EntityPoultryCalendarService;
 import com.approom.tasklist.service.report.ReportPDFRecordKeepingCalendar;
 import com.service.fileGenerators.PhantomjsConfig;
 import freemarker.template.Configuration;
@@ -13,6 +14,8 @@ public class ServiceReports {
     private Configuration freemarkerConfig;
     @Autowired
     private PhantomjsConfig phantomjsConfig;
+    @Autowired
+    private EntityPoultryCalendarService poultryCalendarService;
 
     public Report getReport(String reportName) {
 
@@ -21,7 +24,10 @@ public class ServiceReports {
         Report report = null;
         switch (reportName) {
             case ("RecordKeepingCalendar"): {
-                report = new ReportPDFRecordKeepingCalendar(freemarkerConfig, phantomjsConfig);
+                ReportPDFRecordKeepingCalendar reportRecordKeepingCalendar = new ReportPDFRecordKeepingCalendar(freemarkerConfig, phantomjsConfig);
+                reportRecordKeepingCalendar.setPoultryCalendarService(poultryCalendarService);
+
+                report = reportRecordKeepingCalendar;
                 break;
             }
         }

@@ -1,5 +1,7 @@
 package com.approom.tasklist.service.report;
 
+import com.approom.tasklist.entity.PoultryCalendar;
+import com.approom.tasklist.service.EntityPoultryCalendarService;
 import com.service.fileGenerators.PhantomjsConfig;
 import com.service.reportGenerators.ReportPDF;
 import freemarker.template.Configuration;
@@ -8,6 +10,8 @@ import java.util.*;
 
 public class ReportPDFRecordKeepingCalendar extends ReportPDF {
 
+    private EntityPoultryCalendarService poultryCalendarService;
+
     public ReportPDFRecordKeepingCalendar(Configuration freemarkerConfig, PhantomjsConfig phantomjsConfig) {
         this.freemarkerConfig = freemarkerConfig;
         this.phantomjsConfig = phantomjsConfig;
@@ -15,8 +19,139 @@ public class ReportPDFRecordKeepingCalendar extends ReportPDF {
         setReportName("RecordKeepingCalendar");
     }
 
+    public EntityPoultryCalendarService getPoultryCalendarService() {
+        return poultryCalendarService;
+    }
+
+    public void setPoultryCalendarService(EntityPoultryCalendarService poultryCalendarService) {
+        this.poultryCalendarService = poultryCalendarService;
+    }
+
     @Override
     public void buildModel() {
+/*
+        List<Field> fields = new ArrayList<>();
+        fields.add(new Field("username", "User Name"));
+        fields.add(new Field("mailAddress", "Mail Address"));
+
+        List<Map<String, Object>> entities = new ArrayList<>();
+
+        Map<String, Object> user1 = new HashMap<>();
+        user1.put("name", "Roma");
+        user1.put("mailAddress", "Roma@gmail.com\"");
+        entities.add(user1);
+
+        Map<String, Object> model = new HashMap();
+        model.put("fields", fields);
+        model.put("entities", entities);
+*/
+
+        Map<String, Object> model = new HashMap();
+
+        model.put("date", "31-Jan");
+
+        List<String> fieldsTitle = new ArrayList<>();
+        fieldsTitle.add("DATE");
+        fieldsTitle.add("Mortality");
+        fieldsTitle.add("Egg Production");
+        fieldsTitle.add("Dirty Flats");
+        fieldsTitle.add("Hi");
+        fieldsTitle.add("Lo");
+        fieldsTitle.add("Humidity");
+        fieldsTitle.add("Time am/pm");
+        fieldsTitle.add("Hi");
+        fieldsTitle.add("Lo");
+        fieldsTitle.add("Water Meter Read");
+        fieldsTitle.add("Water Cons");
+        fieldsTitle.add("Feed Cons");
+        fieldsTitle.add("Floor");
+        fieldsTitle.add("Walls/ Fans / Ceiling");
+        fieldsTitle.add("Manure");
+        fieldsTitle.add("Egg Conv. / Carts");
+        fieldsTitle.add("Pack Room");
+        fieldsTitle.add("Egg Cooler");
+        fieldsTitle.add("Anti Room");
+        fieldsTitle.add("Record issues observed");
+        fieldsTitle.add("Initial");
+        fieldsTitle.add("Record issues observed");
+        fieldsTitle.add("Initial");
+        model.put("fieldsTitle", fieldsTitle);
+
+        List<List> entities = new ArrayList<>();
+        List<PoultryCalendar> poultryCalendars = poultryCalendarService.getAll();
+        for (PoultryCalendar poultryCalendar: poultryCalendars) {
+            entities.add(Arrays.asList(
+                    "1",
+                    poultryCalendar.getMortality(),
+                    poultryCalendar.getEggProduction(),
+                    poultryCalendar.getEggCoolerDirtyFlats(),
+                    poultryCalendar.getEggCoolerTemperatureHi(),
+                    poultryCalendar.getEggCoolerTemperatureLo(),
+                    poultryCalendar.getEggCoolerHumidity(),
+                    "8 a.m.",
+                    poultryCalendar.getBarnTemperatureHi(),
+                    poultryCalendar.getBarnTemperatureLo(),
+                    poultryCalendar.getWaterMeterRead(),
+                    poultryCalendar.getWaterCons(),
+                    poultryCalendar.getFeedCons(),
+                    "W",    "", "C",    "W",    "W",    "W",    "W", "Normal","JS","Normal","HB"));
+        }
+        model.put("entities", entities);
+
+        List<String> activityLogWeeklyTitle = new ArrayList<>();
+        activityLogWeeklyTitle.add("TASK");
+        activityLogWeeklyTitle.add("Freq.");
+        activityLogWeeklyTitle.add("Date");
+        activityLogWeeklyTitle.add("Date");
+        activityLogWeeklyTitle.add("Date");
+        activityLogWeeklyTitle.add("Date");
+        model.put("activityLogWeeklyTitle", activityLogWeeklyTitle);
+
+        List<List> activityLogWeeklyEntities = new ArrayList<>();
+        activityLogWeeklyEntities.add(Arrays.asList("Water chlorine/peroxide treatment", "Weekly", "5-Jan", "12-Jan JS", "19-Jan JS", "26-Jan JS"));
+        activityLogWeeklyEntities.add(Arrays.asList("Check air inlets for obstruction", "Weekly", "5-Jan", "12-Jan", "19-Jan", "26-Jan"));
+        activityLogWeeklyEntities.add(Arrays.asList("Check and clean bait stations/traps", "Weekly", "5-Jan", "12-Jan", "19-Jan", "26-Jan"));
+        activityLogWeeklyEntities.add(Arrays.asList("Trim weeds/grass around unit (seasonal)", "Weekly", "NA", "NA", "NA", "NA"));
+        activityLogWeeklyEntities.add(Arrays.asList("Check garbage receptacles & misc. storage", "Weekly", "5-Jan", "12-Jan", "19-Jan", "26-Jan"));
+        activityLogWeeklyEntities.add(Arrays.asList("Clean egg cooler (after egg pick-up)", "Weekly", "5-Jan", "12-Jan", "19-Jan", "26-Jan"));
+        activityLogWeeklyEntities.add(Arrays.asList("Replenish handwash station", "Weekly", "5-Jan", "12-Jan", "19-Jan", "26-Jan"));
+        activityLogWeeklyEntities.add(Arrays.asList("Replenish solution and clean footbath", "Weekly", "5-Jan", "12-Jan", "19-Jan", "26-Jan"));
+        activityLogWeeklyEntities.add(Arrays.asList("Egg Pick-up", "01-Jan", "08-Jan", "15-Jan", "22-Jan", "28-Jan"));
+        activityLogWeeklyEntities.add(Arrays.asList("Feed Delivery", "04-Jan", "12-Jan", "17-Jan", "23-Jan", "31-Jan"));
+        activityLogWeeklyEntities.add(Arrays.asList("Take feed samples from each load", "04-Jan", "12-Jan", "17-Jan", "23-Jan", "31-Jan"));
+
+        model.put("activityLogWeeklyEntities", activityLogWeeklyEntities);
+
+        List<String> activityLogMonthlyTitle = new ArrayList<>();
+        activityLogMonthlyTitle.add("TASK");
+        activityLogMonthlyTitle.add("Freq.");
+        activityLogMonthlyTitle.add("Date");
+        model.put("activityLogMonthlyTitle", activityLogMonthlyTitle);
+
+        List<List> activityLogMonthlyEntities = new ArrayList<>();
+        activityLogMonthlyEntities.add(Arrays.asList("Water chlorine/peroxide treatment", "Monthly", "15-Jan"));
+        activityLogMonthlyEntities.add(Arrays.asList("Test water chlorine/peroxide residual if applicable", "Monthly", "15-Jan"));
+        activityLogMonthlyEntities.add(Arrays.asList("Inspect water filters & change as required, waterlines cleaned & flushed", "Monthly", "15-Jan"));
+        activityLogMonthlyEntities.add(Arrays.asList("Check facility lighting equipment", "Monthly", "01-Jan"));
+        activityLogMonthlyEntities.add(Arrays.asList("Check feed bins", "Monthly", "20-Jan"));
+        activityLogMonthlyEntities.add(Arrays.asList("Check floor drains", "Monthly", "20-Jan"));
+        activityLogMonthlyEntities.add(Arrays.asList("Facility and perimeter inspection", "Monthly", "20-Jan"));
+        activityLogMonthlyEntities.add(Arrays.asList("Check stand-by generator, date and initial", "Monthly", "15-Jan JS"));
+        activityLogMonthlyEntities.add(Arrays.asList("Test alarms, date and initial", "Monthly", "20-Jan JS"));
+        activityLogMonthlyEntities.add(Arrays.asList("Ammonia test (October - March)", "Monthly", "Reading: 10 ppm20-Jan"));
+        activityLogMonthlyEntities.add(Arrays.asList("Salmonella test by MEF", "2/flock", "15-Jan"));
+        activityLogMonthlyEntities.add(Arrays.asList("Calibrate thermomerter", "2/year", "15-Jan"));
+        activityLogMonthlyEntities.add(Arrays.asList("Calibrate medicator or water proportioner", "1/year", "15-Jan"));
+        activityLogMonthlyEntities.add(Arrays.asList("Calibrate scales & metering devices (on-farm feed mill)", "1/year", "20-Jan"));
+        activityLogMonthlyEntities.add(Arrays.asList("Inspect & repair restricted/unrestricted zone", "1/year", "20-Jan"));
+        activityLogMonthlyEntities.add(Arrays.asList("Water test", "1/year", "01-Jan"));
+        model.put("activityLogMonthlyEntities", activityLogMonthlyEntities);
+
+        setModel(model);
+    }
+
+    //@Override
+    public void buildModel_01() {
 
 /*
         List<Field> fields = new ArrayList<>();
