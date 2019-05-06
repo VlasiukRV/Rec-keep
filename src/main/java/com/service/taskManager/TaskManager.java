@@ -19,7 +19,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import static java.util.Objects.nonNull;
 
 @Service
 public class TaskManager {
@@ -47,56 +51,110 @@ public class TaskManager {
     @Autowired
     private MailSender appMailSender;
 
-    private User getUser() {
-        return entityUserService.getUserByName(securityService.getUser().getUsername());
-    }
-
-    public Boolean createTask(String taskName, Map<String, String> taskVariable) {
+    public Boolean createTaskEntity(String taskName, Map<String, String> taskVariable) {
         ServiceTask serviceTask = new ServiceTask();
 
-        serviceTask.setTaskName(taskName);
-        serviceTask.setTaskVariable(taskVariable);
-        serviceTask.setUser(this.getUser());
-
-        return this.saveTask(serviceTask);
+        return setTaskCreateProperties(serviceTask, taskName, taskVariable);
     }
 
-    public Boolean executeTask(ServiceTask serviceTask) {
-        serviceTask.setTaskRunDate(new Date());
-        this.saveTask(serviceTask);
-        return putTaskToSchedulerQueue(serviceTask);
+    public Boolean executeTaskEntity(Integer taskId) {
+        return this.executeTaskEntity(getTaskEntity(taskId));
     }
 
-    private Boolean putTaskToSchedulerQueue(ServiceTask serviceTask) {
-        IServiceTask task = getTask (serviceTask);
-
-        return taskExecutor.putTask(task);
+    public Boolean interruptTaskEntity(Integer taskId) {
+        ServiceTask taskEntity = getTaskEntity(taskId);
+        setTaskNotExecuteProperties(taskEntity);
+        return taskExecutor.interruptTask(taskId);
     }
 
-    private IServiceTask getTask (ServiceTask serviceTask) {
-        switch (serviceTask.getTaskName()) {
-            case ("CreateReport"): {
-                Report report = serviceReports.getReport("RecordKeepingCalendar");
-                return new ServiceTaskCreateReport(report);
+    public void interruptTaskExecutor() {
+        taskExecutor.interrupt();
+    }
+
+
+    public void startTasksExecute() {
+        List<ServiceTask> taskEntities = entityServiceTaskService.getAll();
+        for (ServiceTask taskEntity : taskEntities) {
+            if(taskEntity.getTaskRunDate() == null) {
+                executeTaskEntity(taskEntity.getId());
             }
-            case ("ArchiveService"): {
-                return new ServiceTaskArchiveTask(taskService);
-            }
-            case ("MailSendService"): {
-                return new ServiceTaskSendMailForAuthor(entityService, appMailSender, freemarkerConfig);
-            }
-            default:
-                return null;
         }
     }
 
-    private  Boolean saveTask(ServiceTask serviceTask) {
+    public ServiceTask getTaskEntity(Integer taskId) {
+        ServiceTask taskEntity = entityServiceTaskService.getEntityById(taskId);
+        return taskEntity;
+    }
+
+    public Boolean executeTaskEntity(ServiceTask taskEntity) {
+        return taskExecutor.putTaskToSchedulerQueue(taskEntity);
+    }
+
+    public IServiceTask getNewTask(Integer taskId) {
+        ServiceTask taskEntity = getTaskEntity(taskId);
+        return getNewTask(taskEntity);
+    }
+
+    public IServiceTask getNewTask(ServiceTask serviceTask) {
+        IServiceTask task = null;
+        switch (serviceTask.getTaskName()) {
+            case ("CreateReport"): {
+                String reportName = serviceTask.getTaskVariable().get("reportName");
+
+                Report report = serviceReports.getReport(reportName);
+                task = new ServiceTaskCreateReport(report);
+                break;
+            }
+            case ("ArchiveService"): {
+                task = new ServiceTaskArchiveTask(taskService);
+                break;
+            }
+            case ("MailSendService"): {
+                task = new ServiceTaskSendMailForAuthor(entityService, appMailSender, freemarkerConfig);
+            }
+        }
+        if(nonNull(task)) {
+            task.setTaskResult(serviceTask.getTaskResult());
+        }
+        return task;
+    }
+
+    public Boolean setTaskCreateProperties(ServiceTask taskEntity, String taskName, Map<String, String> taskVariable) {
+        taskEntity.setTaskName(taskName);
+        taskEntity.setTaskVariable(taskVariable);
+        taskEntity.setUser(this.getUser());
+
+        return this.saveTaskEntity(taskEntity);
+    }
+
+    public Boolean setTaskRunProperties(ServiceTask taskEntity) {
+        taskEntity.setTaskRunDate(new Date());
+        return this.saveTaskEntity(taskEntity);
+    }
+
+    public Boolean setTaskExecuteProperties(ServiceTask taskEntity) {
+        taskEntity.setTaskExecuteDate(new Date());
+        return this.saveTaskEntity(taskEntity);
+    }
+
+    public Boolean setTaskNotExecuteProperties(ServiceTask taskEntity) {
+        taskEntity.setTaskExecuteDate(null);
+        taskEntity.setTaskResult(new HashMap<>());
+        taskEntity.setUserGotNotificationDate(false);
+        return this.saveTaskEntity(taskEntity);
+    }
+
+    private Boolean saveTaskEntity(ServiceTask serviceTask) {
         try {
             entityServiceTaskService.saveEntity(serviceTask);
         }catch (Exception e){
             return  false;
         }
         return true;
+    }
+
+    private User getUser() {
+        return entityUserService.getUserByName(securityService.getUser().getUsername());
     }
 
 }

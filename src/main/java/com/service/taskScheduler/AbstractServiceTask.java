@@ -3,11 +3,15 @@ package com.service.taskScheduler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class AbstractServiceTask extends Thread implements IServiceTask{
 
     private String taskName = "";
     private Boolean execute = false;
     private Boolean taskIsRunning = false;
+    private Map<String, String> taskResult = new HashMap<>();
 
     private static final Logger logger = LoggerFactory.getLogger(AbstractServiceTask.class);
 
@@ -17,6 +21,13 @@ public abstract class AbstractServiceTask extends Thread implements IServiceTask
 
     protected void setTaskName(String taskName){
         this.taskName = taskName;
+    }
+
+    public Map<String, String> getTaskResult() {
+        return this.taskResult;
+    }
+    public void setTaskResult(Map<String, String> taskResult){
+        this.taskResult = taskResult;
     }
 
     @Override

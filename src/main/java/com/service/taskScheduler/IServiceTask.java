@@ -1,9 +1,14 @@
 package com.service.taskScheduler;
 
+import java.util.Map;
+
 public interface IServiceTask{
-    public String getTaskName();
-    public Boolean isExecute();
-    public Boolean isRun();
-    public void start();
-    public void stopTask();
+    String getTaskName();
+    Boolean isExecute();
+    Boolean isRun();
+    void start();
+    void stopTask();
+
+    Map<String, String> getTaskResult();
+    void setTaskResult(Map<String, String> taskResult);
 }

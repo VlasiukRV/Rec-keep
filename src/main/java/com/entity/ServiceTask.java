@@ -18,35 +18,38 @@ import java.util.Map;
 @NoArgsConstructor
 public class ServiceTask extends BaseEntity<Integer>{
 
-    @Column
     @JsonProperty
+    @ManyToOne(cascade={CascadeType.DETACH}, fetch = FetchType.EAGER)
     private @Getter @Setter User user;
 
-    @Column
     @JsonProperty
+    @Column
     private @Getter @Setter String taskName = "";
-    @Column
+
     @JsonProperty
+    @Column
     private @Getter @Setter Date taskRunDate = null;
-    @Column
+
     @JsonProperty
+    @Column
     private @Getter @Setter Date taskExecuteDate = null;
-    @Column
+
     @JsonProperty
+    @Column
     private @Getter @Setter Boolean userGotNotificationDate = false;
 
-    @ElementCollection
+    @JsonProperty
+    @ElementCollection(fetch = FetchType.EAGER)
     @MapKeyColumn(name="name")
     @Column(name="value")
-    @CollectionTable(name="task_variable")
-    @JsonProperty
+    @CollectionTable(name="service_task_variable")
     private @Getter @Setter Map<String, String> taskVariable = new HashMap<>();
 
-    @ElementCollection
+    @JsonProperty
+    @ElementCollection(fetch = FetchType.EAGER)
     @MapKeyColumn(name="name")
     @Column(name="value")
-    @CollectionTable(name="task_result")
-    @JsonProperty
+    @CollectionTable(name="service_task_result")
     private @Getter @Setter Map<String, String> taskResult = new HashMap<>();
 
 }

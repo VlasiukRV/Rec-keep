@@ -1,8 +1,9 @@
 package com.test;
 
+import com.service.taskScheduler.AbstractServiceTask;
 import com.service.taskScheduler.IServiceTask;
 
-public class TaskProba extends Thread implements IServiceTask {
+public class TaskProba extends AbstractServiceTask implements IServiceTask {
     private String taskName = "";
     private Boolean execute = false;
 
@@ -28,6 +29,10 @@ public class TaskProba extends Thread implements IServiceTask {
 
     public void stopTask(){
         interrupt();
+    }
+
+    protected boolean runServiceTask() {
+        return true;
     }
 
     @Override

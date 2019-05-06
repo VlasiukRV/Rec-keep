@@ -18,7 +18,13 @@ public class ServiceReports {
 
         freemarkerConfig.setClassForTemplateLoading(this.getClass(), "/reportBuilder");
 
-        Report report = new ReportPDFRecordKeepingCalendar(freemarkerConfig, phantomjsConfig);
+        Report report = null;
+        switch (reportName) {
+            case ("RecordKeepingCalendar"): {
+                report = new ReportPDFRecordKeepingCalendar(freemarkerConfig, phantomjsConfig);
+                break;
+            }
+        }
 
         return report;
     }

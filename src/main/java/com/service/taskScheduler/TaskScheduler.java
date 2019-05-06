@@ -1,7 +1,10 @@
 package com.service.taskScheduler;
 
+import com.entity.ServiceTask;
+import com.service.taskManager.TaskManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -11,9 +14,12 @@ import java.util.Set;
 @Service
 public class TaskScheduler extends Thread{
 
+    @Autowired
+    private TaskManager taskManager;
+
     private int MAX_RUNNING_TASK = 5;
     private int runningTaskCount;
-    private volatile Map<String, IServiceTask> taskPool = new HashMap<>();
+    private volatile Map<Integer, IServiceTask> taskPool = new HashMap<>();
 
     private static final Logger logger = LoggerFactory.getLogger(TaskScheduler.class);
 
@@ -21,46 +27,40 @@ public class TaskScheduler extends Thread{
 
     }
 
-    public Boolean putTask(IServiceTask serviceTask){
-        String taskName = serviceTask.getTaskName();
-        if(taskPool.containsKey(taskName)) {
+    public Boolean putTaskToSchedulerQueue(ServiceTask taskEntity) {
+        if(taskPool.containsKey(taskEntity.getId())) {
             return false;
         }
 
-        taskPool.put(taskName, serviceTask);
+        taskPool.put(taskEntity.getId(), null);
 
         runService();
         return true;
     }
 
-    public IServiceTask getTaskByName(String taskName){
-        if(taskPool.containsKey(taskName)) {
-            return taskPool.get(taskName);
+    public IServiceTask getTaskById (Integer serviceTaskId){
+        if(taskPool.containsKey(serviceTaskId)) {
+            return taskPool.get(serviceTaskId);
         }
         return null;
     }
 
-    public Boolean removeTask(String serviceTaskName){
-        removeTask(getTaskByName(serviceTaskName));
+    public Boolean removeTask(Integer serviceTaskId){
+        taskPool.remove(serviceTaskId);
+        interruptTask(serviceTaskId);
         return true;
     }
 
-    public Boolean removeTask(IServiceTask serviceTask){
-        String taskName = serviceTask.getTaskName();
-        taskPool.remove(taskName);
-        interruptTask(serviceTask);
-        logger.info("Removed task: "+taskName);
-        return true;
+    public Boolean interruptTask(Integer serviceTaskId){
+        return interruptTask(getTaskById(serviceTaskId));
     }
 
-    public void interruptTask(String serviceTaskName){
-        interruptTask(getTaskByName(serviceTaskName));
-    }
-
-    public void interruptTask(IServiceTask serviceTask){
+    public Boolean interruptTask(IServiceTask serviceTask){
         if(serviceTask != null){
             serviceTask.stopTask();
+            return true;
         }
+        return false;
     }
 
     public void runService(){
@@ -73,21 +73,28 @@ public class TaskScheduler extends Thread{
     public void run() {
         logger.info("Task executor run");
         do {
-            if (Thread.interrupted())    //Проверка прерывания
+            if (Thread.interrupted())
             {
                 interruptTasks();
                 break;
             }
 
-            Set<String> tasksName = taskPool.keySet();
-            for (String taskName : tasksName) {
-                handleTask(taskPool.get(taskName));
+            Set<Integer> tasksId = taskPool.keySet();
+            for (Integer taskId : tasksId) {
+                IServiceTask task = taskPool.get(taskId);
+                if(task == null) {
+                    task = taskManager.getNewTask(taskId);
+                    taskPool.put(taskId, task);
+                }
+                if (task != null) {
+                    handleTask(taskId);
+                }
             }
 
             try {
-                Thread.sleep(5000);        //Приостановка потока на 1 сек.
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
-                break;    //Завершение потока после прерывания
+                break;
             }
         }
         while (true);
@@ -95,23 +102,29 @@ public class TaskScheduler extends Thread{
         logger.info("Task executor stop");
     }
 
-    private void handleTask(IServiceTask serviceTask){
-        if(!serviceTask.isRun()){
+    private void handleTask(Integer taskId){
+        IServiceTask task = taskPool.get(taskId);
+        ServiceTask taskEntity = taskManager.getTaskEntity(taskId);
+
+        if(!task.isRun()){
             if (runningTaskCount <= MAX_RUNNING_TASK) {
-                serviceTask.start();
+                task.start();
+                taskManager.setTaskRunProperties(taskEntity);
                 runningTaskCount++;
             }
-        }else if (serviceTask.isExecute()){
-            removeTask(serviceTask);
+        }else if (task.isExecute()){
+            removeTask(taskId);
+            taskEntity.setTaskResult(task.getTaskResult());
+            taskManager.setTaskExecuteProperties(taskEntity);
             runningTaskCount--;
         }
         logger.info("Tasks running:"+runningTaskCount);
     }
 
     private void interruptTasks() {
-        Set<String> tasksName = taskPool.keySet();
-        for (String taskName : tasksName) {
-            interruptTask(taskName);
+        Set<Integer> tasksId = taskPool.keySet();
+        for (Integer taskId : tasksId) {
+            interruptTask(taskId);
         }
 
     }

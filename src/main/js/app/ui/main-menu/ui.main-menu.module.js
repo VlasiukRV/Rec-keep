@@ -40,27 +40,16 @@ angular.module('module.ui.main-menu', [
 
 .factory('menuSystem', ['resourceService', 'menuModel', function (resourceService, menuModel) {
 	var menuSystem = varInterfaceUtill.getNewDropdownCommand('systemDD', 'System')
-	.addCommand(varInterfaceUtill.getNewCommand('initDataBase', 'initDataBase', function () {
-		varInterfaceUtill.ExecuteSystemCommand(resourceService, 'jdbc/initDataBase');
-	}))
-	.addCommand(varInterfaceUtill.getNewCommand('runCreateReport', 'runCreateReport', function () {
-		varInterfaceUtill.ExecuteSystemCommand(resourceService, 'taskScheduler/runCreateReport');
-	}))
-	.addCommand(varInterfaceUtill.getNewCommand('stopCreateReport', 'stopCreateReport', function () {
-		varInterfaceUtill.ExecuteSystemCommand(resourceService, 'taskScheduler/stopCreateReport');
-	}))
-	.addCommand(varInterfaceUtill.getNewCommand('runArchiveService', 'runArchiveService', function () {
-		varInterfaceUtill.ExecuteSystemCommand(resourceService, 'taskScheduler/runArchiveService');
-	}))
-	.addCommand(varInterfaceUtill.getNewCommand('stopArchiveService', 'stopArchiveService', function () {
-		varInterfaceUtill.ExecuteSystemCommand(resourceService, 'taskScheduler/stopArchiveService');
-	}))
-	.addCommand(varInterfaceUtill.getNewCommand('sendMail', 'sendMail', function () {
-		varInterfaceUtill.ExecuteSystemCommand(resourceService, 'taskScheduler/sendMail');
-	}))
-	.addCommand(varInterfaceUtill.getNewCommand('interruptTaskExecutor', 'interruptTaskExecutor', function () {
+		.addCommand(varInterfaceUtill.getNewCommand('initDataBase', 'initDataBase', function () {
+			varInterfaceUtill.ExecuteSystemCommand(resourceService, 'jdbc/initDataBase');
+		}))
+		.addCommand(varInterfaceUtill.getNewCommand('startTasksExecute', 'startTasksExecute', function () {
+			varInterfaceUtill.ExecuteSystemCommand(resourceService, 'taskScheduler/startTasksExecute');
+		}))
+
+		.addCommand(varInterfaceUtill.getNewCommand('interruptTaskExecutor', 'interruptTaskExecutor', function () {
 		varInterfaceUtill.ExecuteSystemCommand(resourceService, 'taskScheduler/interruptTaskExecutor');
-	}));
+		}));
 
     menuSystem.icon = 'fa fa-plug';
 	return varInterfaceUtill.getNewGroupCommand('systemG', 'System')

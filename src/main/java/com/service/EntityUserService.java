@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
-@Transactional
 @Service
+@Transactional
 public class EntityUserService extends EntityBaseService<User, Integer, UserRepository> {
     @Autowired
     public EntityUserService(UserRepository userRepository) {

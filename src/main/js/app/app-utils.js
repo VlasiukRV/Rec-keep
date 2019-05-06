@@ -136,16 +136,18 @@
             } else if (sourceProperty == null) {
                 receiver[key] = sourceProperty;
             } else if (typeof sourceProperty === 'object') {
-                if (receiver[key]) {
 
-                } else {
                     if(typeof receiver[key] === 'string') {
                         receiver[key] = JSON.stringify(sourceProperty);
                     } else {
-                        receiver[key] = {};
+                        if (receiver[key]) {
+
+                        } else {
+                            receiver[key] = {};
+                        }
                         appUtils.fillValuesProperty(sourceProperty, receiver[key]);
                     }
-                }
+
             } else {
                 receiver[key] = sourceProperty;
             }

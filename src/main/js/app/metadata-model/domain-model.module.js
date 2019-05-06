@@ -512,12 +512,13 @@ angular.module('module.domain-model',
     )
     .service('metadataEntitySpecification_ServiceTask', [
         'Entity',
+        '$injector',
         'fmListForm_TYPES',
 
-        function (Entity, fmListForm_TYPES) {
+        function (Entity, $injector, fmListForm_TYPES) {
 
             var ServiceTask = appUtils.Class(Entity);
-            return {
+            var metadataEntitySpecification_ServiceTask = {
                 entityClass: ServiceTask,
                 fnGetEntityInstance: function () {
                     return new ServiceTask();
@@ -538,6 +539,22 @@ angular.module('module.domain-model',
                                 label: 'Task name',
                                 availability: true,
                                 entityListService: null
+                            }
+                        },
+                        user: {
+                            value: {},
+                            fieldDescription: {
+                                inputType: 'select',
+                                label: 'user',
+                                availability: true,
+                                getInstance: function () {
+                                    var metadataSet = $injector.get('metadataSet');
+                                    return metadataSet.getEntityInstance('user');
+                                },
+                                entityListService: function () {
+                                    var metadataSet = $injector.get('metadataSet');
+                                    return metadataSet.getEntityList('user');
+                                }
                             }
                         },
                         taskRunDate: {
@@ -608,6 +625,9 @@ angular.module('module.domain-model',
                         {editFieldId: 'id', fieldLength: 3}
                     ],
                     [
+                        {editFieldId: 'user', fieldLength: 3}
+                    ],
+                    [
                         {editFieldId: 'taskName', fieldLength: 12}
                     ],
                     [
@@ -639,6 +659,22 @@ angular.module('module.domain-model',
                 ]
 
             };
+
+            metadataEntitySpecification_ServiceTask.entityField.entityField.user.value.representationList = function () {
+                var str = '';
+                var k = 0;
+                while (true) {
+                    if (k === this.length) {
+                        break;
+                    }
+                    str = str + '; ' + this[k].representation;
+                    k = k + 1;
+
+                }
+                return str;
+            };
+
+            return metadataEntitySpecification_ServiceTask;
         }]
     )
     .service('metadataEntitySpecification_Task', [

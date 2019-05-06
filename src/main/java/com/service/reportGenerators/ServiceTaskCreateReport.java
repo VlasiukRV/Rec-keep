@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.Map;
 
 public class ServiceTaskCreateReport extends AbstractServiceTask {
 
@@ -23,7 +24,8 @@ public class ServiceTaskCreateReport extends AbstractServiceTask {
 
         File reportFile = report.getReport();
         if(reportFile.exists()) {
-            logger.info("Created report: " + report.getReportPath());
+            Map<String, String> taskResult = getTaskResult();
+            taskResult.put("fileName", report.getReportPath());
         }
 
         setExecute(true);
