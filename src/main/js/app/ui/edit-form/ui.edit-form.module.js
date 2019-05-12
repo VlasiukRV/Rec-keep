@@ -67,6 +67,9 @@ angular.module('module.ui.edit-form', [
 .directive('tableValueCountEcharts', function() {
 	return moduleUI.formsDirective.directiveTableValueCountEcharts();
 })
+.directive('graficMap', function() {
+	return moduleUI.formsDirective.directiveGraficMap();
+})
 .directive('draggable', ['$document', function($document) {
 	return moduleUI.formsDirective.draggable($document);
 }])

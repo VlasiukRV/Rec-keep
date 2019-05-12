@@ -351,6 +351,29 @@
         };
     };
 
+    formsDirective.directiveGraficMap = function() {
+        return {
+            restrict: 'E',
+            templateUrl: '/templates/appRoom/tasklist/directive/components/app-template-component-grafic-map.html',
+            link: function link($scope, iElement) {
+              $(".jqvvmap", iElement).vectorMap({
+                  map: 'canada_en',
+                  backgroundColor: null,
+                  color: '#ffffff',
+                  hoverOpacity: 0.7,
+                  selectedColor: '#666666',
+                  enableZoom: true,
+                  showTooltip: true,
+                  scaleColors: ['#E6F2F0', '#149B7E'],
+                  normalizeFunction: 'polynomial',
+                  onRegionClick: function(event, code, region){
+                    event.preventDefault();
+                  }
+                });
+            }
+        };
+    };
+
     formsDirective.directiveTableValueCountEcharts = function() {
         return {
             restrict: 'A',

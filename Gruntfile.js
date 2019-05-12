@@ -100,6 +100,8 @@ module.exports = function (grunt) {
                         
 
                         'src/main/js/gentelella/vendors/jquery.knob.min.js',
+                        'src/main/js/gentelella/vendors/jquery.vmap.min.js',
+                        'src/main/js/gentelella/vendors/maps/jquery.vmap.canada.js',
                         
                         'src/main/js/gentelella/gentelella-vendors.js',
                         'src/main/js/gentelella/gentelella.js',
