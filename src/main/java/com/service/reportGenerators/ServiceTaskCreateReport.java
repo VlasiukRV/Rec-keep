@@ -26,6 +26,7 @@ public class ServiceTaskCreateReport extends AbstractServiceTask {
         if(reportFile.exists()) {
             Map<String, String> taskResult = getTaskResult();
             taskResult.put("fileName", report.getReportPath());
+            taskResult.put("fileUrl", "http://localhost:8080/appTaskList/service/download?fileName=" + report.getReportName());
         }
 
         setExecute(true);
