@@ -103,6 +103,7 @@ module.exports = function (grunt) {
                         
                         'src/main/js/gentelella/gentelella-vendors.js',
                         'src/main/js/gentelella/gentelella.js',
+                        'node_modules/jsoneditor/dist/jsoneditor.min.js'
                     ],
                     'src/main/resources/static/js/build.js': [
                         

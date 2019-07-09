@@ -29,6 +29,7 @@
     "node-sass": "^4.11.0"
   },
   "dependencies": {
+    "angular-jsoneditor": "0.0.2",
     "oi.select": "^0.2.21"
   }
 }
