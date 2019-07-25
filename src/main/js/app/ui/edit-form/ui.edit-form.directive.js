@@ -586,8 +586,9 @@
                     angular.isString(ngModel.$viewValue) ? model = ngModel.$viewValue.replace(/(^,)|(,$)/g, "") : model = ngModel.$viewValue;
 
                     var seriesName = [];
+                    var categoryData = model.categoryData;
                     var seriesValue = [];
-                    $.each(model, function (index, element) {
+                    $.each(model.seriesValue, function (index, element) {
                         var seria = {
                                 name: element.valueLabel,
                                 type: 'bar',
@@ -600,11 +601,11 @@
                                     }
                                 },
                                 data: []
-                            }
+                            };
                         seriesName.push(element.valueLabel);
                         $.each(element.value, function (dataIndex, dataElement) {
                             seria.data.push(dataElement.value);
-                        }) 
+                        });
                         seriesValue.push(seria);
                     });                    
                     
@@ -648,7 +649,7 @@
                         xAxis: [{
                             type: 'category',
                             boundaryGap: false,
-                            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                            data: categoryData
                         }],
                         yAxis: [{
                             type: 'value'
