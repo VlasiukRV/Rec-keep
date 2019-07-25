@@ -46,3 +46,7 @@ src/main/resources/static/js/gentelella.min.js
 
 lib/
 src/main/resources/application.properties
+
+#excluded files
+package-lock.json
+*.log
