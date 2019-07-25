@@ -6,18 +6,18 @@
     var appController = exp.appController;
 
     appController.workPlaceController = function (
-        $window, 
-        $http, 
-        $cookies, 
-        $rootScope, 
-        $scope, 
+        $window,
+        $http,
+        $cookies,
+        $rootScope,
+        $scope,
         $location,
         appInitialization,
-        metadataSet, 
-        dataStorage, 
-        appConfig, 
-        resourceService, 
-        dateFilter, 
+        metadataSet,
+        dataStorage,
+        appConfig,
+        resourceService,
+        dateFilter,
         errorDescriptions) {
 
         $scope.errorDescriptions = errorDescriptions;
@@ -68,12 +68,12 @@
     };
 
     appController.dashboard = function(
-        $scope, 
+        $scope,
         appInitialization,
         metadataSet,
         dataStorage,
-        appConfig, 
-        resourceService, 
+        appConfig,
+        resourceService,
         errorDescriptions){
 
         function geDaysOfWeek() {
@@ -115,7 +115,7 @@
                 if($('#select-list').val() === element.valueLabel) {
                     $scope.countValueList = element.value
                 }
-            })            
+            })
         });
 
         $scope.json = {
@@ -126,7 +126,7 @@
 
         $scope.addNewEntity = function () {
             $scope.countValueList.push({valueLabel: 'Value 1', value: 30, minValue:0, maxValue: 100});
-         };
+        };
         $scope.deleteEntity = function () {
             $scope.countValueList.pop();
         };

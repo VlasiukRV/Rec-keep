@@ -194,9 +194,9 @@
         operationService.executeCommand({command: command}, {});
     };
 
-    varInterfaceUtill.securityService = function (resource, appEnvironment) {
+    varInterfaceUtill.securityService = function (resource, appHttp) {
         return resource(
-            appEnvironment.getAppHttpUrl('/system/security/:command'),
+            appHttp.getAppHttpUrl('/system/security/:command'),
             {
                 sessionID: '@sessionID'
             },
@@ -224,9 +224,9 @@
         );
     };
 
-    varInterfaceUtill.operationService = function (resource, appEnvironment) {
+    varInterfaceUtill.operationService = function (resource, appHttp) {
         return resource(
-            appEnvironment.getAppHttpUrl('/service/:command'),
+            appHttp.getAppHttpUrl('/service/:command'),
             {
                 command: '@command'
             },
@@ -238,9 +238,9 @@
         );
     };
 
-    varInterfaceUtill.systemService = function (resource, appEnvironment) {
+    varInterfaceUtill.systemService = function (resource, appHttp) {
         return resource(
-            appEnvironment.getAppHttpUrl('/system/:command'),
+            appHttp.getAppHttpUrl('/system/:command'),
             {
                 command: '@command'
             },

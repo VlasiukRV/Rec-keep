@@ -21,8 +21,8 @@ angular.module('module.ui.edit-form', [
 }])
 
 
-.service('entityEditService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
-	return appService.forms.entityEditService($resource, appEnvironment);
+.service('entityEditService', ['$resource', 'appHttp', function ($resource, appHttp) {
+	return appService.forms.entityEditService($resource, appHttp);
 }])
 
 

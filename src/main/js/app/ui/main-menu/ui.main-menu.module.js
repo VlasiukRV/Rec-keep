@@ -4,16 +4,16 @@ angular.module('module.ui.main-menu', [
 	'module.config.system'
 	])
 
-.factory('systemService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
-	return varInterfaceUtill.systemService($resource, appEnvironment);
+.factory('systemService', ['$resource', 'appHttp', function ($resource, appHttp) {
+	return varInterfaceUtill.systemService($resource, appHttp);
 }])
 
-.factory('securityService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
-	return varInterfaceUtill.securityService($resource, appEnvironment);
+.factory('securityService', ['$resource', 'appHttp', function ($resource, appHttp) {
+	return varInterfaceUtill.securityService($resource, appHttp);
 }])
 
-.factory('operationService', ['$resource', 'appEnvironment', function ($resource, appEnvironment) {
-	return varInterfaceUtill.operationService($resource, appEnvironment);
+.factory('operationService', ['$resource', 'appHttp', function ($resource, appHttp) {
+	return varInterfaceUtill.operationService($resource, appHttp);
 }])
 
 .factory('resourceService', ['entityEditService', 'systemService', 'securityService', 'operationService', function (entityEditService, systemService, securityService, operationService) {

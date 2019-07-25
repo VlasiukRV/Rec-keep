@@ -25,22 +25,4 @@ angular.module('module.ui',
 	]
 )
 
-.controller('workPlaceController',
-	[
-	'$window', 
-	'$http', 
-	'$cookies', 
-	'$rootScope', 
-	'$scope', 
-	'$location', 
-	'dataStorage',
-	'appConfig', 
-	'resourceService', 
-	'dateFilter', 
-	'errorDescriptions',
-	
-	appController.workPlaceController
-	]
-)
-
 ;
