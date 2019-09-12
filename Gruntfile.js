@@ -111,9 +111,8 @@ module.exports = function (grunt) {
                         
                         'src/main/js/app/app-utils.js',
 
-                        'src/main/js/app/config/config.service.js',
-                        'src/main/js/app/config/system/assert/**/*.js',
-                        'src/main/js/app/config/system/system.module.js',                        
+                        'src/main/js/app/config/assert/**/*.js',
+                        'src/main/js/app/config/core.module.js',
                         'src/main/js/app/config/config.module.js',
 
                         'src/main/js/app/components/angular-json-editor.js',

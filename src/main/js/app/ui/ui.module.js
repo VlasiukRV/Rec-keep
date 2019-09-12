@@ -3,7 +3,7 @@ angular.module('module.ui',
 	'ngResource', 
 
 	'module.config',
-	'module.config.system',
+	'module.core',
 
 	'module.ui.main-menu',
 	'module.ui.edit-form',

@@ -1,4 +1,4 @@
-angular.module('module.config.system', 
+angular.module('module.core',
 	[
 		'module.ui.main-menu',
         'module.ui.list-form'
@@ -61,12 +61,25 @@ angular.module('module.config.system',
     ]
 )
 
-.service('metadataEvents',
+.service('MetadataEvents', [
 
-	function(){
-        var MetadataEvents = moduleConfigSystem.MetadataEvents;
-		return new MetadataEvents();
-	}
+    moduleConfigSystem.MetadataEvents
+    ]
+)
+
+.service('Principal', [
+
+    moduleConfigSystem.Principal
+    ]
+)
+
+.service('metadataEvents', [
+    'MetadataEvents',
+
+    function(MetadataEvents) {
+        return new MetadataEvents();
+        }
+    ]
 )
 
 .service('abstractAppModel', [
@@ -83,13 +96,12 @@ angular.module('module.config.system',
     }]
 )
 
-.service('principal',
+.service('principal', [
+    'Principal',
 
-    function(){
-        var  Principal = moduleConfigSystem.Principal;
+    function(Principal){
         return new Principal();
-    }
+    }]
 )
-
 ;
 

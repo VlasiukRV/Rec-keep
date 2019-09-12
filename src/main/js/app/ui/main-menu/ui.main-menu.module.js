@@ -1,7 +1,7 @@
 angular.module('module.ui.main-menu', [
 	'ngResource',
 	'module.ui.form',
-	'module.config.system'
+	'module.core'
 	])
 
 .factory('systemService', ['$resource', 'appHttp', function ($resource, appHttp) {
