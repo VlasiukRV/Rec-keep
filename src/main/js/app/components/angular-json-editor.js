@@ -1,6 +1,6 @@
 // A directive that wraps json-editor.
 
-angular.module('angular-jsoneditor', [])
+angular.module('angular-json-editor', [])
 
     .directive('jsonEditor', function () {
         return {

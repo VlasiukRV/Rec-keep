@@ -116,6 +116,7 @@ module.exports = function (grunt) {
                         'src/main/js/app/config/config.module.js',
 
                         'src/main/js/app/components/angular-json-editor.js',
+                        'src/main/js/app/components/data-analise-chart.js',
 
                         'src/main/js/app/ui/main-menu/ui.main-menu.core.js',
                         'src/main/js/app/ui/main-menu/ui.main-menu.directive.js',
