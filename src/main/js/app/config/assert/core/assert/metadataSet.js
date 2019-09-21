@@ -46,54 +46,8 @@
 
                     return metadataSet;
                 },
-                installMetadataObjectEntity: function (entitySpecification) {
+                installMetadataObjectEntity: function (metadataEntitySpecification) {
                     var metadataSet = this;
-                    var EntityClass = entitySpecification.entityClass;
-
-                    var metadataEntitySpecification = new MetadataEntitySpecification();
-                    metadataEntitySpecification.metadataName = entitySpecification.metadataName;
-                    metadataEntitySpecification.metadataRepresentation = entitySpecification.metadataRepresentation;
-                    metadataEntitySpecification.metadataDescription = entitySpecification.metadataDescription;
-
-                    appUtils.fillAllValuesProperty(entitySpecification.entityField.entityField, metadataEntitySpecification.entityField.entityField);
-                    appUtils.fillAllValuesProperty(entitySpecification.entityField.objectField, metadataEntitySpecification.entityField.objectField);
-                    metadataEntitySpecification.entityField.defineField = entitySpecification.entityField.defineField;
-
-                    metadataEntitySpecification.entityField.entityField.id = {
-                        value: '',
-                        fieldDescription: {
-                            inputType: 'text',
-                            label: 'id',
-                            availability: true,
-                            entityListService: null
-                        }
-                    };
-                    metadataEntitySpecification.entityField.entityField.description = {
-                        value: '',
-                        fieldDescription: {
-                            inputType: 'textarea',
-                            label: 'description',
-                            availability: true,
-                            entityListService: null
-                        }
-                    };
-                    metadataEntitySpecification.entityFieldsPlacing = entitySpecification.entityFieldsPlacing;
-                    if(entitySpecification.fmListForm) {
-                        if(entitySpecification.fmListForm.listType) {
-                            metadataEntitySpecification.fmListForm.listType = entitySpecification.fmListForm.listType;
-                        }
-                    }
-
-                    (function () {
-                        // field
-                        EntityClass.prototype.$_buildObject = function () {
-                            this.includeEntityFd(
-                                metadataEntitySpecification.getObjectFields(),
-                                metadataEntitySpecification.getEntityFields(),
-                                metadataEntitySpecification.entityField.defineField
-                            );
-                        };
-                    })();
 
                     var entityList = new EntityList();
                     entityList.metadataName = metadataEntitySpecification.metadataName;
@@ -101,7 +55,7 @@
                     var metadataObject = new MetadataObject();
 
                     metadataObject.installMetadata(metadataEntitySpecification.metadataName,
-                        entitySpecification.fnGetEntityInstance,
+                        metadataEntitySpecification.fnGetEntityInstance,
                         metadataEntitySpecification.metadataRepresentation,
                         metadataEntitySpecification.metadataDescription
                     );
@@ -126,7 +80,7 @@
                     // EditMenu
                     var entitySubMenu = metadataSet.userInterface.commandBar.commandBar.getSubMenu('modelDD');
                     if (entitySubMenu !== undefined) {
-                        entitySubMenu.addCommand(varInterfaceUtill.getNewEntityCommand(entitySpecification.metadataName, entitySpecification));
+                        entitySubMenu.addCommand(varInterfaceUtill.getNewEntityCommand(metadataEntitySpecification.metadataName, metadataEntitySpecification));
                     }
 
                     return metadataSet;

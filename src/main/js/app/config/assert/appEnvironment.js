@@ -66,7 +66,7 @@
 
             registeredController: function(metadataEntitySpecification) {
 
-                var metadataName = metadataEntitySpecification.metadataName
+                var metadataName = metadataEntitySpecification.metadataName;
 
                 appController[metadataName + 'Controller'] = function ($scope) {
                     $scope.showEditForm = false;

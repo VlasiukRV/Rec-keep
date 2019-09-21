@@ -6,7 +6,7 @@
 	var moduleConfigSystem = exp.moduleConfigSystem;
 
 
-	moduleConfigSystem.MetadataEntitySpecification = function (fmListForm_TYPES, MetadataEditField) {
+	moduleConfigSystem.MetadataEntitySpecification = function (metadataSet, fmListForm_TYPES, MetadataEditField) {
 
 		var MetadataEntitySpecification = appUtils.Class();
 
@@ -26,6 +26,40 @@
 				},
 				entityFieldsPlacing: []
 			});
+		};
+		MetadataEntitySpecification.prototype.getArrayValue = function () {
+
+			var arrayValue = [];
+
+			arrayValue.representationList = function () {
+				var str = '';
+				var k = 0;
+				while (true) {
+					if (k === this.length) {
+						break;
+					}
+					str = str + '; ' + this[k].representation;
+					k = k + 1;
+
+				}
+				return str;
+			};
+			arrayValue.fillByTemplate = function (template) {
+				this.length = 0;
+				var k = 0;
+				while (true) {
+					if (k === template.length) {
+						break;
+					}
+					var entity = metadataSet.getEntityInstance('user');
+					appUtils.fillValuesProperty(template[k], entity);
+					this.push(entity);
+					k = k + 1;
+				}
+			};
+
+			return arrayValue
+
 		};
 
 		MetadataEntitySpecification.includeMthd({
@@ -79,7 +113,68 @@
 
 			getEntityFieldsPlacing: function () {
                 	return this.entityFieldsPlacing;
+			},
+
+			getEntityInstance: function () {
+				return null;
+			},
+
+			init: function (entitySpecification) {
+				var self= this;
+				var EntityClass = entitySpecification.entityClass;
+
+				self.metadataName = entitySpecification.metadataName;
+				self.metadataRepresentation = entitySpecification.metadataRepresentation;
+				self.metadataDescription = entitySpecification.metadataDescription;
+				self.fnGetEntityInstance = entitySpecification.fnGetEntityInstance;
+
+				appUtils.fillAllValuesProperty(entitySpecification.entityField.entityField, self.entityField.entityField);
+				appUtils.fillAllValuesProperty(entitySpecification.entityField.objectField, self.entityField.objectField);
+				self.entityField.defineField = entitySpecification.entityField.defineField;
+
+				self.addCommonFields();
+
+				self.entityFieldsPlacing = entitySpecification.entityFieldsPlacing;
+				if(entitySpecification.fmListForm) {
+					if(entitySpecification.fmListForm.listType) {
+						self.fmListForm.listType = entitySpecification.fmListForm.listType;
+					}
+				}
+
+				(function () {
+					// field
+					EntityClass.prototype.$_buildObject = function () {
+						this.includeEntityFd(
+							self.getObjectFields(),
+							self.getEntityFields(),
+							self.entityField.defineField
+						);
+					};
+				})();
+
+			},
+
+			addCommonFields: function () {
+				this.entityField.entityField.id = {
+					value: '',
+					fieldDescription: {
+						inputType: 'text',
+						label: 'id',
+						availability: true,
+						entityListService: null
+					}
+				};
+				this.entityField.entityField.description = {
+					value: '',
+					fieldDescription: {
+						inputType: 'textarea',
+						label: 'description',
+						availability: true,
+						entityListService: null
+					}
+				};
 			}
+
 		});
 
 		return MetadataEntitySpecification;

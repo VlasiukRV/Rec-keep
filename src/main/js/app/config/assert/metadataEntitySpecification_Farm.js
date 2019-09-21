@@ -5,64 +5,68 @@
     }
     var moduleConfig = exp.moduleConfig;
 
-    moduleConfig.metadataEntitySpecification_Farm = function (Entity, fmListForm_TYPES) {
+    moduleConfig.metadataEntitySpecification_Farm = function (MetadataEntitySpecification, Entity, fmListForm_TYPES) {
 
         var Farm = appUtils.Class(Entity);
 
-        return {
-            entityClass: Farm,
-            fnGetEntityInstance: function () {
-                return new Farm();
-            },
-            metadataName: 'farm',
-            metadataRepresentation: 'farm',
-            metadataDescription: 'Farm list',
-            entityField: {
-                objectField: {},
-                entityField: {
-
-                    // entity field
-                    name: {
-                        value: '',
-                        fieldDescription: {
-                            inputType: 'text',
-                            label: 'name',
-                            availability: true,
-                            entityListService: null
-                        }
-                    }
-
+        var metadataEntitySpecification = new MetadataEntitySpecification();
+        metadataEntitySpecification.init({
+                entityClass: Farm,
+                fnGetEntityInstance: function () {
+                    return new Farm();
                 },
-                defineField: {
+                metadataName: 'farm',
+                metadataRepresentation: 'farm',
+                metadataDescription: 'Farm list',
+                entityField: {
+                    objectField: {},
+                    entityField: {
 
-                    representation: {
-                        enumerable: true,
-                        get: function () {
-                            return '' + this.name;
+                        // entity field
+                        name: {
+                            value: '',
+                            fieldDescription: {
+                                inputType: 'text',
+                                label: 'name',
+                                availability: true,
+                                entityListService: null
+                            }
                         }
-                    }
 
-                }
-            },
+                    },
+                    defineField: {
 
-            fmListForm: {
-                listType: fmListForm_TYPES.tile
-            },
-            entityFieldsPlacing: [
-                [
-                    {editFieldId: 'id', fieldLength: 3},
-                    {
-                        editFieldId: [
-                            [{editFieldId: 'name', fieldLength: 12}]
-                        ],
-                        fieldLength: 5
+                        representation: {
+                            enumerable: true,
+                            get: function () {
+                                return '' + this.name;
+                            }
+                        }
+
                     }
-                ],
-                [
-                    {editFieldId: 'description', fieldLength: 12}
+                },
+
+                fmListForm: {
+                    listType: fmListForm_TYPES.tile
+                },
+                entityFieldsPlacing: [
+                    [
+                        {editFieldId: 'id', fieldLength: 3},
+                        {
+                            editFieldId: [
+                                [{editFieldId: 'name', fieldLength: 12}]
+                            ],
+                            fieldLength: 5
+                        }
+                    ],
+                    [
+                        {editFieldId: 'description', fieldLength: 12}
+                    ]
                 ]
-            ]
-        };
+            }
+        );
+
+        return metadataEntitySpecification
     }
 
 })(window);

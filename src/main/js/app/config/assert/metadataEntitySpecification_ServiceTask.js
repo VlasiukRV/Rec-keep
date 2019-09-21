@@ -5,7 +5,7 @@
     }
     var moduleConfig = exp.moduleConfig;
 
-    moduleConfig.metadataEntitySpecification_ServiceTask = function (Entity, metadataSet, fmListForm_TYPES) {
+    moduleConfig.metadataEntitySpecification_ServiceTask = function (MetadataEntitySpecification, Entity, metadataSet, fmListForm_TYPES) {
 
         var ServiceTask = appUtils.Class(Entity);
         var metadataEntitySpecification_ServiceTask = {
@@ -162,7 +162,10 @@
             return str;
         };
 
-        return metadataEntitySpecification_ServiceTask;
+        var metadataEntitySpecification = new MetadataEntitySpecification();
+        metadataEntitySpecification.init(metadataEntitySpecification_ServiceTask);
+
+        return metadataEntitySpecification;
     }
 
 })(window);

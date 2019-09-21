@@ -2,7 +2,6 @@ angular.module('module.config',
 	[
 	'ngResource',
 
-    'module.config',
     'module.core',
     'module.ui.list-form'
 	]
@@ -33,11 +32,6 @@ angular.module('module.config',
     }
 }])
 
-.service('metadataSet', ['MetadataSet', function(MetadataSet){
-    return new MetadataSet();
-}])
-
-
 .service('appEnvironment', 
 	[
     'metadataSet',
@@ -62,6 +56,7 @@ angular.module('module.config',
 // 
 
     .service('metadataEntitySpecification_PoultryCalendar', [
+        'MetadataEntitySpecification',
         'Entity',
         'fmListForm_TYPES',
 
@@ -70,6 +65,7 @@ angular.module('module.config',
     )
 
     .service('metadataEntitySpecification_Farm', [
+        'MetadataEntitySpecification',
         'Entity',
         'fmListForm_TYPES',
 
@@ -78,6 +74,7 @@ angular.module('module.config',
     )
 
     .service('metadataEntitySpecification_Project', [
+        'MetadataEntitySpecification',
         'Entity',
 
         moduleConfig.metadataEntitySpecification_Project
@@ -85,6 +82,7 @@ angular.module('module.config',
     )
 
     .service('metadataEntitySpecification_User', [
+        'MetadataEntitySpecification',
         'Entity',
         'fmListForm_TYPES',
 
@@ -93,6 +91,7 @@ angular.module('module.config',
     )
 
     .service('metadataEntitySpecification_Role', [
+        'MetadataEntitySpecification',
         'Entity',
         'metadataSet',
 
@@ -101,6 +100,7 @@ angular.module('module.config',
     )
 
     .service('metadataEntitySpecification_ServiceTask', [
+        'MetadataEntitySpecification',
         'Entity',
         'metadataSet',
         'fmListForm_TYPES',
@@ -110,6 +110,7 @@ angular.module('module.config',
     )
 
     .service('metadataEntitySpecification_Task', [
+        'MetadataEntitySpecification',
         'Entity',
         'metadataSet',
 

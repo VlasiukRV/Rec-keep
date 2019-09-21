@@ -5,11 +5,12 @@
     }
     var moduleConfig = exp.moduleConfig;
 
-    moduleConfig.metadataEntitySpecification_PoultryCalendar = function (Entity, fmListForm_TYPES) {
+    moduleConfig.metadataEntitySpecification_PoultryCalendar = function (MetadataEntitySpecification, Entity, fmListForm_TYPES) {
 
         var PoultryCalendar = appUtils.Class(Entity);
 
-        return {
+        var metadataEntitySpecification = new MetadataEntitySpecification();
+        metadataEntitySpecification.init( {
             entityClass: PoultryCalendar,
             fnGetEntityInstance: function () {
                 return new PoultryCalendar();
@@ -180,7 +181,9 @@
                     {editFieldId: 'description', fieldLength: 12}
                 ]
             ]
-        };
+        });
+
+        return metadataEntitySpecification;
     };
 
 })(window);

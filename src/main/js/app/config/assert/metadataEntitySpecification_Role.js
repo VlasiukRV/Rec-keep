@@ -5,7 +5,7 @@
     }
     var moduleConfig = exp.moduleConfig;
 
-    moduleConfig.metadataEntitySpecification_Role = function (Entity, metadataSet) {
+    moduleConfig.metadataEntitySpecification_Role = function (MetadataEntitySpecification, Entity, metadataSet) {
 
         var Role = appUtils.Class(Entity);
 
@@ -73,34 +73,11 @@
                 ]
             ]
         };
-        metadataEntitySpecification_Role.entityField.entityField.users.value.representationList = function () {
-            var str = '';
-            var k = 0;
-            while (true) {
-                if (k === this.length) {
-                    break;
-                }
-                str = str + '; ' + this[k].representation;
-                k = k + 1;
 
-            }
-            return str;
-        };
-        metadataEntitySpecification_Role.entityField.entityField.users.value.fillByTemplate = function (template) {
-            this.length = 0;
-            var k = 0;
-            while (true) {
-                if (k === template.length) {
-                    break;
-                }
-                var entity = metadataSet.getEntityInstance('user');
-                appUtils.fillValuesProperty(template[k], entity);
-                this.push(entity);
-                k = k + 1;
-            }
-        };
+        var metadataEntitySpecification = new MetadataEntitySpecification();
+        metadataEntitySpecification.init(metadataEntitySpecification_Role);
 
-        return metadataEntitySpecification_Role;
+        return metadataEntitySpecification;
     }
 
 

@@ -5,7 +5,7 @@
     }
     var moduleConfig = exp.moduleConfig;
 
-    moduleConfig.metadataEntitySpecification_Task = function (Entity, metadataSet) {
+    moduleConfig.metadataEntitySpecification_Task = function (MetadataEntitySpecification, Entity, metadataSet) {
         var Task = appUtils.Class(Entity);
 
         var metadataEntitySpecification_Task = {
@@ -63,7 +63,7 @@
                         }
                     },
                     executor: {
-                        value: [],
+                        value: MetadataEntitySpecification.getArrayValue(),
                         fieldDescription: {
                             inputType: 'multiselect',
                             label: 'executor',
@@ -143,34 +143,10 @@
 
         };
 
-        metadataEntitySpecification_Task.entityField.entityField.executor.value.representationList = function () {
-            var str = '';
-            var k = 0;
-            while (true) {
-                if (k === this.length) {
-                    break;
-                }
-                str = str + '; ' + this[k].representation;
-                k = k + 1;
+        var metadataEntitySpecification = new MetadataEntitySpecification();
+        metadataEntitySpecification.init(metadataEntitySpecification_Task);
 
-            }
-            return str;
-        };
-        metadataEntitySpecification_Task.entityField.entityField.executor.value.fillByTemplate = function (template) {
-            this.length = 0;
-            var k = 0;
-            while (true) {
-                if (k === template.length) {
-                    break;
-                }
-                var entity = metadataSet.getEntityInstance('user');
-                appUtils.fillValuesProperty(template[k], entity);
-                this.push(entity);
-                k = k + 1;
-            }
-        };
-
-        return metadataEntitySpecification_Task;
+        return metadataEntitySpecification;
     }
 
 

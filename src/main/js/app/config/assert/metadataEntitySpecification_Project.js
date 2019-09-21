@@ -5,10 +5,11 @@
     }
     var moduleConfig = exp.moduleConfig;
 
-    moduleConfig.metadataEntitySpecification_Project = function (Entity) {
+    moduleConfig.metadataEntitySpecification_Project = function (MetadataEntitySpecification, Entity) {
         var Project = appUtils.Class(Entity);
 
-        return {
+        var metadataEntitySpecification = new MetadataEntitySpecification();
+        metadataEntitySpecification.init({
             entityClass: Project,
             fnGetEntityInstance: function () {
                 return new Project();
@@ -58,7 +59,9 @@
                     {editFieldId: 'description', fieldLength: 12}
                 ]
             ]
-        };
+        });
+
+        return metadataEntitySpecification
     }
 
 })(window);

@@ -10,6 +10,7 @@ var app = angular.module('app', [
     'data-analise-chart',
 
     'module.config',
+    'module.core',
 
     'module.ui.main-menu',
     'module.ui.edit-form',

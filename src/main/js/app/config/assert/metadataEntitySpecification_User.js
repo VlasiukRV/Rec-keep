@@ -5,10 +5,12 @@
     }
     var moduleConfig = exp.moduleConfig;
 
-    moduleConfig.metadataEntitySpecification_User = function (Entity, fmListForm_TYPES) {
+    moduleConfig.metadataEntitySpecification_User = function (MetadataEntitySpecification, Entity, fmListForm_TYPES) {
 
         var User = appUtils.Class(Entity);
-        return {
+
+        var metadataEntitySpecification = new MetadataEntitySpecification();
+        metadataEntitySpecification.init({
             entityClass: User,
             fnGetEntityInstance: function () {
                 return new User();
@@ -95,7 +97,9 @@
                 ]
             ]
 
-        };
+        });
+
+        return metadataEntitySpecification
     }
 
 })(window);
