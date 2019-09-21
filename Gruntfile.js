@@ -130,11 +130,6 @@ module.exports = function (grunt) {
                         'src/main/js/app/ui/list-form/ui.list-form.directive.js',
                         'src/main/js/app/ui/list-form/ui.list-form.module.js',
 
-                        'src/main/js/app/ui/ui.directive.forms.js',
-                        'src/main/js/app/ui/ui.directive.js',
-                        'src/main/js/app/ui/ui.service.js',
-
-                        'src/main/js/app/ui/ui.service.js',
                         'src/main/js/app/ui/ui.directive.js',
                         'src/main/js/app/ui/ui.module.js',
 
