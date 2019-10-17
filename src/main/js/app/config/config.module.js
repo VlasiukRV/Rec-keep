@@ -58,6 +58,7 @@ angular.module('module.config',
     .service('metadataEntitySpecification_PoultryCalendar', [
         'MetadataEntitySpecification',
         'Entity',
+        'metadataSet',
         'fmListForm_TYPES',
 
         moduleConfig.metadataEntitySpecification_PoultryCalendar
@@ -67,6 +68,7 @@ angular.module('module.config',
     .service('metadataEntitySpecification_Farm', [
         'MetadataEntitySpecification',
         'Entity',
+        'metadataSet',
         'fmListForm_TYPES',
 
         moduleConfig.metadataEntitySpecification_Farm
@@ -76,6 +78,8 @@ angular.module('module.config',
     .service('metadataEntitySpecification_Project', [
         'MetadataEntitySpecification',
         'Entity',
+        'metadataSet',
+        'fmListForm_TYPES',
 
         moduleConfig.metadataEntitySpecification_Project
         ]
@@ -84,6 +88,7 @@ angular.module('module.config',
     .service('metadataEntitySpecification_User', [
         'MetadataEntitySpecification',
         'Entity',
+        'metadataSet',
         'fmListForm_TYPES',
 
         moduleConfig.metadataEntitySpecification_User
@@ -94,6 +99,7 @@ angular.module('module.config',
         'MetadataEntitySpecification',
         'Entity',
         'metadataSet',
+        'fmListForm_TYPES',
 
         moduleConfig.metadataEntitySpecification_Role
         ]
@@ -113,6 +119,7 @@ angular.module('module.config',
         'MetadataEntitySpecification',
         'Entity',
         'metadataSet',
+        'fmListForm_TYPES',
 
         moduleConfig.metadataEntitySpecification_Task
         ]

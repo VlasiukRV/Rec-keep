@@ -43,7 +43,6 @@ angular.module('module.core',
 )
 
 .service('MetadataEntitySpecification', [
-    'metadataSet',
     'fmListForm_TYPES',
     'MetadataEditField',
 

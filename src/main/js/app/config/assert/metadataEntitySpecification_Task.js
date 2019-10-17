@@ -5,14 +5,17 @@
     }
     var moduleConfig = exp.moduleConfig;
 
-    moduleConfig.metadataEntitySpecification_Task = function (MetadataEntitySpecification, Entity, metadataSet) {
-        var Task = appUtils.Class(Entity);
+    moduleConfig.metadataEntitySpecification_Task = function (MetadataEntitySpecification, Entity, metadataSet, fmListForm_TYPES) {
 
-        var metadataEntitySpecification_Task = {
+        var Task = appUtils.Class(Entity);
+        var metadataEntitySpecification = new MetadataEntitySpecification();
+
+        metadataEntitySpecification.init( {
             entityClass: Task,
             fnGetEntityInstance: function () {
                 return new Task();
             },
+            metadataSet: metadataSet,
             metadataName: 'task',
             metadataRepresentation: 'Task',
             metadataDescription: 'Task list',
@@ -54,6 +57,7 @@
                             inputType: 'select',
                             label: 'author',
                             availability: true,
+                            metadataEntityName: 'user',
                             getInstance: function () {
                                 return metadataSet.getEntityInstance('user');
                             },
@@ -63,11 +67,12 @@
                         }
                     },
                     executor: {
-                        value: MetadataEntitySpecification.getArrayValue(),
+                        value: metadataEntitySpecification.getArrayValue(metadataSet, 'user'),
                         fieldDescription: {
                             inputType: 'multiselect',
                             label: 'executor',
                             availability: true,
+                            metadataEntityName: 'user',
                             entityListService: function () {
                                 return metadataSet.getEntityList('user');
                             }
@@ -79,6 +84,7 @@
                             inputType: 'select',
                             label: 'project',
                             availability: true,
+                            metadataEntityName: 'project',
                             getInstance: function () {
                                 return metadataSet.getEntityInstance('project');
                             },
@@ -141,10 +147,7 @@
                 ]
             ]
 
-        };
-
-        var metadataEntitySpecification = new MetadataEntitySpecification();
-        metadataEntitySpecification.init(metadataEntitySpecification_Task);
+        });
 
         return metadataEntitySpecification;
     }

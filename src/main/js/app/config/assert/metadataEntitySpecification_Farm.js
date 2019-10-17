@@ -5,7 +5,7 @@
     }
     var moduleConfig = exp.moduleConfig;
 
-    moduleConfig.metadataEntitySpecification_Farm = function (MetadataEntitySpecification, Entity, fmListForm_TYPES) {
+    moduleConfig.metadataEntitySpecification_Farm = function (MetadataEntitySpecification, Entity, metadataSet, fmListForm_TYPES) {
 
         var Farm = appUtils.Class(Entity);
 
@@ -15,6 +15,7 @@
                 fnGetEntityInstance: function () {
                     return new Farm();
                 },
+                metadataSet: metadataSet,
                 metadataName: 'farm',
                 metadataRepresentation: 'farm',
                 metadataDescription: 'Farm list',

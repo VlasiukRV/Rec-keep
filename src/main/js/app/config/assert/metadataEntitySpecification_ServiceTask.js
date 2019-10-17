@@ -8,11 +8,14 @@
     moduleConfig.metadataEntitySpecification_ServiceTask = function (MetadataEntitySpecification, Entity, metadataSet, fmListForm_TYPES) {
 
         var ServiceTask = appUtils.Class(Entity);
-        var metadataEntitySpecification_ServiceTask = {
+        var metadataEntitySpecification = new MetadataEntitySpecification();
+
+        metadataEntitySpecification.init( {
             entityClass: ServiceTask,
             fnGetEntityInstance: function () {
                 return new ServiceTask();
             },
+            metadataSet: metadataSet,
             metadataName: 'serviceTask',
             metadataRepresentation: 'serviceTask',
             metadataDescription: 'ServiceTask list',
@@ -37,6 +40,7 @@
                             inputType: 'select',
                             label: 'user',
                             availability: true,
+                            metadataEntityName: 'user',
                             getInstance: function () {
                                 return metadataSet.getEntityInstance('user');
                             },
@@ -146,24 +150,7 @@
                 ]
             ]
 
-        };
-
-        metadataEntitySpecification_ServiceTask.entityField.entityField.user.value.representationList = function () {
-            var str = '';
-            var k = 0;
-            while (true) {
-                if (k === this.length) {
-                    break;
-                }
-                str = str + '; ' + this[k].representation;
-                k = k + 1;
-
-            }
-            return str;
-        };
-
-        var metadataEntitySpecification = new MetadataEntitySpecification();
-        metadataEntitySpecification.init(metadataEntitySpecification_ServiceTask);
+        });
 
         return metadataEntitySpecification;
     }

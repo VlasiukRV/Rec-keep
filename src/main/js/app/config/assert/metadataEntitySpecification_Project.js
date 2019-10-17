@@ -5,7 +5,7 @@
     }
     var moduleConfig = exp.moduleConfig;
 
-    moduleConfig.metadataEntitySpecification_Project = function (MetadataEntitySpecification, Entity) {
+    moduleConfig.metadataEntitySpecification_Project = function (MetadataEntitySpecification, Entity, metadataSet, fmListForm_TYPES) {
         var Project = appUtils.Class(Entity);
 
         var metadataEntitySpecification = new MetadataEntitySpecification();
@@ -14,6 +14,7 @@
             fnGetEntityInstance: function () {
                 return new Project();
             },
+            metadataSet: metadataSet,
             metadataName: 'project',
             metadataRepresentation: 'Project',
             metadataDescription: 'Project list',

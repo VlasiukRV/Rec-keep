@@ -5,7 +5,7 @@
     }
     var moduleConfig = exp.moduleConfig;
 
-    moduleConfig.metadataEntitySpecification_User = function (MetadataEntitySpecification, Entity, fmListForm_TYPES) {
+    moduleConfig.metadataEntitySpecification_User = function (MetadataEntitySpecification, Entity, metadataSet, fmListForm_TYPES) {
 
         var User = appUtils.Class(Entity);
 
@@ -15,6 +15,7 @@
             fnGetEntityInstance: function () {
                 return new User();
             },
+            metadataSet: metadataSet,
             metadataName: 'user',
             metadataRepresentation: 'User',
             metadataDescription: 'User list',

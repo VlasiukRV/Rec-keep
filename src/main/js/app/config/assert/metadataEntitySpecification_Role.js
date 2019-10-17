@@ -5,15 +5,17 @@
     }
     var moduleConfig = exp.moduleConfig;
 
-    moduleConfig.metadataEntitySpecification_Role = function (MetadataEntitySpecification, Entity, metadataSet) {
+    moduleConfig.metadataEntitySpecification_Role = function (MetadataEntitySpecification, Entity, metadataSet, fmListForm_TYPES) {
 
         var Role = appUtils.Class(Entity);
+        var metadataEntitySpecification = new MetadataEntitySpecification();
 
-        var metadataEntitySpecification_Role = {
+        metadataEntitySpecification.init( {
             entityClass: Role,
             fnGetEntityInstance: function () {
                 return new Role();
             },
+            metadataSet: metadataSet,
             metadataName: 'role',
             metadataRepresentation: 'Role',
             metadataDescription: 'Role list',
@@ -34,11 +36,12 @@
                         }
                     },
                     users: {
-                        value: [],
+                        value: metadataEntitySpecification.getArrayValue(metadataSet, 'user'),
                         fieldDescription: {
                             inputType: 'multiselect',
                             label: 'users',
                             availability: true,
+                            metadataEntityName: 'user',
                             entityListService: function () {
                                 return metadataSet.getEntityList('user');
                             }
@@ -72,10 +75,7 @@
                     {editFieldId: 'description', fieldLength: 12}
                 ]
             ]
-        };
-
-        var metadataEntitySpecification = new MetadataEntitySpecification();
-        metadataEntitySpecification.init(metadataEntitySpecification_Role);
+        });
 
         return metadataEntitySpecification;
     }

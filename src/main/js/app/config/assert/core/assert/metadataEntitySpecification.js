@@ -6,12 +6,13 @@
 	var moduleConfigSystem = exp.moduleConfigSystem;
 
 
-	moduleConfigSystem.MetadataEntitySpecification = function (metadataSet, fmListForm_TYPES, MetadataEditField) {
+	moduleConfigSystem.MetadataEntitySpecification = function (fmListForm_TYPES, MetadataEditField) {
 
 		var MetadataEntitySpecification = appUtils.Class();
 
 		MetadataEntitySpecification.prototype.$_buildObject = function () {
 			this.includeFd({
+                metadataSet: {},
 				metadataName: '',
 				metadataRepresentation: '',
 				metadataDescription: '',
@@ -27,7 +28,7 @@
 				entityFieldsPlacing: []
 			});
 		};
-		MetadataEntitySpecification.prototype.getArrayValue = function () {
+		MetadataEntitySpecification.prototype.getArrayValue = function (metadataSet, metadataEntityName) {
 
 			var arrayValue = [];
 
@@ -51,7 +52,7 @@
 					if (k === template.length) {
 						break;
 					}
-					var entity = metadataSet.getEntityInstance('user');
+					var entity = metadataSet.getEntityInstance(metadataEntityName);
 					appUtils.fillValuesProperty(template[k], entity);
 					this.push(entity);
 					k = k + 1;
@@ -59,7 +60,6 @@
 			};
 
 			return arrayValue
-
 		};
 
 		MetadataEntitySpecification.includeMthd({
@@ -69,31 +69,32 @@
 				return objectFields;
 			},
 			getEntityFields: function () {
+				var self = this;
+
 				var source = this.entityField.entityField;
 				var entityFields = {};
 				for (var key in source) {
-					if (angular.isArray(source[key].value)) {
-						entityFields[key] = [];
-                            // ToDo
-                            if (source[key].value.fillByTemplate) {
-                            	entityFields[key].fillByTemplate = source[key].value.fillByTemplate;
-                            }
-                            if (source[key].value.representationList) {
-                            	entityFields[key].representationList = source[key].value.representationList;
-                            	/*entityFields[key].representationList = source[key].representationList;*/
-                            }
-                        } else if (typeof source[key].value === 'object') {
-                        	if (source[key].fieldDescription && source[key].fieldDescription.getInstance) {
-                        		entityFields[key] = source[key].fieldDescription.getInstance();
-                        	} else {
-                        		entityFields[key] = {};
-                        	}
+                    if (angular.isArray(source[key].value)) {
+                        entityFields[key] = [];
+                        // ToDo
+                        if (source[key].value.fillByTemplate) {
+                            entityFields[key].fillByTemplate = source[key].value.fillByTemplate;
                         }
-                        else {
-                        	entityFields[key] = source[key].value;
+                        if (source[key].value.representationList) {
+                            entityFields[key].representationList = source[key].value.representationList;
+                        }
+                    } else if (typeof source[key].value === 'object') {
+                        if (source[key].fieldDescription && source[key].fieldDescription.metadataEntityName) {
+                            entityFields[key] = self.metadataSet.getEntityInstance(source[key].fieldDescription.metadataEntityName);
+                        } else {
+                            entityFields[key] = {};
                         }
                     }
-                    return entityFields;
+                    else {
+                        entityFields[key] = source[key].value;
+                    }
+                }
+                return entityFields;
                 },
 
 			getEntityFieldsDescription: function () {
@@ -122,6 +123,8 @@
 			init: function (entitySpecification) {
 				var self= this;
 				var EntityClass = entitySpecification.entityClass;
+
+				self.metadataSet = entitySpecification.metadataSet;
 
 				self.metadataName = entitySpecification.metadataName;
 				self.metadataRepresentation = entitySpecification.metadataRepresentation;
