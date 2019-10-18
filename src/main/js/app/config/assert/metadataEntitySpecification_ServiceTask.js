@@ -40,13 +40,7 @@
                             inputType: 'select',
                             label: 'user',
                             availability: true,
-                            metadataEntityName: 'user',
-                            getInstance: function () {
-                                return metadataSet.getEntityInstance('user');
-                            },
-                            entityListService: function () {
-                                return metadataSet.getEntityList('user');
-                            }
+                            metadataEntityName: 'user'
                         }
                     },
                     taskRunDate: {

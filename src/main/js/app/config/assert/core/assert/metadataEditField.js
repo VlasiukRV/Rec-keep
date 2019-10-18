@@ -15,8 +15,6 @@
                     inputType: 'text',
                     label: '<--label for property-->',
 
-                    entityListService: {},
-
                     availability: true,
 
                     visibility: true,
@@ -27,7 +25,12 @@
                 });
             };
             MetadataEditField.includeMthd({
-                buildEditField: function (fieldDescription, name) {
+                entityListService: function() {
+                    return null;
+                },
+
+                buildEditField: function (fieldSpecification, name, metadataSet) {
+                    var fieldDescription = fieldSpecification.fieldDescription;
                     if (name) {
                         this.name = name;
                     } else {
@@ -46,9 +49,15 @@
                     if (fieldDescription.availability) {
                         this.availability = fieldDescription.availability;
                     }
-                    if (fieldDescription.entityListService) {
-                        this.entityListService = fieldDescription.entityListService;
-                    }
+
+                        this.entityListService = function () {
+                            if (typeof fieldSpecification.value === 'object') {
+                                return metadataSet.getEntityList(fieldDescription.metadataEntityName);
+                            } else {
+                                return null;
+                            }
+                        };
+
                 }
             });
         })();

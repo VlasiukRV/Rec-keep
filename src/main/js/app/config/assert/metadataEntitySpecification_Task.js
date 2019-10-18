@@ -57,13 +57,7 @@
                             inputType: 'select',
                             label: 'author',
                             availability: true,
-                            metadataEntityName: 'user',
-                            getInstance: function () {
-                                return metadataSet.getEntityInstance('user');
-                            },
-                            entityListService: function () {
-                                return metadataSet.getEntityList('user');
-                            }
+                            metadataEntityName: 'user'
                         }
                     },
                     executor: {
@@ -84,13 +78,7 @@
                             inputType: 'select',
                             label: 'project',
                             availability: true,
-                            metadataEntityName: 'project',
-                            getInstance: function () {
-                                return metadataSet.getEntityInstance('project');
-                            },
-                            entityListService: function () {
-                                return metadataSet.getEntityList('project');
-                            }
+                            metadataEntityName: 'project'
                         }
                     },
                     state: {

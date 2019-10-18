@@ -102,7 +102,7 @@
                 	var entityFieldsDescription = [];
                 	for (var key in source) {
                 		var metadataEditField = new MetadataEditField();
-                		metadataEditField.buildEditField(source[key].fieldDescription, key);
+                		metadataEditField.buildEditField(source[key], key, this.metadataSet);
                 		entityFieldsDescription.push(metadataEditField);
                 	}
                 	return entityFieldsDescription;
